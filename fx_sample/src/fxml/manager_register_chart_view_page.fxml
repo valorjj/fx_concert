@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.chart.PieChart?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane prefHeight="750.0" prefWidth="850.0" style="-fx-background-color: #000000;" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <ComboBox layoutX="34.0" layoutY="46.0" prefWidth="150.0" />
+      <ComboBox layoutX="218.0" layoutY="46.0" prefWidth="150.0" />
+      <ComboBox layoutX="394.0" layoutY="46.0" prefWidth="150.0" />
+      <PieChart layoutX="47.0" layoutY="106.0" prefHeight="307.0" prefWidth="342.0" />
+      <PieChart layoutX="457.0" layoutY="106.0" prefHeight="307.0" prefWidth="342.0" />
+      <PieChart layoutX="47.0" layoutY="401.0" prefHeight="307.0" prefWidth="342.0" />
+      <PieChart layoutX="469.0" layoutY="401.0" prefHeight="307.0" prefWidth="342.0" />
+   </children>
+</AnchorPane>
