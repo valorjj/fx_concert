@@ -11,7 +11,7 @@ public class Main extends Application {
 	@Override
 	public void start(Stage primaryStage) {
 		try {
-			Parent parent = FXMLLoader.load(getClass().getResource("/fxml/main_page.fxml"));
+			Parent parent = FXMLLoader.load(getClass().getResource("/fxml/manager_main_page.fxml"));
 			Scene scene = new Scene(parent);
 
 			// scene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
@@ -25,12 +25,12 @@ public class Main extends Application {
 
 	public static void main(String[] args) {
 
-		int n = 50; // 관리자가 입력한 숫자
+		int n = 50; // 愿�由ъ옄媛� �엯�젰�븳 �닽�옄
 		for (int i = 0; i < n; i++) {
 
 			Button button1 = new Button();
 
-			button1.setId("포문에서 들어갈 숫자");
+			button1.setId("�룷臾몄뿉�꽌 �뱾�뼱媛� �닽�옄");
 
 			button1.getId();
 

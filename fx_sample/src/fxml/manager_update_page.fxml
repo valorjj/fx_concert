@@ -9,7 +9,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1024.0" style="-fx-background-color: #494854;" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.manager.Manager_Register_Controller">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1024.0" style="-fx-background-color: #494854;" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.manager.Manager_Update_Controller">
    <children>
       <TextField fx:id="txt_concert_name" layoutX="190.0" layoutY="63.0" prefHeight="54.0" prefWidth="242.0" promptText="콘서트 이름" />
       <TextField fx:id="txt_concert_aritist" layoutX="190.0" layoutY="130.0" prefHeight="54.0" prefWidth="242.0" promptText="아티스트" />
@@ -64,7 +64,7 @@
             <Font size="18.0" />
          </font>
       </Label>
-      <Button fx:id="btn_concert_register" layoutX="704.0" layoutY="603.0" mnemonicParsing="false" onAction="#btn_concert_register" prefHeight="82.0" prefWidth="91.0" text="등록" />
+      <Button fx:id="btn_concert_update" layoutX="704.0" layoutY="603.0" mnemonicParsing="false" onAction="#btn_concert_update" prefHeight="82.0" prefWidth="91.0" text="수정" />
       <ImageView fitHeight="185.0" fitWidth="255.0" layoutX="482.0" layoutY="38.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../images/logo.png" />
