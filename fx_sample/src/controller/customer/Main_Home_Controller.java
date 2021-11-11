@@ -1,48 +1,39 @@
 package controller.customer;
 
-import java.io.File;
+import java.net.URL;
+import java.util.ResourceBundle;
 
-import javafx.scene.image.Image;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.fxml.Initializable;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.layout.AnchorPane;
-import javafx.scene.image.ImageView;
 
-public class Main_Home_Controller extends Thread {
+public class Main_Home_Controller implements Initializable {
 
 	/*
 	 * main_page_home.fxml 이 로드된 상태이다. 여기서 anchorpane 안에 imageview 를 넣는다. anchorpane
 	 * 을 load_page 메소드를 이용해서 pane 을 바꾼다.
 	 */
 
-	boolean stop;
+	public static Main_Home_Controller instance;
+
+	public static Main_Home_Controller getinstance() {
+		return instance;
+	}
+
+	public Main_Home_Controller() {
+		instance = this;
+	}
+
 	@FXML
-	AnchorPane anchorpane_main_page;
+	private AnchorPane anchorpane_main_page;
 	@FXML
-	AnchorPane anchorpane_image;
-	@FXML
-	ImageView img_main_page;
+	private AnchorPane anchorpane_image;
 
 	@Override
-	public void run() {
-
-		while (!stop) {
-			for (int i = 1; i < 3; i++) {
-
-				File file = new File("/src/images/" + i + ".png");
-				System.out.println(file);
-				Image image = new Image(file.toURI().toString());
-				ImageView imageView = new ImageView();
-				imageView.setImage(image);
-				anchorpane_image.getChildren().add(imageView);
-				try {
-					Main_Home_Controller.sleep(200);
-				} catch (InterruptedException e) {
-					e.printStackTrace();
-				}
-
-			}
-
-		}
+	public void initialize(URL arg0, ResourceBundle arg1) {
 
 	}
 

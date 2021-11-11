@@ -17,6 +17,8 @@ import javafx.scene.layout.AnchorPane;
 
 public class Mainpage_Controller implements Initializable {
 
+	private boolean stop;
+
 	@FXML
 	private BorderPane main_page_boardpane;
 
@@ -58,11 +60,12 @@ public class Mainpage_Controller implements Initializable {
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
 
-		// 첫 화면을 로드한다. 여기서는 콘서트 사진이 계속해서 나오게 하는 스레드가 사용되었다.
+		// 첫 화면을 로드한다. 여기서는 콘서트 사진이 계속해서 나오게 하는 스레드 사용 
 		loadpage("main_page_home");
 
 	}
 
+	// 인수로 건네받은 fxml 파일 열기
 	public void loadpage(String page) {
 
 		try {
@@ -116,8 +119,24 @@ public class Mainpage_Controller implements Initializable {
 	// 버튼을 누르면 가장 첫 페이지로 이동
 	@FXML
 	public void btn_home(ActionEvent event) {
+
+		Runnable runnable = new Runnable() {
+
+			@Override
+			public void run() {
+				while (!stop) {
+					for (int i = 1; i < 3; i++) {
+						loadpage("main_page_image_change_pane");
+					}
+				}
+			}
+		};
+
+		Thread thread = new Thread(runnable);
+
+		thread.start();
+
 		// 여기서는 스레드를 이용해서 이미지가 계속 바뀐다.
-		loadpage("main_page_home");
 
 	}
 
