@@ -1,6 +1,6 @@
 ## java fx 와 Scene Builder 를 이용한 콘서트 예매 페이지 
 
-![image](https://user-images.githubusercontent.com/30681841/141226379-ca8f4023-0f28-47f7-8e13-e46b2fd87270.png)
+![image](https://user-images.githubusercontent.com/30681841/141245116-7fb778d9-abf4-4724-9932-ae2ffb132545.png)
 
 ![image](https://user-images.githubusercontent.com/30681841/141226443-9772d88d-25b5-4bdc-9f6f-51321e1c1fa1.png)
 
