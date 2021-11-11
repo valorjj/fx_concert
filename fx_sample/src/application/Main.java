@@ -12,6 +12,7 @@ public class Main extends Application {
 		try {
 			Parent parent = FXMLLoader.load(getClass().getResource("/fxml/main_page.fxml"));
 			Scene scene = new Scene(parent);
+			
 
 			// scene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
 
