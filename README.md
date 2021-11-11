@@ -1,4 +1,4 @@
-## java fx 를 이용한 콘서트 예매 페이지 
+## java fx 와 Scene Builder 를 이용한 콘서트 예매 페이지 
 
 ![image](https://user-images.githubusercontent.com/30681841/141226379-ca8f4023-0f28-47f7-8e13-e46b2fd87270.png)
 
