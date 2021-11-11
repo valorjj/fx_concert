@@ -92,6 +92,11 @@ public class Manager_Register_Controller {
 	@FXML
 	void btn_concert_register(ActionEvent event) {
 		
+		String c_title = txt_concert_name.getText();
+		String c_artist = txt_concert_aritist.getText();
+		// 내일 이미지경로부터 추가하면될듯 
+		
+		
 		Alert alert = new Alert(AlertType.INFORMATION);
 		alert.setHeaderText("콘서트가 등록되었습니다");
 		alert.showAndWait();
