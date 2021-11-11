@@ -18,8 +18,6 @@ public class Manager_Register_Controller {
 	@FXML
 	private Button btn_concert_register;
 
-	@FXML
-	private Button btn_concert_route;
 
 	@FXML
 	private CheckBox ch_day1;
@@ -51,8 +49,6 @@ public class Manager_Register_Controller {
 	@FXML
 	private Label lbl_concert_info_path;
 
-	@FXML
-	private Label lbl_concert_route_path;
 
 	@FXML
 	private TextField txt_concert_aritist;
@@ -101,11 +97,6 @@ public class Manager_Register_Controller {
 		alert.setHeaderText("콘서트가 등록되었습니다");
 		alert.showAndWait();
 		Manager_Main_Controller.getInstance().loadpage("manager_main_home_page");
-	}
-
-	@FXML
-	void btn_concert_route(ActionEvent event) {
-		// 콘서트 하나장소에서 해서 빼는건지
 	}
 
 	@FXML
