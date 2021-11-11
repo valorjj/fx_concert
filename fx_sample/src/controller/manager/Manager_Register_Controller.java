@@ -105,7 +105,7 @@ public class Manager_Register_Controller {
 
 	@FXML
 	void btn_concert_route(ActionEvent event) {
-
+		// 콘서트 하나장소에서 해서 빼는건지
 	}
 
 	@FXML
