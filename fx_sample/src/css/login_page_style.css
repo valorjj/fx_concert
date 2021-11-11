@@ -1,5 +1,7 @@
 /* JavaFX CSS - Leave this comment until you have at least create one rule which uses -fx-Property */
 
-.button{
-	-fx-font-family: 'Nanum Barun Gothic', sans-serif;
+#lbl {
+	-fx-font-family: "NanumBarunGothic";
+	-fx-font-size: 15.0px;
+	-fx-text-fill: #E0AC56;
 }

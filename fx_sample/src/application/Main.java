@@ -5,16 +5,18 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.text.Font;
 import javafx.stage.Stage;
 
 public class Main extends Application {
 	@Override
 	public void start(Stage primaryStage) {
 		try {
+			Font.loadFont(getClass().getResourceAsStream("/fonts/NanumBarunGothicBold.ttf"), 10);
 			Parent parent = FXMLLoader.load(getClass().getResource("/fxml/login_page.fxml"));
 			Scene scene = new Scene(parent);
 
-			// scene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
+			scene.getStylesheets().add(getClass().getResource("/css/login_page_style.css").toExternalForm());
 
 			primaryStage.setScene(scene);
 			primaryStage.show();
