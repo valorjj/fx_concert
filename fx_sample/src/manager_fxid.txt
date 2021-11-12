@@ -1,0 +1,51 @@
+#494854
+#d1af94
+
+-----manager main
+btn_register 		action btn_register
+btn_update_delete		action btn_update_delete
+btn_reservation_status	action btn_reservation_status
+btn_board_management	action btn_board_management
+btn_logout		action btn_logout
+
+----manager register 
+txt_concert_name
+txt_concert_aritist
+txt_c_date
+txt_c_time
+txt_r_seat_no
+txt_r_seat_price
+txt_s_seat_no
+txt_s_seat_price
+txt_e_seat_no
+txt_e_seat_price
+txt_d_seat_no
+txt_d_seat_price
+btn_concert_info	action btn_concert_info
+lbl_concert_info_path
+img_concert_info
+btn_concert_register
+
+-----manager update
+txt_concert_name
+txt_concert_aritist
+txt_c_date
+txt_c_time
+txt_r_seat_no
+txt_r_seat_price
+txt_s_seat_no
+txt_s_seat_price
+txt_e_seat_no
+txt_e_seat_price
+txt_d_seat_no
+txt_d_seat_price
+btn_concert_info	action btn_concert_info
+lbl_concert_info_path
+img_concert_info
+btn_concert_update
+
+-------manager 
+
+btn_update	action btn_update
+btn_delete	action btn_delete
+tableview : concert_list
