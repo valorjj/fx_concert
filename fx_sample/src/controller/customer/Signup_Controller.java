@@ -21,56 +21,56 @@ public class Signup_Controller implements Initializable{
 
 	
 
-	 @FXML
-	    private Button btn_cancel;
+    @FXML
+    private Button btn_cancel;
 
-	    @FXML
-	    private Button btn_signup;
+    @FXML
+    private Button btn_signup;
 
-	    @FXML
-	    private RadioButton radio_btn_man;
+    @FXML
+    private RadioButton radio_btn_man;
 
-	    @FXML
-	    private RadioButton radio_btn_woman;
+    @FXML
+    private RadioButton radio_btn_woman;
 
-	    @FXML
-	    private ToggleGroup sex;
+    @FXML
+    private ToggleGroup sex;
 
-	    @FXML
-	    private TextField txt_age;
+    @FXML
+    private TextField txt_age;
 
-	    @FXML
-	    private PasswordField txt_confirm_password;
+    @FXML
+    private PasswordField txt_confirm_password;
 
-	    @FXML
-	    private TextField txt_email;
+    @FXML
+    private TextField txt_email;
 
-	    @FXML
-	    private TextField txt_id;
+    @FXML
+    private TextField txt_id;
 
-	    @FXML
-	    private TextField txt_name;
+    @FXML
+    private TextField txt_name;
 
-	    @FXML
-	    private PasswordField txt_password;
+    @FXML
+    private PasswordField txt_password;
 
-	    @FXML
-	    void cancel(ActionEvent event) {
-	    	Login_Controller.getinstance().loadpage("login_home_page");
-	    }
+    @FXML
+    void cancel(ActionEvent event) {
+    	Login_Controller.getinstance().loadpage("login_home_page");
+    }
 
-	    @FXML
-	    void man(ActionEvent event) {
+    @FXML
+    void man(ActionEvent event) {
 
-	    }
+    }
 
-	    @FXML
-	    void signup(ActionEvent event) {
+    @FXML
+    void signup(ActionEvent event) {
 
-	    }
+    }
 
-	    @FXML
-	    void woman(ActionEvent event) {
+    @FXML
+    void woman(ActionEvent event) {
 
-	    }
+    }
 }

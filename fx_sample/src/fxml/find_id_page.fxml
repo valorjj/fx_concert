@@ -19,7 +19,7 @@
             <TextField fx:id="txt_name" layoutX="45.0" layoutY="45.0" prefHeight="48.0" prefWidth="291.0" promptText="enter your name" />
             <TextField fx:id="btn_find_id" layoutX="48.0" layoutY="117.0" onAction="#find_id" prefHeight="48.0" prefWidth="291.0" promptText="enter your email" />
             <Button fx:id="btn_find" layoutX="47.0" layoutY="226.0" mnemonicParsing="false" prefHeight="49.0" prefWidth="292.0" text="FIND ID" />
-            <Button fx:id="btn_cancel" layoutX="44.0" layoutY="291.0" mnemonicParsing="false" onAction="#cancel" prefHeight="51.0" prefWidth="292.0" text="CANCEL" />
+            <Button fx:id="btn_cancel" layoutX="48.0" layoutY="291.0" mnemonicParsing="false" onAction="#cancel" prefHeight="51.0" prefWidth="292.0" text="CANCEL" />
             <Label layoutX="48.0" layoutY="175.0" prefHeight="44.0" prefWidth="290.0" text="아이디 찾기 결과 : " textFill="WHITE" />
          </children>
       </AnchorPane>

@@ -36,8 +36,8 @@ public class Main extends Application {
 
 		}
 
-		int s = n + 1; //
-		int m = s + 1;
+	//	int s = n + 1; //
+	//	int m = s + 1;
 
 		launch(args);
 	}
