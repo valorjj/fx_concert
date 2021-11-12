@@ -17,6 +17,9 @@ import javafx.scene.layout.AnchorPane;
 
 public class Mainpage_Controller implements Initializable {
 
+	
+	//////////////////////////////////////////////////////////////////
+
 	@FXML
 	private BorderPane main_page_boardpane;
 	@FXML
@@ -35,16 +38,23 @@ public class Mainpage_Controller implements Initializable {
 	private static ImageView img_main_page;
 	@FXML
 	private AnchorPane anchorpane_main_page;
+	
+	//////////////////////////////////////////////////////////////////
 
 	private static Mainpage_Controller instance;
 
 	public static Mainpage_Controller getInstance() {return instance;}
 
 	public Mainpage_Controller() {instance = this;}
+	
+	///////////////////////////////////////////////////////////////////
 
 	// 초기 화면을 설정하는 메소드
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {loadpage("main_page_home");}
+	
+	///////////////////////////////////////////////////////////////////
+	
 
 	// 인수로 건네받은 fxml 파일 열기
 	public void loadpage(String page) {
@@ -70,7 +80,7 @@ public class Mainpage_Controller implements Initializable {
 
 	// 버튼을 누르면 찾아오는 길 페이지 팝업
 	@FXML
-	public void btn_route(ActionEvent event) {loadpage("conrert_route");}
+	public void btn_route(ActionEvent event) {loadpage("concert_route");}
 
 	// 버튼을 누르면 계정 로그아웃
 	// 화면이 닫히고 로그인 페이지로 이동

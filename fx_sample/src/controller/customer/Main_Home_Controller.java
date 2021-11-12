@@ -21,8 +21,6 @@ public class Main_Home_Controller implements Initializable {
 	 * 을 load_page 메소드를 이용해서 pane 을 바꾼다.
 	 */
 
-	boolean stop;
-
 	public static Main_Home_Controller instance;
 
 	public static Main_Home_Controller getinstance() {
@@ -34,39 +32,45 @@ public class Main_Home_Controller implements Initializable {
 	}
 
 	@FXML
-	private AnchorPane anchorpane_main_page;
-	@FXML
-	private BorderPane main_page_image_change_borderpane;
-	@FXML
-	private AnchorPane image_change_anchorpane;
-	@FXML
-	private ImageView image_test;
+	private Label lbl_title;
 
 	@FXML
-	Label lbl_title;
+	private Label lbl_artist;
 
 	@FXML
-	Label lbl_artist;
+	private Label lbl_date;
 
 	@FXML
-	Label lbl_date;
+	BorderPane main_page_image_borderpane;
+
+	@FXML
+	AnchorPane image_anchorpane;
+
+	@FXML
+	ImageView imageview;
+
+	@FXML
+	ImageView image_test;
+
+	@FXML
+	AnchorPane anchorpane_main_page;
 
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
-		File file = new File("src/images/1.png");
-		Image image = new Image(file.toURI().toString());
+//		File file = new File("src/images/1.png");
+//		Image image = new Image(file.toURI().toString());
+//		image_test.setImage(image);
 
-		image_test.setImage(image);
-
-		main_image_loadpage("main_page_image_change_pane");
-
+		lbl_title.setText("");
+		lbl_date.setText("");
+		lbl_artist.setText("");
 	}
 
 	public void main_image_loadpage(String page) {
 		try {
 			Parent parent = FXMLLoader.load(getClass().getResource("/fxml/" + page + ".fxml"));
-
-			main_page_image_change_borderpane.setCenter(parent);
-		} catch (Exception e) {}
+			main_page_image_borderpane.setCenter(parent);
+		} catch (Exception e) {
+		}
 	}
 }
