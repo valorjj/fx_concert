@@ -2,7 +2,7 @@
 
 ![image](https://user-images.githubusercontent.com/30681841/141245180-201b2c16-e62d-4e8c-ae75-e42ed6d6dc21.png)
 
-![image](https://user-images.githubusercontent.com/30681841/141270118-41864c4d-9776-425c-903a-d5fee2fc17ba.png)
+![image](https://user-images.githubusercontent.com/30681841/141429526-0946ab2e-6da4-40a7-820f-58c121969988.png)
 
 ![image](https://user-images.githubusercontent.com/30681841/141231627-ceddd2f7-7277-4645-a1f2-3496e2650a3d.png)
 
