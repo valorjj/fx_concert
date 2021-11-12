@@ -1,14 +1,3 @@
-## java fx 와 Scene Builder 를 이용한 콘서트 예매 페이지 
-
-![image](https://user-images.githubusercontent.com/30681841/141245180-201b2c16-e62d-4e8c-ae75-e42ed6d6dc21.png)
-
-![image](https://user-images.githubusercontent.com/30681841/141429526-0946ab2e-6da4-40a7-820f-58c121969988.png)
-
-![image](https://user-images.githubusercontent.com/30681841/141231627-ceddd2f7-7277-4645-a1f2-3496e2650a3d.png)
-
-
-
-
 
 ## 개요
 > 콘서트 좌석 예매 프로그램
@@ -17,6 +6,23 @@
 - PieChart, BarChart 를 이용한 시각화
 - 회원 게시판
 
+인터파크 티켓 예매 사이트를 참고했습니다. 고객이 로그인 후, 콘서트를 고르고 원하는 날짜, 시간을 선택한 뒤 결제하는 홈페이지입니다.
+
+- 사이트 이용자 : 손님
+- 사이트 관리자 : 매니저
+
+
+## java fx 와 Scene Builder 를 이용한 콘서트 예매 페이지 
+
+![image](https://user-images.githubusercontent.com/30681841/141245180-201b2c16-e62d-4e8c-ae75-e42ed6d6dc21.png)
+
+![image](https://user-images.githubusercontent.com/30681841/141429526-0946ab2e-6da4-40a7-820f-58c121969988.png)
+
+![image](https://user-images.githubusercontent.com/30681841/141231627-ceddd2f7-7277-4645-a1f2-3496e2650a3d.png)
+
+## 화면 설계
+
+![image](https://user-images.githubusercontent.com/30681841/141442630-8fa1cea8-3ab4-4faa-8fc8-6169c827c129.png)
 
 ## 개발 시간
 
