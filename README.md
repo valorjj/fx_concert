@@ -38,7 +38,7 @@
 
 ## 개발 환경
 
-> Eclipse, Mysql, Scene Builder, Onenote 
+> Eclipse EE, Mysql, Mysql WorkBench, Scene Builder, Onenote, JDK 11
 
 ## 역할 분담
 
