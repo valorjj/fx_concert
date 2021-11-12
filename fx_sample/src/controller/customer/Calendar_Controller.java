@@ -4,7 +4,8 @@ import java.util.Calendar;
 
 public class Calendar_Controller {
 
-	public void get_calendar(int year, int month) {
+	@SuppressWarnings("static-access")
+	public static void get_calendar(int year, int month) {
 
 		Calendar calendar = Calendar.getInstance();
 

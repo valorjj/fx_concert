@@ -18,11 +18,11 @@ public class Image_Change_Controller extends Thread {
 	public void run() {
 		for (int i = 1; i < 3; i++) {
 
-			File file = new File("/src/images/" + i + ".png");
-			Image image = new Image(file.toURI().toString());
-			img_main_page.setImage(image);
+			File file = new File("images/" + i + ".png");
 			try {
-				Image_Change_Controller.sleep(2000);
+				Image image = new Image(file.toURI().toString());
+				img_main_page.setImage(image);
+				Image_Change_Controller.sleep(1000);
 			} catch (InterruptedException e) {
 				e.printStackTrace();
 			}
