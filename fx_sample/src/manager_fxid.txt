@@ -7,6 +7,10 @@ btn_update_delete		action btn_update_delete
 btn_reservation_status	action btn_reservation_status
 btn_board_management	action btn_board_management
 btn_logout		action btn_logout
+rec_register
+rec_update_delete
+rec_reservation_status
+rec_board_management
 
 ----manager register 
 txt_concert_name
@@ -44,8 +48,32 @@ lbl_concert_info_path
 img_concert_info
 btn_concert_update
 
--------manager 
+-------manager update_delete_page
 
 btn_update	action btn_update
 btn_delete	action btn_delete
 tableview : concert_list
+
+-------manager board_management page
+tableview : board_list
+
+-------manager board_view page
+lbl_writer
+lbl_date
+lbl_view
+btn_delete	action btn_delete
+btn_back	action btn_back
+txt_title
+txt_contents
+txt_reply
+btn_show_reply	action btn_show_reply
+tableview : reply_list
+
+------manager_chartview_page
+combo_concert_name	action combo_concert_name
+combo_concert_date	action combo_concert_date
+combo_concert_time	action combo_concert_time
+piechart_r_seat
+piechart_s_seat
+piechart_e_seat
+piechart_d_seat

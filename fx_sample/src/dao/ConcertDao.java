@@ -6,7 +6,6 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 
 import domain.Concert;
-import domain.Seat;
 
 public class ConcertDao {
 

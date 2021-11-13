@@ -5,6 +5,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.text.Font;
 import javafx.stage.Stage;
 
 public class Main extends Application {
@@ -13,20 +14,19 @@ public class Main extends Application {
 		try {
 			Parent parent = FXMLLoader.load(getClass().getResource("/fxml/manager_main_page.fxml"));
 			Scene scene = new Scene(parent);
-
-			// scene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
+//			Font.loadFont(getClass().getResourceAsStream("/fonts/NanumBarunGothicBold.otf"), 15); //폰트 불러오기
+//			scene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
 
 			primaryStage.setScene(scene);
 			primaryStage.show();
 		} catch (Exception e) {
-			e.printStackTrace();
 		}
 	}
 
 	public static void main(String[] args) {
 
 		int n = 50; // 愿�由ъ옄媛� �엯�젰�븳 �닽�옄
-		for (int i = 0; i < n; i++) {
+		for (int i = 0; i < n; i++) {	
 
 			Button button1 = new Button();
 
