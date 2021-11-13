@@ -14,21 +14,24 @@ public class Member {
 		//1. 빈생성자
 	public Member() {}
 	//2. 모든 필드를 받는 생성자[디비에서 가져올떄 사용되는것]
-	public Member(int m_no, String m_id, String m_pw, String m_name, String m_email, int m_age, String m_sex) {
+
+	
+	
+	
+	
+	//3. 메소드
+	public int getM_no() {
+		return m_no;
+	}
+	//2. 모든 필드를 받는 생성자[디비에서 가져올떄 사용되는것]
+	public Member(String m_id, String m_pw, String m_name, String m_email, int m_age, String m_sex) {
 		super();
-		this.m_no = m_no;
 		this.m_id = m_id;
 		this.m_pw = m_pw;
 		this.m_name = m_name;
 		this.m_email = m_email;
 		this.m_age = m_age;
 		this.m_sex = m_sex;
-	}
-	
-	
-	//3. 메소드
-	public int getM_no() {
-		return m_no;
 	}
 	public void setM_no(int m_no) {
 		this.m_no = m_no;
