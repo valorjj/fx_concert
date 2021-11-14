@@ -12,164 +12,164 @@
 
 <AnchorPane prefHeight="720.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <AnchorPane layoutX="22.0" layoutY="31.0" prefHeight="664.0" prefWidth="687.0">
+      <AnchorPane layoutX="22.0" layoutY="31.0" prefHeight="660.0" prefWidth="650.0" AnchorPane.leftAnchor="30.0" AnchorPane.topAnchor="30.0">
          <children>
-            <ImageView fitHeight="284.0" fitWidth="200.0" layoutX="25.0" layoutY="96.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView id="concert_image" fx:id="concert_image_view" fitHeight="284.0" fitWidth="200.0" layoutX="25.0" layoutY="96.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../../Pictures/KakaoTalk_20211110_111651076.png" />
+                  <Image url="@../images/c1.png" />
                </image>
             </ImageView>
-            <Label layoutX="288.0" layoutY="40.0" text="장소">
+            <Label id="lbl" layoutX="288.0" layoutY="40.0" prefHeight="30.0" text="공연이름">
                <font>
                   <Font size="21.0" />
                </font>
             </Label>
-            <Label layoutX="285.0" layoutY="104.0" text="공연 기간">
+            <Label id="lbl" layoutX="285.0" layoutY="104.0" prefHeight="30.0" text="공연시간">
                <font>
                   <Font size="21.0" />
                </font>
             </Label>
-            <Label layoutX="285.0" layoutY="143.0" text="공연 시간">
+            <Label id="lbl" layoutX="285.0" layoutY="143.0" prefHeight="30.0" text="공연기간">
                <font>
                   <Font size="21.0" />
                </font>
             </Label>
-            <Label layoutX="285.0" layoutY="195.0" text="관람 연령">
+            <Label id="lbl" layoutX="285.0" layoutY="204.0" prefHeight="30.0" text="관람 연령">
                <font>
                   <Font size="21.0" />
                </font>
             </Label>
-            <Label layoutX="288.0" layoutY="275.0" text="가격">
+            <Label id="lbl" layoutX="288.0" layoutY="275.0" prefHeight="30.0" text="등급별 좌석 가격">
                <font>
                   <Font size="21.0" />
                </font>
             </Label>
-            <Label layoutX="385.0" layoutY="275.0" text="가격">
+            <Label id="lbl_price" layoutX="331.0" layoutY="332.0" prefHeight="30.0" text="R석">
                <font>
                   <Font size="21.0" />
                </font>
             </Label>
-            <Label layoutX="385.0" layoutY="315.0" text="가격">
+            <Label id="lbl_price" layoutX="331.0" layoutY="372.0" prefHeight="30.0" text="S석">
                <font>
                   <Font size="21.0" />
                </font>
             </Label>
-            <Label layoutX="385.0" layoutY="360.0" text="가격">
+            <Label id="lbl_price" layoutX="331.0" layoutY="417.0" prefHeight="30.0" text="D석">
                <font>
                   <Font size="21.0" />
                </font>
             </Label>
-            <Label layoutX="385.0" layoutY="401.0" text="Label">
+            <Label id="lbl_price" layoutX="331.0" layoutY="458.0" prefHeight="30.0" text="E석">
                <font>
                   <Font size="21.0" />
                </font>
             </Label>
-            <Label layoutX="461.0" layoutY="275.0" text="가격">
+            <Label id="lbl_price" layoutX="407.0" layoutY="332.0" prefHeight="30.0" text="d석가격">
                <font>
                   <Font size="21.0" />
                </font>
             </Label>
-            <Label layoutX="461.0" layoutY="315.0" text="가격">
+            <Label id="lbl_price" layoutX="407.0" layoutY="372.0" prefHeight="30.0" text="s석가격">
                <font>
                   <Font size="21.0" />
                </font>
             </Label>
-            <Label layoutX="461.0" layoutY="360.0" text="Label">
+            <Label id="lbl_price" layoutX="407.0" layoutY="417.0" prefHeight="30.0" text="d석가격">
                <font>
                   <Font size="21.0" />
                </font>
             </Label>
-            <Label layoutX="461.0" layoutY="401.0" text="Label">
+            <Label id="lbl_price" layoutX="407.0" layoutY="458.0" prefHeight="30.0" text="e석가격">
                <font>
                   <Font size="21.0" />
                </font>
             </Label>
-            <Label layoutX="393.0" layoutY="40.0" text="장소">
+            <Label id="lbl" layoutX="393.0" layoutY="40.0" prefHeight="30.0" prefWidth="240.0" text="공연이름">
                <font>
                   <Font size="21.0" />
                </font>
             </Label>
-            <Label layoutX="390.0" layoutY="104.0" text="공연 기간">
+            <Label id="lbl" layoutX="390.0" layoutY="104.0" prefHeight="30.0" prefWidth="240.0" text="공연시간">
                <font>
                   <Font size="21.0" />
                </font>
             </Label>
-            <Label layoutX="390.0" layoutY="143.0" text="공연 시간">
+            <Label id="lbl" layoutX="390.0" layoutY="143.0" prefHeight="30.0" text="공연기간">
+               <font>
+                  <Font size="21.0" />
+               </font>
+            </Label>
+            <Label layoutX="391.0" layoutY="203.0" prefHeight="30.0" text="7세 이상">
                <font>
                   <Font size="21.0" />
                </font>
             </Label>
          </children>
       </AnchorPane>
-      <AnchorPane layoutX="730.0" layoutY="35.0" prefHeight="651.0" prefWidth="500.0">
+      <AnchorPane layoutX="730.0" layoutY="35.0" prefHeight="650.0" prefWidth="500.0">
          <children>
-            <GridPane layoutX="87.0" layoutY="73.0">
+            <GridPane fx:id="gridpane_calendar" prefHeight="280.0" prefWidth="450.0" AnchorPane.leftAnchor="25.0" AnchorPane.rightAnchor="25.0" AnchorPane.topAnchor="25.0">
                <columnConstraints>
-                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="50.0" />
-                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="50.0" />
-                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="50.0" />
-                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="50.0" />
-                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="50.0" />
-                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="50.0" />
-                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="50.0" />
+                  <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="30.0" />
+                  <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="30.0" />
+                  <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="30.0" />
+                  <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="30.0" />
+                  <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="30.0" />
+                  <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="30.0" />
+                  <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="30.0" />
                </columnConstraints>
                <rowConstraints>
-                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" valignment="CENTER" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" valignment="CENTER" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" valignment="CENTER" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" valignment="CENTER" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" valignment="CENTER" vgrow="SOMETIMES" />
                </rowConstraints>
-               <children>
-                  <Button mnemonicParsing="false" text="Button" GridPane.columnIndex="2" GridPane.rowIndex="2" />
-                  <Button mnemonicParsing="false" text="Button" GridPane.columnIndex="3" GridPane.rowIndex="2" />
-                  <Button mnemonicParsing="false" text="Button" GridPane.columnIndex="4" GridPane.rowIndex="2" />
-               </children>
             </GridPane>
-            <Button layoutX="52.0" layoutY="378.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="179.0" text="2 pm" />
-            <Button layoutX="275.0" layoutY="378.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="179.0" text="6 pm" />
-            <Label layoutX="62.0" layoutY="470.0" text="Label">
+            <Button fx:id="btn_time_select_2pm" layoutX="55.0" layoutY="378.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="179.0" text="2pm" AnchorPane.leftAnchor="55.0" />
+            <Button fx:id="btn_time_select_6pm" layoutX="275.0" layoutY="378.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="179.0" text="6pm" AnchorPane.rightAnchor="55.0" />
+            <Label id="lbl_seat_remaining" layoutX="60.0" layoutY="470.0" text="R석" AnchorPane.leftAnchor="55.0">
                <font>
-                  <Font size="13.0" />
+                  <Font size="14.0" />
                </font>
             </Label>
-            <Label layoutX="115.0" layoutY="470.0" text="Label">
+            <Label id="lbl_seat_remaining" layoutX="100.0" layoutY="470.0" text="r석">
                <font>
-                  <Font size="13.0" />
+                  <Font size="14.0" />
                </font>
             </Label>
-            <Label layoutX="158.0" layoutY="470.0" text="Label">
+            <Label id="lbl_seat_remaining" layoutX="150.0" layoutY="470.0" text="S석">
                <font>
-                  <Font size="13.0" />
+                  <Font size="14.0" />
                </font>
             </Label>
-            <Label layoutX="211.0" layoutY="470.0" text="Label">
+            <Label id="lbl_seat_remaining" layoutX="190.0" layoutY="470.0" text="s석">
                <font>
-                  <Font size="13.0" />
+                  <Font size="14.0" />
                </font>
             </Label>
-            <Label layoutX="251.0" layoutY="470.0" text="Label">
+            <Label id="lbl_seat_remaining" layoutX="240.0" layoutY="470.0" text="D석">
                <font>
-                  <Font size="13.0" />
+                  <Font size="14.0" />
                </font>
             </Label>
-            <Label layoutX="304.0" layoutY="470.0" text="Label">
+            <Label id="lbl_seat_remaining" layoutX="280.0" layoutY="470.0" text="d석">
                <font>
-                  <Font size="13.0" />
+                  <Font size="14.0" />
                </font>
             </Label>
-            <Label layoutX="355.0" layoutY="470.0" text="Label">
+            <Label id="lbl_seat_remaining" layoutX="330.0" layoutY="470.0" text="E석">
                <font>
-                  <Font size="13.0" />
+                  <Font size="14.0" />
                </font>
             </Label>
-            <Label layoutX="408.0" layoutY="470.0" text="Label">
+            <Label id="lbl_seat_remaining" layoutX="376.0" layoutY="470.0" text="e석">
                <font>
-                  <Font size="13.0" />
+                  <Font size="14.0" />
                </font>
             </Label>
-            <Button layoutX="54.0" layoutY="512.0" mnemonicParsing="false" prefHeight="55.0" prefWidth="404.0" text="예매하기" />
-            <Button layoutX="363.0" layoutY="601.0" mnemonicParsing="false" prefHeight="42.0" prefWidth="97.0" text="뒤로가기" />
+            <Button layoutX="54.0" layoutY="512.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="400.0" text="예매하기" AnchorPane.leftAnchor="55.0" AnchorPane.rightAnchor="55.0" />
+            <Button layoutX="55.0" layoutY="582.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="400.0" text="뒤로가기" AnchorPane.leftAnchor="55.0" AnchorPane.rightAnchor="55.0" />
          </children>
       </AnchorPane>
    </children>

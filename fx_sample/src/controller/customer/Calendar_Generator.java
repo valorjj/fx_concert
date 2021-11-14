@@ -2,7 +2,7 @@ package controller.customer;
 
 import java.util.Calendar;
 
-public class Calendar_Controller {
+public class Calendar_Generator {
 
 	@SuppressWarnings("static-access")
 	public static void get_calendar(int year, int month) {
@@ -28,6 +28,16 @@ public class Calendar_Controller {
 			sweek++; // 요일 증가
 		}
 
+	}
+
+	private static Calendar_Generator instance;
+
+	public static Calendar_Generator getinstance() {
+		return instance;
+	}
+
+	public Calendar_Generator() {
+		instance = this;
 	}
 
 }
