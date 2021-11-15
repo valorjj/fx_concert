@@ -3,15 +3,20 @@ package controller.customer;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+import dao.MemberDao;
+import dao.ReservationDao;
+import domain.Reservation;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.ToggleGroup;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
@@ -106,9 +111,9 @@ public class Concert_Select_Controller implements Initializable {
 
 	@FXML
 	private BorderPane reservation_borderpane;
-	
+
 	@FXML
-	private GridPane gridpane_calendar;
+	Button btn_reservation;
 
 	//////////////////////////////////////////////////////////////////
 
@@ -147,9 +152,44 @@ public class Concert_Select_Controller implements Initializable {
 		reservation_loadpage("seat_select_page");
 
 	}
-	
-	//////////////////////////////////////////////////////////////////
 
+	@FXML
+	public void btn_reservation(ActionEvent event) {
+
+		int concert_number = 0;
+
+		if (opt_1.isSelected()) {
+			concert_number = 1;
+
+		}
+		if (opt_2.isSelected()) {
+			concert_number = 2;
+		}
+		if (opt_3.isSelected()) {
+			concert_number = 3;
+		}
+
+		int m_no = MemberDao.get_memberDao().get_m_no_member(Login_Controller.getinstance().get_login_id());
+
+		// 멤버 아이디 번호를 받는다.
+		// 아직 좌석을 선택하기 전이다. 그래서 좌석 정보는 0 으로 둔다. 다음 페이지에서 좌석 정보를 업데이트해서 DB 에 등록할 준비를 한다.
+		// 최종 결제해야만 DB 가 업데이트 되야한다. 그 전까지는 이클립스 내 존재하는 임시값
+		Reservation reservation = new Reservation(0, concert_number, m_no);
+
+		boolean res = ReservationDao.get_reservationDao().reservation_register(reservation);
+
+		Alert alert = new Alert(AlertType.CONFIRMATION);
+		if (res) {
+
+			alert.setHeaderText("선택한 콘서트로 예약을 진행하시겠습니까?");
+			alert.showAndWait();
+			reservation_loadpage("reservation_page");
+
+		}
+
+	}
+
+	//////////////////////////////////////////////////////////////////
 
 	public void window_shift(String page) {
 		try {
@@ -158,15 +198,8 @@ public class Concert_Select_Controller implements Initializable {
 			Scene scene = new Scene(parent);
 			stage.setScene(scene);
 			stage.show();
-		} 
-		catch (Exception e) {}
-	}
-	
-	public void create_calendar() {
-		
-		Calendar_Generator cg = new Calendar_Generator();
-		cg.get_calendar(0, 0);
-		
+		} catch (Exception e) {
+		}
 	}
 
 }

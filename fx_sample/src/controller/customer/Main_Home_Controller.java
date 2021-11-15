@@ -32,6 +32,9 @@ public class Main_Home_Controller implements Initializable {
 	}
 
 	@FXML
+	private Label lbl_ID;
+
+	@FXML
 	private Label lbl_title;
 
 	@FXML
@@ -41,19 +44,16 @@ public class Main_Home_Controller implements Initializable {
 	private Label lbl_date;
 
 	@FXML
-	BorderPane main_page_image_borderpane;
+	private BorderPane main_page_image_borderpane;
 
 	@FXML
-	AnchorPane image_anchorpane;
+	private AnchorPane image_anchorpane;
 
 	@FXML
-	ImageView imageview;
+	private ImageView imageview;
 
 	@FXML
-	ImageView image_test;
-
-	@FXML
-	AnchorPane anchorpane_main_page;
+	private AnchorPane anchorpane_main_page;
 
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
