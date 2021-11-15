@@ -3,6 +3,7 @@ package controller.customer;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+import dao.Member_Dao;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -16,6 +17,9 @@ public class Find_Id_Controller implements Initializable{
 		
 	}
 
+
+	
+	
     @FXML
     private Button btn_cancel;
 
@@ -35,6 +39,10 @@ public class Find_Id_Controller implements Initializable{
 
     @FXML
     void find_id(ActionEvent event) {
+    	//Member_Dao.getMember_Dao()
+    	
+    	
 
     }
+    
 }

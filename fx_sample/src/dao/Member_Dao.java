@@ -21,19 +21,11 @@ public class Member_Dao {
 	private static Member_Dao member_dao = new Member_Dao();
 	//2. 생성자
 	public Member_Dao() {
-//		try {
-//			Class.forName("com.mysql.cj.jdbc.Driver"); // 이건 무조건적어야하는거
-//		connection= DriverManager.getConnection("jdbc:mysql://localhost:3306/concert?serverTimezone=UTC","root","1234");
-//		
-//		
-//		} catch (Exception e) {
-//			System.out.println("*DB연동 실패:"+e);
-//			
-//		} 
+
 		try {
 			Class.forName("com.mysql.cj.jdbc.Driver");
 			connection = DriverManager.getConnection(
-					"jdbc:mysql://localhost:3306/concert?serverTimezone=UTC" , 
+					"jdbc:mysql://localhost:3307/javafx?serverTimezone=UTC" , 
 					"root" , "1234");
 		}
 		catch (Exception e) {
@@ -91,7 +83,56 @@ public class Member_Dao {
 			return false;
 		}
 	
-	//---------------------------------여기서부터시작해 로그인이야
+	//2. 로그인 메소드
+	public boolean login(String m_id , String m_password) {
+		// 모든검색에 member테이블에 조건이 = m_id 와m_password 가져오기
+		String sql = "select * from member where m_id=? and m_password=?";
+		try {
+			// sql 을 데이터베이스에서 자저오는걸로설정
+			preparedstatement=connection.prepareStatement(sql);
+			preparedstatement.setString(1,m_id );//
+			preparedstatement.setString(2, m_password);// dB에서 가져온 m_password를 설정한다
+			
+			resultSet = preparedstatement.executeQuery();
+			if (resultSet.next()) {// 결과에 다음내용이있으면 true
+				return true;
+			}else {
+				return false;
+			}
+	
+		} catch (Exception e) {}
+
+		return false;
+	}
+	
+	
+	//3. 아이디찾기메소드
+		public String find_id(String m_name ,String m_email) {
+			
+			String sql = "select m_id from member where m_name=? and m_emaile=?";
+			try {
+				preparedstatement= connection.prepareStatement(sql);
+				preparedstatement.setString(1,m_name );
+				preparedstatement.setString(2, m_email);
+				resultSet=preparedstatement.executeQuery();
+				
+				
+				
+				
+				
+				
+			} catch (Exception e) {
+				// TODO: handle exception
+			}
+		
+			return m_email;
+			
+			
+			
+			
+		
+			
+		}
 	
 	
 	

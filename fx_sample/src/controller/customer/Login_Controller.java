@@ -3,17 +3,22 @@ package controller.customer;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+import dao.Member_Dao;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.BorderPane;
+import javafx.stage.Stage;
 
 public class Login_Controller implements Initializable {
 
@@ -42,6 +47,7 @@ public class Login_Controller implements Initializable {
 		}
 
 	}
+	
 
 	@FXML
 	private Button btn_login;
@@ -73,15 +79,36 @@ public class Login_Controller implements Initializable {
 	void find_password(MouseEvent event) {
 		loadpage("find_password_page");
 	}
-
+	
 	@FXML
 	void login(ActionEvent event) {
-
+		boolean check = Member_Dao.getMember_Dao().login(txt_id.getText(), txt_password.getText());
+		if (check) {
+			Alert alert = new Alert(AlertType.INFORMATION);
+			alert.setHeaderText("메인페이지");
+			alert.showAndWait();
+			
+			window_shift1("main_page");
+		} else {
+			System.out.println("[[알림]]  로그인 실패~!");
+		}
 	}
 
 	@FXML
 	void signup(ActionEvent event) {
 		loadpage("signup_page");
+	}
+	
+	public void window_shift1(String page) {
+		try {
+			Parent parent = FXMLLoader.load(getClass().getResource("/fxml/" + page + ".fxml"));
+			Scene scene = new Scene(parent);
+			Stage stage = new Stage();
+			stage.setScene(scene);
+			stage.show();
+
+		} catch (Exception e) {
+		}
 	}
 
 }
