@@ -1,20 +1,47 @@
 package controller.manager;
 
+
+import java.net.URL;
+import java.util.ResourceBundle;
+
+import dao.ConcertDao;
+import domain.Concert;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
 import javafx.scene.chart.PieChart;
 import javafx.scene.control.ComboBox;
 
-public class Manager_Chart_View_Controller {
+public class Manager_Chart_View_Controller implements Initializable{
+
+	@Override
+	public void initialize(URL arg0, ResourceBundle arg1) {
+		combo_concert_date.setItems(date);
+		combo_concert_name.setItems(title);
+		combo_concert_time.setItems(time);
+
+		
+	}
+
+		
+	
+    @FXML
+    private ComboBox combo_concert_date;
+
+    int i=0;
+    private ObservableList<String> date = FXCollections.observableArrayList(ConcertDao.getConcertDao().concertlist().get(i).getC_date()+"");
 
     @FXML
-    private ComboBox<?> combo_concert_date;
+    private ComboBox combo_concert_name;
+    private ObservableList<String> title = FXCollections.observableArrayList("apple", "banana", "lemon", "grape");
+
 
     @FXML
-    private ComboBox<?> combo_concert_name;
+    private ComboBox combo_concert_time;
+    private ObservableList<String> time = FXCollections.observableArrayList("apple", "banana", "lemon", "grape");
 
-    @FXML
-    private ComboBox<?> combo_concert_time;
 
     @FXML
     private PieChart piechart_d_seat;

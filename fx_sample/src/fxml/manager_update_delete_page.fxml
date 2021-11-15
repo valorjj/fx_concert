@@ -12,6 +12,7 @@
             <TableColumn prefWidth="75.0" text="콘서트명" />
             <TableColumn prefWidth="75.0" text="아티스트" />
             <TableColumn prefWidth="75.0" text="날짜" />
+            <TableColumn prefWidth="75.0" text="시간" />
             <TableColumn prefWidth="75.0" text="R석" />
             <TableColumn prefWidth="75.0" text="S석" />
             <TableColumn prefWidth="75.0" text="D석" />

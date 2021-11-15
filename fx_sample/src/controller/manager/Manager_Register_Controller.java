@@ -75,7 +75,7 @@ public class Manager_Register_Controller {
 		String c_title = txt_concert_name.getText();
 		String c_artist = txt_concert_aritist.getText();
 		String c_date = txt_concert_date.getText();
-		String c_time = txt_concert_time.getText();
+		int c_time = Integer.parseInt(txt_concert_time.getText()+"");
 		int c_R_no = Integer.parseInt(txt_r_seat_no.getText()+"");
 		int c_S_no = Integer.parseInt(txt_s_seat_no.getText()+"");
 		int c_D_no = Integer.parseInt(txt_d_seat_no.getText()+"");
