@@ -3,8 +3,8 @@ package dao;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 
-import com.mysql.cj.protocol.Resultset;
 
 public class ConcertDao {
 
@@ -17,7 +17,7 @@ public class ConcertDao {
 	
 	private Connection conn;
 	private PreparedStatement psmt;
-	private Resultset res;
+	private ResultSet res;
 
 	//////////////////////////////////////////////////////////////////
 
