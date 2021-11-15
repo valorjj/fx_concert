@@ -18,7 +18,7 @@
 
 ![image](https://user-images.githubusercontent.com/30681841/141429526-0946ab2e-6da4-40a7-820f-58c121969988.png)
 
-![image](https://user-images.githubusercontent.com/30681841/141231627-ceddd2f7-7277-4645-a1f2-3496e2650a3d.png)
+![image](https://user-images.githubusercontent.com/30681841/141705299-a66fb3fc-658d-4a37-ad13-1aa8625f722d.png)
 
 ## 화면 설계
 
