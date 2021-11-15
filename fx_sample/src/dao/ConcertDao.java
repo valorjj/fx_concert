@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.util.ArrayList;
 
 import domain.Concert;
 import javafx.collections.FXCollections;
@@ -129,7 +130,21 @@ public class ConcertDao {
 	// 5.콘서트 좌석수 반환메소드(piechart용)
 	
 	// 6. 콘서트 타이틀 반환 메소드
-	
+	public ArrayList<ConcertDate> titlelist() {
+		// 1.리스트 선언
+		ArrayList<ConcertDate> titles = new ArrayList<>();
+		String sql = "select c_title from concert group by c_title ";
+		try {
+			preparedStatement = connection.prepareStatement(sql);
+			resultSet=preparedStatement.executeQuery();
+			while(resultSet.next()) {
+				ConcertDate date = new ConcertDate(resultSet.getString(1));
+				titles.add(date);
+			}
+			return titles;
+		} catch (Exception e) {} return titles;
+		
+	}
 	// 7. 콘서트 날짜 반환 메소드
 	
 	// 8. 콘서트 시간 반환 메소드

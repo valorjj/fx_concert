@@ -3,6 +3,8 @@ package controller.manager;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+import dao.BoardDao;
+import domain.Board;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -13,10 +15,20 @@ import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 
 public class Manager_Board_View_Controller implements Initializable{
+	
+	Board board = Manager_Board_Management_Controller.board;
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
 		txt_reply.setVisible(false);
     	reply_list.setVisible(false);
+    	//DB조회수 증가
+    			BoardDao.getBoardDao().viewupdate(board.getB_no());
+    	
+    	txt_title.setText(board.getB_title());
+    	txt_contents.setText(board.getB_contents());
+    	lbl_writer.setText("작성자 : "+ board.getB_writer());
+    	lbl_date.setText("Date : " + board.getB_date().split(" ")[0]);
+    	lbl_view.setText("View : " + (board.getB_view())+1);
 	}
 
 

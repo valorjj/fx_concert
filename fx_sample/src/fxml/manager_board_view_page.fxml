@@ -37,17 +37,17 @@
             <TableColumn prefWidth="162.0" style="-fx-background-color: D0AF93; -fx-border-color: #494854;" text="작성일" />
          </columns>
       </TableView>
-      <Label fx:id="lbl_writer" layoutX="65.0" layoutY="79.0" prefHeight="29.0" prefWidth="89.0" text="Writer" textFill="#d0af93">
+      <Label fx:id="lbl_writer" layoutX="65.0" layoutY="79.0" prefHeight="29.0" prefWidth="116.0" text="Writer" textFill="#d0af93">
          <font>
             <Font size="20.0" />
          </font>
       </Label>
-      <Label fx:id="lbl_date" layoutX="185.0" layoutY="79.0" prefHeight="29.0" prefWidth="89.0" text="Date" textFill="#d0af93">
+      <Label fx:id="lbl_date" layoutX="207.0" layoutY="79.0" prefHeight="29.0" prefWidth="193.0" text="Date" textFill="#d0af93">
          <font>
             <Font size="20.0" />
          </font>
       </Label>
-      <Label fx:id="lbl_view" layoutX="305.0" layoutY="79.0" prefHeight="29.0" prefWidth="89.0" text="View" textFill="#d0af93">
+      <Label fx:id="lbl_view" layoutX="416.0" layoutY="79.0" prefHeight="29.0" prefWidth="109.0" text="View" textFill="#d0af93">
          <font>
             <Font size="20.0" />
          </font>

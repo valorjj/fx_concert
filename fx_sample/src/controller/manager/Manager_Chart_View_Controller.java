@@ -2,9 +2,11 @@ package controller.manager;
 
 
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.ResourceBundle;
 
 import dao.ConcertDao;
+import dao.ConcertDate;
 import domain.Concert;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -18,25 +20,26 @@ public class Manager_Chart_View_Controller implements Initializable{
 
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
-		combo_concert_date.setItems(date);
-		combo_concert_name.setItems(title);
-		combo_concert_time.setItems(time);
-
 		
+//		combo_concert_name.setItems(title);
+		combo_concert_time.setItems(time);
+//		combo_concert_date.setItems(date);
 	}
 
-		
+//	String check = ConcertDao.getConcertDao().concertlist().indexOf(concert))	
 	
     @FXML
-    private ComboBox combo_concert_date;
+    private ComboBox<Concert> combo_concert_date;
 
-    int i=0;
-    private ObservableList<String> date = FXCollections.observableArrayList(ConcertDao.getConcertDao().concertlist().get(i).getC_date()+"");
-
+	ObservableList<String> date = FXCollections.observableArrayList(ConcertDao.getConcertDao().titlelist()+"");
+   
+    
+  
+    
     @FXML
     private ComboBox combo_concert_name;
-    private ObservableList<String> title = FXCollections.observableArrayList("apple", "banana", "lemon", "grape");
-
+//    private ObservableList<String> title = FXCollections.observableArrayList(ConcertDao.getConcertDao().concertlist().get(i).getC_title());
+    
 
     @FXML
     private ComboBox combo_concert_time;

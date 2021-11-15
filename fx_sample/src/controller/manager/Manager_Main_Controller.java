@@ -75,7 +75,7 @@ public class Manager_Main_Controller implements Initializable{
     	rec_register.setVisible(false);
     	rec_reservation_status.setVisible(false);
     	rec_update_delete.setVisible(false);
-    	loadpage("manager_board_view_page");
+    	loadpage("manager_board_management_page");
     }
 
     @FXML
