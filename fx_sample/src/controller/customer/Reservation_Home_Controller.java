@@ -23,7 +23,7 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
 
-public class Concert_Select_Controller implements Initializable {
+public class Reservation_Home_Controller implements Initializable {
 
 	/*
 	 * 메인페이지에서 '예약' 버튼을 누르면 표시되는 화면입니다. 여기서 콘서트 선택 -> 날짜 및 시간 선택 -> 좌석 선택 -> 선택한 옵션을
@@ -35,13 +35,13 @@ public class Concert_Select_Controller implements Initializable {
 
 	//////////////////////////////////////////////////////////////////
 
-	private static Concert_Select_Controller instance;
+	private static Reservation_Home_Controller instance;
 
-	public static Concert_Select_Controller getinstance() {
+	public static Reservation_Home_Controller getinstance() {
 		return instance;
 	}
 
-	public Concert_Select_Controller() {
+	public Reservation_Home_Controller() {
 		instance = this;
 	}
 
@@ -49,6 +49,8 @@ public class Concert_Select_Controller implements Initializable {
 
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
+
+		reservation_loadpage("reservation_concert_select_page");
 
 	}
 
@@ -86,34 +88,13 @@ public class Concert_Select_Controller implements Initializable {
 	private Button btn_reservation_seat;
 
 	@FXML
-	private ImageView concert_select_image1;
-
-	@FXML
-	private ImageView concert_select_image2;
-
-	@FXML
-	private ImageView concert_select_image3;
-
-	@FXML
-	private ToggleGroup concert_selection;
-
-	@FXML
-	private RadioButton opt_1;
-
-	@FXML
-	private RadioButton opt_2;
-
-	@FXML
-	private RadioButton opt_3;
-
-	@FXML
 	private AnchorPane reservation_menubar_anchorpane;
 
 	@FXML
 	private BorderPane reservation_borderpane;
 
 	@FXML
-	Button btn_reservation;
+	private Button btn_reservation;
 
 	//////////////////////////////////////////////////////////////////
 
@@ -125,6 +106,7 @@ public class Concert_Select_Controller implements Initializable {
 
 	@FXML
 	void btn_reservation_confirm(ActionEvent event) {
+		//
 		reservation_loadpage("");
 
 	}
@@ -137,7 +119,7 @@ public class Concert_Select_Controller implements Initializable {
 
 	@FXML
 	void btn_reservation_home(ActionEvent event) {
-		reservation_loadpage("");
+		reservation_loadpage("reservation_concert_select_page");
 
 	}
 
@@ -155,37 +137,7 @@ public class Concert_Select_Controller implements Initializable {
 
 	@FXML
 	public void btn_reservation(ActionEvent event) {
-
-		int concert_number = 0;
-
-		if (opt_1.isSelected()) {
-			concert_number = 1;
-
-		}
-		if (opt_2.isSelected()) {
-			concert_number = 2;
-		}
-		if (opt_3.isSelected()) {
-			concert_number = 3;
-		}
-
-		int m_no = MemberDao.get_memberDao().get_m_no_member(Login_Controller.getinstance().get_login_id());
-
-		// 멤버 아이디 번호를 받는다.
-		// 아직 좌석을 선택하기 전이다. 그래서 좌석 정보는 0 으로 둔다. 다음 페이지에서 좌석 정보를 업데이트해서 DB 에 등록할 준비를 한다.
-		// 최종 결제해야만 DB 가 업데이트 되야한다. 그 전까지는 이클립스 내 존재하는 임시값
-		Reservation reservation = new Reservation(0, concert_number, m_no);
-
-		boolean res = ReservationDao.get_reservationDao().reservation_register(reservation);
-
-		Alert alert = new Alert(AlertType.CONFIRMATION);
-		if (res) {
-
-			alert.setHeaderText("선택한 콘서트로 예약을 진행하시겠습니까?");
-			alert.showAndWait();
-			reservation_loadpage("reservation_page");
-
-		}
+		reservation_loadpage("reservation_concert_select_page");
 
 	}
 

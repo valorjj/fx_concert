@@ -2,20 +2,39 @@ package controller.customer;
 
 import java.net.URL;
 import java.util.Calendar;
+import java.util.Optional;
 import java.util.ResourceBundle;
 
+import dao.ConcertDao;
 import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
+import javafx.scene.control.RadioButton;
+import javafx.scene.control.ToggleGroup;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.GridPane;
 
 public class Main_Reservation_Controller implements Initializable {
 
+	/*
+	 * 해야할 일
+	 * 
+	 * 여기서 날짜와 시간을 선택하면, c_no 을 특정지을 수 있다! 날짜와 시간을 선택한 뒤에는 db 에 c_no 를 채울 수 있다.
+	 * 
+	 */
+
+	private String user_selected_day;
+
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
+
+		int a = Reservation_Concert_Select_Controller.get_instance().concert_number;
 
 		Calendar calendar = Calendar.getInstance();
 
@@ -25,17 +44,22 @@ public class Main_Reservation_Controller implements Initializable {
 
 		// 앞전 concert_select 화면에서 radiobutton 에서 선택한 값이 넘어와야한다.
 
-//		int m_no = MemberDao.get_memberDao().get_m_no_member(Login_Controller.getinstance().get_login_id());
-//		int c_no = ReservationDao.get_reservationDao().reservation_c_no_check(m_no);
-//		String concert_date = ConcertDao.get_concertDao().get_concert_date(c_no);
-//
-//		String concert_year = concert_date.substring(0, 5);
-//		String concert_month = concert_date.substring(6, 8);
-//
-//		int year = Integer.parseInt(concert_year);
-//		int month = Integer.parseInt(concert_month);
+		// 회원 고유 번호를 통해서 예약 번호를 찾는다. 거기서 콘서트 번호로 다시 셀렉트?
+		// int m_no =
+		// MemberDao.get_memberDao().get_m_no_member(Login_Controller.getinstance().get_login_id());
+		// int c_no = ReservationDao.get_reservationDao().reservation_c_no_check(m_no);
+		String concert_date = ConcertDao.get_concertDao().get_concert_date(1);
+		String[] tmp = concert_date.split(" ");
+		String year = tmp[0].split("-")[0];
+		int YEAR = Integer.parseInt(year);
+		String month = tmp[0].split("-")[1];
+		int MONTH = Integer.parseInt(month);
+		/*
+		 * int year = Integer.parseInt(concert_year); int month =
+		 * Integer.parseInt(concert_month);
+		 */
 
-		calendar.set(2021, 10, 1);
+		calendar.set(YEAR, MONTH - 1, 1);
 
 		int sweek = calendar.get(Calendar.DAY_OF_WEEK); // 달의 시작하는 날짜
 
@@ -47,13 +71,32 @@ public class Main_Reservation_Controller implements Initializable {
 
 		int idx = 1;
 		for (int i = 0; i <= 42; i++) {
-			if (i >= sweek - 1 && i < eday+sweek-1) { // 특정 달의 시작 날짜를 구한다.
+			if (i >= sweek - 1 && i < eday + sweek - 1) { // 특정 달의 시작 날짜를 구한다.
 
 				Button button = new Button();
 				button.setText(idx + "");
 
 				button.setPrefSize(30, 30);
 				button.setId(idx + "");
+
+				Alert alert = new Alert(AlertType.CONFIRMATION);
+				button.setOnAction(new EventHandler<ActionEvent>() {
+
+					@Override
+					public void handle(ActionEvent e) {
+						alert.setHeaderText("날짜선택");
+						Optional<ButtonType> optional = alert.showAndWait();
+						if (optional.get() == ButtonType.OK) {
+							// Button Id 가 날짜 값이랑 동일하게 셋팅되어 있으므로 날짜 값을 저장한다.
+							user_selected_day = button.getId();
+							Alert alert2 = new Alert(AlertType.INFORMATION);
+							alert2.setHeaderText("시간을 선택해주세요");
+							alert2.showAndWait();
+						}
+
+					}
+
+				});
 
 				// button.setStyle("-fx-text-fill: #ffffff");
 				// button.setStyle("-fx-border-color : #333333");
@@ -66,7 +109,7 @@ public class Main_Reservation_Controller implements Initializable {
 					gridpane_calendar.add(button, i % 7, 2);
 				} else if (i >= 21 && i < 28) {
 					gridpane_calendar.add(button, i % 7, 3);
-				} else if (i >= 28 && i < 35){
+				} else if (i >= 28 && i < 35) {
 					gridpane_calendar.add(button, i % 7, 4);
 				} else {
 					gridpane_calendar.add(button, i % 7, 5);
@@ -82,6 +125,8 @@ public class Main_Reservation_Controller implements Initializable {
 
 	}
 
+	private int user_select_time;
+
 	@FXML
 	private Button btn_cancel;
 
@@ -89,10 +134,13 @@ public class Main_Reservation_Controller implements Initializable {
 	private Button btn_reservation_confirm;
 
 	@FXML
-	private Button btn_time_select_2pm;
+	private RadioButton opt_1;
 
 	@FXML
-	private Button btn_time_select_6pm;
+	private RadioButton opt_2;
+
+	@FXML
+	private ToggleGroup time_select;
 
 	@FXML
 	private ImageView concert_image_view;
@@ -142,14 +190,44 @@ public class Main_Reservation_Controller implements Initializable {
 	// 뒤로 가기 버튼 --> 콘서트 선택 페이지로 이동한다.
 	@FXML
 	void btn_cancel(ActionEvent event) {
-		Concert_Select_Controller.getinstance().reservation_loadpage("concert_select_page");
+		Reservation_Home_Controller.getinstance().reservation_loadpage("concert_select_page");
 
 	}
 
 	@FXML
 	void btn_reservation_confirm(ActionEvent event) {
-		Concert_Select_Controller.getinstance().reservation_loadpage("payment_page");
 
+		if (opt_1.isSelected()) {
+			// 2PM 선택했을 때
+
+			// 잔여 좌석을 불러와야한다.
+
+			// ConcertDao.get_concertDao().get_remaining_seat_D(c_no);
+
+		}
+		if (opt_2.isSelected()) {
+			// 6PM 선택했을 때
+
+		}
+
+		Reservation_Home_Controller.getinstance().reservation_loadpage("payment_page");
+
+	}
+
+	public String getUser_selected_day() {
+		return user_selected_day;
+	}
+
+	public void setUser_selected_day(String user_selected_day) {
+		this.user_selected_day = user_selected_day;
+	}
+
+	public int getUser_select_time() {
+		return user_select_time;
+	}
+
+	public void setUser_select_time(int user_select_time) {
+		this.user_select_time = user_select_time;
 	}
 
 }

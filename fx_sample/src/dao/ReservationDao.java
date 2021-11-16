@@ -1,11 +1,13 @@
 package dao;
 
+import java.nio.file.attribute.AclEntryType;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 
 import domain.Reservation;
+import javafx.css.PseudoClass;
 
 public class ReservationDao {
 
@@ -39,18 +41,19 @@ public class ReservationDao {
 	// reservation 객체를 DB에 추가하는 메소드 (입력받은 데이터를 데이터 베이스에 저장합니다)
 	public boolean reservation_register(Reservation reservation) {
 
-		String sql = "INSERT INTO reservation(s_no, c_no, m_no) WHERE values(?, ?, ?)";
-
+		String sql = "insert into reservation(s_no, c_no, m_no, c_unique_no) values(?,?,?,?)";
 		try {
 			preparedStatement = connection.prepareStatement(sql);
 			preparedStatement.setInt(1, reservation.getS_no());
-			preparedStatement.setInt(1, reservation.getC_no());
-			preparedStatement.setInt(1, reservation.getM_no());
+			preparedStatement.setInt(2, reservation.getC_no());
+			preparedStatement.setInt(3, reservation.getM_no());
 			preparedStatement.executeUpdate();
 			return true;
 
 		} catch (Exception e) {
+			e.printStackTrace();
 		}
+
 		return false; // DB 오류
 
 	}
@@ -69,6 +72,25 @@ public class ReservationDao {
 		} catch (Exception e) {
 		}
 		return 0;
+
+	}
+
+	/* 마지막에 고객이 결제를 취소하면 DB에서 삭제시킵니다. */
+
+	public boolean reservation_delete(int r_no) {
+
+		String sql = "delete from reservation where r_no=?";
+
+		try {
+			preparedStatement = connection.prepareStatement(sql);
+			preparedStatement.setInt(1, r_no);
+			preparedStatement.executeUpdate();
+			return true;
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
+		return false;
 
 	}
 

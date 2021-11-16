@@ -57,4 +57,87 @@ public class ConcertDao {
 		return null;
 	}
 
+	public String get_concert_title(int c_unique_no) {
+
+		String sql = "SELECT c_title FROM concert WHERE c_no=?";
+
+		try {
+			preparedStatement = connection.prepareStatement(sql);
+			preparedStatement.setInt(1, c_unique_no);
+			resultSet = preparedStatement.executeQuery();
+			if (resultSet.next()) {
+				return resultSet.getString(1);
+
+			}
+			return null;
+		} catch (Exception e) {
+		}
+		return null;
+
+	}
+
+	public int get_remaining_seat_R(int c_no) {
+		// 특정 날짜, 특정 시간의 콘서트 정보를 불러와야한다.
+		String sql = "SELECT c_R_no FROM concert WHERE c_no=?";
+		try {
+			preparedStatement = connection.prepareStatement(sql);
+			preparedStatement.setInt(1, c_no);
+			resultSet = preparedStatement.executeQuery();
+			if (resultSet.next()) {
+				return resultSet.getInt(1);
+			}
+		} catch (Exception e) {
+		}
+		return 0;
+
+	}
+
+	public int get_remaining_seat_S(int c_no) {
+		// 특정 날짜, 특정 시간의 콘서트 정보를 불러와야한다.
+		String sql = "SELECT c_S_no FROM concert WHERE c_no=?";
+		try {
+			preparedStatement = connection.prepareStatement(sql);
+			preparedStatement.setInt(1, c_no);
+			resultSet = preparedStatement.executeQuery();
+			if (resultSet.next()) {
+				return resultSet.getInt(1);
+			}
+		} catch (Exception e) {
+		}
+		return 0;
+
+	}
+
+	public int get_remaining_seat_D(int c_no) {
+		// 특정 날짜, 특정 시간의 콘서트 정보를 불러와야한다.
+		String sql = "SELECT c_D_no FROM concert WHERE c_no=?";
+		try {
+			preparedStatement = connection.prepareStatement(sql);
+			preparedStatement.setInt(1, c_no);
+			resultSet = preparedStatement.executeQuery();
+			if (resultSet.next()) {
+				return resultSet.getInt(1);
+			}
+		} catch (Exception e) {
+		}
+		return 0;
+
+	}
+
+	public int get_remaining_seat_E(int c_no) {
+		// 특정 날짜, 특정 시간의 콘서트 정보를 불러와야한다.
+		String sql = "SELECT c_E_no FROM concert WHERE c_no=?";
+		try {
+			preparedStatement = connection.prepareStatement(sql);
+			preparedStatement.setInt(1, c_no);
+			resultSet = preparedStatement.executeQuery();
+			if (resultSet.next()) {
+				return resultSet.getInt(1);
+			}
+		} catch (Exception e) {
+		}
+		return 0;
+
+	}
+
 }

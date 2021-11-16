@@ -9,6 +9,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
@@ -46,6 +47,9 @@ public class Login_Controller implements Initializable {
 			Stage stage = new Stage();
 			try {
 				Parent parent = FXMLLoader.load(getClass().getResource("/fxml/main_page.fxml"));
+				Scene scene = new Scene(parent);
+				stage.setScene(scene);
+				stage.show();
 
 			} catch (Exception e) {
 			}

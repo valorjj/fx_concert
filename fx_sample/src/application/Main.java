@@ -15,10 +15,11 @@ public class Main extends Application {
 			// Font.loadFont(getClass().getResourceAsStream("/fonts/NanumBarunGothicBold.ttf"),
 			// 10);
 
-			Parent parent = FXMLLoader.load(getClass().getResource("/fxml/login_page.fxml"));
+			Parent parent = FXMLLoader.load(getClass().getResource("/fxml/reservation_page.fxml"));
 			Scene scene = new Scene(parent);
 
-			scene.getStylesheets().add(getClass().getResource("login_page_style.css").toExternalForm()); // css 적용
+			// scene.getStylesheets().add(getClass().getResource("login_page_style.css").toExternalForm());
+			// css 적용
 
 			primaryStage.setScene(scene);
 			primaryStage.show();
