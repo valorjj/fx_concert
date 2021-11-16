@@ -87,4 +87,27 @@ public class MemberDao {
 
 	}
 
+	/*
+	 * 인수로 아이디, 패스워드를 입력받아서 로그인 성공 / 실패 여부를 boolean 값으로 리턴하는 메소드입니다.
+	 */
+	public boolean log_in(String id, String password) {
+
+		String sql = "SELECT * from member WHERE m_id=? and m_pw=?";
+
+		try {
+			preparedStatement = connection.prepareStatement(sql);
+			preparedStatement.setString(1, id);
+			preparedStatement.setString(2, password);
+			resultSet = preparedStatement.executeQuery();
+			if (resultSet.next()) {
+				return true;
+			}
+			return false;
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return false; // 여기서 오류 발생하면 DB 오류
+
+	}
+
 }

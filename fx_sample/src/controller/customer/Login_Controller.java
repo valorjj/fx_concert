@@ -3,12 +3,16 @@ package controller.customer;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+import dao.MemberDao;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Parent;
 import javafx.scene.control.Button;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
+import javafx.stage.Stage;
 
 public class Login_Controller implements Initializable {
 
@@ -35,6 +39,20 @@ public class Login_Controller implements Initializable {
 	@FXML
 	void btn_log_in(ActionEvent event) {
 
+		boolean res = MemberDao.get_memberDao().log_in(txt_id.getText(), txt_password.getText());
+		if (res) {
+			// 로그인 성공
+			btn_log_in.getScene().getWindow().hide();
+			Stage stage = new Stage();
+			try {
+				Parent parent = FXMLLoader.load(getClass().getResource("/fxml/main_page.fxml"));
+
+			} catch (Exception e) {
+			}
+		} else {
+			// 로그인 실패
+		}
+
 	}
 
 	@FXML
@@ -58,6 +76,7 @@ public class Login_Controller implements Initializable {
 
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
+
 	}
 
 	public String get_login_id() {

@@ -24,7 +24,7 @@ public class Main_Reservation_Controller implements Initializable {
 		// calendar.set(year, month - 1, 1);
 
 		// 앞전 concert_select 화면에서 radiobutton 에서 선택한 값이 넘어와야한다.
-		
+
 //		int m_no = MemberDao.get_memberDao().get_m_no_member(Login_Controller.getinstance().get_login_id());
 //		int c_no = ReservationDao.get_reservationDao().reservation_c_no_check(m_no);
 //		String concert_date = ConcertDao.get_concertDao().get_concert_date(c_no);
@@ -46,8 +46,8 @@ public class Main_Reservation_Controller implements Initializable {
 		lbl_concert_duration.setText("180분");
 
 		int idx = 1;
-		for (int i = 0; i <= 35; i++) {
-			if (i >= sweek - 1 && i <= eday) { // 특정 달의 시작 날짜를 구한다.
+		for (int i = 0; i <= 42; i++) {
+			if (i >= sweek - 1 && i < eday+sweek-1) { // 특정 달의 시작 날짜를 구한다.
 
 				Button button = new Button();
 				button.setText(idx + "");
@@ -66,8 +66,10 @@ public class Main_Reservation_Controller implements Initializable {
 					gridpane_calendar.add(button, i % 7, 2);
 				} else if (i >= 21 && i < 28) {
 					gridpane_calendar.add(button, i % 7, 3);
-				} else {
+				} else if (i >= 28 && i < 35){
 					gridpane_calendar.add(button, i % 7, 4);
+				} else {
+					gridpane_calendar.add(button, i % 7, 5);
 				}
 
 				idx++;
