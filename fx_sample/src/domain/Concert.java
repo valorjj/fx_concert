@@ -2,27 +2,27 @@ package domain;
 
 public class Concert {
 
-	// 1. ÇÊµå
-	private int c_no;			// ÄÜ¼­Æ® ¹øÈ£
-	private String c_title;		// ÄÜ¼­Æ® ÀÌ¸§
-	private String c_artist;	// ÄÜ¼­Æ® °¡¼ö
-	private String c_info;		// ÄÜ¼­Æ® Á¤º¸
-	private String c_date;		// ÄÜ¼­Æ® ³¯Â¥
-	private String c_time;		// ÄÜ¼­Æ® ½Ã°£
-	private int c_R_no;		// ÄÜ¼­Æ® R¼® °³¼ö
-	private int c_S_no;		// ÄÜ¼­Æ® S¼® °³¼ö
-	private int c_D_no;		// ÄÜ¼­Æ® D¼® °³¼ö
-	private int c_E_no;		// ÄÜ¼­Æ® E¼® °³¼ö
-	private int c_R_price; 	// ÄÜ¼­Æ® R¼® °¡°İ
-	private int c_S_price;	// ÄÜ¼­Æ® S¼® °¡°İ
-	private int c_D_price;	// ÄÜ¼­Æ® D¼® °¡°İ
-	private int c_E_price;	// ÄÜ¼­Æ® E¼® °¡°İ
+	// 1. í•„ë“œ
+	private int c_no;			// ì½˜ì„œíŠ¸ ë²ˆí˜¸
+	private String c_title;		// ì½˜ì„œíŠ¸ ì´ë¦„
+	private String c_artist;	// ì½˜ì„œíŠ¸ ê°€ìˆ˜
+	private String c_info;		// ì½˜ì„œíŠ¸ ì •ë³´
+	private String c_date;		// ì½˜ì„œíŠ¸ ë‚ ì§œ
+	private int c_time;		// ì½˜ì„œíŠ¸ ì‹œê°„
+	private int c_R_no;		// ì½˜ì„œíŠ¸ Rì„ ê°œìˆ˜
+	private int c_S_no;		// ì½˜ì„œíŠ¸ Sì„ ê°œìˆ˜
+	private int c_D_no;		// ì½˜ì„œíŠ¸ Dì„ ê°œìˆ˜
+	private int c_E_no;		// ì½˜ì„œíŠ¸ Eì„ ê°œìˆ˜
+	private int c_R_price; 	// ì½˜ì„œíŠ¸ Rì„ ê°€ê²©
+	private int c_S_price;	// ì½˜ì„œíŠ¸ Sì„ ê°€ê²©
+	private int c_D_price;	// ì½˜ì„œíŠ¸ Dì„ ê°€ê²©
+	private int c_E_price;	// ì½˜ì„œíŠ¸ Eì„ ê°€ê²©
 	
-	// 2. »ı¼ºÀÚ
-	public Concert() {} // ±øÅë »ı¼ºÀÚ
+	// 2. ìƒì„±ì
+	public Concert() {} // ê¹¡í†µ ìƒì„±ì
 	
-	// ¸ğµç ÇÊµå¸¦ ¹Ş´Â »ı¼ºÀÚ
-	public Concert(int c_no, String c_title, String c_artist, String c_info, String c_date, String c_time, int c_R_no,
+	// ëª¨ë“  í•„ë“œë¥¼ ë°›ëŠ” ìƒì„±ì
+	public Concert(int c_no, String c_title, String c_artist, String c_info, String c_date, int c_time, int c_R_no,
 			int c_S_no, int c_D_no, int c_E_no, int c_R_price, int c_S_price, int c_D_price, int c_E_price) {
 		this.c_no = c_no;
 		this.c_title = c_title;
@@ -39,8 +39,8 @@ public class Concert {
 		this.c_D_price = c_D_price;
 		this.c_E_price = c_E_price;
 	}
-	// ÄÜ¼­Æ® µî·Ï½Ã »ı¼ºÀÚ [ ÄÜ¼­Æ® ¹øÈ£Á¦¿Ü ]
-	public Concert(String c_title, String c_artist, String c_info, String c_date, String c_time, int c_R_no, int c_S_no,
+	// ì½˜ì„œíŠ¸ ë“±ë¡ì‹œ ìƒì„±ì [ ì½˜ì„œíŠ¸ ë²ˆí˜¸ì œì™¸ ]
+	public Concert(String c_title, String c_artist, String c_info, String c_date, int c_time, int c_R_no, int c_S_no,
 			int c_D_no, int c_E_no, int c_R_price, int c_S_price, int c_D_price, int c_E_price) {
 		this.c_title = c_title;
 		this.c_artist = c_artist;
@@ -58,7 +58,7 @@ public class Concert {
 	}
 
 
-	// 3. ¸Ş¼Òµå
+	// 3. ë©”ì†Œë“œ
 	public int getC_no() {return c_no;}
 	public void setC_no(int c_no) {this.c_no = c_no;}
 	public String getC_title() {return c_title;}
@@ -69,8 +69,8 @@ public class Concert {
 	public void setC_info(String c_info) {this.c_info = c_info;}
 	public String getC_date() {return c_date;}
 	public void setC_date(String c_date) {this.c_date = c_date;}
-	public String getC_time() {return c_time;}
-	public void setC_time(String c_time) {this.c_time = c_time;}
+	public int getC_time() {return c_time;}
+	public void setC_time(int c_time) {this.c_time = c_time;}
 	public int getC_R_no() {return c_R_no;}
 	public void setC_R_no(int c_R_no) {this.c_R_no = c_R_no;}
 	public int getC_S_no() {return c_S_no;}

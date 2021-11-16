@@ -18,10 +18,10 @@
       <TextField fx:id="txt_r_seat_price" layoutX="381.0" layoutY="331.0" prefHeight="54.0" prefWidth="180.0" promptText="R석 가격" />
       <TextField fx:id="txt_s_seat_no" layoutX="190.0" layoutY="393.0" prefHeight="54.0" prefWidth="180.0" promptText="S석 총 좌석 개수" />
       <TextField fx:id="txt_s_seat_price" layoutX="381.0" layoutY="393.0" prefHeight="54.0" prefWidth="180.0" promptText="S석 가격" />
-      <TextField fx:id="txt_e_seat_no" layoutX="189.0" layoutY="456.0" prefHeight="54.0" prefWidth="180.0" promptText="E석 총 좌석 개수" />
-      <TextField fx:id="txt_e_seat_price" layoutX="381.0" layoutY="456.0" prefHeight="54.0" prefWidth="180.0" promptText="E석 가격" />
-      <TextField fx:id="txt_d_seat_no" layoutX="189.0" layoutY="518.0" prefHeight="54.0" prefWidth="180.0" promptText="D석 총 좌석 개수" />
-      <TextField fx:id="txt_d_seat_price" layoutX="381.0" layoutY="518.0" prefHeight="54.0" prefWidth="180.0" promptText="D석 가격" />
+      <TextField fx:id="txt_d_seat_no" layoutX="189.0" layoutY="456.0" prefHeight="54.0" prefWidth="180.0" promptText="D석 총 좌석 개수" />
+      <TextField fx:id="txt_d_seat_price" layoutX="381.0" layoutY="456.0" prefHeight="54.0" prefWidth="180.0" promptText="D석 가격" />
+      <TextField fx:id="txt_e_seat_no" layoutX="189.0" layoutY="518.0" prefHeight="54.0" prefWidth="180.0" promptText="E석 총 좌석 개수" />
+      <TextField fx:id="txt_e_seat_price" layoutX="381.0" layoutY="518.0" prefHeight="54.0" prefWidth="180.0" promptText="E석 가격" />
       <Button fx:id="btn_concert_info" layoutX="91.0" layoutY="629.0" mnemonicParsing="false" onAction="#btn_concert_info" prefHeight="30.0" text="정보 업로드" />
       <Label fx:id="lbl_concert_info_path" layoutX="239.0" layoutY="629.0" prefHeight="30.0" prefWidth="413.0" style="-fx-background-color: #ffffff;" text="콘서트 정보 경로 레이블" />
       <Label layoutX="95.0" layoutY="78.0" text="공연명" textFill="#d1af94">

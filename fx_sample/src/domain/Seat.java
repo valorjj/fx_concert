@@ -2,32 +2,32 @@ package domain;
 
 public class Seat {
 
-	// 1. ÇÊµå
-	private int s_no;			// ÁÂ¼®¹øÈ£
-	private int s_status;		// ÁÂ¼®¿¹¾à»óÅÂ
-	private int s_price;		// ÁÂ¼® °¡°İ
+	// 1. í•„ë“œ
+	private int s_no;			// ì¢Œì„ë²ˆí˜¸
+	private int s_status;		// ì¢Œì„ì˜ˆì•½ìƒíƒœ
+	private int s_price;		// ì¢Œì„ ê°€ê²©
 	
 	private String status;
 
 	
-	// 2. »ı¼ºÀÚ
-	public Seat() {} // ±øÅë »ı¼ºÀÚ
+	// 2. ìƒì„±ì
+	public Seat() {} // ê¹¡í†µ ìƒì„±ì
 
-	// ¸ğµç ÇÊµå¸¦ ¹Ş´Â »ı¼ºÀÚ
+	// ëª¨ë“  í•„ë“œë¥¼ ë°›ëŠ” ìƒì„±ì
 	public Seat(int s_no, int s_status, int s_price) {
 		this.s_no = s_no;
 		this.s_status = s_status;
 		this.s_price = s_price;
 		
-		if(s_status == 1) {status="¿¹¾àµÈ ÁÂ¼®";}
-		else{status="ºó ÁÂ¼®";}
+		if(s_status == 1) {status="ì˜ˆì•½ëœ ì¢Œì„";}
+		else{status="ë¹ˆ ì¢Œì„";}
 	}
 
 
 		
 
 	
-	// 3. ¸Ş¼Òµå
+	// 3. ë©”ì†Œë“œ
 	public int getS_no() {return s_no;}
 	public void setS_no(int s_no) {this.s_no = s_no;}
 	public int getS_status() {return s_status;}
