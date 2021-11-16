@@ -7,8 +7,10 @@ import dao.Member_Dao;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
+import javafx.scene.control.Alert.AlertType;
 
 public class Find_Id_Controller implements Initializable{
 	@Override
@@ -19,30 +21,43 @@ public class Find_Id_Controller implements Initializable{
 
 
 	
-	
-    @FXML
-    private Button btn_cancel;
+	 @FXML
+	    private Button btn_cancel;
 
-    @FXML
-    private Button btn_find;
+	    @FXML
+	    private Button btn_find_id;
 
-    @FXML
-    private TextField btn_find_id;
+	    @FXML
+	    private TextField txt_email;
 
-    @FXML
-    private TextField txt_name;
+	    @FXML
+	    private TextField txt_name;
 
     @FXML
     void cancel(ActionEvent event) {
          Login_Controller.getinstance().loadpage("login_home_page");
     }
+   
 
-    @FXML
-    void find_id(ActionEvent event) {
-    	//Member_Dao.getMember_Dao()
-    	
-    	
-
-    }
+	@FXML
+	void find_id(ActionEvent event) {
+		
+	String result=Member_Dao.getMember_Dao().find_id(txt_name.getText(),txt_email.getText());
+    	if (result==null) {
+			Alert alert = new Alert(AlertType.INFORMATION);
+			alert.setHeaderText("id 찾기 실패");
+			alert.showAndWait();
+			
+		}else {
+			Alert alert = new Alert(AlertType.INFORMATION);
+			alert.setHeaderText("id 찾기 성공 ");
+			alert.setContentText("회원님의 아이디는 : "+result);
+			alert.showAndWait();
+		}
+		
+		
+		
+	}
+    }//ce
     
-}
+

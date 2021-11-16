@@ -83,14 +83,16 @@ public class Login_Controller implements Initializable {
 	@FXML
 	void login(ActionEvent event) {
 		boolean check = Member_Dao.getMember_Dao().login(txt_id.getText(), txt_password.getText());
+		Alert alert = new Alert(AlertType.INFORMATION);
 		if (check) {
-			Alert alert = new Alert(AlertType.INFORMATION);
-			alert.setHeaderText("메인페이지");
-			alert.showAndWait();
 			
+			alert.setHeaderText("로그인 성공");
+			alert.showAndWait();
+			btn_login.getScene().getWindow().hide();
 			window_shift1("main_page");
 		} else {
-			System.out.println("[[알림]]  로그인 실패~!");
+			alert.setHeaderText("로그인 실패");
+			alert.showAndWait();
 		}
 	}
 
@@ -101,10 +103,12 @@ public class Login_Controller implements Initializable {
 	
 	public void window_shift1(String page) {
 		try {
+			
 			Parent parent = FXMLLoader.load(getClass().getResource("/fxml/" + page + ".fxml"));
 			Scene scene = new Scene(parent);
 			Stage stage = new Stage();
 			stage.setScene(scene);
+			stage.setResizable(false); // 스테이지 크기 고정 
 			stage.show();
 
 		} catch (Exception e) {

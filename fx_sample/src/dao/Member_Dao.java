@@ -109,23 +109,24 @@ public class Member_Dao {
 	//3. 아이디찾기메소드
 		public String find_id(String m_name ,String m_email) {
 			
-			String sql = "select m_id from member where m_name=? and m_emaile=?";
+			String sql = "select m_id from member where m_name=? and m_email=?";
 			try {
 				preparedstatement= connection.prepareStatement(sql);
 				preparedstatement.setString(1,m_name );
 				preparedstatement.setString(2, m_email);
 				resultSet=preparedstatement.executeQuery();
-				
-				
-				
-				
-				
-				
+				//5.sql 결과
+				if(resultSet.next()) {
+					return resultSet.getString(1);
+				}else {
+					return null;
+				}
+		
 			} catch (Exception e) {
 				// TODO: handle exception
 			}
-		
-			return m_email;
+			return null;
+			
 			
 			
 			
@@ -133,7 +134,10 @@ public class Member_Dao {
 		
 			
 		}
-	
+	//4. 패스워드 찾기 메소드
+		public String find_password(String m_id,String m_email) {
+			String sql = "select m_password from member where m_id=?"
+		}
 	
 	
 	

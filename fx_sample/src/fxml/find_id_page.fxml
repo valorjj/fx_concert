@@ -26,7 +26,7 @@
                      </color>
                   </InnerShadow>
                </effect></TextField>
-            <TextField fx:id="btn_find_id" layoutX="48.0" layoutY="117.0" onAction="#find_id" prefHeight="48.0" prefWidth="291.0" promptText="enter your email">
+            <TextField fx:id="txt_email" layoutX="48.0" layoutY="117.0" prefHeight="48.0" prefWidth="291.0" promptText="enter your email">
                <effect>
                   <InnerShadow>
                      <color>
@@ -34,7 +34,7 @@
                      </color>
                   </InnerShadow>
                </effect></TextField>
-            <Button fx:id="btn_find" layoutX="47.0" layoutY="226.0" mnemonicParsing="false" prefHeight="49.0" prefWidth="292.0" text="FIND ID">
+            <Button fx:id="btn_find_id" layoutX="47.0" layoutY="226.0" mnemonicParsing="false" onAction="#find_id" prefHeight="49.0" prefWidth="292.0" text="FIND ID">
                <effect>
                   <InnerShadow choke="0.34">
                      <color>
