@@ -3,22 +3,27 @@ package controller.customer;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+import dao.MemberDao;
+import dao.ReservationDao;
+import domain.Reservation;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.ToggleGroup;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
 
-public class Concert_Select_Controller implements Initializable {
+public class Reservation_Home_Controller implements Initializable {
 
 	/*
 	 * 메인페이지에서 '예약' 버튼을 누르면 표시되는 화면입니다. 여기서 콘서트 선택 -> 날짜 및 시간 선택 -> 좌석 선택 -> 선택한 옵션을
@@ -30,13 +35,13 @@ public class Concert_Select_Controller implements Initializable {
 
 	//////////////////////////////////////////////////////////////////
 
-	private static Concert_Select_Controller instance;
+	private static Reservation_Home_Controller instance;
 
-	public static Concert_Select_Controller getinstance() {
+	public static Reservation_Home_Controller getinstance() {
 		return instance;
 	}
 
-	public Concert_Select_Controller() {
+	public Reservation_Home_Controller() {
 		instance = this;
 	}
 
@@ -44,6 +49,8 @@ public class Concert_Select_Controller implements Initializable {
 
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
+
+		reservation_loadpage("reservation_concert_select_page");
 
 	}
 
@@ -81,34 +88,13 @@ public class Concert_Select_Controller implements Initializable {
 	private Button btn_reservation_seat;
 
 	@FXML
-	private ImageView concert_select_image1;
-
-	@FXML
-	private ImageView concert_select_image2;
-
-	@FXML
-	private ImageView concert_select_image3;
-
-	@FXML
-	private ToggleGroup concert_selection;
-
-	@FXML
-	private RadioButton opt_1;
-
-	@FXML
-	private RadioButton opt_2;
-
-	@FXML
-	private RadioButton opt_3;
-
-	@FXML
 	private AnchorPane reservation_menubar_anchorpane;
 
 	@FXML
 	private BorderPane reservation_borderpane;
-	
+
 	@FXML
-	private GridPane gridpane_calendar;
+	private Button btn_reservation;
 
 	//////////////////////////////////////////////////////////////////
 
@@ -120,6 +106,7 @@ public class Concert_Select_Controller implements Initializable {
 
 	@FXML
 	void btn_reservation_confirm(ActionEvent event) {
+		//
 		reservation_loadpage("");
 
 	}
@@ -132,7 +119,7 @@ public class Concert_Select_Controller implements Initializable {
 
 	@FXML
 	void btn_reservation_home(ActionEvent event) {
-		reservation_loadpage("");
+		reservation_loadpage("reservation_concert_select_page");
 
 	}
 
@@ -147,9 +134,14 @@ public class Concert_Select_Controller implements Initializable {
 		reservation_loadpage("seat_select_page");
 
 	}
-	
-	//////////////////////////////////////////////////////////////////
 
+	@FXML
+	public void btn_reservation(ActionEvent event) {
+		reservation_loadpage("reservation_concert_select_page");
+
+	}
+
+	//////////////////////////////////////////////////////////////////
 
 	public void window_shift(String page) {
 		try {
@@ -158,15 +150,8 @@ public class Concert_Select_Controller implements Initializable {
 			Scene scene = new Scene(parent);
 			stage.setScene(scene);
 			stage.show();
-		} 
-		catch (Exception e) {}
-	}
-	
-	public void create_calendar() {
-		
-		Calendar_Generator cg = new Calendar_Generator();
-		cg.get_calendar(0, 0);
-		
+		} catch (Exception e) {
+		}
 	}
 
 }

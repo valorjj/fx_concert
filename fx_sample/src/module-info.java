@@ -9,4 +9,5 @@ module fx_sample {
 	opens application to javafx.graphics, javafx.fxml;
 	opens controller.customer to javafx.graphics, javafx.fxml;
 	opens domain to javafx.graphics, javafx.fxml;
+	opens dao to java.sql;
 }
