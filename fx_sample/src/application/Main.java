@@ -12,7 +12,7 @@ public class Main extends Application {
 	@Override
 	public void start(Stage primaryStage) {
 		try {
-			Parent parent = FXMLLoader.load(getClass().getResource("/fxml/manager_main_page.fxml"));
+			Parent parent = FXMLLoader.load(getClass().getResource("/fxml/login_page.fxml"));
 			Scene scene = new Scene(parent);
 //			Font.loadFont(getClass().getResourceAsStream("/fonts/NanumBarunGothicBold.otf"), 15); //폰트 불러오기
 //			scene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
