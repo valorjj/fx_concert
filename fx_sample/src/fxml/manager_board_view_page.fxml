@@ -39,17 +39,17 @@
       </TableView>
       <Label fx:id="lbl_writer" layoutX="65.0" layoutY="79.0" prefHeight="29.0" prefWidth="116.0" text="Writer" textFill="#d0af93">
          <font>
-            <Font size="20.0" />
+            <Font size="15.0" />
          </font>
       </Label>
       <Label fx:id="lbl_date" layoutX="207.0" layoutY="79.0" prefHeight="29.0" prefWidth="193.0" text="Date" textFill="#d0af93">
          <font>
-            <Font size="20.0" />
+            <Font size="15.0" />
          </font>
       </Label>
       <Label fx:id="lbl_view" layoutX="416.0" layoutY="79.0" prefHeight="29.0" prefWidth="109.0" text="View" textFill="#d0af93">
          <font>
-            <Font size="20.0" />
+            <Font size="15.0" />
          </font>
       </Label>
    </children>

@@ -25,20 +25,20 @@ public class Main extends Application {
 
 	public static void main(String[] args) {
 
-		int n = 50; // 愿�由ъ옄媛� �엯�젰�븳 �닽�옄
-		for (int i = 0; i < n; i++) {	
+//		int n = 50; // 愿�由ъ옄媛� �엯�젰�븳 �닽�옄
+//		for (int i = 0; i < n; i++) {	
+//
+//			Button button1 = new Button();
+//
+//			button1.setId("�룷臾몄뿉�꽌 �뱾�뼱媛� �닽�옄");
+//
+//			button1.getId();
+//
+//		}
+//
+//		int s = n + 1; //
+//		int m = s + 1;
 
-			Button button1 = new Button();
-
-			button1.setId("�룷臾몄뿉�꽌 �뱾�뼱媛� �닽�옄");
-
-			button1.getId();
-
-		}
-
-		int s = n + 1; //
-		int m = s + 1;
-
-		launch(args);
+		launch(args); 
 	}
 }

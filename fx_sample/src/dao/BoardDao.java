@@ -51,15 +51,14 @@ public class BoardDao {
 						resultSet.getString(3),
 						resultSet.getString(4),
 						resultSet.getString(5),
-						resultSet.getInt(6),
-						resultSet.getInt(7)
+						resultSet.getInt(6)
 						);
 				boards.add(board);
 			}
 		} catch (Exception e) {} return boards;
 	}
 	
-	// 3. 게시무 조회수 증가 메소드
+	// 3. 게시물 조회수 증가 메소드
 	public boolean viewupdate(int b_no) {
 		String sql = "update board set b_view = b_view+1 where b_no=?";
 		try {
@@ -69,6 +68,16 @@ public class BoardDao {
 			return true;
 		} catch (Exception e) {} return false;
 		
+	}
+	// 4. 게시물 삭제 메소드
+	public boolean delete(int b_no) {
+		String sql = "delete from board where b_no =?";
+		try {
+			preparedStatement=connection.prepareStatement(sql);
+			preparedStatement.setInt(1, b_no);
+			preparedStatement.executeUpdate();
+			return true;
+		} catch (Exception e) {} return false;
 	}
 	
 	
