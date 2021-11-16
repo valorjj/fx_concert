@@ -2,17 +2,17 @@ package dao;
 
 public class ConcertDate {
 
-	// 1.ÇÊµå
+	// 1.í•„ë“œ
 	private String date;
 	
-	// 2.»ı¼ºÀÚ
+	// 2.ìƒì„±ì
 	public ConcertDate() {}
 
 	public ConcertDate(String date) {
 		this.date = date;
 	}
 
-	// 3. ¸Ş¼Òµå
+	// 3.ë©”ì†Œë“œ
 	public String getDate() {
 		return date;
 	}

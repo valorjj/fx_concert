@@ -40,12 +40,12 @@ public class Manager_Update_Delete_Controller implements Initializable{
     @FXML
     void btn_delete(ActionEvent event) {
     	Alert alert = new Alert(AlertType.CONFIRMATION);
-    	alert.setHeaderText("µî·ÏµÈ ÄÜ¼­Æ®¸¦ »èÁ¦ÇÏ½Ã°Ú½À´Ï±î?");
+    	alert.setHeaderText("ë“±ë¡ëœ ì½˜ì„œíŠ¸ë¥¼ ì‚­ì œí•˜ì‹œê² ìŠµë‹ˆê¹Œ?");
     	Optional<ButtonType> optional = alert.showAndWait();
     	if(optional.get()==ButtonType.OK) {
     		ConcertDao.getConcertDao().delete(concert.getC_no());
     		Alert alert2 = new Alert(AlertType.INFORMATION);
-    		alert2.setHeaderText("»èÁ¦ µÇ¾ú½À´Ï´Ù.");
+    		alert2.setHeaderText("ì‚­ì œ ë˜ì—ˆìŠµë‹ˆë‹¤.");
     		alert2.showAndWait();
     		Manager_Main_Controller.getInstance().loadpage("manager_update_delete_page");
     		concertlistrefresh();
@@ -58,15 +58,15 @@ public class Manager_Update_Delete_Controller implements Initializable{
     @FXML
     void btn_update(ActionEvent event) {
     	Alert alert = new Alert(AlertType.CONFIRMATION);
-    	alert.setHeaderText("¼öÁ¤ÇÏ½Ã°Ú½À´Ï±î?");
+    	alert.setHeaderText("ìˆ˜ì •í•˜ì‹œê² ìŠµë‹ˆê¹Œ?");
     	alert.showAndWait();
     	Manager_Main_Controller.getInstance().loadpage("manager_update_page");
     }
     
     public void concertlistrefresh() {
-    	// 1. DAO È£Ãâ
+    	// 1. DAO í˜¸ì¶œ
     			ObservableList<Concert> concerts = ConcertDao.getConcertDao().concertlist();
-    			// Á¦Ç°¸ñ·ÏÀ» Å×ÀÌºí·ù¿¡ ³Ö¾îÁÖ±â
+    			// ì œí’ˆëª©ë¡ì„ í…Œì´ë¸”ë¥˜ì— ë„£ì–´ì£¼ê¸°
     			concert_list.setItems(concerts);
     			
     			TableColumn tc = concert_list.getColumns().get(0);
@@ -94,11 +94,11 @@ public class Manager_Update_Delete_Controller implements Initializable{
     			tc.setCellValueFactory(new PropertyValueFactory<>("c_E_no"));
     			
     			
-    			// 4. Å¬¸¯ÇÑ ¾ÆÀÌÅÛÀÌ ¸¶¿ì½ºÅ¬¸¯°ú °°À¸¸é
+    			// 4. í´ë¦­í•œ ì•„ì´í…œì´ ë§ˆìš°ìŠ¤í´ë¦­ê³¼ ê°™ìœ¼ë©´
     			concert_list.setOnMouseClicked(e-> {
     				if(e.getButton().equals(MouseButton.PRIMARY)) {
     					concert=concert_list.getSelectionModel().getSelectedItem();
-    											// Å×ÀÌºíºä¿¡ ¼±ÅÃµÈ ¸ğµ¨ÀÇ ¾ÆÀÌÅÛ
+    											// í…Œì´ë¸”ë·°ì— ì„ íƒëœ ëª¨ë¸ì˜ ì•„ì´í…œ
     				}
     			});
     }

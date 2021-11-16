@@ -19,7 +19,7 @@ public class Manager_Board_Management_Controller implements Initializable {
 	public void initialize(URL arg0, ResourceBundle arg1) {
 		
 		
-		// 1.DAO È£Ãâ
+		// 1.DAO í˜¸ì¶œ
 		ObservableList<Board> boards = BoardDao.getBoardDao().boardlist();
 		//
 		TableColumn tc = board_list.getColumns().get(0);
@@ -37,15 +37,15 @@ public class Manager_Board_Management_Controller implements Initializable {
 		tc = board_list.getColumns().get(4);
 		tc.setCellValueFactory(new PropertyValueFactory<>("b_date"));
 		
-		// 3. Å×ÀÌºíºä¿¡ ¸®½ºÆ® ³Ö±â
+		// 3. í…Œì´ë¸”ë·°ì— ë¦¬ìŠ¤íŠ¸ ë„£ê¸°
 		board_list.setItems(boards);
 		
-		// Å¬¸¯ÇÑ ¾ÆÀÌÅÛÀ» °¡Áö°í ÆäÀÌÁö ÀüÈ¯
+		// í´ë¦­í•œ ì•„ì´í…œì„ ê°€ì§€ê³  í˜ì´ì§€ ì „í™˜
 		board_list.setOnMouseClicked(e-> {
 			if(e.getButton().equals(MouseButton.PRIMARY)) {
 				board = board_list.getSelectionModel().getSelectedItem();
-							// Å×ÀÌºíºä¿¡ ¼±ÅÃµÈ ¸ğµ¨ÀÇ ¾ÆÀÌÅÛ
-				// ÆäÀÌÁö ÀüÈ¯
+							// í…Œì´ë¸”ë·°ì— ì„ íƒëœ ëª¨ë¸ì˜ ì•„ì´í…œ
+				// í˜ì´ì§€ ì „í™˜
 				Manager_Main_Controller.getInstance().loadpage("manager_board_view_page");
 			}
 		});

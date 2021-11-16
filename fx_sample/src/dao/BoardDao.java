@@ -11,12 +11,12 @@ import javafx.collections.ObservableList;
 
 public class BoardDao {
 
-	// 1. ÇÊµå
+	// 1. í•„ë“œ
 	private Connection connection;
 	private PreparedStatement preparedStatement;
 	private ResultSet resultSet;
 	
-	// °´Ã¼
+	// ê°ì²´
 	private static BoardDao boardDao = new BoardDao();
 	
 	public BoardDao() {
@@ -24,27 +24,27 @@ public class BoardDao {
 			Class.forName("com.mysql.cj.jdbc.Driver");
 			connection = DriverManager.getConnection("jdbc:mysql://localhost:3307/fx_concert?serverTimezone=UTC","root","1234");
 		} catch (Exception e) {
-			System.out.println("Board DB ¿¬µ¿ ½ÇÆĞ : " + e);
+			System.out.println("Board DB ì—°ë™ ì‹¤íŒ¨ : " + e);
 		}
 	}
 	
-	// °´Ã¼ ¹İÈ¯ ¸Ş¼Òµå
+	// ê°ì²´ ë°˜í™˜ ë©”ì†Œë“œ
 	public static BoardDao getBoardDao() {
 		return boardDao;
 	}
-	// ¸Ş¼Òµå[CRUD]
-		// 1.°Ô½Ã¹° µî·Ï ¸Ş¼Òµå
-		// 2.°Ô½Ã¹° Á¶È¸ ¸Ş¼Òµå
+	// ë©”ì†Œë“œ[CRUD]
+		// 1.ê²Œì‹œë¬¼ ë“±ë¡ ë©”ì†Œë“œ
+		// 2.ê²Œì‹œë¬¼ ì¡°íšŒ ë©”ì†Œë“œ
 	public ObservableList<Board> boardlist() {
-		// ¸®½ºÆ® ¼±¾ğ
+		// ë¦¬ìŠ¤íŠ¸ ì„ ì–¸
 		ObservableList<Board> boards = FXCollections.observableArrayList();
 		String sql = "select * from board order by b_no desc";
 		try {
 			preparedStatement = connection.prepareStatement(sql);
 			resultSet = preparedStatement.executeQuery();
-			// 2. °Ë»öµÈ[Äõ¸®] ·¹ÄÚµå ÇÏ³ª¾¿ °´Ã¼È­
+			// 2. ê²€ìƒ‰ëœ[ì¿¼ë¦¬] ë ˆì½”ë“œ í•˜ë‚˜ì”© ê°ì²´í™”
 			while(resultSet.next()) {
-				// Äõ¸® °á°ú³» ·¹ÄÚµå°¡ ¾øÀ»¶§ ±îÁö ¹İº¹
+				// ì¿¼ë¦¬ ê²°ê³¼ë‚´ ë ˆì½”ë“œê°€ ì—†ì„ë•Œ ê¹Œì§€ ë°˜ë³µ
 				Board board = new Board(
 						resultSet.getInt(1),
 						resultSet.getString(2),
@@ -58,7 +58,7 @@ public class BoardDao {
 		} catch (Exception e) {} return boards;
 	}
 	
-	// 3. °Ô½Ã¹° Á¶È¸¼ö Áõ°¡ ¸Ş¼Òµå
+	// 3. ê²Œì‹œë¬¼ ì¡°íšŒìˆ˜ ì¦ê°€ ë©”ì†Œë“œ
 	public boolean viewupdate(int b_no) {
 		String sql = "update board set b_view = b_view+1 where b_no=?";
 		try {
@@ -69,7 +69,7 @@ public class BoardDao {
 		} catch (Exception e) {} return false;
 		
 	}
-	// 4. °Ô½Ã¹° »èÁ¦ ¸Ş¼Òµå
+	// 4. ê²Œì‹œë¬¼ ì‚­ì œ ë©”ì†Œë“œ
 	public boolean delete(int b_no) {
 		String sql = "delete from board where b_no =?";
 		try {

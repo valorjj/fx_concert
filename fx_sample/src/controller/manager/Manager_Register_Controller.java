@@ -71,7 +71,7 @@ public class Manager_Register_Controller {
 
 	@FXML
 	void btn_concert_register(ActionEvent event) {
-		// À¯È¿¼º °Ë»ç »ı·«
+		// ìœ íš¨ì„± ê²€ì‚¬ ìƒëµ
 		String c_title = txt_concert_name.getText();
 		String c_artist = txt_concert_aritist.getText();
 		String c_date = txt_concert_date.getText();
@@ -84,35 +84,35 @@ public class Manager_Register_Controller {
 		int c_S_price = Integer.parseInt(txt_s_seat_price.getText()+"");
 		int c_D_price = Integer.parseInt(txt_d_seat_price.getText()+"");
 		int c_E_price = Integer.parseInt(txt_e_seat_price.getText()+"");
-		// °´Ã¼È­
+		// ê°ì²´í™”
 		Concert concert = new Concert(c_title, c_artist, concert_info_img, c_date, c_time, c_R_no, c_S_no, c_D_no, c_E_no,
 				c_R_price, c_S_price, c_D_price, c_E_price);
-		// DBÃ³¸®
+		// DBì²˜ë¦¬
 		boolean result = ConcertDao.getConcertDao().register(concert);
 		if (result) {
 			Alert alert = new Alert(AlertType.INFORMATION);
-			alert.setHeaderText("ÄÜ¼­Æ®°¡ µî·ÏµÇ¾ú½À´Ï´Ù");
+			alert.setHeaderText("ì½˜ì„œíŠ¸ê°€ ë“±ë¡ë˜ì—ˆìŠµë‹ˆë‹¤");
 			alert.showAndWait();
 			Manager_Main_Controller.getInstance().loadpage("manager_main_home_page");
 		} else {
-			System.out.println("DBÃ³¸® ½ÇÆĞ");
+			System.out.println("DBì²˜ë¦¬ ì‹¤íŒ¨");
 		}
 	}
-	// ÆÄÀÏ °æ·Î Ãß°¡
+	// íŒŒì¼ ê²½ë¡œ ì¶”ê°€
 	private String concert_info_img;
 	private Stage stage;
 
 	@FXML
 	void btn_concert_info(ActionEvent event) {
-		// 1. ÆÄÀÏ ¼±ÅÃ Å¬·¡½º
+		// 1. íŒŒì¼ ì„ íƒ í´ë˜ìŠ¤
 		FileChooser fileChooser = new FileChooser();
-		// 2. ÆÄÀÏ ½ºÅ×ÀÌÁö ¼³Á¤ getExtensionFilters : ¼±ÅÃÇÒ ÆÄÀÏ ÇÊÅÍ
-		fileChooser.getExtensionFilters().add(new ExtensionFilter("±×¸²ÆÄÀÏ : Image File", "*png", "*jpg"));
-		// 3. ½ºÅ×ÀÌÁö ½ÇÇà
+		// 2. íŒŒì¼ ìŠ¤í…Œì´ì§€ ì„¤ì • getExtensionFilters : ì„ íƒí•  íŒŒì¼ í•„í„°
+		fileChooser.getExtensionFilters().add(new ExtensionFilter("ê·¸ë¦¼íŒŒì¼ : Image File", "*png", "*jpg"));
+		// 3. ìŠ¤í…Œì´ì§€ ì‹¤í–‰
 		File file = fileChooser.showOpenDialog(stage);
-		// ¼±ÅÃÇÑ ÆÄÀÏÀ» ÆÄÀÏ Å¬·¡½º¿¡ ÀúÀå
-		lbl_concert_info_path.setText("ÆÄÀÏ°æ·Î : " + file.getPath());
-		concert_info_img = file.toURI().toString(); // ÆÄÀÏÀÇ ½ÇÁ¦[real] °æ·Î
+		// ì„ íƒí•œ íŒŒì¼ì„ íŒŒì¼ í´ë˜ìŠ¤ì— ì €ì¥
+		lbl_concert_info_path.setText("íŒŒì¼ê²½ë¡œ : " + file.getPath());
+		concert_info_img = file.toURI().toString(); // íŒŒì¼ì˜ ì‹¤ì œ[real] ê²½ë¡œ
 		Image image = new Image(concert_info_img);
 		img_concert_info.setImage(image);
 	}

@@ -24,7 +24,7 @@ public class Manager_Main_Controller implements Initializable{
 
 		loadpage("manager_main_home_page");
 	}
-	///// ÆäÀÌÁö ÀÚÃ¼¸¦ °´Ã¼È­ ÇØ¹ö¸²
+	///// í˜ì´ì§€ ìì²´ë¥¼ ê°ì²´í™” í•´ë²„ë¦¼
 	private static Manager_Main_Controller instance;
 	
 	public Manager_Main_Controller() {

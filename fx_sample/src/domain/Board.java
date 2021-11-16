@@ -2,7 +2,7 @@ package domain;
 
 public class Board {
 
-	// 1.ÇÊµå
+	// 1.í•„ë“œ
 	private int b_no;
 	private String b_title;
 	private String b_writer;
@@ -10,10 +10,10 @@ public class Board {
 	private String b_date;
 	private int b_view;
 	
-	// 2.»ı¼ºÀÚ
-	public Board() {} // ±øÅë »ı¼ºÀÚ
+	// 2.ìƒì„±ì
+	public Board() {} // ê¹¡í†µ ìƒì„±ì
 
-	// ¸ğµç ÇÊµå¸¦ ¹Ş´Â »ı¼ºÀÚ
+	// ëª¨ë“  í•„ë“œë¥¼ ë°›ëŠ” ìƒì„±ì
 	public Board(int b_no, String b_title, String b_writer, String b_contents, String b_date, int b_view) {
 		this.b_no = b_no;
 		this.b_title = b_title;
@@ -23,11 +23,11 @@ public class Board {
 		this.b_view = b_view;
 		
 	}
-	// °Ô½Ã¹°µî·Ï½Ã »ı¼ºÀÚ
+	// ê²Œì‹œë¬¼ë“±ë¡ì‹œ ìƒì„±ì
 
 
 	
-	// ¸Ş¼Òµå
+	// ë©”ì†Œë“œ
 	public int getB_no() {return b_no;}
 	public void setB_no(int b_no) {this.b_no = b_no;}
 	public String getB_title() {return b_title;}

@@ -25,7 +25,7 @@ public class Manager_Board_View_Controller implements Initializable{
 	public void initialize(URL arg0, ResourceBundle arg1) {
 		txt_reply.setVisible(false);
     	reply_list.setVisible(false);
-    	//DBÁ¶È¸¼ö Áõ°¡
+    	//DBì¡°íšŒìˆ˜ ì¦ê°€
     		BoardDao.getBoardDao().viewupdate(board.getB_no());
     	
     	txt_title.setText(board.getB_title());
@@ -74,14 +74,14 @@ public class Manager_Board_View_Controller implements Initializable{
     @FXML
     void btn_delete(ActionEvent event) {
     	Alert alert = new Alert(AlertType.CONFIRMATION);
-    	alert.setHeaderText("°Ô½Ã¹°À» »èÁ¦ÇÏ½Ã°Ú½À´Ï±î?");
-    	alert.setTitle("¾Ë¸²");
+    	alert.setHeaderText("ê²Œì‹œë¬¼ì„ ì‚­ì œí•˜ì‹œê² ìŠµë‹ˆê¹Œ?");
+    	alert.setTitle("ì•Œë¦¼");
     	Optional<ButtonType> optional = alert.showAndWait();
     	if(optional.get()==ButtonType.OK) {
     		boolean result = BoardDao.getBoardDao().delete(board.getB_no());
     		if(result) {Manager_Main_Controller.getInstance().loadpage("manager_board_management_page");}
     		Alert alert2 = new Alert(AlertType.INFORMATION);
-    		alert2.setHeaderText("»èÁ¦µÇ¾ú½À´Ï´Ù");
+    		alert2.setHeaderText("ì‚­ì œë˜ì—ˆìŠµë‹ˆë‹¤");
     		alert2.showAndWait();
     	}
     }

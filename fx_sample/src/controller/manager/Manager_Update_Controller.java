@@ -22,7 +22,7 @@ import javafx.stage.FileChooser.ExtensionFilter;
 
 public class Manager_Update_Controller implements Initializable{
 	
-	Concert concert = Manager_Update_Delete_Controller.concert; // 1. Å×ÀÌºíºä¿¡¼­ Å¬¸¯µÈ °´Ã¼
+	Concert concert = Manager_Update_Delete_Controller.concert; // 1. í…Œì´ë¸”ë·°ì—ì„œ í´ë¦­ëœ ê°ì²´
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
 		txt_concert_name.setText(concert.getC_title());
@@ -100,15 +100,15 @@ public class Manager_Update_Controller implements Initializable{
 
     @FXML
     void btn_concert_info(ActionEvent event) {
-    	// 1. ÆÄÀÏ ¼±ÅÃ Å¬·¡½º
+    	// 1. íŒŒì¼ ì„ íƒ í´ë˜ìŠ¤
 		FileChooser fileChooser = new FileChooser();
-		// 2. ÆÄÀÏ ½ºÅ×ÀÌÁö ¼³Á¤ getExtensionFilters : ¼±ÅÃÇÒ ÆÄÀÏ ÇÊÅÍ
-		fileChooser.getExtensionFilters().add(new ExtensionFilter("±×¸²ÆÄÀÏ : Image File", "*png", "*jpg"));
-		// 3. ½ºÅ×ÀÌÁö ½ÇÇà
+		// 2. íŒŒì¼ ìŠ¤í…Œì´ì§€ ì„¤ì • getExtensionFilters : ì„ íƒí•  íŒŒì¼ í•„í„°
+		fileChooser.getExtensionFilters().add(new ExtensionFilter("ê·¸ë¦¼íŒŒì¼ : Image File", "*png", "*jpg"));
+		// 3. ìŠ¤í…Œì´ì§€ ì‹¤í–‰
 		File file = fileChooser.showOpenDialog(stage);
-		// ¼±ÅÃÇÑ ÆÄÀÏÀ» ÆÄÀÏ Å¬·¡½º¿¡ ÀúÀå
-		lbl_concert_info_path.setText("ÆÄÀÏ°æ·Î : " + file.getPath());
-		concert_info_img = file.toURI().toString(); // ÆÄÀÏÀÇ ½ÇÁ¦[real] °æ·Î
+		// ì„ íƒí•œ íŒŒì¼ì„ íŒŒì¼ í´ë˜ìŠ¤ì— ì €ì¥
+		lbl_concert_info_path.setText("íŒŒì¼ê²½ë¡œ : " + file.getPath());
+		concert_info_img = file.toURI().toString(); // íŒŒì¼ì˜ ì‹¤ì œ[real] ê²½ë¡œ
 		Image image = new Image(concert_info_img);
 		img_concert_info.setImage(image);
     }
@@ -127,17 +127,17 @@ public class Manager_Update_Controller implements Initializable{
 		int c_S_price = Integer.parseInt(txt_s_seat_price.getText()+"");
 		int c_D_price = Integer.parseInt(txt_d_seat_price.getText()+"");
 		int c_E_price = Integer.parseInt(txt_e_seat_price.getText()+"");
-		// °´Ã¼È­
+		// ê°ì²´í™”
 		Concert concert2 = new Concert(concert.getC_no(), c_title, c_artist, concert_info_img , c_date, c_time, c_R_no, c_S_no, c_D_no, c_E_no, c_R_price, c_S_price, c_D_price, c_E_price);
-		System.out.println("DB°¡±âÀü");
-		// DB ³Ö±â
+		System.out.println("DBê°€ê¸°ì „");
+		// DB ë„£ê¸°
     	boolean result = ConcertDao.getConcertDao().update(concert2);
     	if(result) {
     		Alert alert = new Alert(AlertType.INFORMATION);
-	    	alert.setHeaderText("ÄÜ¼­Æ® ¼öÁ¤ ¿Ï·á");
+	    	alert.setHeaderText("ì½˜ì„œíŠ¸ ìˆ˜ì • ì™„ë£Œ");
 	    	alert.showAndWait();
 	    	Manager_Main_Controller.getInstance().loadpage("manager_update_delete_page");;
-    	}else {System.out.println("½ÇÆĞ");}
+    	}else {System.out.println("ì‹¤íŒ¨");}
     	
     }
 
