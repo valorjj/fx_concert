@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.control.Button?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
@@ -23,8 +24,8 @@
 		<Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE"
 			height="55.0" layoutX="80.0" layoutY="535.0" stroke="BLACK"
 			strokeType="INSIDE" width="643.0" AnchorPane.bottomAnchor="15.0" />
-		<GridPane fx:id="gridpane_R" layoutX="168.0" layoutY="75.0"
-			prefHeight="303.0" prefWidth="467.0">
+		<GridPane fx:id="gridpane_R" layoutX="168.0" layoutY="100.0"
+			prefHeight="450.0" prefWidth="467.0">
 			<columnConstraints>
 				<ColumnConstraints halignment="CENTER"
 					hgrow="SOMETIMES" minWidth="30.0" prefWidth="45.0" />
@@ -42,16 +43,9 @@
 					hgrow="SOMETIMES" minWidth="30.0" prefWidth="45.0" />
 				<ColumnConstraints halignment="CENTER"
 					hgrow="SOMETIMES" minWidth="30.0" prefWidth="45.0" />
-				<ColumnConstraints halignment="CENTER"
-					hgrow="SOMETIMES" minWidth="30.0" prefWidth="45.0" />
-				<ColumnConstraints halignment="CENTER"
-					hgrow="SOMETIMES" minWidth="30.0" prefWidth="45.0" />
+
 			</columnConstraints>
 			<rowConstraints>
-				<RowConstraints minHeight="45.0" prefHeight="45.0"
-					valignment="CENTER" vgrow="SOMETIMES" />
-				<RowConstraints minHeight="45.0" prefHeight="45.0"
-					valignment="CENTER" vgrow="SOMETIMES" />
 				<RowConstraints minHeight="45.0" prefHeight="45.0"
 					valignment="CENTER" vgrow="SOMETIMES" />
 				<RowConstraints minHeight="45.0" prefHeight="45.0"
@@ -71,5 +65,9 @@
 
 			</rowConstraints>
 		</GridPane>
+		<Button fx:id="btn_clear" layoutX="79.0" layoutY="82.0"
+			mnemonicParsing="false" onAction="#btn_clear" prefHeight="30.0"
+			prefWidth="120.0" text="CLEAR" AnchorPane.leftAnchor="75.0"
+			AnchorPane.topAnchor="75.0" />
 	</children>
 </AnchorPane>

@@ -1,23 +1,26 @@
 package domain;
 
-
 public class Reservation {
-	
 
 	private int r_no;
 	private int s_no;
 	private int c_no;
 	private int m_no;
 	private int r_unique_c_no;
-	
-	
-	public Reservation(int s_no, int c_no, int m_no, int r_unique_c_no) {
+
+	public Reservation(int r_no, int s_no, int c_no, int m_no) {
+		this.r_no = r_no;
 		this.s_no = s_no;
 		this.c_no = c_no;
 		this.m_no = m_no;
-		this.r_unique_c_no = r_unique_c_no;
 	}
 
+	public Reservation(int s_no, int c_no, int m_no) {
+		super();
+		this.s_no = s_no;
+		this.c_no = c_no;
+		this.m_no = m_no;
+	}
 
 	public int getR_no() {
 		return r_no;

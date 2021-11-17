@@ -3,11 +3,18 @@ package controller.customer;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+import dao.MemberDao;
+import dao.ReservationDao;
+import domain.Member;
+import domain.Reservation;
 import javafx.fxml.Initializable;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Label;
+import javafx.scene.control.TableColumn;
 import javafx.scene.control.TextField;
+import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.scene.control.TableView;
 import javafx.scene.Parent;
@@ -32,7 +39,7 @@ public class Info_Page_Home_Controller implements Initializable {
 	@FXML
 	private Label lbl_history;
 	@FXML
-	private TableView<?> tableview_history;
+	private TableView<Reservation> tableview_history;
 	@FXML
 	private Button btn_update_account;
 	@FXML
@@ -46,15 +53,30 @@ public class Info_Page_Home_Controller implements Initializable {
 
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
-		lbl_info_name.setText("");
-		lbl_info_id.setText("");
-		lbl_info_email.setText("");
 
+		Member member = MemberDao.get_memberDao().get_id_member(Login_Controller.getinstance().get_login_id());
+		info_update_id.setText(member.getM_id());
+		info_update_name.setText(member.getM_name());
+		info_update_email.setText(member.getM_email());
+
+		int m_no = MemberDao.get_memberDao().get_m_no_member(Login_Controller.getinstance().get_login_id());
+
+		ObservableList<Reservation> member_reservation_history = ReservationDao.get_reservationDao()
+				.get_member_reservation(m_no);
+
+		tableview_history.setItems(member_reservation_history);
+
+		TableColumn<?, ?> tc = tableview_history.getColumns().get(0);
+		tc.setCellValueFactory(new PropertyValueFactory<>("r_no"));
+		
+		tc = tableview_history.getColumns().get(1);
+		tc.setCellValueFactory(new PropertyValueFactory<>("s_no"));
+		
 	}
 
 	@FXML
 	public void delete_account(ActionEvent event) {
-		// db에서 정보를 불러와서 
+		// db에서 정보를 불러와서
 	}
 
 	@FXML
@@ -64,7 +86,7 @@ public class Info_Page_Home_Controller implements Initializable {
 
 	@FXML
 	public void update_account(ActionEvent event) {
-		// 수정하는 창으로 이동 borderpane 안에 있는 anchorpane 만 이동시킨다. 
+		// 수정하는 창으로 이동 borderpane 안에 있는 anchorpane 만 이동시킨다.
 		load_page_info("personal_info_page_update");
 	}
 

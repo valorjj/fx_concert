@@ -1,13 +1,13 @@
 package dao;
 
-import java.nio.file.attribute.AclEntryType;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 
 import domain.Reservation;
-import javafx.css.PseudoClass;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 
 public class ReservationDao {
 
@@ -28,7 +28,7 @@ public class ReservationDao {
 		try {
 
 			Class.forName("com.mysql.cj.jdbc.Driver");
-			connection = DriverManager.getConnection("jdbc:mysql://localhost:3307/javafx_concert?serverTimezone=UTC",
+			connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/javafx_concert?serverTimezone=UTC",
 					"root", "1234");
 			System.out.println("DB connection success ... ");
 
@@ -92,6 +92,36 @@ public class ReservationDao {
 
 		return false;
 
+	}
+
+	// 예약 히스토리 가져오기
+
+	// MemberDao 에서 m_no 가져와서 예약된 내역을 Observablelist에 저장한다.
+
+	public ObservableList<Reservation> get_member_reservation(int m_no) {
+
+		ObservableList<Reservation> member_reservation_history = FXCollections.observableArrayList();
+
+		String sql = "SELECT * FROM reservation WHERE m_no=?";
+
+		try {
+			preparedStatement = connection.prepareStatement(sql);
+			resultSet = preparedStatement.executeQuery();
+
+			while (resultSet.next()) {
+
+				Reservation reservation = new Reservation(resultSet.getInt(1), resultSet.getInt(2), resultSet.getInt(3),
+						resultSet.getInt(4));
+				member_reservation_history.add(reservation);
+
+			}
+
+			return member_reservation_history;
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return null;
 	}
 
 }

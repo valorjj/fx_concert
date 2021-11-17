@@ -22,7 +22,7 @@ public class MemberDao {
 		try {
 
 			Class.forName("com.mysql.cj.jdbc.Driver");
-			connection = DriverManager.getConnection("jdbc:mysql://localhost:3307/javafx_concert?serverTimezone=UTC",
+			connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/javafx_concert?serverTimezone=UTC",
 					"root", "1234");
 			System.out.println("DB connection success ... ");
 
@@ -45,7 +45,7 @@ public class MemberDao {
 		String sql = "SELECT * FROM member where m_id=?";
 
 		try {
-			preparedStatement = connection.prepareCall(sql);
+			preparedStatement = connection.prepareStatement(sql);
 			preparedStatement.setString(1, id);
 			resultSet = preparedStatement.executeQuery();
 			if (resultSet.next()) {
@@ -109,5 +109,7 @@ public class MemberDao {
 		return false; // 여기서 오류 발생하면 DB 오류
 
 	}
+	
+	
 
 }
