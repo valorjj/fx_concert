@@ -51,11 +51,9 @@
 					<children>
 						<TableView fx:id="tableview_history" layoutY="150.0" prefHeight="450.0" prefWidth="662.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
 							<columns>
-								<TableColumn prefWidth="75.0" text="예약번호" />
 								<TableColumn prefWidth="75.0" text="공연명" />
 								<TableColumn prefWidth="75.0" text="공연시간" />
 								<TableColumn prefWidth="75.0" text="공연날짜" />
-								<TableColumn prefWidth="75.0" text="예약인원" />
 								<TableColumn prefWidth="75.0" text="결제금액" />
 								<TableColumn prefWidth="75.0" text="문의내역" />
 							</columns>

@@ -40,6 +40,18 @@ public class Concert {
 		this.c_D_price = c_D_price;
 		this.c_E_price = c_E_price;
 	}
+	
+	
+
+	public Concert(String c_title, String c_artist, String c_date, int c_time) {
+		super();
+		this.c_title = c_title;
+		this.c_artist = c_artist;
+		this.c_date = c_date;
+		this.c_time = c_time;
+	}
+
+
 
 	public int getC_no() {
 		return c_no;

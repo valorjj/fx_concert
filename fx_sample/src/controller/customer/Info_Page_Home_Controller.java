@@ -5,6 +5,7 @@ import java.util.ResourceBundle;
 
 import dao.MemberDao;
 import dao.ReservationDao;
+import domain.Concert;
 import domain.Member;
 import domain.Reservation;
 import javafx.fxml.Initializable;
@@ -39,7 +40,7 @@ public class Info_Page_Home_Controller implements Initializable {
 	@FXML
 	private Label lbl_history;
 	@FXML
-	private TableView<Reservation> tableview_history;
+	private TableView<Concert> tableview_history;
 	@FXML
 	private Button btn_update_account;
 	@FXML
@@ -55,23 +56,31 @@ public class Info_Page_Home_Controller implements Initializable {
 	public void initialize(URL arg0, ResourceBundle arg1) {
 
 		Member member = MemberDao.get_memberDao().get_id_member(Login_Controller.getinstance().get_login_id());
+
 		info_update_id.setText(member.getM_id());
 		info_update_name.setText(member.getM_name());
 		info_update_email.setText(member.getM_email());
 
 		int m_no = MemberDao.get_memberDao().get_m_no_member(Login_Controller.getinstance().get_login_id());
 
-		ObservableList<Reservation> member_reservation_history = ReservationDao.get_reservationDao()
-				.get_member_reservation(m_no);
+		ObservableList<Concert> member_reservation_history_concert = ReservationDao.get_reservationDao()
+				.get_concert_from_reservation(m_no);
 
-		tableview_history.setItems(member_reservation_history);
+//		tableview_history.setItems(member_reservation_history);
+		tableview_history.setItems(member_reservation_history_concert);
 
 		TableColumn<?, ?> tc = tableview_history.getColumns().get(0);
-		tc.setCellValueFactory(new PropertyValueFactory<>("r_no"));
-		
+		tc.setCellValueFactory(new PropertyValueFactory<>("c_title"));
+
 		tc = tableview_history.getColumns().get(1);
-		tc.setCellValueFactory(new PropertyValueFactory<>("s_no"));
-		
+		tc.setCellValueFactory(new PropertyValueFactory<>("c_artist"));
+
+		tc = tableview_history.getColumns().get(2);
+		tc.setCellValueFactory(new PropertyValueFactory<>("c_date"));
+
+		tc = tableview_history.getColumns().get(3);
+		tc.setCellValueFactory(new PropertyValueFactory<>("c_time"));
+
 	}
 
 	@FXML
