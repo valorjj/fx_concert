@@ -1,11 +1,13 @@
 package controller.customer;
 
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Optional;
 import java.util.ResourceBundle;
 
 import dao.ConcertDao;
+import domain.Concert;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
@@ -22,37 +24,52 @@ import javafx.scene.layout.GridPane;
 
 public class Main_Reservation_Controller implements Initializable {
 
-	/*
-	 * 해야할 일
-	 * 
-	 * 여기서 날짜와 시간을 선택하면, c_no 을 특정지을 수 있다! 날짜와 시간을 선택한 뒤에는 db 에 c_no 를 채울 수 있다.
-	 * 
-	 */
+	static int user_selected_day = 0;
+	static String user_selected_date;
+	static int user_selected_time = 0;
 
-	private String user_selected_day;
+	private boolean switch_2pm_btn = true;
+	private boolean switch_6pm_btn = true;
+
+	int user_selected_concert_unique_no = Reservation_Concert_Select_Controller.concert_number;
+
+	ArrayList<String> concert_date_list = new ArrayList<String>();
+	ArrayList<Concert> concert_info = new ArrayList<Concert>();
 
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
 
-		int a = Reservation_Concert_Select_Controller.get_instance().concert_number;
+		for (int i = 1; i < 7; i++) {
+			concert_date_list.add(ConcertDao.get_concertDao().get_concert_date_list(i));
+		}
+
+		for (String s : concert_date_list) {
+			System.out.println(s);
+		}
+
+		concert_info = ConcertDao.get_concertDao().get_concert_info(user_selected_concert_unique_no);
+
+		lbl_concert_tile.setText(concert_info.get(0).getC_title());
+		lbl_R_price.setText(concert_info.get(0).getC_R_price() + "");
+		lbl_S_price.setText(concert_info.get(0).getC_S_price() + "");
+		lbl_D_price.setText(concert_info.get(0).getC_D_price() + "");
+		lbl_E_price.setText(concert_info.get(0).getC_E_price() + "");
 
 		Calendar calendar = Calendar.getInstance();
 
-		// DB 에서 콘서트 날짜를 가져오는 메소드가 필요하다 (콘서트 연도, 월만 리턴하는 메소드)
+		// DB 에서 콘서트 날짜를 가져오는 메소드가 필요하다 (콘서트 연도, 월만 리턴하는 메소드) : 콘서트Dao 에
+		// get_concert_date
 
 		// calendar.set(year, month - 1, 1);
 
-		// 앞전 concert_select 화면에서 radiobutton 에서 선택한 값이 넘어와야한다.
+		String concert_date = ConcertDao.get_concertDao().get_concert_date(user_selected_concert_unique_no);
 
-		// 회원 고유 번호를 통해서 예약 번호를 찾는다. 거기서 콘서트 번호로 다시 셀렉트?
-		// int m_no =
-		// MemberDao.get_memberDao().get_m_no_member(Login_Controller.getinstance().get_login_id());
-		// int c_no = ReservationDao.get_reservationDao().reservation_c_no_check(m_no);
-		String concert_date = ConcertDao.get_concertDao().get_concert_date(1);
 		String[] tmp = concert_date.split(" ");
+		user_selected_date = tmp[0];
 		String year = tmp[0].split("-")[0];
-		int YEAR = Integer.parseInt(year);
 		String month = tmp[0].split("-")[1];
+
+		int YEAR = Integer.parseInt(year);
 		int MONTH = Integer.parseInt(month);
 		/*
 		 * int year = Integer.parseInt(concert_year); int month =
@@ -65,8 +82,6 @@ public class Main_Reservation_Controller implements Initializable {
 
 		int eday = calendar.getActualMaximum(calendar.DAY_OF_MONTH);
 
-		lbl_concert_tile.setText(""); // DB 에서 공연 타이틀 가져오기
-		lbl_concert_date.setText(""); // DB 에서 공연 날짜 (공연이 지속되는 날짜) 가져오기
 		lbl_concert_duration.setText("180분");
 
 		int idx = 1;
@@ -84,11 +99,11 @@ public class Main_Reservation_Controller implements Initializable {
 
 					@Override
 					public void handle(ActionEvent e) {
-						alert.setHeaderText("날짜선택");
+						alert.setHeaderText(button.getId() + "일을 선택하셨습니다.");
 						Optional<ButtonType> optional = alert.showAndWait();
 						if (optional.get() == ButtonType.OK) {
 							// Button Id 가 날짜 값이랑 동일하게 셋팅되어 있으므로 날짜 값을 저장한다.
-							user_selected_day = button.getId();
+							user_selected_day = Integer.parseInt(button.getId());
 							Alert alert2 = new Alert(AlertType.INFORMATION);
 							alert2.setHeaderText("시간을 선택해주세요");
 							alert2.showAndWait();
@@ -114,18 +129,12 @@ public class Main_Reservation_Controller implements Initializable {
 				} else {
 					gridpane_calendar.add(button, i % 7, 5);
 				}
-
 				idx++;
-
-			} else {
-
 			}
-
 		}
-
 	}
 
-	private int user_select_time;
+	///////////////////////////////////////////////////////////////////
 
 	@FXML
 	private Button btn_cancel;
@@ -173,9 +182,6 @@ public class Main_Reservation_Controller implements Initializable {
 	private Label lbl_S_remaining;
 
 	@FXML
-	private Label lbl_concert_date;
-
-	@FXML
 	private Label lbl_concert_duration;
 
 	@FXML
@@ -187,47 +193,140 @@ public class Main_Reservation_Controller implements Initializable {
 	@FXML
 	private Label lbl_cal;
 
+	@FXML
+	private Button btn_2pm;
+
+	@FXML
+	private Button btn_6pm;
+	@FXML
+	private Label lbl_concert_date_1;
+	@FXML
+	private Label lbl_concert_date_2;
+	@FXML
+	private Label lbl_concert_date_3;
+
+	///////////////////////////////////////////////////////////////////
+
 	// 뒤로 가기 버튼 --> 콘서트 선택 페이지로 이동한다.
 	@FXML
 	void btn_cancel(ActionEvent event) {
 		Reservation_Home_Controller.getinstance().reservation_loadpage("concert_select_page");
 
 	}
+	///////////////////////////////////////////////////////////////////
+
+	/* 날짜와 시간을 입력받은 뒤 좌석 선택하는 페이지로 넘어갑니다. */
 
 	@FXML
 	void btn_reservation_confirm(ActionEvent event) {
 
-		if (opt_1.isSelected()) {
-			// 2PM 선택했을 때
+		Alert alert = new Alert(AlertType.CONFIRMATION);
+		alert.setHeaderText("선택하신 날짜가 맞습니까? \n    [" + user_selected_day + "] 일 오후 [" + user_selected_time + "] 시");
 
-			// 잔여 좌석을 불러와야한다.
+		Optional<ButtonType> optional = alert.showAndWait();
 
-			// ConcertDao.get_concertDao().get_remaining_seat_D(c_no);
+		if (optional.get() == ButtonType.OK) {
+			Alert alert2 = new Alert(AlertType.INFORMATION);
+
+			if (user_selected_time != 0 && user_selected_day != 0) {
+				alert2.setHeaderText("좌석 선택 페이지로 이동합니다.");
+				alert2.showAndWait();
+				Reservation_Home_Controller.getinstance().reservation_loadpage("seat_select_page");
+			} else {
+				alert2.setHeaderText("날짜, 시간이 모두 선택되지 않았습니다.");
+				alert2.showAndWait();
+			}
 
 		}
-		if (opt_2.isSelected()) {
-			// 6PM 선택했을 때
+
+	}
+
+	///////////////////////////////////////////////////////////////////
+
+	@FXML
+	public void btn_2pm(ActionEvent event) {
+		if (switch_2pm_btn) {
+			/* 버튼 아래 위치한 레이블에 잔여 좌석을 알려줍니다. */
+			user_selected_time = 2;
+
+			int R_remain = ConcertDao.get_concertDao().get_remaining_seat_R(user_selected_date, user_selected_time);
+			lbl_R_remaining.setText(R_remain + "");
+
+			int S_remain = ConcertDao.get_concertDao().get_remaining_seat_S(user_selected_date, user_selected_time);
+			lbl_S_remaining.setText(S_remain + "");
+
+			int D_remain = ConcertDao.get_concertDao().get_remaining_seat_D(user_selected_date, user_selected_time);
+			lbl_D_remaining.setText(D_remain + "");
+
+			int E_remain = ConcertDao.get_concertDao().get_remaining_seat_E(user_selected_date, user_selected_time);
+			lbl_E_remaining.setText(E_remain + "");
+
+			btn_6pm.setDisable(true);
+			setSwitch_2pm_btn(false);
+
+		} else {
+			user_selected_time = 0;
+			lbl_R_remaining.setText("");
+			lbl_S_remaining.setText("");
+			lbl_D_remaining.setText("");
+			lbl_E_remaining.setText("");
+			btn_6pm.setDisable(false);
+			setSwitch_2pm_btn(true);
 
 		}
-
-		Reservation_Home_Controller.getinstance().reservation_loadpage("payment_page");
-
 	}
 
-	public String getUser_selected_day() {
-		return user_selected_day;
+	@FXML
+	public void btn_6pm(ActionEvent event) {
+		if (switch_6pm_btn) {
+
+			user_selected_time = 6;
+
+			int R_remain = ConcertDao.get_concertDao().get_remaining_seat_R(user_selected_date, user_selected_time);
+			lbl_R_remaining.setText(R_remain + "");
+
+			int S_remain = ConcertDao.get_concertDao().get_remaining_seat_S(user_selected_date, user_selected_time);
+			lbl_S_remaining.setText(S_remain + "");
+
+			int D_remain = ConcertDao.get_concertDao().get_remaining_seat_D(user_selected_date, user_selected_time);
+			lbl_D_remaining.setText(D_remain + "");
+
+			int E_remain = ConcertDao.get_concertDao().get_remaining_seat_E(user_selected_date, user_selected_time);
+			lbl_E_remaining.setText(E_remain + "");
+
+			btn_2pm.setDisable(true);
+
+			setSwitch_6pm_btn(false);
+
+		} else {
+			user_selected_time = 0;
+			lbl_R_remaining.setText("");
+			lbl_S_remaining.setText("");
+			lbl_D_remaining.setText("");
+			lbl_E_remaining.setText("");
+			btn_2pm.setDisable(false);
+			setSwitch_6pm_btn(true);
+		}
 	}
 
-	public void setUser_selected_day(String user_selected_day) {
-		this.user_selected_day = user_selected_day;
+	public boolean isSwitch_2pm_btn() {
+		return switch_2pm_btn;
 	}
 
-	public int getUser_select_time() {
-		return user_select_time;
+	public void setSwitch_2pm_btn(boolean switch_2pm_btn) {
+		this.switch_2pm_btn = switch_2pm_btn;
 	}
 
-	public void setUser_select_time(int user_select_time) {
-		this.user_select_time = user_select_time;
+	public boolean isSwitch_6pm_btn() {
+		return switch_6pm_btn;
+	}
+
+	public void setSwitch_6pm_btn(boolean switch_6pm_btn) {
+		this.switch_6pm_btn = switch_6pm_btn;
+	}
+
+	public static void setUser_time_select(int user_time_select) {
+		user_selected_time = user_time_select;
 	}
 
 }

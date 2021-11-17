@@ -15,7 +15,7 @@ public class Main extends Application {
 			// Font.loadFont(getClass().getResourceAsStream("/fonts/NanumBarunGothicBold.ttf"),
 			// 10);
 
-			Parent parent = FXMLLoader.load(getClass().getResource("/fxml/reservation_page.fxml"));
+			Parent parent = FXMLLoader.load(getClass().getResource("/fxml/R_seat.fxml"));
 			Scene scene = new Scene(parent);
 
 			// scene.getStylesheets().add(getClass().getResource("login_page_style.css").toExternalForm());

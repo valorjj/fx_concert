@@ -44,7 +44,7 @@ public class Mainpage_Controller implements Initializable {
 
 	public static Mainpage_Controller getInstance() {
 		return instance;
-	}
+	}	
 
 	public Mainpage_Controller() {
 		instance = this;

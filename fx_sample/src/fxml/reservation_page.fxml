@@ -2,8 +2,6 @@
 
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.control.RadioButton?>
-<?import javafx.scene.control.ToggleGroup?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -12,213 +10,282 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="720.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.customer.Main_Reservation_Controller">
+<AnchorPane prefHeight="720.0" prefWidth="1280.0"
+	xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1"
+	fx:controller="controller.customer.Main_Reservation_Controller">
 	<children>
-		<AnchorPane layoutX="22.0" layoutY="31.0" prefHeight="660.0" prefWidth="650.0" AnchorPane.leftAnchor="30.0" AnchorPane.topAnchor="30.0">
+		<AnchorPane layoutX="22.0" layoutY="31.0"
+			prefHeight="660.0" prefWidth="650.0" AnchorPane.leftAnchor="30.0"
+			AnchorPane.topAnchor="30.0">
 			<children>
-				<ImageView id="concert_image" fx:id="concert_image_view" fitHeight="300.0" fitWidth="220.0" layoutX="25.0" layoutY="96.0" pickOnBounds="true" preserveRatio="true">
+				<ImageView id="concert_image" fx:id="concert_image_view"
+					fitHeight="300.0" fitWidth="220.0" layoutX="25.0" layoutY="96.0"
+					pickOnBounds="true" preserveRatio="true">
 					<image>
 						<Image url="@../images/c1.png" />
 					</image>
 				</ImageView>
-				<Label id="lbl_menu" layoutX="288.0" layoutY="40.0" prefHeight="30.0" text="공연이름">
+				<Label id="lbl" fx:id="lbl_concert_tile" layoutX="393.0"
+					layoutY="40.0" prefHeight="30.0" prefWidth="240.0" text="공연이름">
 					<font>
 						<Font size="21.0" />
 					</font>
 				</Label>
-				<Label id="lbl_menu" layoutX="285.0" layoutY="104.0" prefHeight="30.0" text="공연시간">
+				<Label id="lbl_menu" layoutX="288.0" layoutY="40.0"
+					prefHeight="30.0" text="공연이름">
 					<font>
 						<Font size="21.0" />
 					</font>
 				</Label>
-				<Label id="lbl_menu" layoutX="285.0" layoutY="143.0" prefHeight="30.0" text="공연기간">
+				<Label id="lbl_menu" layoutX="285.0" layoutY="104.0"
+					prefHeight="30.0" text="공연시간">
 					<font>
 						<Font size="21.0" />
 					</font>
 				</Label>
-				<Label id="lbl_menu" layoutX="285.0" layoutY="204.0" prefHeight="30.0" text="관람 연령">
+				<Label id="lbl_menu" layoutX="285.0" layoutY="143.0"
+					prefHeight="30.0" text="공연기간">
 					<font>
 						<Font size="21.0" />
 					</font>
 				</Label>
-				<Label id="lbl_menu" layoutX="285.0" layoutY="276.0" prefHeight="30.0" text="등급별 좌석 가격">
+				<Label id="lbl_menu" layoutX="288.0" layoutY="290.0"
+					prefHeight="30.0" text="관람 연령">
 					<font>
 						<Font size="21.0" />
 					</font>
 				</Label>
-				<Label id="lbl_price" layoutX="331.0" layoutY="332.0" prefHeight="30.0" text="R석">
+				<Label id="lbl_menu" layoutX="285.0" layoutY="330.0"
+					prefHeight="30.0" text="등급별 좌석 가격">
 					<font>
 						<Font size="21.0" />
 					</font>
 				</Label>
-				<Label id="lbl_price" layoutX="331.0" layoutY="372.0" prefHeight="30.0" text="S석">
+				<Label id="lbl_price" layoutX="331.0" layoutY="386.0"
+					prefHeight="30.0" text="R석">
 					<font>
 						<Font size="21.0" />
 					</font>
 				</Label>
-				<Label id="lbl_price" layoutX="331.0" layoutY="417.0" prefHeight="30.0" text="D석">
+				<Label id="lbl_price" layoutX="331.0" layoutY="426.0"
+					prefHeight="30.0" text="S석">
 					<font>
 						<Font size="21.0" />
 					</font>
 				</Label>
-				<Label id="lbl_price" layoutX="331.0" layoutY="458.0" prefHeight="30.0" text="E석">
+				<Label id="lbl_price" layoutX="331.0" layoutY="471.0"
+					prefHeight="30.0" text="D석">
 					<font>
 						<Font size="21.0" />
 					</font>
 				</Label>
-				<Label id="lbl_price" fx:id="lbl_R_price" layoutX="407.0" layoutY="332.0" prefHeight="30.0" text="r석가격">
+				<Label id="lbl_price" layoutX="331.0" layoutY="512.0"
+					prefHeight="30.0" text="E석">
 					<font>
 						<Font size="21.0" />
 					</font>
 				</Label>
-				<Label id="lbl_price" fx:id="lbl_S_price" layoutX="407.0" layoutY="372.0" prefHeight="30.0" text="s석가격">
+				<Label id="lbl_price" fx:id="lbl_R_price" layoutX="407.0"
+					layoutY="386.0" prefHeight="30.0" text="r석가격">
 					<font>
 						<Font size="21.0" />
 					</font>
 				</Label>
-				<Label id="lbl_price" fx:id="lbl_D_price" layoutX="407.0" layoutY="417.0" prefHeight="30.0" text="d석가격">
+				<Label id="lbl_price" fx:id="lbl_S_price" layoutX="407.0"
+					layoutY="426.0" prefHeight="30.0" text="s석가격">
 					<font>
 						<Font size="21.0" />
 					</font>
 				</Label>
-				<Label id="lbl_price" fx:id="lbl_E_price" layoutX="407.0" layoutY="458.0" prefHeight="30.0" text="e석가격">
+				<Label id="lbl_price" fx:id="lbl_D_price" layoutX="407.0"
+					layoutY="471.0" prefHeight="30.0" text="d석가격">
 					<font>
 						<Font size="21.0" />
 					</font>
 				</Label>
-				<Label id="lbl" fx:id="lbl_concert_tile" layoutX="393.0" layoutY="40.0" prefHeight="30.0" prefWidth="240.0" text="공연이름">
+				<Label id="lbl_price" fx:id="lbl_E_price" layoutX="407.0"
+					layoutY="512.0" prefHeight="30.0" text="e석가격">
 					<font>
 						<Font size="21.0" />
 					</font>
 				</Label>
-				<Label id="lbl" fx:id="lbl_concert_duration" layoutX="390.0" layoutY="104.0" prefHeight="30.0" prefWidth="240.0" text="공연시간">
+				<Label id="lbl" fx:id="lbl_concert_duration" layoutX="390.0"
+					layoutY="104.0" prefHeight="30.0" prefWidth="240.0" text="공연시간">
 					<font>
 						<Font size="21.0" />
 					</font>
 				</Label>
-				<Label id="lbl" fx:id="lbl_concert_date" layoutX="390.0" layoutY="143.0" prefHeight="30.0" text="공연기간">
+				<Label id="lbl" fx:id="lbl_concert_date_1" layoutX="390.0"
+					layoutY="143.0" prefHeight="30.0" text="공연기간">
 					<font>
 						<Font size="21.0" />
 					</font>
 				</Label>
-				<Label id="lbl" layoutX="391.0" layoutY="203.0" prefHeight="30.0" text="7세 이상">
+				<Label id="lbl" layoutX="394.0" layoutY="289.0"
+					prefHeight="30.0" text="7세 이상">
+					<font>
+						<Font size="21.0" />
+					</font>
+				</Label>
+				<Label id="lbl" fx:id="lbl_concert_date_2" layoutX="392.0"
+					layoutY="183.0" prefHeight="30.0" text="공연기간">
+					<font>
+						<Font size="21.0" />
+					</font>
+				</Label>
+				<Label id="lbl" fx:id="lbl_concert_date_3" layoutX="392.0"
+					layoutY="231.0" prefHeight="30.0" text="공연기간">
 					<font>
 						<Font size="21.0" />
 					</font>
 				</Label>
 			</children>
 		</AnchorPane>
-		<AnchorPane layoutX="730.0" layoutY="35.0" onDragDetected="#btn_cancel" prefHeight="650.0" prefWidth="500.0">
+		<AnchorPane layoutX="730.0" layoutY="35.0"
+			onDragDetected="#btn_cancel" prefHeight="650.0" prefWidth="500.0">
 			<children>
-				<GridPane fx:id="gridpane_calendar" prefHeight="280.0" prefWidth="450.0" AnchorPane.leftAnchor="25.0" AnchorPane.rightAnchor="25.0" AnchorPane.topAnchor="50.0">
+				<GridPane fx:id="gridpane_calendar" prefHeight="280.0"
+					prefWidth="450.0" AnchorPane.leftAnchor="25.0"
+					AnchorPane.rightAnchor="25.0" AnchorPane.topAnchor="50.0">
 					<columnConstraints>
-						<ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="30.0" />
-						<ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="30.0" />
-						<ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="30.0" />
-						<ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="30.0" />
-						<ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="30.0" />
-						<ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="30.0" />
-						<ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="30.0" />
+						<ColumnConstraints halignment="CENTER"
+							hgrow="SOMETIMES" minWidth="10.0" prefWidth="30.0" />
+						<ColumnConstraints halignment="CENTER"
+							hgrow="SOMETIMES" minWidth="10.0" prefWidth="30.0" />
+						<ColumnConstraints halignment="CENTER"
+							hgrow="SOMETIMES" minWidth="10.0" prefWidth="30.0" />
+						<ColumnConstraints halignment="CENTER"
+							hgrow="SOMETIMES" minWidth="10.0" prefWidth="30.0" />
+						<ColumnConstraints halignment="CENTER"
+							hgrow="SOMETIMES" minWidth="10.0" prefWidth="30.0" />
+						<ColumnConstraints halignment="CENTER"
+							hgrow="SOMETIMES" minWidth="10.0" prefWidth="30.0" />
+						<ColumnConstraints halignment="CENTER"
+							hgrow="SOMETIMES" minWidth="10.0" prefWidth="30.0" />
 					</columnConstraints>
 					<rowConstraints>
-						<RowConstraints minHeight="10.0" prefHeight="30.0" valignment="CENTER" vgrow="SOMETIMES" />
-						<RowConstraints minHeight="10.0" prefHeight="30.0" valignment="CENTER" vgrow="SOMETIMES" />
-						<RowConstraints minHeight="10.0" prefHeight="30.0" valignment="CENTER" vgrow="SOMETIMES" />
-						<RowConstraints minHeight="10.0" prefHeight="30.0" valignment="CENTER" vgrow="SOMETIMES" />
-						<RowConstraints minHeight="10.0" prefHeight="30.0" valignment="CENTER" vgrow="SOMETIMES" />
-						<RowConstraints minHeight="10.0" prefHeight="30.0" valignment="CENTER" vgrow="SOMETIMES" />
+						<RowConstraints minHeight="10.0" prefHeight="30.0"
+							valignment="CENTER" vgrow="SOMETIMES" />
+						<RowConstraints minHeight="10.0" prefHeight="30.0"
+							valignment="CENTER" vgrow="SOMETIMES" />
+						<RowConstraints minHeight="10.0" prefHeight="30.0"
+							valignment="CENTER" vgrow="SOMETIMES" />
+						<RowConstraints minHeight="10.0" prefHeight="30.0"
+							valignment="CENTER" vgrow="SOMETIMES" />
+						<RowConstraints minHeight="10.0" prefHeight="30.0"
+							valignment="CENTER" vgrow="SOMETIMES" />
+						<RowConstraints minHeight="10.0" prefHeight="30.0"
+							valignment="CENTER" vgrow="SOMETIMES" />
 					</rowConstraints>
 				</GridPane>
-				<Label id="lbl_seat_remaining" fx:id="lbl_small" layoutX="79.0" layoutY="481.0" text="R석" AnchorPane.leftAnchor="79.0">
+				<Label id="lbl_seat_remaining" fx:id="lbl_small"
+					layoutX="79.0" layoutY="481.0" text="R석"
+					AnchorPane.leftAnchor="79.0">
 					<font>
 						<Font size="14.0" />
 					</font>
 				</Label>
-				<Label id="lbl_seat_remaining" fx:id="lbl_R_remaining" layoutX="124.0" layoutY="481.0" text="r석">
+				<Label id="lbl_seat_remaining" fx:id="lbl_R_remaining"
+					layoutX="124.0" layoutY="481.0" text="r석">
 					<font>
 						<Font size="14.0" />
 					</font>
 				</Label>
-				<Label id="lbl_seat_remaining" fx:id="lbl_small" layoutX="174.0" layoutY="481.0" text="S석">
+				<Label id="lbl_seat_remaining" fx:id="lbl_small"
+					layoutX="174.0" layoutY="481.0" text="S석">
 					<font>
 						<Font size="14.0" />
 					</font>
 				</Label>
-				<Label id="lbl_seat_remaining" fx:id="lbl_S_remaining" layoutX="214.0" layoutY="481.0" text="s석">
+				<Label id="lbl_seat_remaining" fx:id="lbl_S_remaining"
+					layoutX="214.0" layoutY="481.0" text="s석">
 					<font>
 						<Font size="14.0" />
 					</font>
 				</Label>
-				<Label id="lbl_seat_remaining" fx:id="lbl_small" layoutX="264.0" layoutY="481.0" text="D석">
+				<Label id="lbl_seat_remaining" fx:id="lbl_small"
+					layoutX="264.0" layoutY="481.0" text="D석">
 					<font>
 						<Font size="14.0" />
 					</font>
 				</Label>
-				<Label id="lbl_seat_remaining" fx:id="lbl_D_remaining" layoutX="304.0" layoutY="481.0" text="d석">
+				<Label id="lbl_seat_remaining" fx:id="lbl_D_remaining"
+					layoutX="304.0" layoutY="481.0" text="d석">
 					<font>
 						<Font size="14.0" />
 					</font>
 				</Label>
-				<Label id="lbl_seat_remaining" fx:id="lbl_small" layoutX="354.0" layoutY="481.0" text="E석">
+				<Label id="lbl_seat_remaining" fx:id="lbl_small"
+					layoutX="354.0" layoutY="481.0" text="E석">
 					<font>
 						<Font size="14.0" />
 					</font>
 				</Label>
-				<Label id="lbl_seat_remaining" fx:id="lbl_E_remaining" layoutX="400.0" layoutY="481.0" text="e석">
+				<Label id="lbl_seat_remaining" fx:id="lbl_E_remaining"
+					layoutX="400.0" layoutY="481.0" text="e석">
 					<font>
 						<Font size="14.0" />
 					</font>
 				</Label>
-				<Button fx:id="btn_reservation_confirm" layoutX="54.0" layoutY="512.0" mnemonicParsing="false" onAction="#btn_reservation_confirm" prefHeight="50.0" prefWidth="400.0" text="예매하기" AnchorPane.leftAnchor="55.0" AnchorPane.rightAnchor="55.0" />
-				<Button fx:id="btn_cancel" layoutX="55.0" layoutY="582.0" mnemonicParsing="false" onAction="#btn_cancel" prefHeight="50.0" prefWidth="400.0" text="뒤로가기" AnchorPane.leftAnchor="55.0" AnchorPane.rightAnchor="55.0" />
-				<Label id="lbl_calendar_day" fx:id="lbl_cal" layoutX="52.0" layoutY="16.0" text="일">
+				<Button id="btn_confirm" fx:id="btn_reservation_confirm"
+					layoutX="54.0" layoutY="512.0" mnemonicParsing="false"
+					onAction="#btn_reservation_confirm" prefHeight="50.0"
+					prefWidth="400.0" text="예매하기" AnchorPane.leftAnchor="55.0"
+					AnchorPane.rightAnchor="55.0" />
+				<Button id="btn_cancel" fx:id="btn_cancel" layoutX="55.0"
+					layoutY="582.0" mnemonicParsing="false" onAction="#btn_cancel"
+					prefHeight="50.0" prefWidth="400.0" text="뒤로가기"
+					AnchorPane.leftAnchor="55.0" AnchorPane.rightAnchor="55.0" />
+				<Label id="lbl_calendar_day" fx:id="lbl_cal" layoutX="52.0"
+					layoutY="16.0" text="일">
 					<font>
 						<Font size="15.0" />
 					</font>
 				</Label>
-				<Label id="lbl_calendar_day" fx:id="lbl_cal" layoutX="112.0" layoutY="16.0" text="월">
+				<Label id="lbl_calendar_day" fx:id="lbl_cal" layoutX="112.0"
+					layoutY="16.0" text="월">
 					<font>
 						<Font size="15.0" />
 					</font>
 				</Label>
-				<Label id="lbl_calendar_day" fx:id="lbl_cal" layoutX="183.0" layoutY="16.0" text="화">
+				<Label id="lbl_calendar_day" fx:id="lbl_cal" layoutX="183.0"
+					layoutY="16.0" text="화">
 					<font>
 						<Font size="15.0" />
 					</font>
 				</Label>
-				<Label id="lbl_calendar_day" fx:id="lbl_cal" layoutX="243.0" layoutY="16.0" text="수">
+				<Label id="lbl_calendar_day" fx:id="lbl_cal" layoutX="243.0"
+					layoutY="16.0" text="수">
 					<font>
 						<Font size="15.0" />
 					</font>
 				</Label>
-				<Label id="lbl_calendar_day" fx:id="lbl_cal" layoutX="300.0" layoutY="16.0" text="목">
+				<Label id="lbl_calendar_day" fx:id="lbl_cal" layoutX="300.0"
+					layoutY="16.0" text="목">
 					<font>
 						<Font size="15.0" />
 					</font>
 				</Label>
-				<Label id="lbl_calendar_day" fx:id="lbl_cal" layoutX="362.0" layoutY="16.0" text="금">
+				<Label id="lbl_calendar_day" fx:id="lbl_cal" layoutX="362.0"
+					layoutY="16.0" text="금">
 					<font>
 						<Font size="15.0" />
 					</font>
 				</Label>
-				<Label id="lbl_calendar_day" fx:id="lbl_cal" layoutX="430.0" layoutY="16.0" text="토">
+				<Label id="lbl_calendar_day" fx:id="lbl_cal" layoutX="430.0"
+					layoutY="16.0" text="토">
 					<font>
 						<Font size="15.0" />
 					</font>
 				</Label>
-				<RadioButton fx:id="opt_1" layoutX="127.0" layoutY="407.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="148.0" text="2PM">
-					<toggleGroup>
-						<ToggleGroup fx:id="time_select" />
-					</toggleGroup>
-					<font>
-						<Font size="18.0" />
-					</font>
-				</RadioButton>
-				<RadioButton fx:id="opt_2" layoutX="296.0" layoutY="407.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="148.0" text="6PM" toggleGroup="$time_select">
-					<font>
-						<Font size="18.0" />
-					</font>
-				</RadioButton>
+				<Button id="btn_2pm" fx:id="btn_2pm" layoutX="55.0"
+					layoutY="406.0" mnemonicParsing="false" onAction="#btn_2pm"
+					prefHeight="55.0" prefWidth="180.0" text="2PM"
+					AnchorPane.leftAnchor="55.0" />
+				<Button id="btn_6pm" fx:id="btn_6pm" layoutX="273.0"
+					layoutY="406.0" mnemonicParsing="false" onAction="#btn_6pm"
+					prefHeight="55.0" prefWidth="180.0" text="6PM"
+					AnchorPane.rightAnchor="47.0" />
 			</children>
 		</AnchorPane>
 	</children>
