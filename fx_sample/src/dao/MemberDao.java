@@ -4,6 +4,15 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.util.Properties;
+
+import javax.mail.Authenticator;
+import javax.mail.Message;
+import javax.mail.PasswordAuthentication;
+import javax.mail.Session;
+import javax.mail.Transport;
+import javax.mail.internet.InternetAddress;
+import javax.mail.internet.MimeMessage;
 
 import domain.Member;
 
@@ -97,6 +106,38 @@ public class MemberDao {
 	// 6.회원탈퇴 메소드
 	
 	// 7.회원조회 메소드
+	
+	// 8. 이메일 전송 메소드
+	public void sendmail(String tomail, String msg) {
+		// 보낸사람 정보 
+		String fromemail = "kimji1218@naver.com";
+		String frompassword = "";
+		
+		Properties properties = new Properties();
+		properties.put("mail.smtp.host", "smtp.naver.com");
+		properties.put("mail.smtp.port", 587);
+		properties.put("mail.smtp.auth", true);
+		
+		Session session = Session.getDefaultInstance(properties, new Authenticator() {
+			// 익명 구현객체
+			@Override
+			protected PasswordAuthentication getPasswordAuthentication() {
+				return new PasswordAuthentication(fromemail, frompassword);
+			}
+		});
+		
+		try {
+			MimeMessage message = new MimeMessage(session);
+			message.setFrom(new InternetAddress(fromemail));
+			message.addRecipient(Message.RecipientType.TO, new InternetAddress(tomail));
+			
+			message.setSubject("회원님의 비밀번호 결과");
+			message.setText("회원님의 비밀번호 : "+ msg);
+			Transport.send(message);
+		} catch (Exception e) {}
+			
+	}
+		
 	
 	
 	

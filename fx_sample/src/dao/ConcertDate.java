@@ -13,14 +13,7 @@ public class ConcertDate {
 	}
 
 	// 3.메소드
-	public String getDate() {
-		return date;
-	}
-
-	public void setDate(String date) {
-		this.date = date;
-	}
-	
-	
-	
+	public String getDate() {return date;}
+	public void setDate(String date) {this.date = date;}
+		
 }

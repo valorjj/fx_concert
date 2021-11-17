@@ -67,7 +67,8 @@ public class Manager_Register_Controller {
 	@FXML
 	private TextField txt_s_seat_price;
 
-
+    @FXML
+    private TextField txt_concert_unique_no;
 
 	@FXML
 	void btn_concert_register(ActionEvent event) {
@@ -84,9 +85,10 @@ public class Manager_Register_Controller {
 		int c_S_price = Integer.parseInt(txt_s_seat_price.getText()+"");
 		int c_D_price = Integer.parseInt(txt_d_seat_price.getText()+"");
 		int c_E_price = Integer.parseInt(txt_e_seat_price.getText()+"");
+		int c_unique_no = Integer.parseInt(txt_concert_unique_no.getText()+"");
 		// 객체화
 		Concert concert = new Concert(c_title, c_artist, concert_info_img, c_date, c_time, c_R_no, c_S_no, c_D_no, c_E_no,
-				c_R_price, c_S_price, c_D_price, c_E_price);
+				c_R_price, c_S_price, c_D_price, c_E_price,c_unique_no);
 		// DB처리
 		boolean result = ConcertDao.getConcertDao().register(concert);
 		if (result) {

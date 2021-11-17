@@ -52,7 +52,6 @@ public class Mainpage_Controller implements Initializable {
 
 		try {
 			Parent parent = FXMLLoader.load(getClass().getResource("/fxml/" + page + ".fxml"));
-
 			main_page_boardpane.setCenter(parent);
 		} catch (Exception e) {
 		}

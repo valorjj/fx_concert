@@ -41,7 +41,6 @@ public class Login_Controller implements Initializable {
 
 		try {
 			Parent parent = FXMLLoader.load(getClass().getResource("/fxml/" + page + ".fxml"));
-
 			login_page_boarderpane.setCenter(parent);
 		} catch (Exception e) {
 		}
@@ -85,7 +84,7 @@ public class Login_Controller implements Initializable {
 		boolean check = MemberDao.getMemberDao().login(txt_id.getText(), txt_password.getText());
 		Alert alert = new Alert(AlertType.INFORMATION);
 		if (check) {
-			if(txt_id.getText().equals("asdf")) {
+			if(txt_id.getText().equals("admin")) {
 				alert.setHeaderText("어서오세요 관리자님");
 				alert.showAndWait();
 				btn_login.getScene().getWindow().hide();
