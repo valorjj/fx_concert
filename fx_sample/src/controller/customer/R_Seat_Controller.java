@@ -46,7 +46,7 @@ public class R_Seat_Controller implements Initializable {
 				public void handle(ActionEvent e) {
 
 					status_check[Integer.parseInt(button.getId())] = 1;
-					button.setStyle("-fx-background-color: green");
+					button.setStyle("-fx-background-color: green"); //
 				}
 
 			});
