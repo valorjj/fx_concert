@@ -11,10 +11,22 @@ import javafx.scene.layout.GridPane;
 
 public class E_Seat_Controller implements Initializable {
 
+	private static E_Seat_Controller instance;
+
+	public static E_Seat_Controller get_instance() {
+
+		return instance;
+	}
+
+	public E_Seat_Controller() {
+		instance = this;
+	}
+
 	// 배열의 갯수는 관리자가 입력한 값을 대입합니다 (매니저와 합칠 시)
 
 	private int seat_limit = 4; // 한 예약건에 대해서 총 4자리 까지만 에약할 수 있음
 	// 4번이 클릭하면 더 이상 클릭을 못하게 제한을 두어야함
+	static int E_count = 0;
 
 	// 100개 입력하면 오류가 납니다.
 

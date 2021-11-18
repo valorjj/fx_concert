@@ -19,7 +19,7 @@ public class Reservation_Seat_Select_Controller implements Initializable {
 
 	private static Reservation_Seat_Select_Controller instance;
 
-	private static Reservation_Seat_Select_Controller get_instance() {
+	public static Reservation_Seat_Select_Controller get_instance() {
 
 		return instance;
 
@@ -127,6 +127,11 @@ public class Reservation_Seat_Select_Controller implements Initializable {
 
 	////////////////////////////////////////////////////////////////
 
+	
+	// 근데 이렇게 하면 매번 페이지가 바뀌어서 내가 이전에 선택한 다른 등급의 좌석은 다시는 볼 수가 없네...?
+	// 클릭할 때 마다 페이지가 초기화 되어버리니까 ~ 이건 뭐 제대로 보려면 클릭할 때 마다 DB 에 반영이 되야 겠는걸 ????
+	// 근데 그렇게 하자니, 고객이 취소를 누르면 db에 반영되었던 걸 다시 리셋해야하는데 
+	// 실제 영화관이나 예매 사이트에서는 어떻게 할까? 
 	@FXML
 	void btn_D_select(ActionEvent event) {
 

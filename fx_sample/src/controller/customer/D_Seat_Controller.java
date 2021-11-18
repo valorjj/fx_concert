@@ -10,6 +10,17 @@ import javafx.scene.control.Button;
 import javafx.scene.layout.GridPane;
 
 public class D_Seat_Controller implements Initializable {
+	
+	private static D_Seat_Controller instance;
+
+	public static D_Seat_Controller get_instance() {
+
+		return instance;
+	}
+
+	public D_Seat_Controller() {
+		instance = this;
+	}
 
 	@FXML
 	private GridPane gridpane_D;
@@ -18,7 +29,7 @@ public class D_Seat_Controller implements Initializable {
 
 	private int seat_limit = 4; // 한 예약건에 대해서 총 4자리 까지만 에약할 수 있음
 	// 4번이 클릭하면 더 이상 클릭을 못하게 제한을 두어야함
-
+	static int D_count = 0;
 	// 100개 입력하면 오류가 납니다.
 
 	// 적당히 50좌석까지를 마지노선으로 잡으면 보기에도 괜찮고 오류도 없습니다.

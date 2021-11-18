@@ -160,7 +160,6 @@ public class Reservation_Date_Select_Controller implements Initializable {
 					if (!switch_date_1) {
 						// 선택 안했을 때
 						button.setStyle("-fx-background-color : #cccccc");
-
 						switch_date_1 = true;
 					} else {
 						button.setStyle("-fx-background-color : green");
@@ -197,11 +196,11 @@ public class Reservation_Date_Select_Controller implements Initializable {
 
 					if (!switch_date_3) {
 						// 선택 안했을 때
-						button.setStyle("-fx-background-color : green");
+						button.setStyle("-fx-background-color : #cccccc");
 
 						switch_date_3 = true;
 					} else {
-						button.setStyle("-fx-background-color : #cccccc");
+						button.setStyle("-fx-background-color : green");
 						user_selected_day = Integer.parseInt(day[2]);
 						switch_date_3 = false;
 					}
