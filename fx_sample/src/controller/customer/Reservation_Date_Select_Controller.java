@@ -41,27 +41,36 @@ public class Reservation_Date_Select_Controller implements Initializable {
 
 	ArrayList<String> concert_date_list = new ArrayList<String>();
 	ArrayList<Concert> concert_info = new ArrayList<Concert>();
-
-	public void get_date() {
-
-	}
+	
+	Button[] buttons = new Button[32];
 
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
 
-		concert_date_list.add(ConcertDao.getConcertDao().get_concert_date_list(user_selected_concert_unique_no));
+		concert_date_list = (ConcertDao.getConcertDao().get_concert_date_list(user_selected_concert_unique_no));
 
-		for (String s : concert_date_list) {
-			System.out.println(s);
+		lbl_concert_date_1.setText(concert_date_list.get(0));
+		lbl_concert_date_2.setText(concert_date_list.get(1));
+		lbl_concert_date_3.setText(concert_date_list.get(2));
+
+		String[] day = new String[3];
+
+		// 날짜만 빼옵니다.
+
+		for (int i = 0; i < 3; i++) {
+
+			day[i] = concert_date_list.get(i).split("-")[2];
+			System.out.println(day[i]);
+
 		}
 
-		concert_info = ConcertDao.getConcertDao().concertlist1();
+		Concert concert = ConcertDao.getConcertDao().get_concert_instance(user_selected_concert_unique_no);
 
-		lbl_concert_tile.setText(concert_info.get(0).getC_title());
-		lbl_R_price.setText(concert_info.get(0).getC_R_price() + "");
-		lbl_S_price.setText(concert_info.get(0).getC_S_price() + "");
-		lbl_D_price.setText(concert_info.get(0).getC_D_price() + "");
-		lbl_E_price.setText(concert_info.get(0).getC_E_price() + "");
+		lbl_concert_tile.setText(concert.getC_title());
+		lbl_R_price.setText(concert.getC_R_price() + "");
+		lbl_S_price.setText(concert.getC_S_price() + "");
+		lbl_D_price.setText(concert.getC_D_price() + "");
+		lbl_E_price.setText(concert.getC_E_price() + "");
 
 		Calendar calendar = Calendar.getInstance();
 
@@ -89,6 +98,8 @@ public class Reservation_Date_Select_Controller implements Initializable {
 
 		lbl_concert_duration.setText("180분");
 
+		// DB에서 연, 월 데이터를 받아서 캘린더를 출력합니다.
+
 		int idx = 1;
 		for (int i = 0; i <= 42; i++) {
 			if (i >= sweek - 1 && i < eday + sweek - 1) { // 특정 달의 시작 날짜를 구한다.
@@ -99,25 +110,35 @@ public class Reservation_Date_Select_Controller implements Initializable {
 				button.setPrefSize(30, 30);
 				button.setId(idx + "");
 
-				Alert alert = new Alert(AlertType.CONFIRMATION);
-				button.setOnAction(new EventHandler<ActionEvent>() {
+				if ((i == Integer.parseInt(day[0])) || (i == Integer.parseInt(day[1]))
+						|| (i == Integer.parseInt(day[2]))) {
 
-					@Override
-					public void handle(ActionEvent e) {
-						button.setStyle("-fx-background-color : #000000");
-						alert.setHeaderText(button.getId() + "일을 선택하셨습니다.");
-						Optional<ButtonType> optional = alert.showAndWait();
-						if (optional.get() == ButtonType.OK) {
-							// Button Id 가 날짜 값이랑 동일하게 셋팅되어 있으므로 날짜 값을 저장한다.
-							user_selected_day = Integer.parseInt(button.getId());
-							Alert alert2 = new Alert(AlertType.INFORMATION);
-							alert2.setHeaderText("시간을 선택해주세요");
-							alert2.showAndWait();
+					Alert alert = new Alert(AlertType.CONFIRMATION);
+					button.setOnAction(new EventHandler<ActionEvent>() {
+
+						@Override
+						public void handle(ActionEvent e) {
+
+							alert.setHeaderText(button.getId() + "일을 선택하셨습니다.");
+							Optional<ButtonType> optional = alert.showAndWait();
+							if (optional.get() == ButtonType.OK) {
+								button.setStyle("-fx-background-color : green");
+
+								// Button Id 가 날짜 값이랑 동일하게 셋팅되어 있으므로 날짜 값을 저장한다.
+								user_selected_day = Integer.parseInt(button.getId());
+								// user_selected_day = idx;
+								Alert alert2 = new Alert(AlertType.INFORMATION);
+								alert2.setHeaderText("시간을 선택해주세요");
+								alert2.showAndWait();
+							} else {
+								// button.setStyle("-fx-background-color : #eeeeee");
+							}
 						}
-
-					}
-
-				});
+					});
+				} else {
+					button.setStyle("-fx-background-color: black");
+				}
+				buttons[i] = button;
 
 				// button.setStyle("-fx-text-fill: #ffffff");
 				// button.setStyle("-fx-border-color : #333333");

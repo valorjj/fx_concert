@@ -15,6 +15,8 @@ import javafx.scene.layout.BorderPane;
 
 public class Reservation_Seat_Select_Controller implements Initializable {
 
+	static int how_many_person = 0;
+
 	private static Reservation_Seat_Select_Controller instance;
 
 	private static Reservation_Seat_Select_Controller get_instance() {
@@ -42,6 +44,11 @@ public class Reservation_Seat_Select_Controller implements Initializable {
 
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
+
+		btn_how_many_1.setVisible(false);
+		btn_how_many_2.setVisible(false);
+		btn_how_many_3.setVisible(false);
+		btn_how_many_4.setVisible(false);
 
 	}
 
@@ -113,6 +120,8 @@ public class Reservation_Seat_Select_Controller implements Initializable {
 	@FXML
 	private Label lbl_S_total;
 
+	////////////////////////////////////////////////////////////////
+
 	@FXML
 	void btn_D_select(ActionEvent event) {
 
@@ -146,7 +155,7 @@ public class Reservation_Seat_Select_Controller implements Initializable {
 	@FXML
 	void btn_cancel(ActionEvent event) {
 
-		Reservation_Home_Controller.getinstance().reservation_loadpage("reservation_page");
+		Reservation_Home_Controller.getinstance().reservation_loadpage("reservation_page_date_select");
 
 	}
 	///////////////////////////////////////////////////
@@ -154,22 +163,62 @@ public class Reservation_Seat_Select_Controller implements Initializable {
 	@FXML
 	void btn_how_many_people(ActionEvent event) {
 
+		btn_how_many_people.setVisible(false);
+		btn_how_many_1.setVisible(true);
+		btn_how_many_2.setVisible(true);
+		btn_how_many_3.setVisible(true);
+		btn_how_many_4.setVisible(true);
+
 	}
+
+	////////////////////////////////////////////////////////////////
 
 	@FXML
 	void btn_payment(ActionEvent event) {
 
 	}
 
+	////////////////////////////////////////////////////////////////
 	@FXML
 	void btn_reset(ActionEvent event) {
-		
-		// 모든 선택을 무효화 시킨다. 
+
+		// 모든 선택을 무효화 시킨다.
+
+		btn_how_many_people.setVisible(true);
+		btn_how_many_1.setVisible(false);
+		btn_how_many_2.setVisible(false);
+		btn_how_many_3.setVisible(false);
+		btn_how_many_4.setVisible(false);
+
+	}
+
+	////////////////////////////////////////////////////////////////
+	@FXML
+	void btn_view_entire_seat(ActionEvent event) {
+
+		// image 파일을 하나 불러서 새로운 창을 띄웁니다
+
+	}
+
+	////////////////////////////////////////////////////////////////
+
+	@FXML
+	void btn_how_many_1(ActionEvent event) {
 
 	}
 
 	@FXML
-	void btn_view_entire_seat(ActionEvent event) {
+	void btn_how_many_2(ActionEvent event) {
+
+	}
+
+	@FXML
+	void btn_how_many_3(ActionEvent event) {
+
+	}
+
+	@FXML
+	void btn_how_many_4(ActionEvent event) {
 
 	}
 }
