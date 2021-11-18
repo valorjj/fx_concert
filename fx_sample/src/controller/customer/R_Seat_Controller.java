@@ -17,19 +17,15 @@ public class R_Seat_Controller implements Initializable {
 
 	// 배열의 갯수는 관리자가 입력한 값을 대입합니다 (매니저와 합칠 시)
 
-	private int seat_limit = 4; // 한 예약건에 대해서 총 4자리 까지만 에약할 수 있음
-	// 4번이 클릭하면 더 이상 클릭을 못하게 제한을 두어야함
-
-	private static int[] user_selected_seat = new int[4];
-
+	public int seat_limit = 4;
 	public int count = 0;
 
 	// 100개 입력하면 오류가 납니다.
 
 	// 적당히 50좌석까지를 마지노선으로 잡으면 보기에도 괜찮고 오류도 없습니다.
-	static int manager_input_R_seat_no = 50;
-	static int[] status_check = new int[50]; // 여기도 DB 에서 가져와야해 근데 이부분에 꽤 어렵겠는데???? 지금 R S D E 로 나뉘어져 있는데 seat db 에서는
-												// 한번에 쭉 이어져 있으니 구분을 잘 해야해
+	int manager_input_R_seat_no = 50;
+	int[] status_check = new int[50]; // 여기도 DB 에서 가져와야해 근데 이부분에 꽤 어렵겠는데???? 지금 R S D E 로 나뉘어져 있는데 seat db 에서는
+										// 한번에 쭉 이어져 있으니 구분을 잘 해야해
 	/* 상태가 0이면 예약 가능, 상태가 1이면 현재 선택, 상태가 2이면 이미 예약 완료되어 선택 불가능 */
 
 	@FXML

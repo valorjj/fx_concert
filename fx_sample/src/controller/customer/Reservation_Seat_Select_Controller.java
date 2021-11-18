@@ -181,6 +181,11 @@ public class Reservation_Seat_Select_Controller implements Initializable {
 	@FXML
 	void btn_payment(ActionEvent event) {
 
+		// 결제 진행 -> 최종적으로 현재까지 입력받은 모든 값을 DB 에 반영해야한다.
+		// 여기서 든 생각은, concert db 에 매니저가 지정한 고정 좌석에 더해서 현재 남은 좌석 (변하는 값) 을 넣어야 하지 않나 그런
+		// 생각이 든다.
+		// 그럼 concert 하나에 필드에 엄청 많아지는데, 어쩔 수 없는 것 아닐까?
+
 	}
 
 	////////////////////////////////////////////////////////////////
