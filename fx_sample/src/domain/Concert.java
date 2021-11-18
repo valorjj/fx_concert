@@ -86,6 +86,17 @@ public class Concert {
 		this.c_title = c_title;
 		
 	}
+	public void no(int i) {
+		if(i==c_R_no) {
+			
+		}
+	}
+	
+	
+	public Concert(int c_S_no) {
+		this.c_S_no = c_S_no;
+	}
+	
 	
 	public Concert(String c_title, String c_artist, String c_date, String c_time) {
 		super();
