@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.shape.Rectangle?>
+
+<AnchorPane
+	fx:controller="controller.customer.S_Seat_Controller"
+	prefHeight="600.0" prefWidth="800.0"
+	xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1">
+	<children>
+		<Rectangle arcHeight="5.0" arcWidth="5.0" fill="#f2f2f2"
+			height="570.0" layoutX="700.0" layoutY="15.0" stroke="BLACK"
+			strokeType="INSIDE" width="55.0" AnchorPane.rightAnchor="15.0" />
+		<Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE"
+			height="55.0" layoutX="77.0" layoutY="15.0" stroke="BLACK"
+			strokeType="INSIDE" width="647.0" AnchorPane.leftAnchor="77.0"
+			AnchorPane.rightAnchor="76.0" />
+		<Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE"
+			height="570.0" layoutX="14.0" layoutY="15.0" stroke="BLACK"
+			strokeType="INSIDE" width="55.0" AnchorPane.leftAnchor="15.0" />
+		<Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE"
+			height="55.0" layoutX="80.0" layoutY="535.0" stroke="BLACK"
+			strokeType="INSIDE" width="643.0" AnchorPane.bottomAnchor="15.0" />
+		<GridPane fx:id="gridpane_S" layoutX="168.0" layoutY="100.0"
+			prefHeight="450.0" prefWidth="467.0">
+			<columnConstraints>
+				<ColumnConstraints halignment="CENTER"
+					hgrow="SOMETIMES" minWidth="30.0" prefWidth="45.0" />
+				<ColumnConstraints halignment="CENTER"
+					hgrow="SOMETIMES" minWidth="30.0" prefWidth="45.0" />
+				<ColumnConstraints halignment="CENTER"
+					hgrow="SOMETIMES" minWidth="30.0" prefWidth="45.0" />
+				<ColumnConstraints halignment="CENTER"
+					hgrow="SOMETIMES" minWidth="30.0" prefWidth="45.0" />
+				<ColumnConstraints halignment="CENTER"
+					hgrow="SOMETIMES" minWidth="30.0" prefWidth="45.0" />
+				<ColumnConstraints halignment="CENTER"
+					hgrow="SOMETIMES" minWidth="30.0" prefWidth="45.0" />
+				<ColumnConstraints halignment="CENTER"
+					hgrow="SOMETIMES" minWidth="30.0" prefWidth="45.0" />
+				<ColumnConstraints halignment="CENTER"
+					hgrow="SOMETIMES" minWidth="30.0" prefWidth="45.0" />
+
+			</columnConstraints>
+			<rowConstraints>
+				<RowConstraints minHeight="45.0" prefHeight="45.0"
+					valignment="CENTER" vgrow="SOMETIMES" />
+				<RowConstraints minHeight="45.0" prefHeight="45.0"
+					valignment="CENTER" vgrow="SOMETIMES" />
+				<RowConstraints minHeight="45.0" prefHeight="45.0"
+					valignment="CENTER" vgrow="SOMETIMES" />
+				<RowConstraints minHeight="45.0" prefHeight="45.0"
+					valignment="CENTER" vgrow="SOMETIMES" />
+				<RowConstraints minHeight="45.0" prefHeight="45.0"
+					valignment="CENTER" vgrow="SOMETIMES" />
+				<RowConstraints minHeight="45.0" prefHeight="45.0"
+					valignment="CENTER" vgrow="SOMETIMES" />
+				<RowConstraints minHeight="45.0" prefHeight="45.0"
+					valignment="CENTER" vgrow="SOMETIMES" />
+				<RowConstraints minHeight="45.0" prefHeight="45.0"
+					valignment="CENTER" vgrow="SOMETIMES" />
+
+			</rowConstraints>
+		</GridPane>
+		<Button fx:id="btn_clear" layoutX="79.0" layoutY="82.0"
+			mnemonicParsing="false" onAction="#btn_clear" prefHeight="30.0"
+			prefWidth="120.0" text="CLEAR" AnchorPane.leftAnchor="75.0"
+			AnchorPane.topAnchor="75.0" />
+	</children>
+</AnchorPane>

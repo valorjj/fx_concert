@@ -34,25 +34,27 @@ public class Find_Password_Controller implements Initializable {
 
 	@FXML
 	void cancel(ActionEvent event) {
-		Login_Controller.getinstance().loadpage("login_home_page");
+		Login_Controller.getInstance().loadpage("login_home_page");
 	}
 
 	@FXML
 	void find_password(ActionEvent event) {
 		String result = MemberDao.getMemberDao().find_pw(txt_id.getText(),txt_email.getText());
-		   
 		   Alert alert = new Alert(AlertType.INFORMATION);
-		   if(result==null) {
-		   
-		      alert.setHeaderText("pw 찾기 실패");
-		      alert.showAndWait();
-		   }else { 
-		      
-		      alert.setHeaderText("pw찾기 성공");
-		      alert.setContentText("회원님의 pw는 : "+result);
-		      alert.showAndWait();
-		      
+		   if(result!=null) {
+			   alert.setContentText("비밀번호 찾기 성공!");
+			   alert.setHeaderText("회원님의 비밀번호를 이메일로 전송했습니다.");
+			   alert.setTitle("알림");
+			   MemberDao.getMemberDao().sendmail(txt_email.getText(),result);
+			   alert.showAndWait();
+			   Login_Controller.getInstance().loadpage("login_home_page");
+		   }else {
+			      alert.setHeaderText("pw 찾기 실패");
+			      alert.showAndWait();
 		   }
-
 	}
+	
+	
+	
+	
 }

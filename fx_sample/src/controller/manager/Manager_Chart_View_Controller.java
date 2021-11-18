@@ -2,49 +2,59 @@ package controller.manager;
 
 
 import java.net.URL;
-import java.util.ArrayList;
 import java.util.ResourceBundle;
 
 import dao.ConcertDao;
-import dao.ConcertDate;
 import domain.Concert;
-import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.chart.PieChart;
 import javafx.scene.control.ComboBox;
+import javafx.scene.input.MouseButton;
 
 public class Manager_Chart_View_Controller implements Initializable{
 
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
+		ObservableList<Concert> titles = ConcertDao.getConcertDao().titlelist();
+		combo_concert_name.setPromptText("콘서트명 선택");
+		combo_concert_date.setPromptText("콘서트날짜 선택");
+		combo_concert_time.setPromptText("콘서트시간 선택");
+		combo_concert_name.setItems(titles);
+		combo_concert_name.setOnMouseClicked(e -> {
+			if ( e.getButton().equals( MouseButton.PRIMARY)) {
+				String date = combo_concert_name.getSelectionModel().getSelectedItem().getC_title();
+				ObservableList<Concert> dates = ConcertDao.getConcertDao().datelist(date);
+				combo_concert_date.setItems(dates);
+				combo_concert_date.setOnMouseClicked( e2 -> {
+					if(e2.getButton().equals(MouseButton.PRIMARY)) {
+						String time = combo_concert_date.getSelectionModel().getSelectedItem().toString();
+						System.out.println( time );
+						ObservableList<Concert> times = ConcertDao.getConcertDao().timelist(date, time);
+						combo_concert_time.setItems(times);
+					}
+				});
+			}
+		});
 		
-//		combo_concert_name.setItems(title);
-		combo_concert_time.setItems(time);
-//		combo_concert_date.setItems(date);
-	}
 
-//	String check = ConcertDao.getConcertDao().concertlist().indexOf(concert))	
-	
+		//pic chart
+//		ObservableList<Seat> seats = SeatDao.getSeatDao().se
+		
+		
+	}
     @FXML
     private ComboBox<Concert> combo_concert_date;
-
-	ObservableList<String> date = FXCollections.observableArrayList(ConcertDao.getConcertDao().titlelist()+"");
-   
     
-  
     
     @FXML
-    private ComboBox combo_concert_name;
-//    private ObservableList<String> title = FXCollections.observableArrayList(ConcertDao.getConcertDao().concertlist().get(i).getC_title());
-    
+    private ComboBox<Concert> combo_concert_name;
+ 
 
     @FXML
-    private ComboBox combo_concert_time;
-    private ObservableList<String> time = FXCollections.observableArrayList("apple", "banana", "lemon", "grape");
-
+    private ComboBox<Concert> combo_concert_time;
 
     @FXML
     private PieChart piechart_d_seat;
@@ -60,16 +70,19 @@ public class Manager_Chart_View_Controller implements Initializable{
 
     @FXML
     void combo_concert_date(ActionEvent event) {
-
+    	
     }
-
+    
+    
     @FXML
     void combo_concert_name(ActionEvent event) {
-
+    	
+    	
     }
 
     @FXML
     void combo_concert_time(ActionEvent event) {
 
     }
+    
 }

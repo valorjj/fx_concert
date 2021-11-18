@@ -3,16 +3,21 @@ package controller.manager;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+import controller.customer.Mainpage_Controller;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.shape.Rectangle;
+import javafx.stage.Stage;
 
 public class Manager_Main_Controller implements Initializable{
 	@Override
@@ -80,7 +85,13 @@ public class Manager_Main_Controller implements Initializable{
 
     @FXML
     void btn_logout(ActionEvent event) {
-
+    	
+    	Alert alert = new Alert(AlertType.INFORMATION);
+    	alert.setHeaderText("수고하셨습니다. 관리자님");
+    	alert.showAndWait();
+    	btn_logout.getScene().getWindow().hide();
+    	window_shift("login_page");
+    	
     }
 
     @FXML
@@ -126,5 +137,17 @@ public class Manager_Main_Controller implements Initializable{
 		} catch (Exception e) {
 		}
 
+	}
+    
+    public void window_shift(String page) {
+		try {
+			Parent parent = FXMLLoader.load(getClass().getResource("/fxml/" + page + ".fxml"));
+			Scene scene = new Scene(parent);
+			Stage stage = new Stage();
+			stage.setScene(scene);
+			stage.setResizable(false); // 스테이지 크기 고정 
+			stage.show();
+		} catch (Exception e) {
+		}
 	}
 }

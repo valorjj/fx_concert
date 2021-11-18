@@ -41,14 +41,14 @@ public class Manager_Update_Controller implements Initializable{
 		txt_s_seat_price.setText(concert.getC_S_price()+"");
 		txt_d_seat_price.setText(concert.getC_D_price()+"");
 		txt_e_seat_price.setText(concert.getC_E_price()+"");
-		
-		
-		
+		txt_concert_unique_no.setText(concert.getC_unique_no()+"");
 	}
 
 	private String concert_info_img;
 	private Stage stage;
 
+    @FXML
+    private TextField txt_concert_unique_no;
 
     @FXML
     private Button btn_concert_info;
@@ -118,7 +118,7 @@ public class Manager_Update_Controller implements Initializable{
     	String c_title = txt_concert_name.getText();
 		String c_artist = txt_concert_aritist.getText();
 		String c_date = txt_concert_date.getText();
-		int c_time = Integer.parseInt(txt_concert_time.getText()+"");
+		String c_time = txt_concert_time.getText();
 		int c_R_no = Integer.parseInt(txt_r_seat_no.getText()+"");
 		int c_S_no = Integer.parseInt(txt_s_seat_no.getText()+"");
 		int c_D_no = Integer.parseInt(txt_d_seat_no.getText()+"");
@@ -127,8 +127,9 @@ public class Manager_Update_Controller implements Initializable{
 		int c_S_price = Integer.parseInt(txt_s_seat_price.getText()+"");
 		int c_D_price = Integer.parseInt(txt_d_seat_price.getText()+"");
 		int c_E_price = Integer.parseInt(txt_e_seat_price.getText()+"");
+		int c_unique_no = Integer.parseInt(txt_concert_unique_no.getText()+"");
 		// 객체화
-		Concert concert2 = new Concert(concert.getC_no(), c_title, c_artist, concert_info_img , c_date, c_time, c_R_no, c_S_no, c_D_no, c_E_no, c_R_price, c_S_price, c_D_price, c_E_price);
+		Concert concert2 = new Concert(concert.getC_no(), c_title, c_artist, concert_info_img , c_date, c_time, c_R_no, c_S_no, c_D_no, c_E_no, c_R_price, c_S_price, c_D_price, c_E_price,c_unique_no);
 		System.out.println("DB가기전");
 		// DB 넣기
     	boolean result = ConcertDao.getConcertDao().update(concert2);
