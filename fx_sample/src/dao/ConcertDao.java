@@ -20,6 +20,7 @@ public class ConcertDao {
 	private static ConcertDao concertDao = new ConcertDao();
 
 	// 2.생성자
+
 	public ConcertDao() {
 		try {
 			Class.forName("com.mysql.cj.jdbc.Driver");
@@ -30,7 +31,7 @@ public class ConcertDao {
 		}
 	}
 
-	// 3.메소드
+
 	public static ConcertDao getConcertDao() {
 		return concertDao;
 	}
@@ -45,6 +46,7 @@ public class ConcertDao {
 		try {
 			preparedStatement = connection.prepareStatement(sql);
 			// 3. SQL 설정
+
 			preparedStatement.setString(1, concert.getC_title());
 			preparedStatement.setString(2, concert.getC_artist());
 			preparedStatement.setString(3, concert.getC_info());
@@ -58,6 +60,7 @@ public class ConcertDao {
 			preparedStatement.setInt(11, concert.getC_S_price());
 			preparedStatement.setInt(12, concert.getC_D_price());
 			preparedStatement.setInt(13, concert.getC_E_price());
+
 			// 4. SQL 실행
 			preparedStatement.executeUpdate();
 			// 5. SQL 결과 실행
@@ -123,7 +126,6 @@ public class ConcertDao {
 						resultSet.getInt(7), resultSet.getInt(8), resultSet.getInt(9), resultSet.getInt(10),
 						resultSet.getInt(11), resultSet.getInt(12), resultSet.getInt(13), resultSet.getInt(14),
 						resultSet.getInt(15));
-				// 객체 리스트 저장
 				concerts.add(concert);
 			}
 			return concerts;
@@ -417,5 +419,29 @@ public class ConcertDao {
 //		return null;
 //
 //	}
+
+	public ArrayList<Concert> concertlist1() {
+
+		ArrayList<Concert> concerts = new ArrayList<>();
+
+		String sql = "select * from concert order by c_no desc";
+		try {
+			preparedStatement = connection.prepareStatement(sql);
+			resultSet = preparedStatement.executeQuery();
+			while (resultSet.next()) {
+				Concert concert = new Concert(resultSet.getInt(1), resultSet.getString(2), resultSet.getString(3),
+						resultSet.getString(4), resultSet.getString(5).split(" ")[0], resultSet.getString(6),
+						resultSet.getInt(7), resultSet.getInt(8), resultSet.getInt(9), resultSet.getInt(10),
+						resultSet.getInt(11), resultSet.getInt(12), resultSet.getInt(13), resultSet.getInt(14),
+						resultSet.getInt(15));
+				//
+				concerts.add(concert);
+			}
+			return concerts;
+		} catch (Exception e) {
+		}
+		return concerts;
+
+	}
 
 }

@@ -12,7 +12,7 @@
 
 <AnchorPane prefHeight="720.0" prefWidth="1280.0"
 	xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1"
-	fx:controller="controller.customer.Reservation_Date_Select_Controllertroller">
+	fx:controller="controller.customer.Reservation_Date_Select_Controller">
 	<children>
 		<AnchorPane layoutX="22.0" layoutY="31.0"
 			prefHeight="660.0" prefWidth="650.0" AnchorPane.leftAnchor="30.0"
@@ -22,7 +22,7 @@
 					fitHeight="300.0" fitWidth="220.0" layoutX="25.0" layoutY="96.0"
 					pickOnBounds="true" preserveRatio="true">
 					<image>
-						<Image url="@../images/c1.png" />
+						<Image url="@../images/1.png" />
 					</image>
 				</ImageView>
 				<Label id="lbl" fx:id="lbl_concert_tile" layoutX="393.0"
