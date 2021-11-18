@@ -71,7 +71,7 @@ public class Reservation_Concert_Select_Controller implements Initializable {
 		Optional<ButtonType> optional = alert.showAndWait();
 
 		if (optional.get() == ButtonType.OK) {
-			Reservation_Home_Controller.getinstance().reservation_loadpage("reservation_page");
+			Reservation_Home_Controller.getinstance().reservation_loadpage("reservation_page_date_select");
 		}
 
 	}

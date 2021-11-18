@@ -16,7 +16,6 @@ public class Reservation {
 	}
 
 	public Reservation(int s_no, int c_no, int m_no) {
-		super();
 		this.s_no = s_no;
 		this.c_no = c_no;
 		this.m_no = m_no;

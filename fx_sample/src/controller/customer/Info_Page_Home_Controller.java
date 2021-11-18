@@ -1,29 +1,35 @@
 package controller.customer;
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+import dao.ConcertDao;
 import dao.MemberDao;
 import dao.ReservationDao;
 import domain.Concert;
 import domain.Member;
-import domain.Reservation;
-import javafx.fxml.Initializable;
-import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.control.Label;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TextField;
-import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
-import javafx.scene.control.TableView;
+import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.fxml.Initializable;
 import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
-import javafx.scene.layout.BorderPane;
+import javafx.scene.control.Label;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
+import javafx.scene.control.TextField;
+import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.input.MouseButton;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.BorderPane;
+import javafx.stage.Stage;
 
 public class Info_Page_Home_Controller implements Initializable {
+
+	public static Concert concert;
 
 	@FXML
 	private Label lbl_info_id;
@@ -66,20 +72,40 @@ public class Info_Page_Home_Controller implements Initializable {
 		ObservableList<Concert> member_reservation_history_concert = ReservationDao.get_reservationDao()
 				.get_concert_from_reservation(m_no);
 
-//		tableview_history.setItems(member_reservation_history);
 		tableview_history.setItems(member_reservation_history_concert);
 
 		TableColumn<?, ?> tc = tableview_history.getColumns().get(0);
 		tc.setCellValueFactory(new PropertyValueFactory<>("c_title"));
 
 		tc = tableview_history.getColumns().get(1);
-		tc.setCellValueFactory(new PropertyValueFactory<>("c_artist"));
+		tc.setCellValueFactory(new PropertyValueFactory<>("c_time"));
 
 		tc = tableview_history.getColumns().get(2);
 		tc.setCellValueFactory(new PropertyValueFactory<>("c_date"));
 
-		tc = tableview_history.getColumns().get(3);
-		tc.setCellValueFactory(new PropertyValueFactory<>("c_time"));
+		tableview_history.setOnMouseClicked(e -> {
+			// 클릭 이벤트가 마우스 클릭과 같으면
+			if (e.getButton().equals(MouseButton.PRIMARY)) {
+				//
+				concert = tableview_history.getSelectionModel().getSelectedItem();
+
+				int concert_order = ReservationDao.get_reservationDao().get_c_no(m_no);
+
+				Stage stage = new Stage();
+				try {
+					Parent parent = FXMLLoader
+							.load(getClass().getResource("/fxml/main_page_home_concert" + concert_order + ".fxml"));
+					Scene scene = new Scene(parent);
+					stage.setScene(scene);
+					stage.show();
+
+				} catch (IOException e1) {
+					e1.printStackTrace();
+				}
+
+			}
+
+		});
 
 	}
 

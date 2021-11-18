@@ -24,7 +24,7 @@ public class ConcertDao {
 		try {
 
 			Class.forName("com.mysql.cj.jdbc.Driver");
-			connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/javafx_concert?serverTimezone=UTC",
+			connection = DriverManager.getConnection("jdbc:mysql://localhost:3307/javafx_concert?serverTimezone=UTC",
 					"root", "1234");
 			System.out.println("DB connection success ... ");
 
@@ -61,13 +61,13 @@ public class ConcertDao {
 		return null;
 	}
 
-	public String get_concert_date_list(int c_no) {
+	public String get_concert_date_list(int c_unique_no) {
 
-		String sql = " SELECT DISTINCT c_date FROM concert WHERE c_no=? ORDER BY c_no ";
+		String sql = " SELECT DISTINCT c_date FROM concert WHERE c_unique_no=? ORDER BY c_no ";
 
 		try {
 			preparedStatement = connection.prepareStatement(sql);
-			preparedStatement.setInt(1, c_no);
+			preparedStatement.setInt(1, c_unique_no);
 			resultSet = preparedStatement.executeQuery();
 			if (resultSet.next()) {
 				return resultSet.getString(1);
@@ -199,7 +199,7 @@ public class ConcertDao {
 	/*
 	 * 시간, 날짜를 입력받고 해당하는 콘서트 정보를 DB에서 꺼내온다. 해당 프로젝트의 경우 고유번호 1번 콘서트에는 6개의 정보가 담겨있다.
 	 */
-	public ArrayList<Concert> get_concert_info(int c_unique_no) {
+	public ArrayList<Concert> get_concert_list(int c_unique_no) {
 
 		ArrayList<Concert> concerts = new ArrayList<Concert>();
 		String sql = "SELECT * FROM concert WHERE c_unique_no=?";
@@ -212,10 +212,9 @@ public class ConcertDao {
 
 				Concert concert = new Concert(
 
-						resultSet.getString(2), resultSet.getString(3), resultSet.getString(4), resultSet.getString(5),
-						resultSet.getInt(6), resultSet.getInt(7), resultSet.getInt(8), resultSet.getInt(9),
-						resultSet.getInt(10), resultSet.getInt(11), resultSet.getInt(12), resultSet.getInt(13),
-						resultSet.getInt(14)
+						resultSet.getString(2), resultSet.getString(3), "", resultSet.getString(5), resultSet.getInt(6),
+						resultSet.getInt(7), resultSet.getInt(8), resultSet.getInt(9), resultSet.getInt(10),
+						resultSet.getInt(11), resultSet.getInt(12), resultSet.getInt(13), resultSet.getInt(14)
 
 				);
 				concerts.add(concert);
@@ -229,6 +228,45 @@ public class ConcertDao {
 
 	}
 
+	public int get_c_unique_no(String title) {
 
+		String sql = " SELECT c_unique_no FROM concert WHERE c_title=?";
+		try {
+			preparedStatement = connection.prepareStatement(sql);
+			preparedStatement.setString(1, title);
+			resultSet = preparedStatement.executeQuery();
+			if (resultSet.next()) {
+				return resultSet.getInt(1);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return 0;
+
+	}
+
+	public Concert get_concert_info_single_item(int c_unique_no) {
+		String sql = "SELECT * FROM concert WHERE c_unique_no=?";
+		try {
+			preparedStatement = connection.prepareStatement(sql);
+			preparedStatement.setInt(1, c_unique_no);
+			resultSet = preparedStatement.executeQuery();
+
+			if (resultSet.next()) {
+
+				Concert concert = new Concert(
+
+						resultSet.getString(2), resultSet.getString(3), resultSet.getString(5), resultSet.getInt(6)
+
+				);
+
+				return concert;
+
+			}
+		} catch (Exception e) {
+		}
+		return null;
+
+	}
 
 }

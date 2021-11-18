@@ -29,7 +29,7 @@ public class ReservationDao {
 		try {
 
 			Class.forName("com.mysql.cj.jdbc.Driver");
-			connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/javafx_concert?serverTimezone=UTC",
+			connection = DriverManager.getConnection("jdbc:mysql://localhost:3307/javafx_concert?serverTimezone=UTC",
 					"root", "1234");
 			System.out.println("DB connection success ... ");
 
@@ -158,6 +158,22 @@ public class ReservationDao {
 		}
 		return concert_reserved;
 
+	}
+
+	public int get_c_no(int m_no) {
+		String sql = "SELECT c_no FROM reservation WHERE m_no=?";
+
+		try {
+			preparedStatement = connection.prepareStatement(sql);
+			preparedStatement.setInt(1, m_no);
+			resultSet = preparedStatement.executeQuery();
+			if (resultSet.next()) {
+				return resultSet.getInt(1);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return 0;
 	}
 
 }

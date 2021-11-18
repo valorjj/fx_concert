@@ -1,6 +1,5 @@
 package controller.customer;
 
-import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -12,9 +11,7 @@ import domain.Concert;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.Parent;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
@@ -25,7 +22,13 @@ import javafx.scene.control.ToggleGroup;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.GridPane;
 
-public class Main_Reservation_Controller implements Initializable {
+public class Reservation_Date_Select_Controller implements Initializable {
+
+	/*
+	 * reservation_page_concert_select.fxml 에서 선택한 콘서트의 날짜 정보를 불러와서 날짜, 시간을 선택하는
+	 * 페이지입니다.
+	 * 
+	 */
 
 	static int user_selected_day = 0;
 	static String user_selected_date;
@@ -39,18 +42,20 @@ public class Main_Reservation_Controller implements Initializable {
 	ArrayList<String> concert_date_list = new ArrayList<String>();
 	ArrayList<Concert> concert_info = new ArrayList<Concert>();
 
+	public void get_date() {
+
+	}
+
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
 
-		for (int i = 1; i < 7; i++) {
-			concert_date_list.add(ConcertDao.get_concertDao().get_concert_date_list(i));
-		}
+		concert_date_list.add(ConcertDao.get_concertDao().get_concert_date_list(user_selected_concert_unique_no));
 
 		for (String s : concert_date_list) {
 			System.out.println(s);
 		}
 
-		concert_info = ConcertDao.get_concertDao().get_concert_info(user_selected_concert_unique_no);
+		concert_info = ConcertDao.get_concertDao().get_concert_list(user_selected_concert_unique_no);
 
 		lbl_concert_tile.setText(concert_info.get(0).getC_title());
 		lbl_R_price.setText(concert_info.get(0).getC_R_price() + "");
@@ -59,9 +64,6 @@ public class Main_Reservation_Controller implements Initializable {
 		lbl_E_price.setText(concert_info.get(0).getC_E_price() + "");
 
 		Calendar calendar = Calendar.getInstance();
-
-		// DB 에서 콘서트 날짜를 가져오는 메소드가 필요하다 (콘서트 연도, 월만 리턴하는 메소드) : 콘서트Dao 에
-		// get_concert_date
 
 		// calendar.set(year, month - 1, 1);
 
@@ -213,7 +215,7 @@ public class Main_Reservation_Controller implements Initializable {
 	// 뒤로 가기 버튼 --> 콘서트 선택 페이지로 이동한다.
 	@FXML
 	void btn_cancel(ActionEvent event) {
-		Reservation_Home_Controller.getinstance().reservation_loadpage("concert_select_page");
+		Reservation_Home_Controller.getinstance().reservation_loadpage("reservation_page_concert_select");
 
 	}
 	///////////////////////////////////////////////////////////////////
@@ -234,7 +236,7 @@ public class Main_Reservation_Controller implements Initializable {
 			if (user_selected_time != 0 && user_selected_day != 0) {
 				alert2.setHeaderText("좌석 선택 페이지로 이동합니다.");
 				alert2.showAndWait();
-				Reservation_Home_Controller.getinstance().reservation_loadpage("seat_select_page");
+				Reservation_Home_Controller.getinstance().reservation_loadpage("reservation_page_seat_select");
 			} else {
 				alert2.setHeaderText("날짜, 시간이 모두 선택되지 않았습니다.");
 				alert2.showAndWait();

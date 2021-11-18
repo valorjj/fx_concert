@@ -30,7 +30,7 @@
                <children>
                   <ImageView fx:id="imageview" fitHeight="500.0" fitWidth="500.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../../../../../Pictures/2.png" />
+                        <Image url="@../images/2.png" />
                      </image>
                   </ImageView>
                </children>

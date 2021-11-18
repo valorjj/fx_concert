@@ -73,7 +73,7 @@ public class Mainpage_Controller implements Initializable {
 	@FXML
 	public void btn_reservation(ActionEvent event) {
 		btn_reservation.getScene().getWindow().hide();
-		window_shift("concert_select_page");
+		window_shift("reservation_page_home");
 	}
 
 	// 버튼을 누르면 내 정보 페이지로 이동
