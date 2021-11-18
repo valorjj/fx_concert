@@ -34,7 +34,7 @@ public class Find_Password_Controller implements Initializable {
 
 	@FXML
 	void cancel(ActionEvent event) {
-		Login_Controller.getinstance().loadpage("login_home_page");
+		Login_Controller.getInstance().loadpage("login_home_page");
 	}
 
 	@FXML
@@ -47,7 +47,7 @@ public class Find_Password_Controller implements Initializable {
 			   alert.setTitle("알림");
 			   MemberDao.getMemberDao().sendmail(txt_email.getText(),result);
 			   alert.showAndWait();
-			   Login_Controller.getinstance().loadpage("login_home_page");
+			   Login_Controller.getInstance().loadpage("login_home_page");
 		   }else {
 			      alert.setHeaderText("pw 찾기 실패");
 			      alert.showAndWait();

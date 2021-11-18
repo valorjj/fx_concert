@@ -33,7 +33,7 @@ public class Find_Id_Controller implements Initializable {
 
 	@FXML
 	void cancel(ActionEvent event) {
-		Login_Controller.getinstance().loadpage("login_home_page");
+		Login_Controller.getInstance().loadpage("login_home_page");
 	}
 
 	@FXML

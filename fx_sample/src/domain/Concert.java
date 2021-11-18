@@ -87,6 +87,14 @@ public class Concert {
 		
 	}
 	
+	public Concert(String c_title, String c_artist, String c_date, String c_time) {
+		super();
+		this.c_title = c_title;
+		this.c_artist = c_artist;
+		this.c_date = c_date;
+		this.c_time = c_time;
+	} 
+	
 	// 3. 메소드
 	public int getC_no() {return c_no;}
 	public void setC_no(int c_no) {this.c_no = c_no;}
