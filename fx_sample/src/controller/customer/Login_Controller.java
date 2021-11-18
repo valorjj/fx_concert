@@ -10,21 +10,40 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.PasswordField;
-import javafx.scene.control.TextField;
-import javafx.stage.Stage;
+	@Override
+	public void initialize(URL arg0, ResourceBundle arg1) {
 
-public class Login_Controller implements Initializable {
+	}
+
+	public String get_login_id() {
+		return txt_id.getText();
+	}
+
+	public void loadpage(String page) {
+
+		try {
+			Parent parent = FXMLLoader.load(getClass().getResource("/fxml/" + page + ".fxml"));
+			login_page_boarderpane.setCenter(parent);
+		} catch (Exception e) {
+		}
+
+	}
+	
 
 	@FXML
-	private Button btn_find_info;
+	private Button btn_login;
 
 	@FXML
-	private Button btn_log_in;
+	private Button btn_signup;
 
 	@FXML
-	private Button btn_sign_up;
+	private Label lbl_find_id;
+
+	@FXML
+	private Label lbl_find_password;
+
+	@FXML
+	private BorderPane login_page_boarderpane;
 
 	@FXML
 	private TextField txt_id;
@@ -33,58 +52,54 @@ public class Login_Controller implements Initializable {
 	private PasswordField txt_password;
 
 	@FXML
-	void btn_find_info(ActionEvent event) {
-
+	void find_id(MouseEvent event) {
+		loadpage("find_id_page");
 	}
 
 	@FXML
-	void btn_log_in(ActionEvent event) {
-
-		boolean res = MemberDao.get_memberDao().log_in(txt_id.getText(), txt_password.getText());
-		if (res) {
-			// 로그인 성공
-			btn_log_in.getScene().getWindow().hide();
-			Stage stage = new Stage();
-			try {
-				Parent parent = FXMLLoader.load(getClass().getResource("/fxml/main_page.fxml"));
-				Scene scene = new Scene(parent);
-				stage.setScene(scene);
-				stage.show();
-
-			} catch (Exception e) {
+	void find_password(MouseEvent event) {
+		loadpage("find_password_page");
+	}
+	
+	@FXML
+	void login(ActionEvent event) {
+		boolean check = MemberDao.getMemberDao().login(txt_id.getText(), txt_password.getText());
+		Alert alert = new Alert(AlertType.INFORMATION);
+		if (check) {
+			if(txt_id.getText().equals("admin")) {
+				alert.setHeaderText("어서오세요 관리자님");
+				alert.showAndWait();
+				btn_login.getScene().getWindow().hide();
+				window_shift1("manager_main_page");
+			}else {
+			alert.setHeaderText("로그인 성공");
+			alert.showAndWait();
+			btn_login.getScene().getWindow().hide();
+			window_shift1("main_page");
 			}
 		} else {
-			// 로그인 실패
+			alert.setHeaderText("로그인 실패");
+			alert.showAndWait();
 		}
-
 	}
 
 	@FXML
-	void btn_sign_up(ActionEvent event) {
-
+	void signup(ActionEvent event) {
+		loadpage("signup_page");
 	}
+	
+	public void window_shift1(String page) {
+		try {
+			
+			Parent parent = FXMLLoader.load(getClass().getResource("/fxml/" + page + ".fxml"));
+			Scene scene = new Scene(parent);
+			Stage stage = new Stage();
+			stage.setScene(scene);
+			stage.setResizable(false); // 스테이지 크기 고정 
+			stage.show();
 
-	private static Login_Controller instance;
-
-	public Login_Controller() {
-		// 2. 현재 클래스의 메모리 호출 = this
-		instance = this; // [ 현재클래스의 멤버 포함 ]
-	}
-
-	// 3. private instance반환
-	public static Login_Controller getinstance() {
-		return instance;
-	}
-
-	// 1. 맨 처음 화면, 로그인 화면
-
-	@Override
-	public void initialize(URL arg0, ResourceBundle arg1) {
-
-	}
-
-	public String get_login_id() {
-		return txt_id.getText();
+		} catch (Exception e) {
+		}
 	}
 
 }

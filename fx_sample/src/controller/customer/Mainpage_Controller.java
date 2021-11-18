@@ -88,7 +88,6 @@ public class Mainpage_Controller implements Initializable {
 		loadpage("board");
 	}
 
-	// 버튼을 누르면 찾아오는 길 페이지 팝업
 	@FXML
 	public void btn_route(ActionEvent event) {
 		loadpage("concert_route");
@@ -114,6 +113,7 @@ public class Mainpage_Controller implements Initializable {
 			Stage stage = new Stage();
 			Parent parent = FXMLLoader.load(getClass().getResource("/fxml/" + page + ".fxml"));
 			Scene scene = new Scene(parent);
+
 			stage.setScene(scene);
 			stage.show();
 
