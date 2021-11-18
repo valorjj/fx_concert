@@ -79,7 +79,7 @@ public class Reservation_Concert_Select_Controller implements Initializable {
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
 
-		ConcertDao.get_concertDao().get_concert_title(1);
+		ConcertDao.getConcertDao().get_concert_title(1);
 		opt_1.setText("");
 		opt_2.setText("");
 		opt_3.setText("");

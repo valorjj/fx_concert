@@ -49,13 +49,13 @@ public class Reservation_Date_Select_Controller implements Initializable {
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
 
-		concert_date_list.add(ConcertDao.get_concertDao().get_concert_date_list(user_selected_concert_unique_no));
+		concert_date_list.add(ConcertDao.getConcertDao().get_concert_date_list(user_selected_concert_unique_no));
 
 		for (String s : concert_date_list) {
 			System.out.println(s);
 		}
 
-		concert_info = ConcertDao.get_concertDao().get_concert_list(user_selected_concert_unique_no);
+		concert_info = ConcertDao.getConcertDao().get_concert_list(user_selected_concert_unique_no);
 
 		lbl_concert_tile.setText(concert_info.get(0).getC_title());
 		lbl_R_price.setText(concert_info.get(0).getC_R_price() + "");
@@ -67,7 +67,7 @@ public class Reservation_Date_Select_Controller implements Initializable {
 
 		// calendar.set(year, month - 1, 1);
 
-		String concert_date = ConcertDao.get_concertDao().get_concert_date(user_selected_concert_unique_no);
+		String concert_date = ConcertDao.getConcertDao().get_concert_date(user_selected_concert_unique_no);
 
 		String[] tmp = concert_date.split(" ");
 		user_selected_date = tmp[0];

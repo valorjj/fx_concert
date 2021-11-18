@@ -35,11 +35,11 @@ public class Concert_Info_Controller_1 implements Initializable {
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
 
-		Concert concert = ConcertDao.get_concertDao().get_concert_info_single_item(1);
+//		Concert concert = ConcertDao.getConcertDao().get_concert_info_single_item(1);
 
-		lbl_artist.setText(concert.getC_artist());
-		lbl_date.setText(concert.getC_date());
-		lbl_title.setText(concert.getC_title());
+//		lbl_artist.setText(concert.getC_artist());
+//		lbl_date.setText(concert.getC_date());
+//		lbl_title.setText(concert.getC_title());
 
 	}
 
