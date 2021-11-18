@@ -99,66 +99,58 @@ public class ReservationDao {
 
 	// MemberDao 에서 m_no 가져와서 예약된 내역을 Observablelist에 저장한다.
 
-//	public ObservableList<Reservation> get_member_reservation(int m_no) {
-//
-//		ObservableList<Reservation> member_reservation_history = FXCollections.observableArrayList();
-//
-//		String sql = "SELECT * FROM reservation WHERE m_no=?";
-//
-//		try {
-//			preparedStatement = connection.prepareStatement(sql);
-//			resultSet = preparedStatement.executeQuery();
-//
-//			while (resultSet.next()) {
-//
-//				Reservation reservation = new Reservation(resultSet.getInt(1), resultSet.getInt(2), resultSet.getInt(3),
-//						resultSet.getInt(4));
-//				member_reservation_history.add(reservation);
-//
-//			}
-//
-//			return member_reservation_history;
-//
-//		} catch (Exception e) {
-//			e.printStackTrace();
-//		}
-//		return null;
-//	}
+	public ObservableList<Reservation> get_member_reservation(int m_no) {
 
-	// 예약 목록에 있는 콘서트 정보만 빼와야 합니다. 그래서 sub query 로 2중 select 문을 사용했습니다.
+		ObservableList<Reservation> member_reservation_history = FXCollections.observableArrayList();
 
-	public ObservableList<Concert> get_concert_from_reservation(int m_no) {
-
-		ObservableList<Concert> concert_reserved = FXCollections.observableArrayList();
-
-		String sql = "select * from concert where c_no=(select c_no from reservation where m_no=?)";
-
+		String sql = "SELECT * FROM reservation WHERE m_no=?";
 		try {
 			preparedStatement = connection.prepareStatement(sql);
-
-			preparedStatement.setInt(1, m_no);
-
 			resultSet = preparedStatement.executeQuery();
-
 			while (resultSet.next()) {
 
-				Concert concert = new Concert(
-
-						resultSet.getString(2), resultSet.getString(3), resultSet.getString(5), resultSet.getInt(6)
-
-				);
-
-				concert_reserved.add(concert);
+				Reservation reservation = new Reservation(resultSet.getInt(1), resultSet.getInt(2), resultSet.getInt(3),
+						resultSet.getInt(4));
+			member_reservation_history.add(reservation);
 
 			}
-			return concert_reserved;
+
+			return member_reservation_history;
 
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		return concert_reserved;
-
+		return null;
 	}
+
+	// 예약 목록에 있는 콘서트 정보만 빼와야 합니다. 그래서 sub query 로 2중 select 문을 사용했습니다.
+
+		public ObservableList<Concert> get_concert_from_reservation(int m_no) {
+
+			ObservableList<Concert> concert_reserved = FXCollections.observableArrayList();
+
+			String sql = "select * from concert where c_no=(select c_no from reservation where m_no=?)";
+
+			try {
+				preparedStatement = connection.prepareStatement(sql);
+				preparedStatement.setInt(1, m_no);
+				resultSet = preparedStatement.executeQuery();
+				while (resultSet.next()) {
+					Concert concert = new Concert(resultSet.getString(2), resultSet.getString(3), resultSet.getString(5), resultSet.getString(6)
+
+					);
+
+					concert_reserved.add(concert);
+
+				}
+				return concert_reserved;
+
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+			return concert_reserved;
+
+		}
 
 	public int get_c_no(int m_no) {
 		String sql = "SELECT c_no FROM reservation WHERE m_no=?";

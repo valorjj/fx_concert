@@ -4,7 +4,6 @@ module fx_sample {
 	requires javafx.graphics;
 	requires javafx.fxml;
 	requires javafx.base;
-
 	requires mail;
 	requires activation;
 	requires java.sql;
