@@ -4,7 +4,6 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-import dao.ConcertDao;
 import dao.MemberDao;
 import dao.ReservationDao;
 import domain.Concert;
@@ -71,9 +70,7 @@ public class Info_Page_Home_Controller implements Initializable {
 
 		ObservableList<Concert> member_reservation_history_concert = ReservationDao.get_reservationDao().get_concert_from_reservation(m_no);
 
-		tableview_history.setItems(member_reservation_history_concert);
-
-		TableColumn<?, ?> tc = tableview_history.getColumns().get(0);
+		TableColumn tc = tableview_history.getColumns().get(0);
 		tc.setCellValueFactory(new PropertyValueFactory<>("c_title"));
 
 		tc = tableview_history.getColumns().get(1);
@@ -81,15 +78,14 @@ public class Info_Page_Home_Controller implements Initializable {
 
 		tc = tableview_history.getColumns().get(2);
 		tc.setCellValueFactory(new PropertyValueFactory<>("c_date"));
-
+		
+		tableview_history.setItems(member_reservation_history_concert);
+		
 		tableview_history.setOnMouseClicked(e -> {
 			// 클릭 이벤트가 마우스 클릭과 같으면
 			if (e.getButton().equals(MouseButton.PRIMARY)) {
-				//
 				concert = tableview_history.getSelectionModel().getSelectedItem();
-
 				int concert_order = ReservationDao.get_reservationDao().get_c_no(m_no);
-
 				Stage stage = new Stage();
 				try {
 					Parent parent = FXMLLoader
@@ -118,7 +114,7 @@ public class Info_Page_Home_Controller implements Initializable {
 	@FXML
 	public void update_account(ActionEvent event) {
 		// 수정하는 창으로 이동 borderpane 안에 있는 anchorpane 만 이동시킨다.
-		load_page_info("personal_info_page_update");
+		Mainpage_Controller.getInstance().window_shift("personal_page_info_update");
 	}
 
 	public void load_page_info(String page) {

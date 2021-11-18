@@ -137,11 +137,8 @@ public class ReservationDao {
 				resultSet = preparedStatement.executeQuery();
 				while (resultSet.next()) {
 					Concert concert = new Concert(resultSet.getString(2), resultSet.getString(3), resultSet.getString(5), resultSet.getString(6)
-
 					);
-
 					concert_reserved.add(concert);
-
 				}
 				return concert_reserved;
 
