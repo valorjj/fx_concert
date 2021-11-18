@@ -12,7 +12,7 @@ import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 
-public class Concert_Info_Controller_1 implements Initializable {
+public class Concert_Info_Controller_3 implements Initializable {
 
 	@FXML
 	private AnchorPane anchorpane_main_page;
@@ -59,11 +59,11 @@ public class Concert_Info_Controller_1 implements Initializable {
 			String login_id = Login_Controller.getInstance().get_login_id();
 
 			// ConcertDao 에서 id 를 이용해서 콘서트 객체를 빼온다.
-			Concert concert = ConcertDao.getConcertDao().get_concert_instance(1);
+			Concert concert = ConcertDao.getConcertDao().get_concert_instance(3);
 
 			// 날짜 정보도 불러옵니다. 3개이므로 리스트에 저장합니다.
 
-			concert_date_list = ConcertDao.getConcertDao().get_concert_date_list(1);
+			concert_date_list = ConcertDao.getConcertDao().get_concert_date_list(3);
 
 			lbl_artist.setText(concert.getC_artist());
 			lbl_title.setText(concert.getC_title());

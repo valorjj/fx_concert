@@ -9,7 +9,6 @@ import java.util.ResourceBundle;
 import dao.ConcertDao;
 import domain.Concert;
 import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
@@ -30,10 +29,12 @@ public class Reservation_Date_Select_Controller implements Initializable {
 	 * 
 	 */
 
+	// DB 에는 등록하지는 않지만 유저가 선택한 정보를 static 영역에 저장합니다.
 	static int user_selected_day = 0;
 	static String user_selected_date;
 	static int user_selected_time = 0;
 
+	// 버튼 상태를 제어하는 스위치 2개
 	private boolean switch_2pm_btn = true;
 	private boolean switch_6pm_btn = true;
 
@@ -42,12 +43,12 @@ public class Reservation_Date_Select_Controller implements Initializable {
 	ArrayList<String> concert_date_list = new ArrayList<String>();
 	ArrayList<Concert> concert_info = new ArrayList<Concert>();
 
-	// ArrayList<Button> buttons = new ArrayList<>();
-
-	Button[] buttons = new Button[31];
-	boolean[] click_check = new boolean[31];
+	// Button[] Buttons = new Button[50];
+	ArrayList<Button> Buttons = new ArrayList<>();
 
 	boolean select_switch = false;
+
+	String[] day = new String[3];
 
 	@FXML
 	private Button btn_reset;
@@ -55,24 +56,15 @@ public class Reservation_Date_Select_Controller implements Initializable {
 	@FXML
 	void btn_reset(ActionEvent event) {
 
-		// 날짜 선택을 리셋시킵니다.
-
-		for (int i = 0; i < 31; i++) {
-			click_check[i] = false;
-		}
-
 		create_calendar();
+		set_btn_action();
 
 	}
 
 	public void btn_disable() {
 
-		if (select_switch == false) {
-			create_calendar();
-		} else {
-			for (int i = 0; i < 31; i++) {
-				buttons[i].setDisable(true);
-			}
+		for (Button button : Buttons) {
+			button.setDisable(true);
 		}
 	}
 
@@ -95,23 +87,18 @@ public class Reservation_Date_Select_Controller implements Initializable {
 		lbl_D_price.setText(concert.getC_D_price() + "");
 		lbl_E_price.setText(concert.getC_E_price() + "");
 
-		btn_disable();
+		create_calendar();
+		set_btn_action();
 
 	}
 
+	@SuppressWarnings("static-access")
 	public void create_calendar() {
 
 		concert_date_list = (ConcertDao.getConcertDao().get_concert_date_list(user_selected_concert_unique_no));
-
-		String[] day = new String[3];
-
 		// 날짜만 빼옵니다.
-
 		for (int i = 0; i < 3; i++) {
-
 			day[i] = concert_date_list.get(i).split("-")[2];
-			System.out.println(day[i]);
-
 		}
 
 		Calendar calendar = Calendar.getInstance();
@@ -124,10 +111,6 @@ public class Reservation_Date_Select_Controller implements Initializable {
 
 		int YEAR = Integer.parseInt(year);
 		int MONTH = Integer.parseInt(month);
-		/*
-		 * int year = Integer.parseInt(concert_year); int month =
-		 * Integer.parseInt(concert_month);
-		 */
 
 		calendar.set(YEAR, MONTH - 1, 1);
 
@@ -140,55 +123,14 @@ public class Reservation_Date_Select_Controller implements Initializable {
 		// DB에서 연, 월 데이터를 받아서 캘린더를 출력합니다.
 
 		int idx = 1;
-		for (int i = 0; i <= 42; i++) {
-			if (i >= sweek - 1 && i < eday + sweek - 1) { // 특정 달의 시작 날짜를 구한다.
 
+		for (int i = 0; i <= 42; i++) {
+			if (i >= sweek - 1 && i < eday + sweek - 1) { // 해당 월의 시작날짜 ~ 끝나는 날짜
 				Button button = new Button();
 				button.setText(idx + "");
 
 				button.setPrefSize(30, 30);
 				button.setId(idx + "");
-
-				// 콘서트 날짜에 해당하는 날짜들만 유효한 버튼으로 생성합니다.
-
-				if ((i == Integer.parseInt(day[0])) || (i == Integer.parseInt(day[1]))
-						|| (i == Integer.parseInt(day[2]))) {
-
-					Alert alert = new Alert(AlertType.CONFIRMATION);
-					button.setOnAction(new EventHandler<ActionEvent>() {
-
-						@Override
-						public void handle(ActionEvent e) {
-
-							alert.setHeaderText(button.getId() + "일을 선택하셨습니다.");
-							Optional<ButtonType> optional = alert.showAndWait();
-							if (optional.get() == ButtonType.OK) {
-
-								button.setStyle("-fx-background-color : green");
-
-								click_check[Integer.parseInt(button.getId()) - 1] = true;
-
-								// Button Id 가 날짜 값이랑 동일하게 셋팅되어 있으므로 날짜 값을 저장한다.
-								user_selected_day = Integer.parseInt(button.getId());
-								// user_selected_day = idx;
-								Alert alert2 = new Alert(AlertType.INFORMATION);
-								alert2.setHeaderText(" [ " + button.getId() + " ] 좌석을 선택하셨습니다.\n시간을 선택해주세요");
-								alert2.showAndWait();
-
-							} else {
-								click_check[Integer.parseInt(button.getId()) - 1] = false;
-							}
-						}
-					});
-
-					select_switch = true;
-
-				} else {
-
-					// 콘서트 날짜에 해당하지 않는 정보들은 다른 색깔로 구분짓습니다.
-					// 그리고 클릭 이벤트를 넣지 않습니다.
-					button.setStyle("-fx-background-color: #f57b42");
-				}
 
 				if (i < 7) {
 					gridpane_calendar.add(button, i, 0);
@@ -203,13 +145,49 @@ public class Reservation_Date_Select_Controller implements Initializable {
 				} else {
 					gridpane_calendar.add(button, i % 7, 5);
 				}
-				idx++;
 
-				// 만들어진 버튼 객체를 Button 객체를 저장하는 배열에 추가시킵니다.
-				buttons[i] = (button);
+				Buttons.add(button);
+
+				idx++;
 
 			}
 		}
+
+		// set_btn_action();
+	}
+
+	public void set_btn_action() {
+
+		for (Button button : Buttons) {
+			if ((button.getId().equals(day[0])) || (button.getId().equals(day[1])) || (button.getId().equals(day[2]))) {
+				button.setStyle("-fx-background-color : #cccccc");
+				try {
+					Alert alert = new Alert(AlertType.CONFIRMATION);
+
+					button.setOnAction(e -> {
+
+						// 선택을 하지 않았을 때
+						alert.setHeaderText(" 날짜를 선택하셨습니다.");
+						Optional<ButtonType> optional = alert.showAndWait();
+						if (optional.get() == ButtonType.OK) {
+							button.setStyle("-fx-background-color : green");
+							user_selected_day = Integer.parseInt(button.getId());
+							Alert alert2 = new Alert(AlertType.INFORMATION);
+							alert2.setHeaderText(" [ " + button.getId() + " ] 좌석을 선택하셨습니다.\n시간을 선택해주세요");
+							alert2.showAndWait();
+
+							btn_disable();
+						}
+					});
+
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			} else {
+				button.setStyle("-fx-background-color : #f57b42");
+			}
+		}
+
 	}
 
 	///////////////////////////////////////////////////////////////////

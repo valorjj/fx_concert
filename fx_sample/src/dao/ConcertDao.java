@@ -24,7 +24,7 @@ public class ConcertDao {
 	public ConcertDao() {
 		try {
 			Class.forName("com.mysql.cj.jdbc.Driver");
-			connection = DriverManager.getConnection("jdbc:mysql://localhost:3307/javafx_concert?serverTimezone=UTC",
+			connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/javafx_concert?serverTimezone=UTC",
 					"root", "1234");
 		} catch (Exception e) {
 			System.out.println("DB연동 실패 : " + e);
@@ -321,35 +321,6 @@ public class ConcertDao {
 
 	}
 
-	/* 시간, 날짜를 입력받고 해당하는 콘서트 정보를 DB에서 꺼내온다. */
-//	public Concert get_concert_info(String date, int time) {
-//		String sql = "SELECT * FROM concert WHERE c_date=? and c_time=?";
-//		try {
-//			preparedStatement = connection.prepareStatement(sql);
-//			preparedStatement.setString(1, date);
-//			preparedStatement.setInt(2, time);
-//			resultSet = preparedStatement.executeQuery();
-//
-//			if (resultSet.next()) {
-//
-//				Concert concert = new Concert(
-//
-//						resultSet.getString(1), resultSet.getString(2), resultSet.getString(3), resultSet.getString(4),
-//						resultSet.getInt(5), resultSet.getInt(6), resultSet.getInt(7), resultSet.getInt(8),
-//						resultSet.getInt(9), resultSet.getInt(10), resultSet.getInt(11), resultSet.getInt(12),
-//						resultSet.getInt(13)
-//
-//				);
-//
-//				return concert;
-//
-//			}
-//		} catch (Exception e) {
-//		}
-//		return null;
-//
-//	}
-
 	/*
 	 * 시간, 날짜를 입력받고 해당하는 콘서트 정보를 DB에서 꺼내온다. 해당 프로젝트의 경우 고유번호 1번 콘서트에는 6개의 정보가 담겨있다.
 	 */
@@ -396,30 +367,6 @@ public class ConcertDao {
 
 	}
 
-//	public Concert get_concert_info_single_item(int c_unique_no) {
-//		String sql = "SELECT * FROM concert WHERE c_unique_no=?";
-//		try {
-//			preparedStatement = connection.prepareStatement(sql);
-//			preparedStatement.setInt(1, c_unique_no);
-//			resultSet = preparedStatement.executeQuery();
-//
-//			if (resultSet.next()) {
-//
-//				Concert concert = new Concert(
-//
-//						resultSet.getString(2), resultSet.getString(3), resultSet.getString(5), resultSet.getInt(6)
-//
-//				);
-//
-//				return concert;
-//
-//			}
-//		} catch (Exception e) {
-//		}
-//		return null;
-//
-//	}
-
 	public ArrayList<Concert> concertlist1() {
 
 		ArrayList<Concert> concerts = new ArrayList<>();
@@ -457,7 +404,6 @@ public class ConcertDao {
 						resultSet.getInt(8), resultSet.getInt(9), resultSet.getInt(10), resultSet.getInt(11),
 						resultSet.getInt(12), resultSet.getInt(13), resultSet.getInt(14), resultSet.getInt(15));
 				return concert;
-
 			}
 
 		} catch (Exception e) {
