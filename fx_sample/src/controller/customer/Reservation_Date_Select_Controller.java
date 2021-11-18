@@ -55,7 +55,7 @@ public class Reservation_Date_Select_Controller implements Initializable {
 			System.out.println(s);
 		}
 
-		concert_info = ConcertDao.getConcertDao().get_concert_list(user_selected_concert_unique_no);
+		concert_info = ConcertDao.getConcertDao().concertlist1();
 
 		lbl_concert_tile.setText(concert_info.get(0).getC_title());
 		lbl_R_price.setText(concert_info.get(0).getC_R_price() + "");
@@ -104,6 +104,7 @@ public class Reservation_Date_Select_Controller implements Initializable {
 
 					@Override
 					public void handle(ActionEvent e) {
+						button.setStyle("-fx-background-color : #000000");
 						alert.setHeaderText(button.getId() + "일을 선택하셨습니다.");
 						Optional<ButtonType> optional = alert.showAndWait();
 						if (optional.get() == ButtonType.OK) {
@@ -254,16 +255,16 @@ public class Reservation_Date_Select_Controller implements Initializable {
 			/* 버튼 아래 위치한 레이블에 잔여 좌석을 알려줍니다. */
 			user_selected_time = 2;
 
-			int R_remain = ConcertDao.get_concertDao().get_remaining_seat_R(user_selected_date, user_selected_time);
+			int R_remain = ConcertDao.getConcertDao().get_remaining_seat_R(user_selected_date, user_selected_time);
 			lbl_R_remaining.setText(R_remain + "");
 
-			int S_remain = ConcertDao.get_concertDao().get_remaining_seat_S(user_selected_date, user_selected_time);
+			int S_remain = ConcertDao.getConcertDao().get_remaining_seat_S(user_selected_date, user_selected_time);
 			lbl_S_remaining.setText(S_remain + "");
 
-			int D_remain = ConcertDao.get_concertDao().get_remaining_seat_D(user_selected_date, user_selected_time);
+			int D_remain = ConcertDao.getConcertDao().get_remaining_seat_D(user_selected_date, user_selected_time);
 			lbl_D_remaining.setText(D_remain + "");
 
-			int E_remain = ConcertDao.get_concertDao().get_remaining_seat_E(user_selected_date, user_selected_time);
+			int E_remain = ConcertDao.getConcertDao().get_remaining_seat_E(user_selected_date, user_selected_time);
 			lbl_E_remaining.setText(E_remain + "");
 
 			btn_6pm.setDisable(true);
@@ -287,16 +288,16 @@ public class Reservation_Date_Select_Controller implements Initializable {
 
 			user_selected_time = 6;
 
-			int R_remain = ConcertDao.get_concertDao().get_remaining_seat_R(user_selected_date, user_selected_time);
+			int R_remain = ConcertDao.getConcertDao().get_remaining_seat_R(user_selected_date, user_selected_time);
 			lbl_R_remaining.setText(R_remain + "");
 
-			int S_remain = ConcertDao.get_concertDao().get_remaining_seat_S(user_selected_date, user_selected_time);
+			int S_remain = ConcertDao.getConcertDao().get_remaining_seat_S(user_selected_date, user_selected_time);
 			lbl_S_remaining.setText(S_remain + "");
 
-			int D_remain = ConcertDao.get_concertDao().get_remaining_seat_D(user_selected_date, user_selected_time);
+			int D_remain = ConcertDao.getConcertDao().get_remaining_seat_D(user_selected_date, user_selected_time);
 			lbl_D_remaining.setText(D_remain + "");
 
-			int E_remain = ConcertDao.get_concertDao().get_remaining_seat_E(user_selected_date, user_selected_time);
+			int E_remain = ConcertDao.getConcertDao().get_remaining_seat_E(user_selected_date, user_selected_time);
 			lbl_E_remaining.setText(E_remain + "");
 
 			btn_2pm.setDisable(true);

@@ -12,39 +12,39 @@ import javafx.collections.ObservableList;
 
 public class ConcertDao {
 
-	// 1.�븘�뱶
+	//
 	private Connection connection;
 	private PreparedStatement preparedStatement;
 	private ResultSet resultSet;
-	// �쁽�옱 �겢�옒�뒪�궡 媛앹껜 留뚮뱾湲�
+	//
 	private static ConcertDao concertDao = new ConcertDao();
 
-	// 2.�깮�꽦�옄
+	// 2.
 	public ConcertDao() {
 		try {
 			Class.forName("com.mysql.cj.jdbc.Driver");
-			connection = DriverManager.getConnection("jdbc:mysql://localhost:3307/fx_concert?serverTimezone=UTC",
+			connection = DriverManager.getConnection("jdbc:mysql://localhost:3307/javafx_concert?serverTimezone=UTC",
 					"root", "1234");
 		} catch (Exception e) {
 			System.out.println("DB�뿰�룞 �떎�뙣 : " + e);
 		}
 	}
 
-	// 3.硫붿냼�뱶
+	// 3
 	public static ConcertDao getConcertDao() {
 		return concertDao;
 	}
 
-	// 湲곕뒫 硫붿냼�뱶
+	//
 
-	// 1.肄섏꽌�뱶 �벑濡앸찓�냼�뱶
+	// 1.
 	public boolean register(Concert concert) {
-		// 1. SQL �옉�꽦
+		// 1. SQL
 		String sql = "insert into concert(c_title,c_artist,c_info,c_date,c_time,c_R_no,c_S_no,c_D_no,c_E_no,c_R_price,c_S_price,c_D_price,c_E_price) values (?,?,?,?,?,?,?,?,?,?,?,?,?)";
-		// 2. SQL -> DB�뿰寃�
+		// 2. SQL ->
 		try {
 			preparedStatement = connection.prepareStatement(sql);
-			// 3. SQL �꽕�젙
+			// 3. SQL
 			preparedStatement.setString(1, concert.getC_title());
 			preparedStatement.setString(2, concert.getC_artist());
 			preparedStatement.setString(3, concert.getC_info());
@@ -58,9 +58,9 @@ public class ConcertDao {
 			preparedStatement.setInt(11, concert.getC_S_price());
 			preparedStatement.setInt(12, concert.getC_D_price());
 			preparedStatement.setInt(13, concert.getC_E_price());
-			// 4. SQL �떎�뻾
+			// 4. SQL
 			preparedStatement.executeUpdate();
-			// 5. SQL 寃곌낵 �떎�뻾
+			// 5. SQL
 			return true;
 		} catch (Exception e) {
 			System.out.println(e);
@@ -68,7 +68,7 @@ public class ConcertDao {
 		return false;
 	}
 
-	// 2.肄섏꽌�듃 �닔�젙硫붿냼�뱶
+	// 2.
 	public boolean update(Concert concert) {
 		String sql = "update concert set c_title =?, c_artist =? , c_info=? , c_date=?, c_time =? , c_R_no =?, c_S_no=? , c_D_no=?, c_E_no=?, c_R_price = ?, c_S_price=?,c_D_price =?, c_E_price=?, c_unique_no=? where c_no=?";
 		try {
@@ -123,7 +123,7 @@ public class ConcertDao {
 						resultSet.getInt(7), resultSet.getInt(8), resultSet.getInt(9), resultSet.getInt(10),
 						resultSet.getInt(11), resultSet.getInt(12), resultSet.getInt(13), resultSet.getInt(14),
 						resultSet.getInt(15));
-				// 媛앹껜 由ъ뒪�듃 ���옣
+				//
 				concerts.add(concert);
 			}
 			return concerts;
@@ -417,5 +417,29 @@ public class ConcertDao {
 //		return null;
 //
 //	}
+
+	public ArrayList<Concert> concertlist1() {
+
+		ArrayList<Concert> concerts = new ArrayList<>();
+
+		String sql = "select * from concert order by c_no desc";
+		try {
+			preparedStatement = connection.prepareStatement(sql);
+			resultSet = preparedStatement.executeQuery();
+			while (resultSet.next()) {
+				Concert concert = new Concert(resultSet.getInt(1), resultSet.getString(2), resultSet.getString(3),
+						resultSet.getString(4), resultSet.getString(5).split(" ")[0], resultSet.getString(6),
+						resultSet.getInt(7), resultSet.getInt(8), resultSet.getInt(9), resultSet.getInt(10),
+						resultSet.getInt(11), resultSet.getInt(12), resultSet.getInt(13), resultSet.getInt(14),
+						resultSet.getInt(15));
+				//
+				concerts.add(concert);
+			}
+			return concerts;
+		} catch (Exception e) {
+		}
+		return concerts;
+
+	}
 
 }
