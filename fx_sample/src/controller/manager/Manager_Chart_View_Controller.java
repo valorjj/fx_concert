@@ -2,15 +2,10 @@ package controller.manager;
 
 
 import java.net.URL;
-import java.util.ArrayList;
 import java.util.ResourceBundle;
 
 import dao.ConcertDao;
-import dao.ConcertDate;
-import dao.SeatDao;
 import domain.Concert;
-import domain.Seat;
-import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -23,38 +18,33 @@ public class Manager_Chart_View_Controller implements Initializable{
 
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
-		
-		try {
-			ObservableList<Concert> titles = ConcertDao.getConcertDao().titlelist();
-			combo_concert_name.setItems(titles);
-			combo_concert_name.setOnMouseClicked(e -> {
-				if (e.getButton().equals(MouseButton.PRIMARY)) {
-					date = combo_concert_name.getSelectionModel().getSelectedItem().getC_title();
-					if (date != null) {
-						ObservableList<Concert> dates = ConcertDao.getConcertDao().datelist(date);
-						combo_concert_date.setItems(dates);
-						combo_concert_date.setOnMouseClicked(e2 -> {
-							if(e2.getButton().equals(MouseButton.PRIMARY)) {
-								time = combo_concert_date.getSelectionModel().getSelectedItem().getC_date();
-								if (time != null) {
-									ObservableList<Concert> times = ConcertDao.getConcertDao().timelist(date, time);
-									combo_concert_time.setItems(times);
-								}
-							}
-						});
+		ObservableList<Concert> titles = ConcertDao.getConcertDao().titlelist();
+		combo_concert_name.setPromptText("콘서트명 선택");
+		combo_concert_date.setPromptText("콘서트날짜 선택");
+		combo_concert_time.setPromptText("콘서트시간 선택");
+		combo_concert_name.setItems(titles);
+		combo_concert_name.setOnMouseClicked(e -> {
+			if ( e.getButton().equals( MouseButton.PRIMARY)) {
+				String date = combo_concert_name.getSelectionModel().getSelectedItem().getC_title();
+				ObservableList<Concert> dates = ConcertDao.getConcertDao().datelist(date);
+				combo_concert_date.setItems(dates);
+				combo_concert_date.setOnMouseClicked( e2 -> {
+					if(e2.getButton().equals(MouseButton.PRIMARY)) {
+						String time = combo_concert_date.getSelectionModel().getSelectedItem().toString();
+						System.out.println( time );
+						ObservableList<Concert> times = ConcertDao.getConcertDao().timelist(date, time);
+						combo_concert_time.setItems(times);
 					}
-				}
-			});
-		} catch (Exception e3) {System.out.println(e3);}
+				});
+			}
+		});
+		
 
-//		combo_concert_time.setItems( times );
 		//pic chart
 //		ObservableList<Seat> seats = SeatDao.getSeatDao().se
 		
 		
 	}
-	public static String time;
-	public static String date;
     @FXML
     private ComboBox<Concert> combo_concert_date;
     

@@ -30,7 +30,7 @@ public class Concert {
 	private String c_artist;		// 콘서트 가수
 	private String c_info;			// 콘서트 정보
 	private String c_date;			// 콘서트 날짜
-	private int c_time;				// 콘서트 시간
+	private String c_time;				// 콘서트 시간
 	private int c_R_no;				// 콘서트 R석 개수
 	private int c_S_no;				// 콘서트 S석 개수
 	private int c_D_no;				// 콘서트 D석 개수
@@ -45,7 +45,7 @@ public class Concert {
 	public Concert() {} // 깡통 생성자
 	
 	// 모든 필드를 받는 생성자
-	public Concert(int c_no, String c_title, String c_artist, String c_info, String c_date, int c_time, int c_R_no,
+	public Concert(int c_no, String c_title, String c_artist, String c_info, String c_date, String c_time, int c_R_no,
 			int c_S_no, int c_D_no, int c_E_no, int c_R_price, int c_S_price, int c_D_price, int c_E_price, int c_unique_no) {
 		this.c_no = c_no;
 		this.c_title = c_title;
@@ -64,7 +64,7 @@ public class Concert {
 		this.c_unique_no = c_unique_no;
 	}
 	// 콘서트 등록시 생성자 [ 콘서트 번호제외 ]
-	public Concert(String c_title, String c_artist, String c_info, String c_date, int c_time, int c_R_no, int c_S_no,
+	public Concert(String c_title, String c_artist, String c_info, String c_date, String c_time, int c_R_no, int c_S_no,
 			int c_D_no, int c_E_no, int c_R_price, int c_S_price, int c_D_price, int c_E_price,int c_unique_no) {
 		this.c_title = c_title;
 		this.c_artist = c_artist;
@@ -86,10 +86,7 @@ public class Concert {
 		this.c_title = c_title;
 		
 	}
-	// 콘서트 시간 생성자
-	public Concert(int c_time) {
-		this.c_time = c_time;
-	}
+	
 	// 3. 메소드
 	public int getC_no() {return c_no;}
 	public void setC_no(int c_no) {this.c_no = c_no;}
@@ -101,8 +98,8 @@ public class Concert {
 	public void setC_info(String c_info) {this.c_info = c_info;}
 	public String getC_date() {return c_date;}
 	public void setC_date(String c_date) {this.c_date = c_date;}
-	public int getC_time() {return c_time;}
-	public void setC_time(int c_time) {this.c_time = c_time;}
+	public String getC_time() {return c_time;}
+	public void setC_time(String c_time) {this.c_time = c_time;}
 	public int getC_R_no() {return c_R_no;}
 	public void setC_R_no(int c_R_no) {this.c_R_no = c_R_no;}
 	public int getC_S_no() {return c_S_no;}

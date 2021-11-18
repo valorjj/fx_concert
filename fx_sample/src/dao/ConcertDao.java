@@ -4,10 +4,10 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-import java.util.ArrayList;
 
 import domain.Concert;
 import domain.Concert.Concert_date;
+import domain.Concert.Concert_time;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
@@ -46,7 +46,7 @@ public class ConcertDao {
 			preparedStatement.setString(2, concert.getC_artist());
 			preparedStatement.setString(3, concert.getC_info());
 			preparedStatement.setString(4, concert.getC_date());
-			preparedStatement.setInt(5, concert.getC_time());
+			preparedStatement.setString(5, concert.getC_time());
 			preparedStatement.setInt(6, concert.getC_R_no());
 			preparedStatement.setInt(7, concert.getC_S_no());
 			preparedStatement.setInt(8, concert.getC_D_no());
@@ -72,7 +72,7 @@ public class ConcertDao {
 			preparedStatement.setString(2, concert.getC_artist());
 			preparedStatement.setString(3, concert.getC_info());
 			preparedStatement.setString(4, concert.getC_date());
-			preparedStatement.setInt(5, concert.getC_time());
+			preparedStatement.setString(5, concert.getC_time());
 			preparedStatement.setInt(6, concert.getC_R_no());
 			preparedStatement.setInt(7, concert.getC_S_no());
 			preparedStatement.setInt(8, concert.getC_D_no());
@@ -113,7 +113,7 @@ public class ConcertDao {
 						resultSet.getString(3),
 						resultSet.getString(4),
 						resultSet.getString(5).split(" ")[0],
-						resultSet.getInt(6),
+						resultSet.getString(6),
 						resultSet.getInt(7), 
 						resultSet.getInt(8),
 						resultSet.getInt(9),
@@ -151,30 +151,30 @@ public class ConcertDao {
 	public ObservableList<Concert> datelist(String c_title){
 		// 1. 리스트 선언
 		ObservableList<Concert> dates = FXCollections.observableArrayList();
-		String sql = "select c_date from concert where c_title in (select c_title from concert where c_title=?)";
+		String sql = "select distinct c_date from concert where c_title in (select c_title from concert where c_title=?)";
 		try {
 			preparedStatement = connection.prepareStatement(sql);
 			preparedStatement.setString(1, c_title);
 			resultSet=preparedStatement.executeQuery();
 			while(resultSet.next()) {
-				Concert concert_date = new Concert(resultSet.getString(1).split(" ")[0]);
+				Concert concert_date = new Concert(resultSet.getString(1));
 				dates.add(concert_date);
 			}
 			return dates;
 		} catch (Exception e) {} return dates;
 	}
 	// 8. 콘서트 시간 반환 메소드
-	public ObservableList<Concert> timelist(String c_title, String c_date) {
+	public ObservableList<Concert> timelist(String c_title , String c_date) {
 		ObservableList<Concert> times = FXCollections.observableArrayList();
-		String sql = "select c_time from concert group by c_date=? in (select c_date from concert where c_title in (select c_title from concert where c_title=?))";
+		String sql = "select c_time from concert where c_date=? and c_title=?";
 		try {
 			preparedStatement = connection.prepareStatement(sql);
-			preparedStatement.setString(1, c_title);
-			preparedStatement.setString(2, c_date.split(" ")[0]);
+			preparedStatement.setString(1, c_date); 
+			preparedStatement.setString(2, c_title);
 			resultSet=preparedStatement.executeQuery();
 			
 			while(resultSet.next()) {
-				Concert time = new Concert(resultSet.getInt(1)+"");
+				Concert time = new Concert(resultSet.getString(1));
 				times.add(time);
 			}
 			return times;
