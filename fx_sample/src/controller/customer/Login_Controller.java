@@ -22,17 +22,6 @@ import javafx.stage.Stage;
 
 public class Login_Controller implements Initializable {
 
-	private static Login_Controller instance;
-
-	private static Login_Controller getinstance() {
-		return instance;
-	}
-
-	public Login_Controller() {
-
-		instance = this;
-	}
-
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
 
@@ -47,9 +36,18 @@ public class Login_Controller implements Initializable {
 		try {
 			Parent parent = FXMLLoader.load(getClass().getResource("/fxml/" + page + ".fxml"));
 			login_page_boarderpane.setCenter(parent);
-		} catch (Exception e) {
-		}
+		} catch (Exception e) {}
 
+	}
+
+	private static Login_Controller instance;
+
+	public static Login_Controller getInstance() {
+		return instance;
+	}
+
+	public Login_Controller() {
+		instance = this;
 	}
 
 	@FXML
