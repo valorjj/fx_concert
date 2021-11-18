@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.shape.Rectangle?>
+<?import javafx.scene.text.Font?>
+
+<BorderPane fx:id="manager_page_boardpane" prefHeight="720.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.manager.Manager_Main_Controller">
+   <left>
+      <AnchorPane prefHeight="720.0" prefWidth="256.0" style="-fx-background-color: #494854;" BorderPane.alignment="CENTER">
+         <children>
+            <Label fx:id="lbl_manager_page" layoutX="1.0" layoutY="33.0" onMouseClicked="#lbl_manager_page" text="MANAGER PAGE" textFill="#d1af94">
+               <font>
+                  <Font size="33.0" />
+               </font>
+            </Label>
+            <Button fx:id="btn_register" layoutX="35.0" layoutY="100.0" mnemonicParsing="false" onAction="#btn_register" prefHeight="85.0" prefWidth="190.0" style="-fx-background-radius: 25; -fx-background-color: #494854;" text="등록" textFill="#d0af93">
+               <font>
+                  <Font size="24.0" />
+               </font></Button>
+            <Button fx:id="btn_reservation_status" layoutX="35.0" layoutY="310.0" mnemonicParsing="false" onAction="#btn_reservation_status" prefHeight="85.0" prefWidth="190.0" style="-fx-background-radius: 25; -fx-background-color: #494854;" text="예약현황" textFill="#d0af93">
+               <font>
+                  <Font size="24.0" />
+               </font></Button>
+            <Button fx:id="btn_board_management" layoutX="35.0" layoutY="415.0" mnemonicParsing="false" onAction="#btn_board_management" prefHeight="85.0" prefWidth="190.0" style="-fx-background-radius: 25; -fx-background-color: #494854;" text="게시판관리" textFill="#d0af93">
+               <font>
+                  <Font size="24.0" />
+               </font></Button>
+            <Button fx:id="btn_update_delete" layoutX="35.0" layoutY="205.0" mnemonicParsing="false" onAction="#btn_update_delete" prefHeight="85.0" prefWidth="190.0" style="-fx-background-radius: 25; -fx-background-color: #494854;" text="수정/삭제" textFill="#d0af93">
+               <font>
+                  <Font size="24.0" />
+               </font></Button>
+            <Button fx:id="btn_logout" layoutX="35.0" layoutY="610.0" mnemonicParsing="false" onAction="#btn_logout" prefHeight="85.0" prefWidth="190.0" style="-fx-background-radius: 25; -fx-background-color: #494854;" text="로그아웃" textFill="#d0af93">
+               <font>
+                  <Font size="24.0" />
+               </font></Button>
+            <Rectangle fx:id="rec_register" arcHeight="5.0" arcWidth="5.0" fill="#a2738c" height="85.0" layoutY="100.0" stroke="#00ff0000" strokeType="INSIDE" width="25.0" />
+            <Rectangle fx:id="rec_update_delete" arcHeight="5.0" arcWidth="5.0" fill="#a2738c" height="85.0" layoutY="205.0" stroke="#00ff0000" strokeType="INSIDE" width="25.0" />
+            <Rectangle fx:id="rec_reservation_status" arcHeight="5.0" arcWidth="5.0" fill="#a2738c" height="85.0" layoutY="310.0" stroke="#00ff0000" strokeType="INSIDE" width="25.0" />
+            <Rectangle fx:id="rec_board_management" arcHeight="5.0" arcWidth="5.0" fill="#a2738c" height="85.0" layoutY="415.0" stroke="#00ff0000" strokeType="INSIDE" width="25.0" />
+         </children>
+      </AnchorPane>
+   </left>
+   <center>
+      <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1024.0" style="-fx-background-color: #494854;" BorderPane.alignment="CENTER" />
+   </center>
+</BorderPane>

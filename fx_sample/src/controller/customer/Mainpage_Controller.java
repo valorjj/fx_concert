@@ -52,7 +52,6 @@ public class Mainpage_Controller implements Initializable {
 
 		try {
 			Parent parent = FXMLLoader.load(getClass().getResource("/fxml/" + page + ".fxml"));
-
 			main_page_boardpane.setCenter(parent);
 		} catch (Exception e) {
 		}
@@ -76,6 +75,7 @@ public class Mainpage_Controller implements Initializable {
 		loadpage("manager_register_view_page");
 	}
 	
+	
 	@FXML
 	public void btn_route(ActionEvent event) {
 		
@@ -90,7 +90,6 @@ public class Mainpage_Controller implements Initializable {
 		try {
 			Parent parent = FXMLLoader.load(getClass().getResource("/fxml/" + page + ".fxml"));
 			Scene scene = new Scene(parent);
-
 			Stage stage = new Stage();
 			stage.setScene(scene);
 			stage.show();

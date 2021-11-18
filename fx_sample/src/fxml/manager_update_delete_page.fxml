@@ -5,13 +5,14 @@
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane prefHeight="750.0" prefWidth="850.0" style="-fx-background-color: #000000;" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane prefHeight="720.0" prefWidth="1024.0" style="-fx-background-color: #494854;" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.manager.Manager_Update_Delete_Controller">
    <children>
-      <TableView layoutX="70.0" layoutY="75.0" prefHeight="630.0" prefWidth="722.0">
+      <TableView fx:id="concert_list" layoutX="70.0" layoutY="75.0" prefHeight="600.0" prefWidth="883.0">
          <columns>
             <TableColumn prefWidth="75.0" text="콘서트명" />
             <TableColumn prefWidth="75.0" text="아티스트" />
             <TableColumn prefWidth="75.0" text="날짜" />
+            <TableColumn prefWidth="75.0" text="시간" />
             <TableColumn prefWidth="75.0" text="R석" />
             <TableColumn prefWidth="75.0" text="S석" />
             <TableColumn prefWidth="75.0" text="D석" />
@@ -21,7 +22,7 @@
             <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
          </columnResizePolicy>
       </TableView>
-      <Button layoutX="667.0" layoutY="14.0" mnemonicParsing="false" prefHeight="47.0" prefWidth="125.0" text="삭제" />
-      <Button layoutX="70.0" layoutY="14.0" mnemonicParsing="false" prefHeight="47.0" prefWidth="125.0" text="수정" />
+      <Button fx:id="btn_delete" layoutX="828.0" layoutY="14.0" mnemonicParsing="false" onAction="#btn_delete" prefHeight="47.0" prefWidth="125.0" text="삭제" />
+      <Button fx:id="btn_update" layoutX="675.0" layoutY="14.0" mnemonicParsing="false" onAction="#btn_update" prefHeight="47.0" prefWidth="125.0" text="수정" />
    </children>
 </AnchorPane>
