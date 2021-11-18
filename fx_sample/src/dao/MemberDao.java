@@ -1,3 +1,4 @@
+
 package dao;
 
 import java.sql.Connection;
@@ -18,26 +19,26 @@ import domain.Member;
 
 public class MemberDao {
 
-	//1. ÇÊµå
-	private Connection connection;// db¿¬°á ÀÎÅÍÆäÀÌ½º¸¦ ¼±¾ğ
-	private PreparedStatement preparedstatement; // sql ¿¬°á ÀÎÅÍÆäÀÌ½º¼±¾ğ
-	private ResultSet resultSet; // Äõ¸® ´Â°á°ú Äõ¸®¸¦ ¼±¾ğ
+	//1. í•„ë“œ
+	private Connection connection;// dbì—°ê²° ì¸í„°í˜ì´ìŠ¤ë¥¼ ì„ ì–¸
+	private PreparedStatement preparedstatement; // sql ì—°ê²° ì¸í„°í˜ì´ìŠ¤ì„ ì–¸
+	private ResultSet resultSet; // ì¿¼ë¦¬ ëŠ”ê²°ê³¼ ì¿¼ë¦¬ë¥¼ ì„ ì–¸
 	
-	// ÇöÀç Å¬·¡½º³» °´Ã¼¸¸µé±â
+	// í˜„ì¬ í´ë˜ìŠ¤ë‚´ ê°ì²´ë§Œë“¤ê¸°
 	private static MemberDao memberdao = new MemberDao();
-	//2. »ı¼ºÀÚ
+	//2. ìƒì„±ì
 	public MemberDao() {
 		try {
 			Class.forName("com.mysql.cj.jdbc.Driver");
 			connection = DriverManager.getConnection("jdbc:mysql://localhost:3307/fx_concert?serverTimezone=UTC","root","1234");
 		}
-		catch (Exception e) {System.out.println(" * DB ¿¬µ¿ ½ÇÆĞ : " + e);}
+		catch (Exception e) {System.out.println(" * DB ì—°ë™ ì‹¤íŒ¨ : " + e);}
 	}
 	
-	//3. ¸Ş¼Òµå
+	//3. ë©”ì†Œë“œ
 	public static MemberDao getMemberDao() {return memberdao;}
-	// ±â´É ¸Ş¼Òµå
-	//1. È¸¿ø°¡ÀÔ ¸Ş¼Òµå[ÀÎ¼ö¸¦ member°´Ã¼·Î ¹Ş¾Æ db¿¡ÀúÀåÇÏ´Â°÷]
+	// ê¸°ëŠ¥ ë©”ì†Œë“œ
+	//1. íšŒì›ê°€ì… ë©”ì†Œë“œ[ì¸ìˆ˜ë¥¼ memberê°ì²´ë¡œ ë°›ì•„ dbì—ì €ì¥í•˜ëŠ”ê³³]
 	public boolean signup(Member member) {
 	String sql = "insert into member(m_id,m_pw,m_name,m_email,m_age,m_sex) values(?,?,?,?,?,?)";
 		try {
@@ -54,24 +55,24 @@ public class MemberDao {
 			return true;
 		} catch (Exception e) {} return false;
 	}
-	//2. ·Î±×ÀÎ ¸Ş¼Òµå
+	//2. ë¡œê·¸ì¸ ë©”ì†Œë“œ
 	public boolean login(String m_id , String m_pw) {
-		// ¸ğµç°Ë»ö¿¡ memberÅ×ÀÌºí¿¡ Á¶°ÇÀÌ = m_id ¿Ím_password °¡Á®¿À±â
+		// ëª¨ë“ ê²€ìƒ‰ì— memberí…Œì´ë¸”ì— ì¡°ê±´ì´ = m_id ì™€m_password ê°€ì ¸ì˜¤ê¸°
 		String sql = "select * from member where m_id=? and m_pw=?";
 		try {
-			// sql À» µ¥ÀÌÅÍº£ÀÌ½º¿¡¼­ ÀÚÀú¿À´Â°É·Î¼³Á¤
+			// sql ì„ ë°ì´í„°ë² ì´ìŠ¤ì—ì„œ ìì €ì˜¤ëŠ”ê±¸ë¡œì„¤ì •
 			preparedstatement=connection.prepareStatement(sql);
 			preparedstatement.setString(1,m_id );//
-			preparedstatement.setString(2, m_pw);// dB¿¡¼­ °¡Á®¿Â m_password¸¦ ¼³Á¤ÇÑ´Ù
+			preparedstatement.setString(2, m_pw);// dBì—ì„œ ê°€ì ¸ì˜¨ m_passwordë¥¼ ì„¤ì •í•œë‹¤
 			
 			resultSet = preparedstatement.executeQuery();
-			if (resultSet.next()) {// °á°ú¿¡ ´ÙÀ½³»¿ëÀÌÀÖÀ¸¸é true
+			if (resultSet.next()) {// ê²°ê³¼ì— ë‹¤ìŒë‚´ìš©ì´ìˆìœ¼ë©´ true
 				return true;
 			}else {return false;}
 		} catch (Exception e) {} return false;
 	}
 	
-	//3. ¾ÆÀÌµğÃ£±â¸Ş¼Òµå
+	//3. ì•„ì´ë””ì°¾ê¸°ë©”ì†Œë“œ
 		public String find_id(String m_name ,String m_email) {
 			String sql = "select m_id from member where m_name=? and m_email=?";
 			try {
@@ -79,14 +80,14 @@ public class MemberDao {
 				preparedstatement.setString(1,m_name );
 				preparedstatement.setString(2, m_email);
 				resultSet=preparedstatement.executeQuery();
-				//5.sql °á°ú
+				//5.sql ê²°ê³¼
 				if(resultSet.next()) {
 					return resultSet.getString(1);
 				}else {return null;}
 			}catch (Exception e) {} return null;
 		}
 
-		// 4. ÆĞ½º¿öµå Ã£±â ¸Ş¼Òµå
+		// 4. íŒ¨ìŠ¤ì›Œë“œ ì°¾ê¸° ë©”ì†Œë“œ
 		public String find_pw(String m_id, String m_email) {
 			String sql = "select m_pw from member where m_id=? and m_email=?";
 			try {
@@ -101,15 +102,15 @@ public class MemberDao {
 		}
 	      
 		
-	// 5.È¸¿ø¼öÁ¤ ¸Ş¼Òµå
+	// 5.íšŒì›ìˆ˜ì • ë©”ì†Œë“œ
 	
-	// 6.È¸¿øÅ»Åğ ¸Ş¼Òµå
+	// 6.íšŒì›íƒˆí‡´ ë©”ì†Œë“œ
 	
-	// 7.È¸¿øÁ¶È¸ ¸Ş¼Òµå
+	// 7.íšŒì›ì¡°íšŒ ë©”ì†Œë“œ
 	
-	// 8. ÀÌ¸ŞÀÏ Àü¼Û ¸Ş¼Òµå
+	// 8. ì´ë©”ì¼ ì „ì†¡ ë©”ì†Œë“œ
 	public void sendmail(String tomail, String msg) {
-		// º¸³½»ç¶÷ Á¤º¸ 
+		// ë³´ë‚¸ì‚¬ëŒ ì •ë³´ 
 		String fromemail = "kimji1218@naver.com";
 		String frompassword = "";
 		
@@ -119,7 +120,7 @@ public class MemberDao {
 		properties.put("mail.smtp.auth", true);
 		
 		Session session = Session.getDefaultInstance(properties, new Authenticator() {
-			// ÀÍ¸í ±¸Çö°´Ã¼
+			// ìµëª… êµ¬í˜„ê°ì²´
 			@Override
 			protected PasswordAuthentication getPasswordAuthentication() {
 				return new PasswordAuthentication(fromemail, frompassword);
@@ -131,14 +132,10 @@ public class MemberDao {
 			message.setFrom(new InternetAddress(fromemail));
 			message.addRecipient(Message.RecipientType.TO, new InternetAddress(tomail));
 			
-			message.setSubject("È¸¿ø´ÔÀÇ ºñ¹Ğ¹øÈ£ °á°ú");
-			message.setText("È¸¿ø´ÔÀÇ ºñ¹Ğ¹øÈ£ : "+ msg);
+			message.setSubject("íšŒì›ë‹˜ì˜ ë¹„ë°€ë²ˆí˜¸ ê²°ê³¼");
+			message.setText("íšŒì›ë‹˜ì˜ ë¹„ë°€ë²ˆí˜¸ : "+ msg);
 			Transport.send(message);
 		} catch (Exception e) {}
 			
 	}
-		
-	
-	
-	
 }

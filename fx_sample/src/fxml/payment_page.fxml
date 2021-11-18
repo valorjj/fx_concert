@@ -11,34 +11,34 @@
    <children>
       <AnchorPane layoutX="769.0" layoutY="38.0" prefHeight="612.0" prefWidth="476.0">
          <children>
-            <Label layoutX="45.0" layoutY="462.0" text="예약한 콘서트 날짜">
+            <Label fx:id="lbl_reserve_concert_date" layoutX="45.0" layoutY="462.0" text="예약한 콘서트 날짜">
                <font>
                   <Font size="19.0" />
                </font>
             </Label>
-            <Label layoutX="45.0" layoutY="523.0" text="예약한 콘서트 시작 시간 ">
+            <Label fx:id="lbl_reserve_concert_time" layoutX="45.0" layoutY="523.0" text="예약한 콘서트 시작 시간 ">
                <font>
                   <Font size="19.0" />
                </font>
             </Label>
-            <Button layoutX="177.0" layoutY="20.0" mnemonicParsing="false" text="나이" />
-            <Button layoutX="318.0" layoutY="21.0" mnemonicParsing="false" text="성별" />
-            <Label layoutX="24.0" layoutY="22.0" text="예약현황">
+            <Button fx:id="btn_graph_by_age" layoutX="177.0" layoutY="20.0" mnemonicParsing="false" onAction="#btn_graph_by_age" text="나이" />
+            <Button fx:id="graph_by_sex" layoutX="318.0" layoutY="21.0" mnemonicParsing="false" onAction="#graph_by_sex" text="성별" />
+            <Label fx:id="lbl_reserve" layoutX="24.0" layoutY="22.0" text="예약현황">
                <font>
                   <Font size="16.0" />
                </font>
             </Label>
-            <AnchorPane layoutX="24.0" layoutY="57.0" prefHeight="379.0" prefWidth="428.0" />
+            <AnchorPane fx:id="anchorpane_graph" layoutX="24.0" layoutY="57.0" prefHeight="379.0" prefWidth="428.0" />
          </children>
       </AnchorPane>
       <AnchorPane layoutX="74.0" layoutY="90.0" prefHeight="560.0" prefWidth="624.0">
          <children>
-            <Label layoutX="31.0" layoutY="28.0" text="회원 좌석 선택 내역">
+            <Label id="lbl_title" layoutX="31.0" layoutY="28.0" text="회원 좌석 선택 내역">
                <font>
                   <Font size="22.0" />
                </font>
             </Label>
-            <TableView layoutX="31.0" layoutY="98.0" prefHeight="186.0" prefWidth="559.0">
+            <TableView fx:id="tableview_user_select" layoutX="31.0" layoutY="98.0" prefHeight="186.0" prefWidth="559.0">
                <columns>
                   <TableColumn prefWidth="75.0" text="등급" />
                   <TableColumn prefWidth="75.0" text="갯수" />
@@ -48,10 +48,16 @@
                   <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
                </columnResizePolicy>
             </TableView>
-            <Button layoutX="326.0" layoutY="446.0" mnemonicParsing="false" prefHeight="92.0" prefWidth="122.0" text="결제하기" />
-            <Button layoutX="137.0" layoutY="446.0" mnemonicParsing="false" prefHeight="92.0" prefWidth="122.0" text="이전" />
-            <Label layoutX="70.0" layoutY="328.0" prefHeight="59.0" prefWidth="120.0" text="총 결제 금액" />
-            <Label layoutX="224.0" layoutY="322.0" prefHeight="59.0" prefWidth="345.0" text="total price" />
+            <Button fx:id="btn_pay" layoutX="326.0" layoutY="446.0" mnemonicParsing="false" onAction="#btn_pay" prefHeight="92.0" prefWidth="122.0" text="결제하기" />
+            <Button fx:id="btn_cancel" layoutX="137.0" layoutY="446.0" mnemonicParsing="false" onAction="#btn_cancel" prefHeight="92.0" prefWidth="122.0" text="이전" />
+            <Label id="lbl_total_price_menu" layoutX="31.0" layoutY="322.0" prefHeight="59.0" prefWidth="193.0" text="총 결제 금액">
+               <font>
+                  <Font size="27.0" />
+               </font></Label>
+            <Label id="lbl_total_price" fx:id="lbl_total_price" layoutX="245.0" layoutY="322.0" prefHeight="59.0" prefWidth="345.0" text="total price">
+               <font>
+                  <Font size="27.0" />
+               </font></Label>
          </children>
       </AnchorPane>
    </children>

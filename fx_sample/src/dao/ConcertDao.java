@@ -13,35 +13,35 @@ import javafx.collections.ObservableList;
 
 public class ConcertDao {
 
-	// 1.ÇÊµå
+	// 1.í•„ë“œ
 	private Connection connection;
 	private PreparedStatement preparedStatement;
 	private ResultSet resultSet;
-	// ÇöÀç Å¬·¡½º³» °´Ã¼ ¸¸µé±â
+	// í˜„ì¬ í´ë˜ìŠ¤ë‚´ ê°ì²´ ë§Œë“¤ê¸°
 	private static ConcertDao concertDao = new ConcertDao();
-	// 2.»ı¼ºÀÚ
+	// 2.ìƒì„±ì
 	public ConcertDao() {
 		try {
 			Class.forName("com.mysql.cj.jdbc.Driver");
 			connection = DriverManager.getConnection("jdbc:mysql://localhost:3307/fx_concert?serverTimezone=UTC","root","1234");
 		} catch (Exception e) {
-			System.out.println("DB¿¬µ¿ ½ÇÆĞ : " + e);
+			System.out.println("DBì—°ë™ ì‹¤íŒ¨ : " + e);
 		}
 	}
 	
-	// 3.¸Ş¼Òµå
+	// 3.ë©”ì†Œë“œ
 	public static ConcertDao getConcertDao() {return concertDao;}
 	
-	// ±â´É ¸Ş¼Òµå
+	// ê¸°ëŠ¥ ë©”ì†Œë“œ
 	
-	// 1.ÄÜ¼­µå µî·Ï¸Ş¼Òµå
+	// 1.ì½˜ì„œë“œ ë“±ë¡ë©”ì†Œë“œ
 	public boolean register(Concert concert) {
-		// 1. SQL ÀÛ¼º
+		// 1. SQL ì‘ì„±
 		String sql = "insert into concert(c_title,c_artist,c_info,c_date,c_time,c_R_no,c_S_no,c_D_no,c_E_no,c_R_price,c_S_price,c_D_price,c_E_price) values (?,?,?,?,?,?,?,?,?,?,?,?,?)";
-		// 2. SQL -> DB¿¬°á
+		// 2. SQL -> DBì—°ê²°
 		try {
 			preparedStatement = connection.prepareStatement(sql);
-			// 3. SQL ¼³Á¤
+			// 3. SQL ì„¤ì •
 			preparedStatement.setString(1, concert.getC_title());
 			preparedStatement.setString(2, concert.getC_artist());
 			preparedStatement.setString(3, concert.getC_info());
@@ -55,15 +55,15 @@ public class ConcertDao {
 			preparedStatement.setInt(11, concert.getC_S_price());
 			preparedStatement.setInt(12, concert.getC_D_price());
 			preparedStatement.setInt(13, concert.getC_E_price());
-			// 4. SQL ½ÇÇà
+			// 4. SQL ì‹¤í–‰
 			preparedStatement.executeUpdate();
-			// 5. SQL °á°ú ½ÇÇà
+			// 5. SQL ê²°ê³¼ ì‹¤í–‰
 			return true;
 		}
 		catch(Exception e) {System.out.println(e);} return false;
 	}
 	
-	// 2.ÄÜ¼­Æ® ¼öÁ¤¸Ş¼Òµå
+	// 2.ì½˜ì„œíŠ¸ ìˆ˜ì •ë©”ì†Œë“œ
 	public boolean update(Concert concert) {
 		String sql = "update concert set c_title =?, c_artist =? , c_info=? , c_date=?, c_time =? , c_R_no =?, c_S_no=? , c_D_no=?, c_E_no=?, c_R_price = ?, c_S_price=?,c_D_price =?, c_E_price=?, c_unique_no=? where c_no=?";
 		try {
@@ -87,7 +87,7 @@ public class ConcertDao {
 			return true;
 		}catch(Exception e ) {} return false;
 	}
-	// 3.ÄÜ¼­Æ® »èÁ¦ ¸Ş¼Òµå
+	// 3.ì½˜ì„œíŠ¸ ì‚­ì œ ë©”ì†Œë“œ
 	public boolean delete(int c_no) {
 		String sql = "delete from concert where c_no=?";
 		try {
@@ -98,9 +98,9 @@ public class ConcertDao {
 		} catch (Exception e) {} return false;
 	}
 	
-	// 4.ÄÜ¼­Æ® Á¶È¸ ¸Ş¼Òµå
+	// 4.ì½˜ì„œíŠ¸ ì¡°íšŒ ë©”ì†Œë“œ
 	public ObservableList<Concert> concertlist() {
-		// 1.¸®½ºÆ®¼±¾ğ
+		// 1.ë¦¬ìŠ¤íŠ¸ì„ ì–¸
 		ObservableList<Concert> concerts = FXCollections.observableArrayList();
 		
 		String sql = "select * from concert order by c_no desc";
@@ -123,18 +123,18 @@ public class ConcertDao {
 						resultSet.getInt(13),
 						resultSet.getInt(14),
 						resultSet.getInt(15)); 
-				// °´Ã¼ ¸®½ºÆ® ÀúÀå
+				// ê°ì²´ ë¦¬ìŠ¤íŠ¸ ì €ì¥
 				concerts.add(concert);
 			}
 			return concerts;
 		} catch (Exception e) {} return concerts;
 		
 	}
-	// 5.ÄÜ¼­Æ® ÁÂ¼®¼ö ¹İÈ¯¸Ş¼Òµå(piechart¿ë)
+	// 5.ì½˜ì„œíŠ¸ ì¢Œì„ìˆ˜ ë°˜í™˜ë©”ì†Œë“œ(piechartìš©)
 	
-	// 6. ÄÜ¼­Æ® Å¸ÀÌÆ² ¹İÈ¯ ¸Ş¼Òµå
+	// 6. ì½˜ì„œíŠ¸ íƒ€ì´í‹€ ë°˜í™˜ ë©”ì†Œë“œ
 	public ObservableList<Concert> titlelist() {
-		// 1.¸®½ºÆ® ¼±¾ğ
+		// 1.ë¦¬ìŠ¤íŠ¸ ì„ ì–¸
 		ObservableList<Concert> titles = FXCollections.observableArrayList();
 		String sql = "select c_title from concert group by c_title";
 		try {
@@ -147,9 +147,9 @@ public class ConcertDao {
 			return titles;
 		} catch (Exception e) {} return titles;
 	}
-	// 7. ÄÜ¼­Æ® ³¯Â¥ ¹İÈ¯ ¸Ş¼Òµå
+	// 7. ì½˜ì„œíŠ¸ ë‚ ì§œ ë°˜í™˜ ë©”ì†Œë“œ
 	public ObservableList<Concert> datelist(String c_title){
-		// 1. ¸®½ºÆ® ¼±¾ğ
+		// 1. ë¦¬ìŠ¤íŠ¸ ì„ ì–¸
 		ObservableList<Concert> dates = FXCollections.observableArrayList();
 		String sql = "select distinct c_date from concert where c_title in (select c_title from concert where c_title=?)";
 		try {
@@ -163,7 +163,7 @@ public class ConcertDao {
 			return dates;
 		} catch (Exception e) {} return dates;
 	}
-	// 8. ÄÜ¼­Æ® ½Ã°£ ¹İÈ¯ ¸Ş¼Òµå
+	// 8. ì½˜ì„œíŠ¸ ì‹œê°„ ë°˜í™˜ ë©”ì†Œë“œ
 	public ObservableList<Concert> timelist(String c_title , String c_date) {
 		ObservableList<Concert> times = FXCollections.observableArrayList();
 		String sql = "select c_time from concert where c_date=? and c_title=?";
@@ -186,3 +186,4 @@ public class ConcertDao {
 	
 	
 }
+

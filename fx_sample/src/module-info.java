@@ -1,10 +1,10 @@
 module fx_sample {
-	
+
 	requires javafx.controls;
 	requires javafx.graphics;
 	requires javafx.fxml;
 	requires javafx.base;
-	requires java.sql;
+
 	requires mail;
 	requires activation;
 	

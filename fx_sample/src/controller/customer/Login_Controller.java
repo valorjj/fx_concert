@@ -10,31 +10,13 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Alert;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.PasswordField;
-import javafx.scene.control.TextField;
-import javafx.scene.control.Alert.AlertType;
-import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.BorderPane;
-import javafx.stage.Stage;
-
-public class Login_Controller implements Initializable {
-
-	private static Login_Controller instance;
-
-	public Login_Controller() {
-		// 2. 현재 클래스의 메모리 호출 = this
-		instance = this; // [ 현재클래스의 멤버 포함 ]
-	}
-
-	public static Login_Controller getinstance() {
-		return instance;
-	}
-
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
+
+	}
+
+	public String get_login_id() {
+		return txt_id.getText();
 	}
 
 	public void loadpage(String page) {
