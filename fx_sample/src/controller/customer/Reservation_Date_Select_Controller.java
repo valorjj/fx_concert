@@ -38,6 +38,10 @@ public class Reservation_Date_Select_Controller implements Initializable {
 	private boolean switch_2pm_btn = true;
 	private boolean switch_6pm_btn = true;
 
+	boolean switch_date_1;
+	boolean switch_date_2;
+	boolean switch_date_3;
+
 	int user_selected_concert_unique_no = Reservation_Concert_Select_Controller.concert_number;
 
 	ArrayList<String> concert_date_list = new ArrayList<String>();
@@ -49,17 +53,6 @@ public class Reservation_Date_Select_Controller implements Initializable {
 	boolean select_switch = false;
 
 	String[] day = new String[3];
-
-	@FXML
-	private Button btn_reset;
-
-	@FXML
-	void btn_reset(ActionEvent event) {
-
-		create_calendar();
-		set_btn_action();
-
-	}
 
 	public void btn_disable() {
 
@@ -153,39 +146,74 @@ public class Reservation_Date_Select_Controller implements Initializable {
 			}
 		}
 
-		// set_btn_action();
 	}
 
 	public void set_btn_action() {
 
 		for (Button button : Buttons) {
-			if ((button.getId().equals(day[0])) || (button.getId().equals(day[1])) || (button.getId().equals(day[2]))) {
+
+			if (button.getId().equals(day[0])) {
+
 				button.setStyle("-fx-background-color : #cccccc");
-				try {
-					Alert alert = new Alert(AlertType.CONFIRMATION);
 
-					button.setOnAction(e -> {
+				button.setOnAction(e -> {
+					if (!switch_date_1) {
+						// 선택 안했을 때
+						button.setStyle("-fx-background-color : #cccccc");
 
-						// 선택을 하지 않았을 때
-						alert.setHeaderText(" 날짜를 선택하셨습니다.");
-						Optional<ButtonType> optional = alert.showAndWait();
-						if (optional.get() == ButtonType.OK) {
-							button.setStyle("-fx-background-color : green");
-							user_selected_day = Integer.parseInt(button.getId());
-							Alert alert2 = new Alert(AlertType.INFORMATION);
-							alert2.setHeaderText(" [ " + button.getId() + " ] 좌석을 선택하셨습니다.\n시간을 선택해주세요");
-							alert2.showAndWait();
+						switch_date_1 = true;
+					} else {
+						button.setStyle("-fx-background-color : green");
+						user_selected_day = Integer.parseInt(day[0]);
+						switch_date_1 = false;
+					}
+				});
 
-							btn_disable();
-						}
-					});
+			}
 
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			} else {
+			else if (button.getId().equals(day[1])) {
+
+				button.setStyle("-fx-background-color : #cccccc");
+
+				button.setOnAction(e -> {
+					if (!switch_date_2) {
+						// 선택 안했을 때
+						button.setStyle("-fx-background-color : #cccccc");
+
+						switch_date_2 = true;
+					} else {
+						button.setStyle("-fx-background-color : green");
+						user_selected_day = Integer.parseInt(day[1]);
+						switch_date_2 = false;
+					}
+				});
+			}
+
+			else if (button.getId().equals(day[2])) {
+
+				button.setStyle("-fx-background-color : #cccccc");
+
+				button.setOnAction(e -> {
+
+					if (!switch_date_3) {
+						// 선택 안했을 때
+						button.setStyle("-fx-background-color : green");
+
+						switch_date_3 = true;
+					} else {
+						button.setStyle("-fx-background-color : #cccccc");
+						user_selected_day = Integer.parseInt(day[2]);
+						switch_date_3 = false;
+					}
+
+				});
+
+			}
+
+			else {
 				button.setStyle("-fx-background-color : #f57b42");
 			}
+
 		}
 
 	}

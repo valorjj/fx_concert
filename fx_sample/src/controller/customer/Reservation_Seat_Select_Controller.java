@@ -84,6 +84,11 @@ public class Reservation_Seat_Select_Controller implements Initializable {
 	@FXML
 	private Button btn_how_many_4;
 
+	boolean switch_btn_how_many_1 = true;
+	boolean switch_btn_how_many_2 = true;
+	boolean switch_btn_how_many_3 = true;
+	boolean switch_btn_how_many_4 = true;
+
 	@FXML
 	private Button btn_how_many_people;
 
@@ -202,23 +207,87 @@ public class Reservation_Seat_Select_Controller implements Initializable {
 
 	////////////////////////////////////////////////////////////////
 
+	// 버튼을 한번 선택하면 다른건 선택 못하게 막는다.
+
 	@FXML
 	void btn_how_many_1(ActionEvent event) {
+		if (switch_btn_how_many_1) {
+			how_many_person = 1;
+			switch_btn_how_many_1 = false;
+			btn_how_many_2.setVisible(false);
+			btn_how_many_3.setVisible(false);
+			btn_how_many_4.setVisible(false);
+
+		} else {
+			how_many_person = 0;
+			switch_btn_how_many_1 = true;
+			btn_how_many_2.setVisible(true);
+			btn_how_many_3.setVisible(true);
+			btn_how_many_4.setVisible(true);
+
+		}
 
 	}
 
 	@FXML
 	void btn_how_many_2(ActionEvent event) {
 
+		if (switch_btn_how_many_2) {
+			how_many_person = 2;
+			switch_btn_how_many_2 = false;
+			btn_how_many_1.setVisible(false);
+			btn_how_many_3.setVisible(false);
+			btn_how_many_4.setVisible(false);
+
+		} else {
+			how_many_person = 0;
+			switch_btn_how_many_2 = true;
+			btn_how_many_1.setVisible(true);
+			btn_how_many_3.setVisible(true);
+			btn_how_many_4.setVisible(true);
+
+		}
 	}
 
 	@FXML
 	void btn_how_many_3(ActionEvent event) {
 
+		if (switch_btn_how_many_3) {
+			how_many_person = 3;
+			switch_btn_how_many_3 = false;
+			btn_how_many_1.setVisible(false);
+			btn_how_many_2.setVisible(false);
+			btn_how_many_4.setVisible(false);
+
+		} else {
+			how_many_person = 0;
+			switch_btn_how_many_3 = true;
+			btn_how_many_1.setVisible(true);
+			btn_how_many_2.setVisible(true);
+			btn_how_many_4.setVisible(true);
+
+		}
+
 	}
 
 	@FXML
 	void btn_how_many_4(ActionEvent event) {
+
+		if (switch_btn_how_many_4) {
+			how_many_person = 4;
+			switch_btn_how_many_4 = false;
+			btn_how_many_1.setVisible(false);
+			btn_how_many_2.setVisible(false);
+			btn_how_many_3.setVisible(false);
+
+		} else {
+			how_many_person = 0;
+			switch_btn_how_many_4 = true;
+			btn_how_many_1.setVisible(true);
+			btn_how_many_2.setVisible(true);
+			btn_how_many_3.setVisible(true);
+
+		}
 
 	}
 }
