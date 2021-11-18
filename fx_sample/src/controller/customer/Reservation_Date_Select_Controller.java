@@ -41,17 +41,67 @@ public class Reservation_Date_Select_Controller implements Initializable {
 
 	ArrayList<String> concert_date_list = new ArrayList<String>();
 	ArrayList<Concert> concert_info = new ArrayList<Concert>();
-	
-	Button[] buttons = new Button[32];
+
+	// ArrayList<Button> buttons = new ArrayList<>();
+
+	Button[] buttons = new Button[31];
+	boolean[] click_check = new boolean[31];
+
+	boolean select_switch = false;
+
+	@FXML
+	private Button btn_reset;
+
+	@FXML
+	void btn_reset(ActionEvent event) {
+
+		// 날짜 선택을 리셋시킵니다.
+
+		for (int i = 0; i < 31; i++) {
+			click_check[i] = false;
+		}
+
+		create_calendar();
+
+	}
+
+	public void btn_disable() {
+
+		if (select_switch == false) {
+			create_calendar();
+		} else {
+			for (int i = 0; i < 31; i++) {
+				buttons[i].setDisable(true);
+			}
+		}
+	}
 
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
+
+		// 콘서트 관련 정보 출력합니다.
 
 		concert_date_list = (ConcertDao.getConcertDao().get_concert_date_list(user_selected_concert_unique_no));
 
 		lbl_concert_date_1.setText(concert_date_list.get(0));
 		lbl_concert_date_2.setText(concert_date_list.get(1));
 		lbl_concert_date_3.setText(concert_date_list.get(2));
+
+		Concert concert = ConcertDao.getConcertDao().get_concert_instance(user_selected_concert_unique_no);
+
+		lbl_concert_tile.setText(concert.getC_title());
+		lbl_R_price.setText(concert.getC_R_price() + "");
+		lbl_S_price.setText(concert.getC_S_price() + "");
+		lbl_D_price.setText(concert.getC_D_price() + "");
+		lbl_E_price.setText(concert.getC_E_price() + "");
+
+		btn_disable();
+
+	}
+
+	public void create_calendar() {
+
+		concert_date_list = (ConcertDao.getConcertDao().get_concert_date_list(user_selected_concert_unique_no));
 
 		String[] day = new String[3];
 
@@ -64,18 +114,7 @@ public class Reservation_Date_Select_Controller implements Initializable {
 
 		}
 
-		Concert concert = ConcertDao.getConcertDao().get_concert_instance(user_selected_concert_unique_no);
-
-		lbl_concert_tile.setText(concert.getC_title());
-		lbl_R_price.setText(concert.getC_R_price() + "");
-		lbl_S_price.setText(concert.getC_S_price() + "");
-		lbl_D_price.setText(concert.getC_D_price() + "");
-		lbl_E_price.setText(concert.getC_E_price() + "");
-
 		Calendar calendar = Calendar.getInstance();
-
-		// calendar.set(year, month - 1, 1);
-
 		String concert_date = ConcertDao.getConcertDao().get_concert_date(user_selected_concert_unique_no);
 
 		String[] tmp = concert_date.split(" ");
@@ -110,6 +149,8 @@ public class Reservation_Date_Select_Controller implements Initializable {
 				button.setPrefSize(30, 30);
 				button.setId(idx + "");
 
+				// 콘서트 날짜에 해당하는 날짜들만 유효한 버튼으로 생성합니다.
+
 				if ((i == Integer.parseInt(day[0])) || (i == Integer.parseInt(day[1]))
 						|| (i == Integer.parseInt(day[2]))) {
 
@@ -122,27 +163,33 @@ public class Reservation_Date_Select_Controller implements Initializable {
 							alert.setHeaderText(button.getId() + "일을 선택하셨습니다.");
 							Optional<ButtonType> optional = alert.showAndWait();
 							if (optional.get() == ButtonType.OK) {
+
 								button.setStyle("-fx-background-color : green");
+
+								click_check[Integer.parseInt(button.getId()) - 1] = true;
 
 								// Button Id 가 날짜 값이랑 동일하게 셋팅되어 있으므로 날짜 값을 저장한다.
 								user_selected_day = Integer.parseInt(button.getId());
 								// user_selected_day = idx;
 								Alert alert2 = new Alert(AlertType.INFORMATION);
-								alert2.setHeaderText("시간을 선택해주세요");
+								alert2.setHeaderText(" [ " + button.getId() + " ] 좌석을 선택하셨습니다.\n시간을 선택해주세요");
 								alert2.showAndWait();
+
 							} else {
-								// button.setStyle("-fx-background-color : #eeeeee");
+								click_check[Integer.parseInt(button.getId()) - 1] = false;
 							}
 						}
 					});
-				} else {
-					button.setStyle("-fx-background-color: black");
-				}
-				buttons[i] = button;
 
-				// button.setStyle("-fx-text-fill: #ffffff");
-				// button.setStyle("-fx-border-color : #333333");
-				// button.setStyle("-fx-background-color : #000000");
+					select_switch = true;
+
+				} else {
+
+					// 콘서트 날짜에 해당하지 않는 정보들은 다른 색깔로 구분짓습니다.
+					// 그리고 클릭 이벤트를 넣지 않습니다.
+					button.setStyle("-fx-background-color: #f57b42");
+				}
+
 				if (i < 7) {
 					gridpane_calendar.add(button, i, 0);
 				} else if (i >= 7 && i < 14) {
@@ -157,6 +204,10 @@ public class Reservation_Date_Select_Controller implements Initializable {
 					gridpane_calendar.add(button, i % 7, 5);
 				}
 				idx++;
+
+				// 만들어진 버튼 객체를 Button 객체를 저장하는 배열에 추가시킵니다.
+				buttons[i] = (button);
+
 			}
 		}
 	}

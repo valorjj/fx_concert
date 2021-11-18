@@ -285,7 +285,9 @@
 				<Button id="btn_6pm" fx:id="btn_6pm" layoutX="273.0"
 					layoutY="406.0" mnemonicParsing="false" onAction="#btn_6pm"
 					prefHeight="55.0" prefWidth="180.0" text="6PM"
-					AnchorPane.rightAnchor="47.0" />
+					AnchorPane.rightAnchor="55.0" />
+				<Button fx:id="btn_reset" layoutX="395.0" layoutY="367.0"
+					mnemonicParsing="false" onAction="#btn_reset" text="초기화" />
 			</children>
 		</AnchorPane>
 	</children>
