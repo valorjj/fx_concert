@@ -51,7 +51,7 @@ public class Manager_Chart_View_Controller implements Initializable{
     
     @FXML
     private ComboBox<Concert> combo_concert_name;
-
+ 
 
     @FXML
     private ComboBox<Concert> combo_concert_time;

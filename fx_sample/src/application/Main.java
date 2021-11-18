@@ -11,7 +11,7 @@ public class Main extends Application {
 	public void start(Stage primaryStage) {
 		try {
 
-			Parent parent = FXMLLoader.load(getClass().getResource("/fxml/reservation_page_date_select.fxml"));
+			Parent parent = FXMLLoader.load(getClass().getResource("/fxml/login_page.fxml"));
 			Scene scene = new Scene(parent);
 			primaryStage.setScene(scene);
 			primaryStage.show();

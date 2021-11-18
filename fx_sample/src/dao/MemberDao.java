@@ -144,8 +144,6 @@ public class MemberDao {
 			MimeMessage message = new MimeMessage(session);
 			message.setFrom(new InternetAddress(fromemail));
 			message.addRecipient(Message.RecipientType.TO, new InternetAddress(tomail));
-			
-
 			message.setSubject("회원님의 비밀번호 결과");
 			message.setText("회원님의 비밀번호 : "+ msg);
 			Transport.send(message);
@@ -157,15 +155,12 @@ public class MemberDao {
 	// id 만 가져오기
 
 	public Member get_id_member(String loginid) {
-
 		String sql = "SELECT * FROM member where m_id=?";
-
 		try {
 			preparedstatement = connection.prepareStatement(sql);
 			preparedstatement.setString(1, loginid);
 			resultSet = preparedstatement.executeQuery();
 			if (resultSet.next()) {
-
 				Member member = new Member(resultSet.getString(2),"",
 											resultSet.getString(4),
 											resultSet.getString(5),
@@ -173,18 +168,16 @@ public class MemberDao {
 											resultSet.getString(7));
 											return member;
 			} else {return null;}
-		} catch (Exception e) {} return null; // DB ������ ���� ���
+		} catch (Exception e) {} return null; //
 	}
-
+	
 	// 회원번호 리턴하는 메소드
-
 	public int get_m_no_member(String id) {
 		String sql = "SELECT m_no FROM member where m_id=?";
 		try {
 			preparedstatement = connection.prepareStatement(sql);
 			preparedstatement.setString(1, id);
 			resultSet = preparedstatement.executeQuery();
-
 			if (resultSet.next()) {return resultSet.getInt(1);}
 			else {return 0;}
 		} catch (Exception e) {} return 0;

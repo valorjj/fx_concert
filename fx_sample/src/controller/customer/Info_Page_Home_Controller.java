@@ -30,7 +30,7 @@ public class Info_Page_Home_Controller implements Initializable {
 
 	public static Concert concert;
 
-	@FXML
+	@FXML 
 	private Label lbl_info_id;
 	@FXML
 	private Label lbl_info_name;
