@@ -4,8 +4,12 @@ import java.net.URL;
 import java.util.Optional;
 import java.util.ResourceBundle;
 
+import controller.customer.Board_Comment_Controller;
+import controller.customer.Login_Controller;
 import dao.BoardDao;
 import domain.Board;
+import domain.Reply;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -14,9 +18,11 @@ import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
+import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
+import javafx.scene.control.cell.PropertyValueFactory;
 
 public class Manager_Board_View_Controller implements Initializable{
 	
@@ -24,7 +30,8 @@ public class Manager_Board_View_Controller implements Initializable{
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
 		txt_reply.setVisible(false);
-    	reply_list.setVisible(false);
+		replylist.setVisible(false);		
+    	replytableload();
     	//DB조회수 증가
     		BoardDao.getBoardDao().viewupdate(board.getB_no());
     	
@@ -44,6 +51,9 @@ public class Manager_Board_View_Controller implements Initializable{
 
     @FXML
     private Button btn_show_reply;
+    
+    @FXML
+    private Button btn_replyregister;
 
     @FXML
     private Label lbl_date;
@@ -61,7 +71,7 @@ public class Manager_Board_View_Controller implements Initializable{
     private TextArea txt_reply;
 
     @FXML
-    private TableView<?> reply_list; 
+    private TableView<Reply> replylist; 
 
     @FXML
     private TextField txt_title;
@@ -85,24 +95,51 @@ public class Manager_Board_View_Controller implements Initializable{
     		alert2.showAndWait();
     	}
     }
-
-    boolean upcheck = true;
+    boolean upcheck = true;	
     @FXML
     void btn_show_reply(ActionEvent event) {
     	
     	if(upcheck){
     		txt_reply.setVisible(true);
-    		reply_list.setVisible(true);
+    		replylist.setVisible(true);
     		upcheck=false;
     	}else {
     		upcheck=true;
     		txt_reply.setVisible(false);
-    		reply_list.setVisible(false);
+    		replylist.setVisible(false);
     	}
+    }
+    
+
+    @FXML
+    void btn_replyregister(ActionEvent event) {
+    	Reply reply = new Reply(txt_reply.getText(),Login_Controller.getInstance().get_login_id(),board.getB_no());
+    	boolean result = BoardDao.getBoardDao().replywrite(reply);
+    	if(result) {
+    		Alert alert = new Alert(AlertType.INFORMATION);
+    		alert.setHeaderText("댓글이 등록되었습니다. 관리자님");
+    		alert.setTitle("알림");
+    		alert.showAndWait();
+    		replytableload();
+    		txt_reply.setText("");
+    	}
+    }
+    
+    
+    public void replytableload() {
+    	ObservableList<Reply> replys = BoardDao.getBoardDao().replylist(board.getB_no());
+    	TableColumn tc = replylist.getColumns().get(0);
+    	tc.setCellValueFactory(new PropertyValueFactory<>("r_no"));
     	
+    	tc = replylist.getColumns().get(1);
+    	tc.setCellValueFactory(new PropertyValueFactory<>("r_contents"));
     	
+    	tc = replylist.getColumns().get(2);
+    	tc.setCellValueFactory(new PropertyValueFactory<>("r_writer"));
     	
+    	tc = replylist.getColumns().get(3);
+    	tc.setCellValueFactory(new PropertyValueFactory<>("r_date"));
     	
-    	
+    	replylist.setItems(replys);
     }
 }

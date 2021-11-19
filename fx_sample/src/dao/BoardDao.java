@@ -6,6 +6,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 
 import domain.Board;
+import domain.Reply;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
@@ -112,6 +113,38 @@ public class BoardDao {
 		} catch (Exception e) {} return false;
 	}
 	
+	// 6. 댓글등록 메소드
+	public boolean replywrite(Reply reply) {
+		String sql = "insert into reply(r_contents, r_writer,b_no) values (?,?,?)";
+		try {
+			preparedStatement = connection.prepareStatement(sql);
+			preparedStatement.setString(1, reply.getR_contents());
+			preparedStatement.setString(2, reply.getR_writer());
+			preparedStatement.setInt(3, reply.getB_no());
+			preparedStatement.executeUpdate();
+			return true;
+		} catch (Exception e) {} return false;
+	}
+	
+	// 7. 댓글출력 메소드
+	public ObservableList<Reply> replylist(int b_no) {
+		ObservableList<Reply> replys = FXCollections.observableArrayList();
+		String sql = "select * from reply where b_no=? order by r_no desc";
+		try {
+			preparedStatement= connection.prepareStatement(sql);
+			preparedStatement.setInt(1, b_no);
+			resultSet = preparedStatement.executeQuery();
+			while(resultSet.next()) {		// 다음레코드가 없을때 까지 
+				Reply reply = new Reply(resultSet.getInt(1),
+										resultSet.getString(2),
+										resultSet.getString(3),
+										resultSet.getString(4),
+										resultSet.getInt(5));
+				replys.add(reply);
+			}
+			return replys;
+		} catch (Exception e) {} return replys; 
+	}
 	
 	
 }

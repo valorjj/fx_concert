@@ -41,28 +41,28 @@ public class Manager_Chart_View_Controller implements Initializable{
 							ObservableList<Concert> s_seat = ConcertDao.getConcertDao().s_seatlist(title, date, time);
 							ObservableList<PieChart.Data> observableList1 = FXCollections.observableArrayList();
 							for(Concert concert : s_seat) {
-								observableList1.add(new PieChart.Data("S석전체좌석수"+concert.getC_S_no()+"석", concert.getC_S_no()));
+								observableList1.add(new PieChart.Data("전체좌석"+concert.getC_S_no()+"석", concert.getC_S_no()));
 								System.out.println(concert.getC_S_no()+"");
 							}
 							// pie 차트 R석
 							ObservableList<Concert> r_seat = ConcertDao.getConcertDao().r_seatlist(title, date, time);
 							ObservableList<PieChart.Data> observableList = FXCollections.observableArrayList();
 							for(Concert concert : r_seat) {
-								observableList.add(new PieChart.Data("R석전체좌석수"+concert.getC_R_no()+"석", concert.getC_R_no()));
+								observableList.add(new PieChart.Data("전체좌석"+concert.getC_R_no()+"석", concert.getC_R_no()));
 								System.out.println(concert.getC_R_no()+"");
 							}
 							// pie 차트 E석
 							ObservableList<Concert> e_seat = ConcertDao.getConcertDao().e_seatlist(title, date, time);
 							ObservableList<PieChart.Data> observableList2 = FXCollections.observableArrayList();
 							for(Concert concert : e_seat) {
-								observableList2.add(new PieChart.Data("E석전체좌석수"+concert.getC_E_no()+"석", concert.getC_E_no()));
+								observableList2.add(new PieChart.Data("전체좌석"+concert.getC_E_no()+"석", concert.getC_E_no()));
 								System.out.println(concert.getC_E_no()+"");
 							}
 							// pie 차트 D석
 							ObservableList<Concert> d_seat = ConcertDao.getConcertDao().d_seatlist(title, date, time);
 							ObservableList<PieChart.Data> observableList3 = FXCollections.observableArrayList();
 							for(Concert concert : d_seat) {
-								observableList3.add(new PieChart.Data("D석전체좌석수"+concert.getC_D_no()+"석", concert.getC_D_no()));
+								observableList3.add(new PieChart.Data("전체좌석"+concert.getC_D_no()+"석", concert.getC_D_no()));
 								System.out.println(concert.getC_E_no()+"");
 							}
 							piechart_s_seat.setData(observableList1);

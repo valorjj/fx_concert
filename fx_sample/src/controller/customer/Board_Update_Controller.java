@@ -62,7 +62,7 @@ public class Board_Update_Controller implements Initializable {
     		upcheck = true;
     		txt_title.setEditable(false);
     		txt_contents.setEditable(false);
-    		Mainpage_Controller.getInstance().loadpage("member_board_comment_page");
+    		Mainpage_Controller.getInstance().loadpage("member_board_view_page");
     	}
     }
 

@@ -11,10 +11,10 @@
       <ComboBox fx:id="combo_concert_name" layoutX="42.0" layoutY="46.0" onAction="#combo_concert_name" prefWidth="150.0" promptText="콘서트선택" />
       <ComboBox fx:id="combo_concert_date" layoutX="226.0" layoutY="46.0" onAction="#combo_concert_date" prefWidth="150.0" promptText="날짜 선택" />
       <ComboBox fx:id="combo_concert_time" layoutX="402.0" layoutY="46.0" onAction="#combo_concert_time" prefWidth="150.0" promptText="시간 선택" />
-      <PieChart fx:id="piechart_r_seat" layoutX="110.0" layoutY="94.0" prefHeight="300.0" prefWidth="330.0" style="-fx-border-color: #D0AF93;" />
-      <PieChart fx:id="piechart_s_seat" layoutX="530.0" layoutY="94.0" prefHeight="300.0" prefWidth="330.0" style="-fx-border-color: #D0AF93;" />
-      <PieChart fx:id="piechart_e_seat" layoutX="110.0" layoutY="410.0" prefHeight="300.0" prefWidth="330.0" style="-fx-border-color: #D0AF93;" />
-      <PieChart fx:id="piechart_d_seat" layoutX="530.0" layoutY="410.0" prefHeight="300.0" prefWidth="330.0" style="-fx-border-color: #D0AF93;" />
+      <PieChart fx:id="piechart_r_seat" labelLineLength="0.0" layoutX="110.0" layoutY="94.0" prefHeight="300.0" prefWidth="330.0" style="-fx-border-color: #D0AF93;" />
+      <PieChart fx:id="piechart_s_seat" labelLineLength="0.0" layoutX="530.0" layoutY="94.0" prefHeight="300.0" prefWidth="330.0" style="-fx-border-color: #D0AF93;" />
+      <PieChart fx:id="piechart_e_seat" labelLineLength="0.0" layoutX="110.0" layoutY="410.0" prefHeight="300.0" prefWidth="330.0" style="-fx-border-color: #D0AF93;" />
+      <PieChart fx:id="piechart_d_seat" labelLineLength="0.0" layoutX="530.0" layoutY="410.0" prefHeight="300.0" prefWidth="330.0" style="-fx-border-color: #D0AF93;" />
       <Label layoutX="42.0" layoutY="94.0" prefHeight="57.0" prefWidth="53.0" text="R석" textFill="#d0af93">
          <font>
             <Font size="24.0" />

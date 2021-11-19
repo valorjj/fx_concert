@@ -16,11 +16,10 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseButton;
 
 public class Board_View_Controller implements Initializable {
-	
-	
+
 	@Override
-	public void initialize(URL arg0, ResourceBundle arg1) {// 각컬럼에  사용될 거 정함
-		ObservableList<Board>boards = BoardDao.getBoardDao().boardlist();
+	public void initialize(URL arg0, ResourceBundle arg1) {// 각컬럼에 사용될 거 정함
+		ObservableList<Board> boards = BoardDao.getBoardDao().boardlist();
 		TableColumn tc = table_board.getColumns().get(0);
 		tc.setCellValueFactory(new PropertyValueFactory<>("b_no"));
 		tc = table_board.getColumns().get(1);
@@ -33,41 +32,36 @@ public class Board_View_Controller implements Initializable {
 		tc.setCellValueFactory(new PropertyValueFactory<>("b_date"));
 		tc = table_board.getColumns().get(5);
 		tc.setCellValueFactory(new PropertyValueFactory<>("b_view"));
-	
+
 		table_board.setItems(boards);// 내가 만든 테이블 보드에 다넣기
-	
-		table_board.setOnMouseClicked( e->{
+
+		table_board.setOnMouseClicked(e -> {
 			if (e.getButton().equals(MouseButton.PRIMARY)) {
-				board =table_board.getSelectionModel().getSelectedItem();
-			Mainpage_Controller.getInstance().loadpage("member_board_comment_page");
+				board = table_board.getSelectionModel().getSelectedItem();
+				Mainpage_Controller.getInstance().loadpage("member_board_comment_page");
 			}
 		});
-	
-	
+
 	}
+
 	public static Board board;
 
-
-   
-    
 	@FXML
 	private Button btn_back;
 
 	@FXML
 	private Button btn_write;
-    @FXML
-    private TableView<Board> table_board;
-   
-	
 	@FXML
-	    void btn_back(ActionEvent event) {
-	    Mainpage_Controller.getInstance().loadpage("main_page_home");
-	    }
-	
+	private TableView<Board> table_board;
+
+	@FXML
+	void btn_back(ActionEvent event) {
+		Mainpage_Controller.getInstance().loadpage("main_page_home");
+	}
+
 	@FXML
 	void btn_write(ActionEvent event) {
-	Mainpage_Controller.getInstance().loadpage("member_board_register_page");
+		Mainpage_Controller.getInstance().loadpage("member_board_register_page");
 	}
-	 
 
 }
