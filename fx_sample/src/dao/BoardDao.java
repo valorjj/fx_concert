@@ -34,6 +34,26 @@ public class BoardDao {
 	}
 	// 메소드[CRUD]
 		// 1.게시물 등록 메소드
+	public boolean board_register(Board board){
+		String sql = "insert into board(b_title,b_writer,b_contents) values(?,?,?)";
+		try {
+			preparedStatement= connection.prepareStatement(sql);
+			preparedStatement.setString(1,board.getB_title());
+			preparedStatement.setString(2, board.getB_writer());
+			preparedStatement.setString(3, board.getB_contents());
+			preparedStatement.executeUpdate();
+			return true;
+			
+			
+		} catch (Exception e) {
+			
+		}return false;
+	}
+	
+	
+	
+	
+	
 		// 2.게시물 조회 메소드
 	public ObservableList<Board> boardlist() {
 		// 리스트 선언
@@ -75,6 +95,18 @@ public class BoardDao {
 		try {
 			preparedStatement=connection.prepareStatement(sql);
 			preparedStatement.setInt(1, b_no);
+			preparedStatement.executeUpdate();
+			return true;
+		} catch (Exception e) {} return false;
+	}
+	// 5. 게시물 수정 메소드
+	public boolean update(int b_no, String b_title, String b_contents ) {
+		String sql = "update board set b_title = ? , b_contents=? where b_no = ?";
+		try {
+			preparedStatement = connection.prepareStatement(sql);
+			preparedStatement.setString(1, b_title);
+			preparedStatement.setString(2, b_contents);
+			preparedStatement.setInt(3, b_no);
 			preparedStatement.executeUpdate();
 			return true;
 		} catch (Exception e) {} return false;
