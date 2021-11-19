@@ -42,12 +42,13 @@ public class ReservationDao {
 	// reservation 객체를 DB에 추가하는 메소드 (입력받은 데이터를 데이터 베이스에 저장합니다)
 	public boolean reservation_register(Reservation reservation) {
 
-		String sql = "insert into reservation(s_no, c_no, m_no, c_unique_no) values(?,?,?,?)";
+		String sql = "insert into reservation(s_no, c_no, m_no, r_unique_c_no) values(?,?,?,?)";
 		try {
 			preparedStatement = connection.prepareStatement(sql);
 			preparedStatement.setInt(1, reservation.getS_no());
 			preparedStatement.setInt(2, reservation.getC_no());
 			preparedStatement.setInt(3, reservation.getM_no());
+			preparedStatement.setInt(4, reservation.getR_unique_c_no());
 			preparedStatement.executeUpdate();
 			return true;
 

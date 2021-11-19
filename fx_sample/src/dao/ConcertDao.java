@@ -195,14 +195,85 @@ public class ConcertDao {
 	}
 
 
+	// 파이차트용 콘서트 자리별 석 전체좌석 호출 메소드
+	public ObservableList<Concert> r_seatlist(String c_title, String c_date, String c_time) {
+		ObservableList<Concert> seats = FXCollections.observableArrayList();
+		String sql = "select c_R_no from javafx_concert.concert where c_title=? and c_date=? and c_time =?";
+		try {
+			preparedStatement = connection.prepareStatement(sql);
+			preparedStatement.setString(1, c_title);
+			preparedStatement.setString(2, c_date);
+			preparedStatement.setString(3, c_time);
+			resultSet = preparedStatement.executeQuery();
+			if(resultSet.next()) {
+				Concert r_seat = new Concert(resultSet.getInt(1),0,0,0);
+				seats.add(r_seat);
+			}
+			return seats;
+		} catch (Exception e) {} return seats;
+	}
+		// 파이차트용 콘서트 자리별 S석 전체좌석 호출 메소드
+		public ObservableList<Concert> s_seatlist(String c_title, String c_date, String c_time) {
+			ObservableList<Concert> seats = FXCollections.observableArrayList();
+			String sql = "select c_S_no from javafx_concert.concert where c_title=? and c_date=? and c_time =?";
+			try {
+				preparedStatement = connection.prepareStatement(sql);
+				preparedStatement.setString(1, c_title);
+				preparedStatement.setString(2, c_date);
+				preparedStatement.setString(3, c_time);
+				resultSet = preparedStatement.executeQuery();
+				if(resultSet.next()) {
+					Concert s_seat = new Concert(0,resultSet.getInt(1),0,0);
+					seats.add(s_seat);
+				}
+				return seats;
+			} catch (Exception e) {} return seats;
+		}
+		// 파이차트용 콘서트 자리별 D석 전체좌석 호출 메소드
+		public ObservableList<Concert> d_seatlist(String c_title, String c_date, String c_time) {
+			ObservableList<Concert> seats = FXCollections.observableArrayList();
+			String sql = "select c_D_no from javafx_concert.concert where c_title=? and c_date=? and c_time =?";
+			try {
+				preparedStatement = connection.prepareStatement(sql);
+				preparedStatement.setString(1, c_title);
+				preparedStatement.setString(2, c_date);
+				preparedStatement.setString(3, c_time);
+				resultSet = preparedStatement.executeQuery();
+				if (resultSet.next()) {
+					Concert d_seat = new Concert(0,0,resultSet.getInt(1),0);
+					seats.add(d_seat);
+				}
+				return seats;
+			} catch (Exception e) {}return seats;
+		}
+		// 파이차트용 콘서트 자리별 e석 전체좌석 호출 메소드
+		public ObservableList<Concert> e_seatlist(String c_title, String c_date, String c_time) {
+			ObservableList<Concert> seats = FXCollections.observableArrayList();
+			String sql = "select c_E_no from javafx_concert.concert where c_title=? and c_date=? and c_time =?";
+			try {
+				preparedStatement = connection.prepareStatement(sql);
+				preparedStatement.setString(1, c_title);
+				preparedStatement.setString(2, c_date);
+				preparedStatement.setString(3, c_time);
+				resultSet = preparedStatement.executeQuery();
+				if(resultSet.next()) {
+					Concert e_seat = new Concert(0,0,0,resultSet.getInt(1));
+					seats.add(e_seat);
+				}
+				return seats;
+			} catch (Exception e) {} return seats;
+		}
+		
+	
 
-	public String get_concert_date(int c_no) {
 
-		String sql = "SELECT c_date FROM concert WHERE c_no=?";
+	public String get_concert_date(int c_unique_no) {
+ 
+		String sql = "select c_date from concert WHERE c_unique_no = ?";
 
 		try {
 			preparedStatement = connection.prepareStatement(sql);
-			preparedStatement.setInt(1, c_no);
+			preparedStatement.setInt(1, c_unique_no);
 			resultSet = preparedStatement.executeQuery();
 			if (resultSet.next()) {
 				return resultSet.getString(1);
@@ -430,7 +501,7 @@ public class ConcertDao {
 			resultSet = preparedStatement.executeQuery();
 			while (resultSet.next()) {
 				Concert concert = new Concert(resultSet.getInt(1), resultSet.getString(2), resultSet.getString(3),
-						resultSet.getString(4), resultSet.getString(5).split(" ")[0], resultSet.getString(6),
+						resultSet.getString(4), resultSet.getString(5), resultSet.getString(6),
 						resultSet.getInt(7), resultSet.getInt(8), resultSet.getInt(9), resultSet.getInt(10),
 						resultSet.getInt(11), resultSet.getInt(12), resultSet.getInt(13), resultSet.getInt(14),
 						resultSet.getInt(15));
@@ -438,81 +509,10 @@ public class ConcertDao {
 				concerts.add(concert);
 			}
 			return concerts;
-		} catch (Exception e) {
-		}
-		return concerts;
+		} catch (Exception e) {} return concerts;
 
 	}
 	
 	
-	// 파이차트용 콘서트 자리별 석 전체좌석 호출 메소드
-	public ObservableList<Concert> r_seatlist(String c_title, String c_date, String c_time) {
-		ObservableList<Concert> seats = FXCollections.observableArrayList();
-		String sql = "select c_R_no from javafx_concert.concert where c_title=? and c_date=? and c_time =?";
-		try {
-			preparedStatement = connection.prepareStatement(sql);
-			preparedStatement.setString(1, c_title);
-			preparedStatement.setString(2, c_date);
-			preparedStatement.setString(3, c_time);
-			resultSet = preparedStatement.executeQuery();
-			if(resultSet.next()) {
-				Concert r_seat = new Concert(resultSet.getInt(1));
-				seats.add(r_seat);
-			}
-			return seats;
-		} catch (Exception e) {} return seats;
-	}
-		// 파이차트용 콘서트 자리별 S석 전체좌석 호출 메소드
-		public ObservableList<Concert> s_seatlist(String c_title, String c_date, String c_time) {
-			ObservableList<Concert> seats = FXCollections.observableArrayList();
-			String sql = "select c_S_no from javafx_concert.concert where c_title=? and c_date=? and c_time =?";
-			try {
-				preparedStatement = connection.prepareStatement(sql);
-				preparedStatement.setString(1, c_title);
-				preparedStatement.setString(2, c_date);
-				preparedStatement.setString(3, c_time);
-				resultSet = preparedStatement.executeQuery();
-				if(resultSet.next()) {
-					Concert s_seat = new Concert(resultSet.getInt(1));
-					seats.add(s_seat);
-				}
-				return seats;
-			} catch (Exception e) {} return seats;
-		}
-		// 파이차트용 콘서트 자리별 e석 전체좌석 호출 메소드
-		public ObservableList<Concert> e_seatlist(String c_title, String c_date, String c_time) {
-			ObservableList<Concert> seats = FXCollections.observableArrayList();
-			String sql = "select c_E_no from javafx_concert.concert where c_title=? and c_date=? and c_time =?";
-			try {
-				preparedStatement = connection.prepareStatement(sql);
-				preparedStatement.setString(1, c_title);
-				preparedStatement.setString(2, c_date);
-				preparedStatement.setString(3, c_time);
-				resultSet = preparedStatement.executeQuery();
-				if(resultSet.next()) {
-					Concert e_seat = new Concert(resultSet.getInt(1));
-					seats.add(e_seat);
-				}
-				return seats;
-			} catch (Exception e) {} return seats;
-		}
-		
-		// 파이차트용 콘서트 자리별 D석 전체좌석 호출 메소드
-		public ObservableList<Concert> d_seatlist(String c_title, String c_date, String c_time) {
-			ObservableList<Concert> seats = FXCollections.observableArrayList();
-			String sql = "select c_D_no from javafx_concert.concert where c_title=? and c_date=? and c_time =?";
-			try {
-				preparedStatement = connection.prepareStatement(sql);
-				preparedStatement.setString(1, c_title);
-				preparedStatement.setString(2, c_date);
-				preparedStatement.setString(3, c_time);
-				resultSet = preparedStatement.executeQuery();
-				if (resultSet.next()) {
-					Concert d_seat = new Concert(resultSet.getInt(1));
-					seats.add(d_seat);
-				}
-				return seats;
-			} catch (Exception e) {}return seats;
-		}
 
 	}
