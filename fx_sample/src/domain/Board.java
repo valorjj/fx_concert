@@ -24,10 +24,15 @@ public class Board {
 		
 	}
 	// 게시물등록시 생성자
-
-
+	public Board(String b_title, String b_writer, String b_contents) {
+	
+		this.b_title = b_title;
+		this.b_writer = b_writer;
+		this.b_contents = b_contents;
+	}
 	
 	// 메소드
+	
 	public int getB_no() {return b_no;}
 	public void setB_no(int b_no) {this.b_no = b_no;}
 	public String getB_title() {return b_title;}

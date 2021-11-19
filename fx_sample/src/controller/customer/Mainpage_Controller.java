@@ -86,7 +86,7 @@ public class Mainpage_Controller implements Initializable {
 	// 버튼을 누르면 게시판으로 이동
 	@FXML
 	public void btn_board(ActionEvent event) {
-		loadpage("board");
+		loadpage("member_board_view_page");
 	}
 
 	@FXML
