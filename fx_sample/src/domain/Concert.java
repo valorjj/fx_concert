@@ -83,11 +83,21 @@ public class Concert {
 		this.c_unique_no = c_unique_no;
 	}
 
-	// 콘서트 타이틀 호출시 생성자
+	// 콘서트 정보 불러올때 생성자
 	public Concert(String c_title) {
 		this.c_title = c_title;
-
+		
+		
 	}
+	// 콘서트 전체 좌석 생성자
+	public Concert(int c_R_no, int c_S_no, int c_D_no , int c_E_no) {
+		this.c_R_no = c_R_no;
+		this.c_S_no = c_S_no;
+		this.c_D_no = c_D_no;
+		this.c_E_no = c_E_no;
+	}
+	
+	
 
 	public Concert(String c_title, String c_artist, String c_date, String c_time) {
 		super();
