@@ -62,7 +62,7 @@ public class Payment_Controller implements Initializable {
 	@FXML
 	void btn_cancel(ActionEvent event) {
 
-		Reservation_Home_Controller.getinstance().reservation_loadpage("reservation_page_seat_select");
+		Reservation_Home_Controller.getinstance().reservation_loadpage("reservation_page_seat_select_home");
 
 	}
 

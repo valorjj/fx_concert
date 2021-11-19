@@ -1,16 +1,53 @@
 package controller.customer;
 
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.ResourceBundle;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.layout.GridPane;
+import javafx.scene.shape.Rectangle;
 
 public class D_Seat_Controller implements Initializable {
-	
+
+	@FXML
+	private Rectangle left_block;
+
+	@FXML
+	private Rectangle right_block;
+
+	@FXML
+	private Rectangle top_block;
+
+	@FXML
+	private Rectangle bottom_block;
+
+	///////////////////////////////////////
+
+	@FXML
+	private Button btn_select_done;
+
+	@FXML
+	void btn_select_done(ActionEvent event) {
+
+		// 더 깔끔한 방법이 있다면 누가 알려주삼..
+
+		// 좌석 선택을 픽스 시킨다.
+		// static 을 통해서 모든 클래스가 공유
+		sum = sum + D_count;
+		Reservation_Seat_Select_Controller.seat_total = Reservation_Seat_Select_Controller.seat_total - sum;
+		Reservation_Seat_Select_Controller.is_D_set = true;
+		btn_disable2();
+
+	}
+
+	////////////////////////////////////
+
 	private static D_Seat_Controller instance;
 
 	public static D_Seat_Controller get_instance() {
@@ -25,24 +62,23 @@ public class D_Seat_Controller implements Initializable {
 	@FXML
 	private GridPane gridpane_D;
 
-	// 배열의 갯수는 관리자가 입력한 값을 대입합니다 (매니저와 합칠 시)
+	int seat_limit = Reservation_Seat_Select_Controller.how_many_person;
 
-	private int seat_limit = 4; // 한 예약건에 대해서 총 4자리 까지만 에약할 수 있음
-	// 4번이 클릭하면 더 이상 클릭을 못하게 제한을 두어야함
+	int sum = 0;
+	static ArrayList<Button> D_buttons = new ArrayList<>();
+
+	private static int manager_input_D_seat_no = 50;
+	private static int[] D_status_check = new int[manager_input_D_seat_no];
 	static int D_count = 0;
-	// 100개 입력하면 오류가 납니다.
-
-	// 적당히 50좌석까지를 마지노선으로 잡으면 보기에도 괜찮고 오류도 없습니다.
-	static int manager_input_R_seat_no = 50;
-	static int[] status_check = new int[50]; // 여기도 DB 에서 가져와야해 근데 이부분에 꽤 어렵겠는데???? 지금 R S D E 로 나뉘어져 있는데 seat db 에서는
-												// 한번에 쭉 이어져 있으니 구분을 잘 해야해
-	/* 상태가 0이면 예약 가능, 상태가 1이면 현재 선택, 상태가 2이면 이미 예약 완료되어 선택 불가능 */
 
 	@FXML
 	private Button btn_clear;
 
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
+
+		left_block.setVisible(false);
+		bottom_block.setVisible(false);
 
 		D_seat_create();
 
@@ -53,32 +89,55 @@ public class D_Seat_Controller implements Initializable {
 		int row = 0;
 		int col = 0;
 
-		for (int i = 0; i < manager_input_R_seat_no; i++) {
+		for (int i = 0; i < manager_input_D_seat_no; i++) {
 
 			Button button = new Button();
 			button.setPrefSize(42, 42);
 			button.setId(i + "");
 			button.setText((i + 1) + "");
 
+			int button_status_check = getD_status_check()[i];
+			switch (button_status_check) {
+			case 0: // 좌석이 예약 가능한 상태
+				break;
+			case 1: // 현재 선택한 좌석
+				button.setStyle("-fx-background-color: green");
+				break;
+			case 2: // 예약이 불가능한 좌석 (이미 다른 사람이 예약했음)
+				button.setStyle("-fx-background-color: red");
+				button.setDisable(true);
+				break;
+			}
+
 			button.setOnAction((ActionEvent) -> {
 
-				int button_status_check = status_check[Integer.parseInt(button.getId())];
-				switch (button_status_check) {
+				++D_count;
+
+				int button_status_check2 = getD_status_check()[Integer.parseInt(button.getId())];
+				switch (button_status_check2) {
 				case 0: // 좌석이 예약 가능한 상태
-					status_check[Integer.parseInt(button.getId())] = 1;
+					getD_status_check()[Integer.parseInt(button.getId())] = 1;
 					button.setStyle("-fx-background-color: green");
-				case 1: // 현재 선택한 좌석
-						// 아무것도 하지 않습니다.
+					break;
+				case 1:
+					button.setStyle("-fx-background-color: green");
+					break;
 
 				case 2: // 예약이 불가능한 좌석 (이미 다른 사람이 예약했음)
 					button.setStyle("-fx-background-color: red");
 					button.setDisable(true);
+					break;
+				}
+
+				if (D_count == seat_limit) {
+					btn_disable();
 
 				}
-				status_check[Integer.parseInt(button.getId())] = 1;
-				button.setStyle("-fx-background-color: green");
-
 			});
+
+			D_buttons.add(button);
+
+			sum = sum + D_count;
 
 			if (i % 10 == 0) {
 				row = 0;
@@ -100,14 +159,53 @@ public class D_Seat_Controller implements Initializable {
 	@FXML
 	public void btn_clear(ActionEvent event) {
 
-		for (int i = 0; i < manager_input_R_seat_no; i++) {
-			if (status_check[i] == 1) {
-				status_check[i] = 0;
+		Reservation_Seat_Select_Controller.how_many_person = 0;
+
+		for (int i = 0; i < manager_input_D_seat_no; i++) {
+			if (getD_status_check()[i] == 1) {
+				getD_status_check()[i] = 0;
 			}
 		}
 
 		D_seat_create();
 
+	}
+
+	public void btn_disable() {
+
+		Alert alert = new Alert(AlertType.INFORMATION);
+		alert.setHeaderText("가능한 모든 좌석을 선택하셨습니다.");
+		alert.showAndWait();
+		Reservation_Seat_Select_Controller.seat_total = 0;
+
+		for (Button button : D_buttons) {
+			button.setDisable(true);
+		}
+
+	}
+
+	public void btn_disable2() {
+
+		Alert alert = new Alert(AlertType.INFORMATION);
+		alert.setHeaderText("D석 좌석 선택이 완료되었습니다. ");
+		alert.showAndWait();
+		for (Button button : D_buttons) {
+			button.setDisable(true);
+		}
+
+		Alert alert2 = new Alert(AlertType.INFORMATION);
+		alert2.setHeaderText("총[" + sum + "]개 의 좌석이 선택되었습니다.\n" + (Reservation_Seat_Select_Controller.seat_total - sum)
+				+ "개 좌석을 선택할 수 있습니다. ");
+		alert2.showAndWait();
+
+	}
+
+	public static int[] getD_status_check() {
+		return D_status_check;
+	}
+
+	public static void setD_status_check(int[] d_status_check) {
+		D_status_check = d_status_check;
 	}
 
 }

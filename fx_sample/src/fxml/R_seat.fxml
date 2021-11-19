@@ -11,19 +11,22 @@
 	xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1"
 	fx:controller="controller.customer.R_Seat_Controller">
 	<children>
-		<Rectangle arcHeight="5.0" arcWidth="5.0" fill="#f2f2f2"
-			height="570.0" layoutX="700.0" layoutY="15.0" stroke="BLACK"
-			strokeType="INSIDE" width="55.0" AnchorPane.rightAnchor="15.0" />
-		<Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE"
-			height="55.0" layoutX="77.0" layoutY="15.0" stroke="BLACK"
-			strokeType="INSIDE" width="647.0" AnchorPane.leftAnchor="77.0"
-			AnchorPane.rightAnchor="76.0" />
-		<Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE"
-			height="570.0" layoutX="14.0" layoutY="15.0" stroke="BLACK"
-			strokeType="INSIDE" width="55.0" AnchorPane.leftAnchor="15.0" />
-		<Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE"
-			height="55.0" layoutX="80.0" layoutY="535.0" stroke="BLACK"
-			strokeType="INSIDE" width="643.0" AnchorPane.bottomAnchor="15.0" />
+		<Rectangle fx:id="right_block" arcHeight="5.0"
+			arcWidth="5.0" fill="WHITE" height="570.0" layoutX="700.0"
+			layoutY="15.0" stroke="BLACK" strokeType="INSIDE" width="55.0"
+			AnchorPane.rightAnchor="15.0" />
+		<Rectangle fx:id="top_block" arcHeight="5.0"
+			arcWidth="5.0" fill="WHITE" height="55.0" layoutX="77.0"
+			layoutY="15.0" stroke="BLACK" strokeType="INSIDE" width="647.0"
+			AnchorPane.leftAnchor="77.0" AnchorPane.rightAnchor="76.0" />
+		<Rectangle fx:id="left_block" arcHeight="5.0" arcWidth="5.0"
+			fill="WHITE" height="570.0" layoutX="14.0" layoutY="15.0"
+			stroke="BLACK" strokeType="INSIDE" width="55.0"
+			AnchorPane.leftAnchor="15.0" />
+		<Rectangle fx:id="bottom_block" arcHeight="5.0"
+			arcWidth="5.0" fill="WHITE" height="55.0" layoutX="80.0"
+			layoutY="535.0" stroke="BLACK" strokeType="INSIDE" width="643.0"
+			AnchorPane.bottomAnchor="15.0" />
 		<GridPane fx:id="gridpane_R" layoutX="168.0" layoutY="100.0"
 			prefHeight="450.0" prefWidth="467.0">
 			<columnConstraints>
@@ -69,5 +72,8 @@
 			mnemonicParsing="false" onAction="#btn_clear" prefHeight="30.0"
 			prefWidth="120.0" text="CLEAR" AnchorPane.leftAnchor="75.0"
 			AnchorPane.topAnchor="75.0" />
+		<Button fx:id="btn_select_done" layoutX="603.0" layoutY="75.0"
+			mnemonicParsing="false" onAction="#btn_select_done" prefHeight="30.0"
+			prefWidth="120.0" text="완료" />
 	</children>
 </AnchorPane>

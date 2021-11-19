@@ -24,7 +24,7 @@ public class ConcertDao {
 	public ConcertDao() {
 		try {
 			Class.forName("com.mysql.cj.jdbc.Driver");
-			connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/javafx_concert?serverTimezone=UTC",
+			connection = DriverManager.getConnection("jdbc:mysql://localhost:3307/javafx_concert?serverTimezone=UTC",
 					"root", "1234");
 		} catch (Exception e) {
 			System.out.println("DB연동 실패 : " + e);
@@ -193,13 +193,13 @@ public class ConcertDao {
 
 	}
 
-	public String get_concert_date(int c_no) {
+	public String get_concert_date(int c_unique_no) {
 
-		String sql = "SELECT c_date FROM concert WHERE c_no=?";
+		String sql = "SELECT distinct c_date FROM concert WHERE c_unique_no=?";
 
 		try {
 			preparedStatement = connection.prepareStatement(sql);
-			preparedStatement.setInt(1, c_no);
+			preparedStatement.setInt(1, c_unique_no);
 			resultSet = preparedStatement.executeQuery();
 			if (resultSet.next()) {
 				return resultSet.getString(1);

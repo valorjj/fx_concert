@@ -36,7 +36,8 @@ public class Login_Controller implements Initializable {
 		try {
 			Parent parent = FXMLLoader.load(getClass().getResource("/fxml/" + page + ".fxml"));
 			login_page_boarderpane.setCenter(parent);
-		} catch (Exception e) {}
+		} catch (Exception e) {
+		}
 
 	}
 
