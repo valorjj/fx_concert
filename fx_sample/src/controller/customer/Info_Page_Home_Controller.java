@@ -28,6 +28,13 @@ import javafx.stage.Stage;
 
 public class Info_Page_Home_Controller implements Initializable {
 
+	/*
+	 * 회원 정보를 불러오는 페이지 입니다. 기본적인 회원 정보, 그리고 예약 내역을 불러오는 창입니다. 현재 각종 정보가 DB에 흩어져 있어서
+	 * 콘서트 정보, 회원 정보를 불러서 한 table 로 그냥 합치는 것은 불가능합니다. 대신 sql 쿼리 문에서 inner join 을
+	 * 사용해서 테이블을 마치 한개로 보이게끔 합칠 수 있는 것 같으니 몇가지 시도를 해볼 예정입니다.
+	 * 
+	 */
+
 	public static Concert concert;
 
 	@FXML 
@@ -68,7 +75,8 @@ public class Info_Page_Home_Controller implements Initializable {
 
 		int m_no = MemberDao.getMemberDao().get_m_no_member(Login_Controller.getInstance().get_login_id());
 
-		ObservableList<Concert> member_reservation_history_concert = ReservationDao.get_reservationDao().get_concert_from_reservation(m_no);
+		ObservableList<Concert> member_reservation_history_concert = ReservationDao.get_reservationDao()
+				.get_concert_from_reservation(m_no);
 
 		TableColumn tc = tableview_history.getColumns().get(0);
 		tc.setCellValueFactory(new PropertyValueFactory<>("c_title"));
@@ -122,6 +130,7 @@ public class Info_Page_Home_Controller implements Initializable {
 			Parent parent = FXMLLoader.load(getClass().getResource("/fxml/" + page + ".fxml"));
 			personal_info_borderpane.setCenter(parent);
 		} catch (Exception e) {
+			e.printStackTrace();
 		}
 	}
 

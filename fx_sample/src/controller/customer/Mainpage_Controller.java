@@ -19,6 +19,10 @@ public class Mainpage_Controller implements Initializable {
 
 	//////////////////////////////////////////////////////////////////
 
+	int concert_pop_up = 1;
+
+	//////////////////////////////////////////////////////////////////
+
 	@FXML
 	private BorderPane main_page_boardpane;
 	@FXML
@@ -44,7 +48,7 @@ public class Mainpage_Controller implements Initializable {
 
 	public static Mainpage_Controller getInstance() {
 		return instance;
-	}	
+	}
 
 	public Mainpage_Controller() {
 		instance = this;
@@ -55,8 +59,8 @@ public class Mainpage_Controller implements Initializable {
 	// 초기 화면을 설정하는 메소드
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
-		loadpage("main_page_home");
-		
+		loadpage("main_page_home_concert1");
+		concert_pop_up++;
 	}
 
 	///////////////////////////////////////////////////////////////////
@@ -80,7 +84,7 @@ public class Mainpage_Controller implements Initializable {
 	// 버튼을 누르면 내 정보 페이지로 이동
 	@FXML
 	public void btn_myinfo(ActionEvent event) {
-		loadpage("personal_info_page");
+		loadpage("personal_page_info");
 	}
 
 	// 버튼을 누르면 게시판으로 이동
@@ -105,7 +109,19 @@ public class Mainpage_Controller implements Initializable {
 	// 버튼을 누르면 가장 첫 페이지로 이동
 	@FXML
 	public void btn_home(ActionEvent event) {
-		loadpage("main_page_home");
+
+		if (concert_pop_up == 1) {
+			loadpage("main_page_home_concert1");
+			concert_pop_up++;
+		} else if (concert_pop_up == 2) {
+			loadpage("main_page_home_concert2");
+			concert_pop_up++;
+		} else if (concert_pop_up == 3) {
+			loadpage("main_page_home_concert3");
+			concert_pop_up = 1;
+
+		}
+
 	}
 
 	// 인수로 전달된 페이지로 이동한다.
