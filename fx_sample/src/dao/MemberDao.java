@@ -113,11 +113,61 @@ public class MemberDao {
 		
 
 	// 5.회원수정 메소드
+	public boolean update(String m_id,String m_pw ,String m_name, String m_email) {
+		// 1.SQL 작성
+		String sql = "update member set m_pw = ? , m_name = ? , m_email =? where m_id=?";
+		try {
+			preparedstatement = connection.prepareStatement(sql);
+			preparedstatement.setString(1, m_pw);
+			preparedstatement.setString(2, m_name);
+			preparedstatement.setString(3, m_email);
+			preparedstatement.setString(4, m_id);
+			preparedstatement.executeUpdate();
+			return true;
+		} catch (Exception e) {} return false;
+	}
 	
 	// 6.회원탈퇴 메소드
+	public boolean delete(String loginid) {
+		// 1. SQL 작성
+		String sql = "delete from member where m_id=?";
+		try {
+			preparedstatement = connection.prepareStatement(sql);
+			preparedstatement.setString(1, loginid);
+			preparedstatement.executeUpdate();
+			return true;
+		} catch (Exception e) {} return false;
+	}
 	
 	// 7.회원조회 메소드
-	
+	// id 만 가져오기
+	public Member get_id_member(String loginid) {
+		String sql = "SELECT * FROM member where m_id=?";
+		try {
+			preparedstatement = connection.prepareStatement(sql);
+			preparedstatement.setString(1, loginid);
+			resultSet = preparedstatement.executeQuery();
+			if (resultSet.next()) {
+				Member member = new Member(resultSet.getString(2),"",
+												resultSet.getString(4),
+												resultSet.getString(5),
+												resultSet.getInt(6),
+												resultSet.getString(7));
+												return member;
+			} else {return null;}
+		} catch (Exception e) {} return null; //
+	}
+	// 회원번호 리턴하는 메소드
+	public int get_m_no_member(String id) {
+		String sql = "SELECT m_no FROM member where m_id=?";
+		try {
+			preparedstatement = connection.prepareStatement(sql);
+			preparedstatement.setString(1, id);
+			resultSet = preparedstatement.executeQuery();
+			if (resultSet.next()) {return resultSet.getInt(1);}
+			else {return 0;}
+			} catch (Exception e) {} return 0;
+	}
 	// 8. 이메일 전송 메소드
 	public void sendmail(String tomail, String msg) {
 		// 보낸사람 정보 
@@ -152,34 +202,5 @@ public class MemberDao {
 	}
 	
 
-	// id 만 가져오기
-
-	public Member get_id_member(String loginid) {
-		String sql = "SELECT * FROM member where m_id=?";
-		try {
-			preparedstatement = connection.prepareStatement(sql);
-			preparedstatement.setString(1, loginid);
-			resultSet = preparedstatement.executeQuery();
-			if (resultSet.next()) {
-				Member member = new Member(resultSet.getString(2),"",
-											resultSet.getString(4),
-											resultSet.getString(5),
-											resultSet.getInt(6),
-											resultSet.getString(7));
-											return member;
-			} else {return null;}
-		} catch (Exception e) {} return null; //
-	}
 	
-	// 회원번호 리턴하는 메소드
-	public int get_m_no_member(String id) {
-		String sql = "SELECT m_no FROM member where m_id=?";
-		try {
-			preparedstatement = connection.prepareStatement(sql);
-			preparedstatement.setString(1, id);
-			resultSet = preparedstatement.executeQuery();
-			if (resultSet.next()) {return resultSet.getInt(1);}
-			else {return 0;}
-		} catch (Exception e) {} return 0;
-	}
 }

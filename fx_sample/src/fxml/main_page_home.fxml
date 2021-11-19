@@ -7,28 +7,37 @@
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="anchorpane_main_page" prefHeight="720.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.customer.Main_Home_Controller">
+<AnchorPane fx:id="anchorpane_main_page" prefHeight="720.0"
+	prefWidth="1280.0" xmlns="http://javafx.com/javafx/17"
+	xmlns:fx="http://javafx.com/fxml/1"
+	fx:controller="controller.customer.Main_Home_Controller">
 	<children>
-		<Label id="lbl_concert_title" fx:id="lbl_title" layoutX="702.0" layoutY="180.0" prefHeight="70.0" prefWidth="311.0" text="공연 이름">
+		<Label id="lbl_concert_title" fx:id="lbl_title" layoutX="702.0"
+			layoutY="180.0" prefHeight="70.0" prefWidth="311.0" text="공연 이름">
 			<font>
 				<Font size="18.0" />
 			</font>
 		</Label>
-		<Label id="lbl_artist" fx:id="lbl_artist" layoutX="702.0" layoutY="279.0" prefHeight="56.0" prefWidth="504.0" text="아티스트">
+		<Label id="lbl_artist" fx:id="lbl_artist" layoutX="702.0"
+			layoutY="279.0" prefHeight="56.0" prefWidth="504.0" text="아티스트">
 			<font>
 				<Font size="18.0" />
 			</font>
 		</Label>
-		<Label id="lbl_concert_date" fx:id="lbl_date" layoutX="702.0" layoutY="372.0" prefHeight="56.0" prefWidth="504.0" text="공연 날짜">
+		<Label id="lbl_concert_date" fx:id="lbl_date" layoutX="702.0"
+			layoutY="372.0" prefHeight="56.0" prefWidth="504.0" text="공연 날짜">
 			<font>
 				<Font size="18.0" />
 			</font>
 		</Label>
-		<BorderPane fx:id="main_page_image_borderpane" layoutX="75.0" layoutY="100.0" prefHeight="500.0" prefWidth="500.0">
+		<BorderPane fx:id="main_page_image_borderpane"
+			layoutX="75.0" layoutY="100.0" prefHeight="500.0" prefWidth="500.0">
 			<center>
-				<AnchorPane fx:id="image_anchorpane" prefHeight="500.0" prefWidth="500.0" BorderPane.alignment="CENTER">
+				<AnchorPane fx:id="image_anchorpane" prefHeight="500.0"
+					prefWidth="500.0" BorderPane.alignment="CENTER">
 					<children>
-						<ImageView fx:id="imageview" fitHeight="500.0" fitWidth="500.0" pickOnBounds="true" preserveRatio="true">
+						<ImageView fx:id="imageview" fitHeight="500.0"
+							fitWidth="500.0" pickOnBounds="true" preserveRatio="true">
 							<image>
 								<Image url="@../images/1.png" />
 							</image>
@@ -42,7 +51,8 @@
 				<Font size="15.0" />
 			</font>
 		</Label>
-		<Label fx:id="lbl_ID" layoutX="988.0" layoutY="668.0" text="회원 ID">
+		<Label fx:id="lbl_ID" layoutX="988.0" layoutY="668.0"
+			text="회원 ID">
 			<font>
 				<Font size="15.0" />
 			</font>

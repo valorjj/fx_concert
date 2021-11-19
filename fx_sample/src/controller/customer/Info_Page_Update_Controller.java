@@ -3,12 +3,14 @@ package controller.customer;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-import controller.manager.Manager_Main_Controller;
 import dao.MemberDao;
 import domain.Member;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.shape.Line;
 import javafx.fxml.FXML;
@@ -24,6 +26,7 @@ public class Info_Page_Update_Controller implements Initializable {
 		txt_email.setText(member.getM_email());
 		txt_password.setText(member.getM_pw());
 		txt_id.setEditable(false);
+		
 	}
 
     @FXML
@@ -63,7 +66,7 @@ public class Info_Page_Update_Controller implements Initializable {
     private TextField txt_name;
 
     @FXML
-    private TextField txt_password;
+    private PasswordField txt_password;
 
     @FXML
     private Line update_line;
@@ -77,7 +80,17 @@ public class Info_Page_Update_Controller implements Initializable {
 
 	@FXML
 	public void update(ActionEvent event) {
-		
+		boolean result = MemberDao.getMemberDao().update(txt_id.getText(),txt_password.getText(),txt_name.getText(), txt_email.getText());
+		Alert alert = new Alert(AlertType.INFORMATION);
+		if(result) {
+			alert.setHeaderText("회원정보 수정완료");
+			alert.showAndWait();
+			btn_update.getScene().getWindow().hide();
+			Mainpage_Controller.getInstance().loadpage("personal_info_page");
+		}else {
+			alert.setHeaderText("회원정보 수정실패");
+			alert.showAndWait();
+		}
 		
 	}
 
