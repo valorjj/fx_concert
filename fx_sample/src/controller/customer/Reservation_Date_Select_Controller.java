@@ -32,7 +32,7 @@ public class Reservation_Date_Select_Controller implements Initializable {
 	// DB 에는 등록하지는 않지만 유저가 선택한 정보를 static 영역에 저장합니다.
 	static int user_selected_day = 0;
 	static String user_selected_date;
-	static int user_selected_time = 0;
+	static String user_selected_time;
 
 	// 버튼 상태를 제어하는 스위치 2개
 	private boolean switch_2pm_btn = true;
@@ -311,7 +311,7 @@ public class Reservation_Date_Select_Controller implements Initializable {
 		if (optional.get() == ButtonType.OK) {
 			Alert alert2 = new Alert(AlertType.INFORMATION);
 
-			if (user_selected_time != 0 && user_selected_day != 0) {
+			if (!user_selected_time.equals("0") && user_selected_day != 0) {
 				alert2.setHeaderText("좌석 선택 페이지로 이동합니다.");
 				alert2.showAndWait();
 				Reservation_Home_Controller.getinstance().reservation_loadpage("reservation_page_seat_select");
@@ -330,7 +330,7 @@ public class Reservation_Date_Select_Controller implements Initializable {
 	public void btn_2pm(ActionEvent event) {
 		if (switch_2pm_btn) {
 			/* 버튼 아래 위치한 레이블에 잔여 좌석을 알려줍니다. */
-			user_selected_time = 2;
+			user_selected_time = 2 + "시";
 
 			int R_remain = ConcertDao.getConcertDao().get_remaining_seat_R(user_selected_date, user_selected_time);
 			lbl_R_remaining.setText(R_remain + "");
@@ -348,7 +348,7 @@ public class Reservation_Date_Select_Controller implements Initializable {
 			setSwitch_2pm_btn(false);
 
 		} else {
-			user_selected_time = 0;
+			user_selected_time = "";
 			lbl_R_remaining.setText("");
 			lbl_S_remaining.setText("");
 			lbl_D_remaining.setText("");
@@ -363,7 +363,7 @@ public class Reservation_Date_Select_Controller implements Initializable {
 	public void btn_6pm(ActionEvent event) {
 		if (switch_6pm_btn) {
 
-			user_selected_time = 6;
+			user_selected_time = 6 + "시";
 
 			int R_remain = ConcertDao.getConcertDao().get_remaining_seat_R(user_selected_date, user_selected_time);
 			lbl_R_remaining.setText(R_remain + "");
@@ -382,7 +382,7 @@ public class Reservation_Date_Select_Controller implements Initializable {
 			setSwitch_6pm_btn(false);
 
 		} else {
-			user_selected_time = 0;
+			user_selected_time = "";
 			lbl_R_remaining.setText("");
 			lbl_S_remaining.setText("");
 			lbl_D_remaining.setText("");
@@ -408,7 +408,7 @@ public class Reservation_Date_Select_Controller implements Initializable {
 		this.switch_6pm_btn = switch_6pm_btn;
 	}
 
-	public static void setUser_time_select(int user_time_select) {
+	public static void setUser_time_select(String user_time_select) {
 		user_selected_time = user_time_select;
 	}
 

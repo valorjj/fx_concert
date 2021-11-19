@@ -21,7 +21,7 @@
 				<Font size="15.0" />
 			</font>
 		</Label>
-		<Button id="btn_1" fx:id="btn_S_select" layoutX="62.0" layoutY="342.0" mnemonicParsing="false" onAction="#btn_S_select" prefHeight="43.0" prefWidth="246.0" text="S석" />
+		<Button id="btn_1" fx:id="btn_S_select" layoutX="62.0" layoutY="341.0" mnemonicParsing="false" onAction="#btn_S_select" prefHeight="43.0" prefWidth="246.0" text="S석" />
 		<Label fx:id="lbl_S_remain" layoutX="78.0" layoutY="354.0" text="잔여">
 			<font>
 				<Font size="15.0" />
@@ -32,7 +32,7 @@
 				<Font size="15.0" />
 			</font>
 		</Label>
-		<Button id="btn_1" fx:id="btn_D_select" layoutX="62.0" layoutY="407.0" mnemonicParsing="false" onAction="#btn_D_select" prefHeight="43.0" prefWidth="246.0" text="D석" />
+		<Button id="btn_1" fx:id="btn_D_select" layoutX="62.0" layoutY="406.0" mnemonicParsing="false" onAction="#btn_D_select" prefHeight="43.0" prefWidth="246.0" text="D석" />
 		<Label fx:id="lbl_D_remain" layoutX="78.0" layoutY="419.0" text="잔여">
 			<font>
 				<Font size="15.0" />
@@ -43,7 +43,7 @@
 				<Font size="15.0" />
 			</font>
 		</Label>
-		<Button id="btn_1" fx:id="btn_E_select" layoutX="62.0" layoutY="474.0" mnemonicParsing="false" onAction="#btn_E_select" prefHeight="43.0" prefWidth="246.0" text="E석" />
+		<Button id="btn_1" fx:id="btn_E_select" layoutX="62.0" layoutY="473.0" mnemonicParsing="false" onAction="#btn_E_select" prefHeight="43.0" prefWidth="246.0" text="E석" />
 		<Label fx:id="lbl_E_remain" layoutX="78.0" layoutY="486.0" text="잔여">
 			<font>
 				<Font size="15.0" />
@@ -54,13 +54,14 @@
 				<Font size="15.0" />
 			</font>
 		</Label>
-		<Button id="btn_02" fx:id="btn_payment" layoutX="63.0" layoutY="548.0" mnemonicParsing="false" onAction="#btn_payment" prefHeight="53.0" prefWidth="244.0" text="결제" />
+		<Button id="btn_02" fx:id="btn_payment" layoutX="63.0" layoutY="561.0" mnemonicParsing="false" onAction="#btn_payment" prefHeight="53.0" prefWidth="244.0" text="결제" />
 		<Button id="btn_03" fx:id="btn_cancel" layoutX="63.0" layoutY="623.0" mnemonicParsing="false" onAction="#btn_cancel" prefHeight="57.0" prefWidth="112.0" text="이전" />
 		<Button id="btn_03" fx:id="btn_reset" layoutX="195.0" layoutY="623.0" mnemonicParsing="false" onAction="#btn_reset" prefHeight="57.0" prefWidth="112.0" text="리셋" />
-		<BorderPane fx:id="borderpane_payment" layoutX="370.0" layoutY="56.0" prefHeight="600.0" prefWidth="800.0">
-         <center>
-            <AnchorPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER" />
-         </center></BorderPane>
+		<BorderPane fx:id="borderpane_payment" layoutX="423.0" layoutY="54.0" prefHeight="600.0" prefWidth="800.0" AnchorPane.bottomAnchor="55.0" AnchorPane.rightAnchor="55.0" AnchorPane.topAnchor="55.0">
+			<center>
+				<AnchorPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER" />
+			</center>
+		</BorderPane>
 		<Button fx:id="btn_how_many_1" layoutX="78.0" layoutY="214.0" mnemonicParsing="false" onAction="#btn_how_many_1" prefHeight="35.0" prefWidth="35.0" text="1">
 			<font>
 				<Font size="18.0" />
@@ -81,5 +82,6 @@
 				<Font size="18.0" />
 			</font>
 		</Button>
+		<Button fx:id="btn_done" layoutX="159.0" layoutY="528.0" mnemonicParsing="false" onAction="#btn_done" text="선택완료" />
 	</children>
 </AnchorPane>

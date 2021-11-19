@@ -35,12 +35,7 @@ public class D_Seat_Controller implements Initializable {
 	@FXML
 	void btn_select_done(ActionEvent event) {
 
-		// 더 깔끔한 방법이 있다면 누가 알려주삼..
-
-		// 좌석 선택을 픽스 시킨다.
-		// static 을 통해서 모든 클래스가 공유
-		sum = sum + D_count;
-		Reservation_Seat_Select_Controller.seat_total = Reservation_Seat_Select_Controller.seat_total - sum;
+		Reservation_Seat_Select_Controller.seat_total = Reservation_Seat_Select_Controller.seat_total - D_count;
 		Reservation_Seat_Select_Controller.is_D_set = true;
 		btn_disable2();
 
@@ -130,14 +125,17 @@ public class D_Seat_Controller implements Initializable {
 				}
 
 				if (D_count == seat_limit) {
+					Reservation_Seat_Select_Controller.is_R_set = true;
+					Reservation_Seat_Select_Controller.is_S_set = true;
+					Reservation_Seat_Select_Controller.is_D_set = true;
+					Reservation_Seat_Select_Controller.is_E_set = true;
+					btn_select_done.setVisible(false);
 					btn_disable();
 
 				}
 			});
 
 			D_buttons.add(button);
-
-			sum = sum + D_count;
 
 			if (i % 10 == 0) {
 				row = 0;
@@ -159,7 +157,10 @@ public class D_Seat_Controller implements Initializable {
 	@FXML
 	public void btn_clear(ActionEvent event) {
 
-		Reservation_Seat_Select_Controller.how_many_person = 0;
+		// 선택한 좌석 수 초기화
+		D_count = 0;
+
+		Reservation_Seat_Select_Controller.seat_total = Reservation_Seat_Select_Controller.how_many_person;
 
 		for (int i = 0; i < manager_input_D_seat_no; i++) {
 			if (getD_status_check()[i] == 1) {

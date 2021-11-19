@@ -253,13 +253,13 @@ public class ConcertDao {
 
 	}
 
-	public int get_remaining_seat_R(String date, int time) {
-		// 특정 날짜, 특정 시간의 콘서트 정보를 불러와야한다.
+	public int get_remaining_seat_R(String date, String time) {
+		// 특정 날짜, 특정 시간의 콘서트 번호를 불러와야한다.
 		String sql = "SELECT c_R_no FROM concert WHERE c_date=? and c_time=?";
 		try {
 			preparedStatement = connection.prepareStatement(sql);
 			preparedStatement.setString(1, date);
-			preparedStatement.setInt(2, time);
+			preparedStatement.setString(2, time);
 			resultSet = preparedStatement.executeQuery();
 			if (resultSet.next()) {
 				return resultSet.getInt(1);
@@ -270,13 +270,13 @@ public class ConcertDao {
 
 	}
 
-	public int get_remaining_seat_S(String date, int time) {
+	public int get_remaining_seat_S(String date, String time) {
 		// 특정 날짜, 특정 시간의 콘서트 정보를 불러와야한다.
 		String sql = "SELECT c_S_no FROM concert WHERE c_date=? and c_time=?";
 		try {
 			preparedStatement = connection.prepareStatement(sql);
 			preparedStatement.setString(1, date);
-			preparedStatement.setInt(2, time);
+			preparedStatement.setString(2, time);
 			resultSet = preparedStatement.executeQuery();
 			if (resultSet.next()) {
 				return resultSet.getInt(1);
@@ -287,13 +287,13 @@ public class ConcertDao {
 
 	}
 
-	public int get_remaining_seat_D(String date, int time) {
+	public int get_remaining_seat_D(String date, String time) {
 		// 특정 날짜, 특정 시간의 콘서트 정보를 불러와야한다.
 		String sql = "SELECT c_D_no FROM concert WHERE c_date=? and c_time=?";
 		try {
 			preparedStatement = connection.prepareStatement(sql);
 			preparedStatement.setString(1, date);
-			preparedStatement.setInt(2, time);
+			preparedStatement.setString(2, time);
 			resultSet = preparedStatement.executeQuery();
 			if (resultSet.next()) {
 				return resultSet.getInt(1);
@@ -304,13 +304,13 @@ public class ConcertDao {
 
 	}
 
-	public int get_remaining_seat_E(String date, int time) {
+	public int get_remaining_seat_E(String date, String time) {
 		// 특정 날짜, 특정 시간의 콘서트 정보를 불러와야한다.
 		String sql = "SELECT c_E_no FROM concert WHERE c_date=? and c_time=?";
 		try {
 			preparedStatement = connection.prepareStatement(sql);
 			preparedStatement.setString(1, date);
-			preparedStatement.setInt(2, time);
+			preparedStatement.setString(2, time);
 			resultSet = preparedStatement.executeQuery();
 			if (resultSet.next()) {
 				return resultSet.getInt(1);
@@ -411,6 +411,32 @@ public class ConcertDao {
 		}
 		return null;
 
+	}
+
+	public Concert get_concert_instance_by_date(String date, String time) {
+
+		String sql = "select * from concert where c_date=? and c_time=?";
+
+		try {
+
+			preparedStatement = connection.prepareStatement(sql);
+			preparedStatement.setString(1, date);
+			preparedStatement.setString(2, time);
+			resultSet = preparedStatement.executeQuery();
+
+			if (resultSet.next()) {
+				Concert concert = new Concert(resultSet.getInt(1), resultSet.getString(2), resultSet.getString(3),
+						resultSet.getString(4), resultSet.getString(5), resultSet.getString(6), resultSet.getInt(7),
+						resultSet.getInt(8), resultSet.getInt(9), resultSet.getInt(10), resultSet.getInt(11),
+						resultSet.getInt(12), resultSet.getInt(13), resultSet.getInt(14), resultSet.getInt(15));
+				return concert;
+			}
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
+		return null;
 	}
 
 }

@@ -14,6 +14,8 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.shape.Rectangle;
 
 public class E_Seat_Controller implements Initializable {
+	
+	/////////////////////////////////////////////////////////
 
 	@FXML
 	private Rectangle left_block;
@@ -35,8 +37,7 @@ public class E_Seat_Controller implements Initializable {
 	@FXML
 	void btn_select_done(ActionEvent event) {
 
-		sum = sum + E_count;
-		Reservation_Seat_Select_Controller.seat_total = Reservation_Seat_Select_Controller.seat_total - sum;
+		Reservation_Seat_Select_Controller.seat_total = Reservation_Seat_Select_Controller.seat_total - E_count;
 		Reservation_Seat_Select_Controller.is_E_set = true;
 		btn_disable2();
 
@@ -127,13 +128,16 @@ public class E_Seat_Controller implements Initializable {
 				}
 
 				if (E_count == seat_limit) {
+					Reservation_Seat_Select_Controller.is_R_set = true;
+					Reservation_Seat_Select_Controller.is_S_set = true;
+					Reservation_Seat_Select_Controller.is_D_set = true;
+					Reservation_Seat_Select_Controller.is_E_set = true;
+					btn_select_done.setVisible(false);
 					btn_disable();
 				}
 			});
 
 			E_buttons.add(button);
-
-			sum = sum + E_count;
 
 			if (i % 10 == 0) {
 				row = 0;
@@ -155,8 +159,8 @@ public class E_Seat_Controller implements Initializable {
 	@FXML
 	public void btn_clear(ActionEvent event) {
 
-		sum = 0;
-		Reservation_Seat_Select_Controller.how_many_person = 0;
+		E_count = 0;
+		Reservation_Seat_Select_Controller.seat_total = Reservation_Seat_Select_Controller.how_many_person;
 
 		for (int i = 0; i < manager_input_E_seat_no; i++) {
 			if (getE_status_check()[i] == 1) {
@@ -191,8 +195,8 @@ public class E_Seat_Controller implements Initializable {
 		}
 
 		Alert alert2 = new Alert(AlertType.INFORMATION);
-		alert2.setHeaderText("총[" + sum + "]개 의 좌석이 선택되었습니다.\n" + (Reservation_Seat_Select_Controller.seat_total - sum)
-				+ "개 좌석을 선택할 수 있습니다. ");
+		alert2.setHeaderText("총[" + E_count + "]개 의 좌석이 선택되었습니다.\n"
+				+ (Reservation_Seat_Select_Controller.seat_total - E_count) + "개 좌석을 선택할 수 있습니다. ");
 		alert2.showAndWait();
 
 	}
