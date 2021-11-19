@@ -131,7 +131,6 @@ public class ReservationDao {
 		ObservableList<Concert> concert_reserved = FXCollections.observableArrayList();
 
 		String sql = "select * from concert where c_no=(select c_no from reservation where m_no=?)";
-
 		try {
 			preparedStatement = connection.prepareStatement(sql);
 			preparedStatement.setInt(1, m_no);
@@ -143,6 +142,7 @@ public class ReservationDao {
 				);
 
 				concert_reserved.add(concert);
+
 
 			}
 			return concert_reserved;

@@ -61,7 +61,6 @@ public class Mainpage_Controller implements Initializable {
 	public void initialize(URL arg0, ResourceBundle arg1) {
 		loadpage("main_page_home_concert1");
 		concert_pop_up++;
-
 	}
 
 	///////////////////////////////////////////////////////////////////
@@ -96,7 +95,7 @@ public class Mainpage_Controller implements Initializable {
 
 	@FXML
 	public void btn_route(ActionEvent event) {
-		loadpage("concert_route");
+		window_shift("concert_route_page");
 	}
 
 	// 버튼을 누르면 계정 로그아웃

@@ -4,6 +4,8 @@ import java.io.File;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+import dao.MemberDao;
+import domain.Member;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -55,6 +57,8 @@ public class Main_Home_Controller implements Initializable {
 	@FXML
 	private AnchorPane anchorpane_main_page;
 
+	Member member = MemberDao.getMemberDao().get_id_member(Login_Controller.getInstance().get_login_id());
+	
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
 //		File file = new File("src/images/1.png");
@@ -64,6 +68,7 @@ public class Main_Home_Controller implements Initializable {
 		lbl_title.setText("");
 		lbl_date.setText("");
 		lbl_artist.setText("");
+		lbl_ID.setText(member.getM_id()+"님");
 	}
 
 	public void main_image_loadpage(String page) {

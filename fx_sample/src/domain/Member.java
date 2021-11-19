@@ -6,7 +6,6 @@ public class Member {
 	private int m_no;
 	private String m_id;
 	private String m_pw;
-
 	private String m_name;
 	private String m_email;
 	private int m_age;
@@ -26,6 +25,15 @@ public class Member {
 		this.m_age = m_age;
 		this.m_sex = m_sex;
 	}
+		// 회원번호 , pw 제외 생성자
+	public Member(String m_id, String m_name, String m_email, int m_age, String m_sex) {
+		this.m_id = m_id;
+		this.m_name = m_name;
+		this.m_email = m_email;
+		this.m_age = m_age;
+		this.m_sex = m_sex;
+	}
+
 	//3. 메소드
 	public int getM_no() {return m_no;}
 	public void setM_no(int m_no) {this.m_no = m_no;}

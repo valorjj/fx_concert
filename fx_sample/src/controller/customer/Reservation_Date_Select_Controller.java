@@ -22,7 +22,6 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.GridPane;
 
 public class Reservation_Date_Select_Controller implements Initializable {
-
 	/*
 	 * reservation_page_concert_select.fxml 에서 선택한 콘서트의 날짜 정보를 불러와서 날짜, 시간을 선택하는
 	 * 페이지입니다.
@@ -72,6 +71,7 @@ public class Reservation_Date_Select_Controller implements Initializable {
 		lbl_concert_date_2.setText(concert_date_list.get(1));
 		lbl_concert_date_3.setText(concert_date_list.get(2));
 
+
 		Concert concert = ConcertDao.getConcertDao().get_concert_instance(user_selected_concert_unique_no);
 
 		lbl_concert_tile.setText(concert.getC_title());
@@ -79,6 +79,7 @@ public class Reservation_Date_Select_Controller implements Initializable {
 		lbl_S_price.setText(concert.getC_S_price() + "");
 		lbl_D_price.setText(concert.getC_D_price() + "");
 		lbl_E_price.setText(concert.getC_E_price() + "");
+
 
 		create_calendar();
 		set_btn_action();
@@ -96,14 +97,22 @@ public class Reservation_Date_Select_Controller implements Initializable {
 
 		Calendar calendar = Calendar.getInstance();
 		String concert_date = ConcertDao.getConcertDao().get_concert_date(user_selected_concert_unique_no);
-
+		System.out.println("test3");
 		String[] tmp = concert_date.split(" ");
 		user_selected_date = tmp[0];
 		String year = tmp[0].split("-")[0];
 		String month = tmp[0].split("-")[1];
-
+		System.out.println("test4");
 		int YEAR = Integer.parseInt(year);
 		int MONTH = Integer.parseInt(month);
+
+
+
+		/*
+		 * int year = Integer.parseInt(concert_year); int month =
+		 * Integer.parseInt(concert_month);
+		 */
+		
 
 		calendar.set(YEAR, MONTH - 1, 1);
 
