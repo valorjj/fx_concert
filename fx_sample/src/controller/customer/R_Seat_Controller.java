@@ -14,12 +14,16 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.shape.Rectangle;
 
 public class R_Seat_Controller implements Initializable {
+	
+	ArrayList<Integer> R_seat_tmp = new ArrayList<>();
 
 	@FXML
 	private Button btn_select_done;
 
 	@FXML
 	void btn_select_done(ActionEvent event) {
+
+		//
 
 		Reservation_Seat_Select_Controller.seat_total = Reservation_Seat_Select_Controller.seat_total - R_count;
 
@@ -78,8 +82,6 @@ public class R_Seat_Controller implements Initializable {
 
 	}
 
-	// 좌석을 생성하는 메소드입니다. 관리자가 입력한 수만큼 생성이 됩니다. 100개까지 해봤으나 알수 없는 오류가 발생하여
-	// 50개로 줄였으니 그 이하로 입력하시길 바랍니다.
 	public void R_seat_create() {
 
 		int row = 0;
@@ -129,6 +131,8 @@ public class R_Seat_Controller implements Initializable {
 
 					// 좌석을 모두 선택했다면, RSDE 좌석 선택 버튼을 모두 숨기려고
 					// 해당 스위치 값을 모두 TRUE 로 바꿔줍니다.
+
+					// 좌석의 id, 즉 좌석 번호를 리스트에 저장해서 넘겨줘야합니다.
 
 					Reservation_Seat_Select_Controller.is_R_set = true;
 					Reservation_Seat_Select_Controller.is_S_set = true;

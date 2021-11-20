@@ -2,6 +2,8 @@ package controller.customer;
 
 import java.io.IOException;
 import java.net.URL;
+import java.util.ArrayList;
+import java.util.ArrayList;
 import java.util.ResourceBundle;
 
 import dao.ConcertDao;
@@ -30,11 +32,20 @@ public class Reservation_Seat_Select_Controller implements Initializable {
 
 	////////////////////////////////////////////////////////////////////////
 
-	///////////////////////////
 	static int[] R_status_check = R_Seat_Controller.getR_status_check();
 	static int[] S_status_check = S_Seat_Controller.getS_status_check();
 	static int[] D_status_check = D_Seat_Controller.getD_status_check();
 	static int[] E_status_check = E_Seat_Controller.getE_status_check();
+	
+	
+	////////////////////////////////////////////////////////////////////////
+	
+	/* 선택된 좌석 id 를 리스트에 전달합니다. */
+
+	static ArrayList<Integer> R_seat_selected_no = new ArrayList<>();
+	static ArrayList<Integer> S_seat_selected_no = new ArrayList<>();
+	static ArrayList<Integer> D_seat_selected_no = new ArrayList<>();
+	static ArrayList<Integer> E_seat_selected_no = new ArrayList<>();
 
 	static boolean is_R_set; // boolean 의 초기값은 false 입니다.
 	static boolean is_S_set;

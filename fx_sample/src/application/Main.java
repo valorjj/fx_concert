@@ -1,7 +1,5 @@
 package application;
 
-import dao.SeatDao;
-import domain.Seat;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -12,9 +10,6 @@ public class Main extends Application {
 	@Override
 	public void start(Stage primaryStage) {
 		try {
-
-			Seat seat = new Seat(0, 0, 0, "R");
-			SeatDao.getSeatDao().register(seat);
 
 			Parent parent = FXMLLoader.load(getClass().getResource("/fxml/login_page.fxml"));
 			Scene scene = new Scene(parent);
