@@ -28,8 +28,8 @@
             <Font name="System Bold" size="20.0" />
          </font>
       </Button>
-      <TextArea fx:id="txt_reply" layoutX="65.0" layoutY="504.0" prefHeight="38.0" prefWidth="770.0" promptText="댓글내용입력" />
-      <TableView fx:id="reply_list" layoutX="65.0" layoutY="564.0" prefHeight="116.0" prefWidth="901.0" style="-fx-background-color: #494854; -fx-border-color: #D0AF93;">
+      <TextArea fx:id="txt_reply" layoutX="65.0" layoutY="504.0" prefHeight="38.0" prefWidth="626.0" promptText="댓글내용입력" />
+      <TableView fx:id="replylist" layoutX="65.0" layoutY="564.0" prefHeight="116.0" prefWidth="901.0" style="-fx-background-color: #494854; -fx-border-color: #D0AF93;">
          <columns>
             <TableColumn prefWidth="75.0" style="-fx-background-color: D0AF93; -fx-border-color: #464550;" text="댓글번호" />
             <TableColumn prefWidth="553.0" style="-fx-background-color: D0AF93; -fx-border-color: #494854;" text="내용" />
@@ -52,5 +52,10 @@
             <Font size="15.0" />
          </font>
       </Label>
+      <Button fx:id="btn_replyregister" layoutX="724.0" layoutY="495.0" mnemonicParsing="false" onAction="#btn_replyregister" prefHeight="57.0" prefWidth="130.0" style="-fx-background-radius: 25; -fx-background-color: #494854;" text="댓글등록" textFill="#d0af93">
+         <font>
+            <Font size="24.0" />
+         </font>
+      </Button>
    </children>
 </AnchorPane>

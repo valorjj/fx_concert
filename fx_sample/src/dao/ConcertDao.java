@@ -40,7 +40,7 @@ public class ConcertDao {
 	// 1.콘서드 등록메소드
 	public boolean register(Concert concert) {
 		// 1. SQL 작성
-		String sql = "insert into concert(c_title,c_artist,c_info,c_date,c_time,c_R_no,c_S_no,c_D_no,c_E_no,c_R_price,c_S_price,c_D_price,c_E_price) values (?,?,?,?,?,?,?,?,?,?,?,?,?)";
+		String sql = "insert into concert(c_title,c_artist,c_info,c_date,c_time,c_R_no,c_S_no,c_D_no,c_E_no,c_R_price,c_S_price,c_D_price,c_E_price,c_unique_no) values (?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
 		// 2. SQL -> DB연결
 		try {
 
@@ -60,6 +60,7 @@ public class ConcertDao {
 			preparedStatement.setInt(11, concert.getC_S_price());
 			preparedStatement.setInt(12, concert.getC_D_price());
 			preparedStatement.setInt(13, concert.getC_E_price());
+			preparedStatement.setInt(14, concert.getC_unique_no());
 
 			// 4. SQL 실행
 			preparedStatement.executeUpdate();
@@ -89,8 +90,9 @@ public class ConcertDao {
 			preparedStatement.setInt(11, concert.getC_S_price());
 			preparedStatement.setInt(12, concert.getC_D_price());
 			preparedStatement.setInt(13, concert.getC_E_price());
-			preparedStatement.setInt(14, concert.getC_no());
-			preparedStatement.setInt(15, concert.getC_unique_no());
+			preparedStatement.setInt(14, concert.getC_unique_no());
+			preparedStatement.setInt(15, concert.getC_no());
+		
 			preparedStatement.executeUpdate();
 			return true;
 		} catch (Exception e) {

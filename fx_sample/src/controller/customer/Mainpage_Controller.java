@@ -20,7 +20,7 @@ public class Mainpage_Controller implements Initializable {
 	//////////////////////////////////////////////////////////////////
 
 	int concert_pop_up = 1;
-
+	
 	//////////////////////////////////////////////////////////////////
 
 	@FXML
@@ -84,13 +84,13 @@ public class Mainpage_Controller implements Initializable {
 	// 버튼을 누르면 내 정보 페이지로 이동
 	@FXML
 	public void btn_myinfo(ActionEvent event) {
-		loadpage("personal_page_info");
+		loadpage("personal_info_page");
 	}
 
 	// 버튼을 누르면 게시판으로 이동
 	@FXML
 	public void btn_board(ActionEvent event) {
-		loadpage("board");
+		loadpage("member_board_view_page");
 	}
 
 	@FXML

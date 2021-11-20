@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane fx:controller="controller.customer.Board_Register_Controller"  maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0">
+         <children>
+            <TextArea fx:id="txt_contents" layoutX="40.0" layoutY="181.0" prefHeight="440.0" prefWidth="798.0" promptText="내용입력하세요" />
+            <TextField fx:id="txt_title" layoutX="40.0" layoutY="114.0" prefHeight="49.0" prefWidth="798.0" promptText="제목입력하세요" />
+            <Button fx:id="btn_back" layoutX="38.0" layoutY="633.0" mnemonicParsing="false" onAction="#btn_back" prefHeight="49.0" prefWidth="100.0" text="뒤로가기">
+               <font>
+                  <Font size="15.0" />
+               </font>
+            </Button>
+            <Button fx:id="btn_register" layoutX="737.0" layoutY="58.0" mnemonicParsing="false" onAction="#btn_register" prefHeight="49.0" prefWidth="100.0" text="등록">
+               <font>
+                  <Font size="15.0" />
+               </font>
+            </Button>
+            <ImageView fitHeight="440.0" fitWidth="366.0" layoutX="876.0" layoutY="249.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@기타이미지.png" />
+               </image></ImageView>
+            <ImageView fitHeight="245.0" fitWidth="240.0" layoutX="926.0" layoutY="156.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@음표.png" />
+               </image>
+            </ImageView>
+         </children>
+      </AnchorPane>
+   </children>
+</AnchorPane>
