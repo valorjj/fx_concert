@@ -1,5 +1,6 @@
 package controller.customer;
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -10,7 +11,9 @@ import dao.ConcertDao;
 import domain.Concert;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Parent;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
@@ -19,14 +22,13 @@ import javafx.scene.control.Label;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.ToggleGroup;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
 
 public class Reservation_Date_Select_Controller implements Initializable {
-	/*
-	 * reservation_page_concert_select.fxml 에서 선택한 콘서트의 날짜 정보를 불러와서 날짜, 시간을 선택하는
-	 * 페이지입니다.
-	 * 
-	 */
+
+
+	/////////////////////////////////////////////////////////
 
 	// DB 에는 등록하지는 않지만 유저가 선택한 정보를 static 영역에 저장합니다.
 	static int user_selected_day = 0;
@@ -43,6 +45,8 @@ public class Reservation_Date_Select_Controller implements Initializable {
 
 	int user_selected_concert_unique_no = Reservation_Concert_Select_Controller.concert_number;
 
+	/////////////////////////////////////////////////////////
+
 	ArrayList<String> concert_date_list = new ArrayList<String>();
 	ArrayList<Concert> concert_info = new ArrayList<Concert>();
 
@@ -53,12 +57,16 @@ public class Reservation_Date_Select_Controller implements Initializable {
 
 	String[] day = new String[3];
 
+	/////////////////////////////////////////////////////////
+
 	public void btn_disable() {
 
 		for (Button button : Buttons) {
 			button.setDisable(true);
 		}
 	}
+
+	/////////////////////////////////////////////////////////
 
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
@@ -84,6 +92,8 @@ public class Reservation_Date_Select_Controller implements Initializable {
 
 	}
 
+	/////////////////////////////////////////////////////////
+
 	@SuppressWarnings("static-access")
 	public void create_calendar() {
 
@@ -94,9 +104,9 @@ public class Reservation_Date_Select_Controller implements Initializable {
 		}
 
 		Calendar calendar = Calendar.getInstance();
-		
+
 		// 어짜피 같은 달에 진행되기 때문에
-		// 엄밀히 따지면 수정해야함. 11월 30일, 12월 1일 이렇게 걸쳐있으면 오류난다. 
+		// 엄밀히 따지면 수정해야함. 11월 30일, 12월 1일 이렇게 걸쳐있으면 오류난다.
 		String concert_date = ConcertDao.getConcertDao().get_concert_date(user_selected_concert_unique_no);
 		String[] tmp = concert_date.split(" ");
 		user_selected_date = tmp[0];
@@ -152,6 +162,8 @@ public class Reservation_Date_Select_Controller implements Initializable {
 		}
 
 	}
+
+	/////////////////////////////////////////////////////////
 
 	public void set_btn_action() {
 
@@ -224,77 +236,6 @@ public class Reservation_Date_Select_Controller implements Initializable {
 
 	///////////////////////////////////////////////////////////////////
 
-	@FXML
-	private Button btn_cancel;
-
-	@FXML
-	private Button btn_reservation_confirm;
-
-	@FXML
-	private RadioButton opt_1;
-
-	@FXML
-	private RadioButton opt_2;
-
-	@FXML
-	private ToggleGroup time_select;
-
-	@FXML
-	private ImageView concert_image_view;
-
-	@FXML
-	private GridPane gridpane_calendar;
-
-	@FXML
-	private Label lbl_D_price;
-
-	@FXML
-	private Label lbl_D_remaining;
-
-	@FXML
-	private Label lbl_E_price;
-
-	@FXML
-	private Label lbl_E_remaining;
-
-	@FXML
-	private Label lbl_R_price;
-
-	@FXML
-	private Label lbl_R_remaining;
-
-	@FXML
-	private Label lbl_S_price;
-
-	@FXML
-	private Label lbl_S_remaining;
-
-	@FXML
-	private Label lbl_concert_duration;
-
-	@FXML
-	private Label lbl_concert_tile;
-
-	@FXML
-	private Label lbl_small;
-
-	@FXML
-	private Label lbl_cal;
-
-	@FXML
-	private Button btn_2pm;
-
-	@FXML
-	private Button btn_6pm;
-	@FXML
-	private Label lbl_concert_date_1;
-	@FXML
-	private Label lbl_concert_date_2;
-	@FXML
-	private Label lbl_concert_date_3;
-
-	///////////////////////////////////////////////////////////////////
-
 	// 뒤로 가기 버튼 --> 콘서트 선택 페이지로 이동한다.
 	@FXML
 	void btn_cancel(ActionEvent event) {
@@ -364,6 +305,8 @@ public class Reservation_Date_Select_Controller implements Initializable {
 		}
 	}
 
+	///////////////////////////////////////////////////////////////////
+
 	@FXML
 	public void btn_6pm(ActionEvent event) {
 		if (switch_6pm_btn) {
@@ -397,6 +340,8 @@ public class Reservation_Date_Select_Controller implements Initializable {
 		}
 	}
 
+	///////////////////////////////////////////////////////////////////
+
 	public boolean isSwitch_2pm_btn() {
 		return switch_2pm_btn;
 	}
@@ -416,5 +361,56 @@ public class Reservation_Date_Select_Controller implements Initializable {
 	public static void setUser_time_select(String user_time_select) {
 		user_selected_time = user_time_select;
 	}
+
+	///////////////////////////////////////////////////////////////////
+
+	@FXML
+	private Button btn_cancel;
+	@FXML
+	private Button btn_reservation_confirm;
+	@FXML
+	private RadioButton opt_1;
+	@FXML
+	private RadioButton opt_2;
+	@FXML
+	private ToggleGroup time_select;
+	@FXML
+	private ImageView concert_image_view;
+	@FXML
+	private GridPane gridpane_calendar;
+	@FXML
+	private Label lbl_D_price;
+	@FXML
+	private Label lbl_D_remaining;
+	@FXML
+	private Label lbl_E_price;
+	@FXML
+	private Label lbl_E_remaining;
+	@FXML
+	private Label lbl_R_price;
+	@FXML
+	private Label lbl_R_remaining;
+	@FXML
+	private Label lbl_S_price;
+	@FXML
+	private Label lbl_S_remaining;
+	@FXML
+	private Label lbl_concert_duration;
+	@FXML
+	private Label lbl_concert_tile;
+	@FXML
+	private Label lbl_small;
+	@FXML
+	private Label lbl_cal;
+	@FXML
+	private Button btn_2pm;
+	@FXML
+	private Button btn_6pm;
+	@FXML
+	private Label lbl_concert_date_1;
+	@FXML
+	private Label lbl_concert_date_2;
+	@FXML
+	private Label lbl_concert_date_3;
 
 }

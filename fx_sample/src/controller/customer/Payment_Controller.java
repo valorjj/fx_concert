@@ -59,7 +59,16 @@ public class Payment_Controller implements Initializable {
 	private Label lbl_total_price;
 
 	@FXML
-	private TableView<Concert> tableview_user_select;
+	private Label lbl_r_no_1;
+
+	@FXML
+	private Label lbl_r_no_2;
+
+	@FXML
+	private Label lbl_r_no_3;
+
+	@FXML
+	private Label lbl_r_no_4;
 
 ///////////////////////////////////////////////////////
 
@@ -75,26 +84,12 @@ public class Payment_Controller implements Initializable {
 
 	@FXML
 	void btn_graph_by_age(ActionEvent event) {
-		ObservableList<Concert> concerts = ConcertDao.getConcertDao().concertlist();
-
-		tableview_user_select.setItems(concerts);
-
-		TableColumn<?, ?> tc = tableview_user_select.getColumns().get(0);
-		tc.setCellValueFactory(new PropertyValueFactory<>(""));
 		// 해당 콘서트 예약 현황을 나이에 따라 분류해서 Bar 그래프로 출력합니다.
 
 	}
 
 	@FXML
 	void graph_by_sex(ActionEvent event) {
-
-		ObservableList<Concert> concerts = ConcertDao.getConcertDao().concertlist();
-
-		tableview_user_select.setItems(concerts);
-
-		TableColumn<?, ?> tc = tableview_user_select.getColumns().get(0);
-		tc.setCellValueFactory(new PropertyValueFactory<>(""));
-
 		// 해당 콘서트 예약 현황을 성별에 따라 분류해서 Bar 그래프로 출력합니다.
 
 	}
@@ -123,6 +118,8 @@ public class Payment_Controller implements Initializable {
 
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
+
+		lbl_r_no_1.setText(Reservation_Seat_Select_Controller.getReseved_seat_map().get("R") + "");
 
 	}
 

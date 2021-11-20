@@ -3,8 +3,8 @@ package controller.customer;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
-import java.util.ArrayList;
 import java.util.ResourceBundle;
+import java.util.TreeMap;
 
 import dao.ConcertDao;
 import domain.Concert;
@@ -19,16 +19,7 @@ import javafx.scene.layout.BorderPane;
 
 public class Reservation_Seat_Select_Controller implements Initializable {
 
-	////////////////////////////////////////////////////////////////////////
-
-	/*
-	 * R, S, D, E 각각의 페이지에서 받아온 스위치 값(boolean) 을 이용해서 이 클래스에 속한 버튼의 상태를 제어해야 합니다.
-	 * (달리 방법이 안떠오름) 하지만 initialize 는 딱 한번 실행됩니다. 정보는 바뀌었는데, 해당하는 정보로 기존에 존재하는 버튼을
-	 * 새롭게 생긴해야합니다. 그러니 새로운 버튼을 만들어야합니다. 새로운 버튼 -> 새로운 버튼 액션을 통해서 제어합니다. 보기 좀 흉하지만
-	 * 이렇게밖에 할 수 없을 것 같습니다.
-	 * 
-	 * 
-	 */
+	private static TreeMap<String, TreeMap<Integer, String>> reseved_seat_map = new TreeMap<String, TreeMap<Integer, String>>();
 
 	////////////////////////////////////////////////////////////////////////
 
@@ -36,16 +27,17 @@ public class Reservation_Seat_Select_Controller implements Initializable {
 	static int[] S_status_check = S_Seat_Controller.getS_status_check();
 	static int[] D_status_check = D_Seat_Controller.getD_status_check();
 	static int[] E_status_check = E_Seat_Controller.getE_status_check();
-	
-	
+
 	////////////////////////////////////////////////////////////////////////
-	
+
 	/* 선택된 좌석 id 를 리스트에 전달합니다. */
 
 	static ArrayList<Integer> R_seat_selected_no = new ArrayList<>();
 	static ArrayList<Integer> S_seat_selected_no = new ArrayList<>();
 	static ArrayList<Integer> D_seat_selected_no = new ArrayList<>();
 	static ArrayList<Integer> E_seat_selected_no = new ArrayList<>();
+
+	////////////////////////////////////////////////////////////////////////
 
 	static boolean is_R_set; // boolean 의 초기값은 false 입니다.
 	static boolean is_S_set;
@@ -502,6 +494,14 @@ public class Reservation_Seat_Select_Controller implements Initializable {
 //
 //		}
 
+	}
+
+	public static TreeMap<String, TreeMap<Integer, String>> getReseved_seat_map() {
+		return reseved_seat_map;
+	}
+
+	public static void setReseved_seat_map(TreeMap<String, TreeMap<Integer, String>> reseved_seat_map) {
+		Reservation_Seat_Select_Controller.reseved_seat_map = reseved_seat_map;
 	}
 
 }
