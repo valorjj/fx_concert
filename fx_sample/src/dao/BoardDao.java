@@ -23,7 +23,7 @@ public class BoardDao {
 	public BoardDao() {
 		try {
 			Class.forName("com.mysql.cj.jdbc.Driver");
-			connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/javafx_concert?serverTimezone=UTC","root","1234");
+			connection = DriverManager.getConnection("jdbc:mysql://localhost:3307/javafx_concert?serverTimezone=UTC","root","1234");
 		} catch (Exception e) {
 			System.out.println("Board DB 연동 실패 : " + e);
 		}
@@ -50,11 +50,6 @@ public class BoardDao {
 			
 		}return false;
 	}
-	
-	
-	
-	
-	
 		// 2.게시물 조회 메소드
 	public ObservableList<Board> boardlist() {
 		// 리스트 선언
@@ -88,8 +83,8 @@ public class BoardDao {
 			preparedStatement.executeUpdate();
 			return true;
 		} catch (Exception e) {} return false;
-		
 	}
+	
 	// 4. 게시물 삭제 메소드
 	public boolean delete(int b_no) {
 		String sql = "delete from board where b_no =?";
@@ -100,6 +95,7 @@ public class BoardDao {
 			return true;
 		} catch (Exception e) {} return false;
 	}
+	
 	// 5. 게시물 수정 메소드
 	public boolean update(int b_no, String b_title, String b_contents ) {
 		String sql = "update board set b_title = ? , b_contents=? where b_no = ?";
