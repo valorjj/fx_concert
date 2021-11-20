@@ -34,12 +34,8 @@ public class S_Seat_Controller implements Initializable {
 	@FXML
 	void btn_select_done(ActionEvent event) {
 
-		// 더 깔끔한 방법이 있다면 누가 알려주삼..
-
-		// 좌석 선택을 픽스 시킨다.
-		// static 을 통해서 모든 클래스가 공유
-		sum = sum + S_count;
-		Reservation_Seat_Select_Controller.seat_total = Reservation_Seat_Select_Controller.seat_total - sum;
+		// 전체 갯수인 seat_total 에서 좌석 갯수를 뺍니다.
+		Reservation_Seat_Select_Controller.seat_total = Reservation_Seat_Select_Controller.seat_total - S_count;
 		Reservation_Seat_Select_Controller.is_S_set = true;
 		btn_disable2();
 
@@ -60,7 +56,7 @@ public class S_Seat_Controller implements Initializable {
 
 	///////////////////////////////////////////////////
 
-	public static ArrayList<Button> S_buttons = new ArrayList<>();
+	static ArrayList<Button> S_buttons = new ArrayList<>();
 
 	////////////////////////////////////////////////////////
 
@@ -74,7 +70,8 @@ public class S_Seat_Controller implements Initializable {
 		}
 
 		Alert alert2 = new Alert(AlertType.INFORMATION);
-		alert2.setHeaderText("총[" + sum + "]개 의 좌석이 선택되었습니다.\n" + (Reservation_Seat_Select_Controller.seat_total - sum) + "개 좌석을 선택할 수 있습니다. ");
+		alert2.setHeaderText("총[" + S_count + "]개 의 좌석이 선택되었습니다.\n"
+				+ (Reservation_Seat_Select_Controller.seat_total - S_count) + "개 좌석을 선택할 수 있습니다. ");
 		alert2.showAndWait();
 
 	}
@@ -83,8 +80,6 @@ public class S_Seat_Controller implements Initializable {
 	private GridPane gridpane_S;
 
 	int seat_limit = Reservation_Seat_Select_Controller.how_many_person;
-
-	int sum = 0;
 
 	static int manager_input_S_seat_no = 50;
 	private static int[] S_status_check = new int[manager_input_S_seat_no];
@@ -149,13 +144,16 @@ public class S_Seat_Controller implements Initializable {
 
 				}
 				if (S_count == seat_limit) {
+					Reservation_Seat_Select_Controller.is_R_set = true;
+					Reservation_Seat_Select_Controller.is_S_set = true;
+					Reservation_Seat_Select_Controller.is_D_set = true;
+					Reservation_Seat_Select_Controller.is_E_set = true;
+					btn_select_done.setVisible(false);
 					btn_disable();
 				}
 			});
 
 			S_buttons.add(button);
-			
-			sum = sum + S_count;
 
 			if (i % 10 == 0) {
 				row = 0;
@@ -177,7 +175,9 @@ public class S_Seat_Controller implements Initializable {
 	@FXML
 	public void btn_clear(ActionEvent event) {
 
-		Reservation_Seat_Select_Controller.how_many_person = 0;
+		S_count = 0;
+
+		Reservation_Seat_Select_Controller.seat_total = Reservation_Seat_Select_Controller.how_many_person;
 
 		for (int i = 0; i < manager_input_S_seat_no; i++) {
 			if (getS_status_check()[i] == 1) {

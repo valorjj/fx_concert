@@ -30,7 +30,7 @@ public class MemberDao {
 	public MemberDao() {
 		try {
 			Class.forName("com.mysql.cj.jdbc.Driver");
-			connection = DriverManager.getConnection("jdbc:mysql://localhost:3307/javafx_concert?serverTimezone=UTC","root","1234");
+			connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/javafx_concert?serverTimezone=UTC","root","1234");
 		}
 
 		catch (Exception e) {System.out.println(" * DB 연동 실패 : " + e);}

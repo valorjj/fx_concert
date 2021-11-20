@@ -31,7 +31,7 @@ public class Reservation_Date_Select_Controller implements Initializable {
 	// DB 에는 등록하지는 않지만 유저가 선택한 정보를 static 영역에 저장합니다.
 	static int user_selected_day = 0;
 	static String user_selected_date;
-	static int user_selected_time = 0;
+	static String user_selected_time;
 
 	// 버튼 상태를 제어하는 스위치 2개
 	private boolean switch_2pm_btn = true;
@@ -71,7 +71,6 @@ public class Reservation_Date_Select_Controller implements Initializable {
 		lbl_concert_date_2.setText(concert_date_list.get(1));
 		lbl_concert_date_3.setText(concert_date_list.get(2));
 
-
 		Concert concert = ConcertDao.getConcertDao().get_concert_instance(user_selected_concert_unique_no);
 
 		lbl_concert_tile.setText(concert.getC_title());
@@ -79,7 +78,6 @@ public class Reservation_Date_Select_Controller implements Initializable {
 		lbl_S_price.setText(concert.getC_S_price() + "");
 		lbl_D_price.setText(concert.getC_D_price() + "");
 		lbl_E_price.setText(concert.getC_E_price() + "");
-
 
 		create_calendar();
 		set_btn_action();
@@ -96,23 +94,21 @@ public class Reservation_Date_Select_Controller implements Initializable {
 		}
 
 		Calendar calendar = Calendar.getInstance();
+		
+		// 어짜피 같은 달에 진행되기 때문에
+		// 엄밀히 따지면 수정해야함. 11월 30일, 12월 1일 이렇게 걸쳐있으면 오류난다. 
 		String concert_date = ConcertDao.getConcertDao().get_concert_date(user_selected_concert_unique_no);
-		System.out.println("test3");
 		String[] tmp = concert_date.split(" ");
 		user_selected_date = tmp[0];
 		String year = tmp[0].split("-")[0];
 		String month = tmp[0].split("-")[1];
-		System.out.println("test4");
 		int YEAR = Integer.parseInt(year);
 		int MONTH = Integer.parseInt(month);
-
-
 
 		/*
 		 * int year = Integer.parseInt(concert_year); int month =
 		 * Integer.parseInt(concert_month);
 		 */
-		
 
 		calendar.set(YEAR, MONTH - 1, 1);
 
@@ -320,7 +316,7 @@ public class Reservation_Date_Select_Controller implements Initializable {
 		if (optional.get() == ButtonType.OK) {
 			Alert alert2 = new Alert(AlertType.INFORMATION);
 
-			if (user_selected_time != 0 && user_selected_day != 0) {
+			if (!user_selected_time.equals("0") && user_selected_day != 0) {
 				alert2.setHeaderText("좌석 선택 페이지로 이동합니다.");
 				alert2.showAndWait();
 				Reservation_Home_Controller.getinstance().reservation_loadpage("reservation_page_seat_select");
@@ -339,7 +335,7 @@ public class Reservation_Date_Select_Controller implements Initializable {
 	public void btn_2pm(ActionEvent event) {
 		if (switch_2pm_btn) {
 			/* 버튼 아래 위치한 레이블에 잔여 좌석을 알려줍니다. */
-			user_selected_time = 2;
+			user_selected_time = 2 + "시";
 
 			int R_remain = ConcertDao.getConcertDao().get_remaining_seat_R(user_selected_date, user_selected_time);
 			lbl_R_remaining.setText(R_remain + "");
@@ -357,7 +353,7 @@ public class Reservation_Date_Select_Controller implements Initializable {
 			setSwitch_2pm_btn(false);
 
 		} else {
-			user_selected_time = 0;
+			user_selected_time = "";
 			lbl_R_remaining.setText("");
 			lbl_S_remaining.setText("");
 			lbl_D_remaining.setText("");
@@ -372,7 +368,7 @@ public class Reservation_Date_Select_Controller implements Initializable {
 	public void btn_6pm(ActionEvent event) {
 		if (switch_6pm_btn) {
 
-			user_selected_time = 6;
+			user_selected_time = 6 + "시";
 
 			int R_remain = ConcertDao.getConcertDao().get_remaining_seat_R(user_selected_date, user_selected_time);
 			lbl_R_remaining.setText(R_remain + "");
@@ -391,7 +387,7 @@ public class Reservation_Date_Select_Controller implements Initializable {
 			setSwitch_6pm_btn(false);
 
 		} else {
-			user_selected_time = 0;
+			user_selected_time = "";
 			lbl_R_remaining.setText("");
 			lbl_S_remaining.setText("");
 			lbl_D_remaining.setText("");
@@ -417,7 +413,7 @@ public class Reservation_Date_Select_Controller implements Initializable {
 		this.switch_6pm_btn = switch_6pm_btn;
 	}
 
-	public static void setUser_time_select(int user_time_select) {
+	public static void setUser_time_select(String user_time_select) {
 		user_selected_time = user_time_select;
 	}
 
