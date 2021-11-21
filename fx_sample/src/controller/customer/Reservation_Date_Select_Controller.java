@@ -1,5 +1,6 @@
 package controller.customer;
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -22,11 +23,8 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.GridPane;
 
 public class Reservation_Date_Select_Controller implements Initializable {
-	/*
-	 * reservation_page_concert_select.fxml 에서 선택한 콘서트의 날짜 정보를 불러와서 날짜, 시간을 선택하는
-	 * 페이지입니다.
-	 * 
-	 */
+
+	/////////////////////////////////////////////////////////
 
 	// DB 에는 등록하지는 않지만 유저가 선택한 정보를 static 영역에 저장합니다.
 	static int user_selected_day = 0;
@@ -43,6 +41,8 @@ public class Reservation_Date_Select_Controller implements Initializable {
 
 	int user_selected_concert_unique_no = Reservation_Concert_Select_Controller.concert_number;
 
+	/////////////////////////////////////////////////////////
+
 	ArrayList<String> concert_date_list = new ArrayList<String>();
 	ArrayList<Concert> concert_info = new ArrayList<Concert>();
 
@@ -53,12 +53,16 @@ public class Reservation_Date_Select_Controller implements Initializable {
 
 	String[] day = new String[3];
 
+	/////////////////////////////////////////////////////////
+
 	public void btn_disable() {
 
 		for (Button button : Buttons) {
 			button.setDisable(true);
 		}
 	}
+
+	/////////////////////////////////////////////////////////
 
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
@@ -84,6 +88,8 @@ public class Reservation_Date_Select_Controller implements Initializable {
 
 	}
 
+	/////////////////////////////////////////////////////////
+
 	@SuppressWarnings("static-access")
 	public void create_calendar() {
 
@@ -94,9 +100,9 @@ public class Reservation_Date_Select_Controller implements Initializable {
 		}
 
 		Calendar calendar = Calendar.getInstance();
-		
+
 		// 어짜피 같은 달에 진행되기 때문에
-		// 엄밀히 따지면 수정해야함. 11월 30일, 12월 1일 이렇게 걸쳐있으면 오류난다. 
+		// 엄밀히 따지면 수정해야함. 11월 30일, 12월 1일 이렇게 걸쳐있으면 오류난다.
 		String concert_date = ConcertDao.getConcertDao().get_concert_date(user_selected_concert_unique_no);
 		String[] tmp = concert_date.split(" ");
 		user_selected_date = tmp[0];
@@ -105,25 +111,16 @@ public class Reservation_Date_Select_Controller implements Initializable {
 		int YEAR = Integer.parseInt(year);
 		int MONTH = Integer.parseInt(month);
 
-		/*
-		 * int year = Integer.parseInt(concert_year); int month =
-		 * Integer.parseInt(concert_month);
-		 */
-
 		calendar.set(YEAR, MONTH - 1, 1);
 
 		int sweek = calendar.get(Calendar.DAY_OF_WEEK); // 달의 시작하는 날짜
-
 		int eday = calendar.getActualMaximum(calendar.DAY_OF_MONTH);
+		int idx = 1;
 
 		lbl_concert_duration.setText("180분");
 
-		// DB에서 연, 월 데이터를 받아서 캘린더를 출력합니다.
-
-		int idx = 1;
-
 		for (int i = 0; i <= 42; i++) {
-			if (i >= sweek - 1 && i < eday + sweek - 1) { // 해당 월의 시작날짜 ~ 끝나는 날짜
+			if (i >= sweek - 1 && i < eday + sweek - 1) {
 				Button button = new Button();
 				button.setText(idx + "");
 
@@ -144,22 +141,25 @@ public class Reservation_Date_Select_Controller implements Initializable {
 					gridpane_calendar.add(button, i % 7, 5);
 				}
 
+				if (button.getId().equals(day[0])) {
+					button.setStyle("-fx-background-color : #cccccc");
+				}
+				if (button.getId().equals(day[1])) {
+					button.setStyle("-fx-background-color : #cccccc");
+				}
+				if (button.getId().equals(day[2])) {
+					button.setStyle("-fx-background-color : #cccccc");
+				}
 				Buttons.add(button);
-
 				idx++;
-
 			}
 		}
-
 	}
 
 	public void set_btn_action() {
 
 		for (Button button : Buttons) {
-
 			if (button.getId().equals(day[0])) {
-
-				button.setStyle("-fx-background-color : #cccccc");
 
 				button.setOnAction(e -> {
 					if (!switch_date_1) {
@@ -172,13 +172,7 @@ public class Reservation_Date_Select_Controller implements Initializable {
 						switch_date_1 = false;
 					}
 				});
-
-			}
-
-			else if (button.getId().equals(day[1])) {
-
-				button.setStyle("-fx-background-color : #cccccc");
-
+			} else if (button.getId().equals(day[1])) {
 				button.setOnAction(e -> {
 					if (!switch_date_2) {
 						// 선택 안했을 때
@@ -191,12 +185,7 @@ public class Reservation_Date_Select_Controller implements Initializable {
 						switch_date_2 = false;
 					}
 				});
-			}
-
-			else if (button.getId().equals(day[2])) {
-
-				button.setStyle("-fx-background-color : #cccccc");
-
+			} else if (button.getId().equals(day[2])) {
 				button.setOnAction(e -> {
 
 					if (!switch_date_3) {
@@ -209,91 +198,13 @@ public class Reservation_Date_Select_Controller implements Initializable {
 						user_selected_day = Integer.parseInt(day[2]);
 						switch_date_3 = false;
 					}
-
 				});
 
-			}
-
-			else {
+			} else {
 				button.setStyle("-fx-background-color : #f57b42");
 			}
-
 		}
-
 	}
-
-	///////////////////////////////////////////////////////////////////
-
-	@FXML
-	private Button btn_cancel;
-
-	@FXML
-	private Button btn_reservation_confirm;
-
-	@FXML
-	private RadioButton opt_1;
-
-	@FXML
-	private RadioButton opt_2;
-
-	@FXML
-	private ToggleGroup time_select;
-
-	@FXML
-	private ImageView concert_image_view;
-
-	@FXML
-	private GridPane gridpane_calendar;
-
-	@FXML
-	private Label lbl_D_price;
-
-	@FXML
-	private Label lbl_D_remaining;
-
-	@FXML
-	private Label lbl_E_price;
-
-	@FXML
-	private Label lbl_E_remaining;
-
-	@FXML
-	private Label lbl_R_price;
-
-	@FXML
-	private Label lbl_R_remaining;
-
-	@FXML
-	private Label lbl_S_price;
-
-	@FXML
-	private Label lbl_S_remaining;
-
-	@FXML
-	private Label lbl_concert_duration;
-
-	@FXML
-	private Label lbl_concert_tile;
-
-	@FXML
-	private Label lbl_small;
-
-	@FXML
-	private Label lbl_cal;
-
-	@FXML
-	private Button btn_2pm;
-
-	@FXML
-	private Button btn_6pm;
-	@FXML
-	private Label lbl_concert_date_1;
-	@FXML
-	private Label lbl_concert_date_2;
-	@FXML
-	private Label lbl_concert_date_3;
-
-	///////////////////////////////////////////////////////////////////
 
 	// 뒤로 가기 버튼 --> 콘서트 선택 페이지로 이동한다.
 	@FXML
@@ -301,7 +212,6 @@ public class Reservation_Date_Select_Controller implements Initializable {
 		Reservation_Home_Controller.getinstance().reservation_loadpage("reservation_page_concert_select");
 
 	}
-	///////////////////////////////////////////////////////////////////
 
 	/* 날짜와 시간을 입력받은 뒤 좌석 선택하는 페이지로 넘어갑니다. */
 
@@ -324,12 +234,8 @@ public class Reservation_Date_Select_Controller implements Initializable {
 				alert2.setHeaderText("날짜, 시간이 모두 선택되지 않았습니다.");
 				alert2.showAndWait();
 			}
-
 		}
-
 	}
-
-	///////////////////////////////////////////////////////////////////
 
 	@FXML
 	public void btn_2pm(ActionEvent event) {
@@ -416,5 +322,54 @@ public class Reservation_Date_Select_Controller implements Initializable {
 	public static void setUser_time_select(String user_time_select) {
 		user_selected_time = user_time_select;
 	}
+
+	@FXML
+	private Button btn_cancel;
+	@FXML
+	private Button btn_reservation_confirm;
+	@FXML
+	private RadioButton opt_1;
+	@FXML
+	private RadioButton opt_2;
+	@FXML
+	private ToggleGroup time_select;
+	@FXML
+	private ImageView concert_image_view;
+	@FXML
+	private GridPane gridpane_calendar;
+	@FXML
+	private Label lbl_D_price;
+	@FXML
+	private Label lbl_D_remaining;
+	@FXML
+	private Label lbl_E_price;
+	@FXML
+	private Label lbl_E_remaining;
+	@FXML
+	private Label lbl_R_price;
+	@FXML
+	private Label lbl_R_remaining;
+	@FXML
+	private Label lbl_S_price;
+	@FXML
+	private Label lbl_S_remaining;
+	@FXML
+	private Label lbl_concert_duration;
+	@FXML
+	private Label lbl_concert_tile;
+	@FXML
+	private Label lbl_small;
+	@FXML
+	private Label lbl_cal;
+	@FXML
+	private Button btn_2pm;
+	@FXML
+	private Button btn_6pm;
+	@FXML
+	private Label lbl_concert_date_1;
+	@FXML
+	private Label lbl_concert_date_2;
+	@FXML
+	private Label lbl_concert_date_3;
 
 }

@@ -92,7 +92,7 @@ public class ConcertDao {
 			preparedStatement.setInt(13, concert.getC_E_price());
 			preparedStatement.setInt(14, concert.getC_unique_no());
 			preparedStatement.setInt(15, concert.getC_no());
-		
+
 			preparedStatement.executeUpdate();
 			return true;
 		} catch (Exception e) {
@@ -336,7 +336,7 @@ public class ConcertDao {
 	}
 
 	public int get_remaining_seat_R(String date, String time) {
-		// 특정 날짜, 특정 시간의 콘서트 번호를 불러와야한다.
+		// 특정 날짜, 특정 시간의 R석이 몇 개 존재하는지 호출한다.
 		String sql = "SELECT c_R_no FROM concert WHERE c_date=? and c_time=?";
 		try {
 			preparedStatement = connection.prepareStatement(sql);
@@ -522,6 +522,24 @@ public class ConcertDao {
 		}
 
 		return null;
+	}
+
+	public int get_concert_c_no(String date, String time) {
+		
+		String sql = "SELECT c_no FROM concert WHERE c_date=? and c_time=?";
+		
+		try {
+			preparedStatement = connection.prepareStatement(sql);
+			preparedStatement.setString(1, date);
+			preparedStatement.setString(2, time);
+			resultSet = preparedStatement.executeQuery();
+			if(resultSet.next()) {
+				return resultSet.getInt(1);
+			}
+		} catch (Exception e) {e.printStackTrace();
+		}
+		return 0;
+
 	}
 
 }

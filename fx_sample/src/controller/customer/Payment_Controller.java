@@ -1,26 +1,36 @@
 package controller.customer;
 
 import java.net.URL;
+import java.util.ArrayList;
+import java.util.Map.Entry;
 import java.util.Optional;
 import java.util.ResourceBundle;
 
-import dao.ConcertDao;
-import domain.Concert;
-import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
-import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.scene.control.Alert.AlertType;
 import javafx.scene.layout.AnchorPane;
 
 public class Payment_Controller implements Initializable {
+
+	////////////////////////////////////////////////////////////////////
+
+	ArrayList<Integer> r_seat_list = new ArrayList<>();
+
+	@Override
+	public void initialize(URL arg0, ResourceBundle arg1) {
+
+		lbl_r_no_1.setText(Reservation_Seat_Select_Controller.getReseved_seat_map().get("R") + "");
+		lbl_r_no_1.setStyle("-fx-font-size : 15px");
+
+	}
+
+	//////////////////////////////////////////////////////////////////
 
 	@FXML
 	private AnchorPane anchorpane_graph;
@@ -59,7 +69,16 @@ public class Payment_Controller implements Initializable {
 	private Label lbl_total_price;
 
 	@FXML
-	private TableView<Concert> tableview_user_select;
+	private Label lbl_r_no_1;
+
+	@FXML
+	private Label lbl_r_no_2;
+
+	@FXML
+	private Label lbl_r_no_3;
+
+	@FXML
+	private Label lbl_r_no_4;
 
 ///////////////////////////////////////////////////////
 
@@ -75,26 +94,12 @@ public class Payment_Controller implements Initializable {
 
 	@FXML
 	void btn_graph_by_age(ActionEvent event) {
-		ObservableList<Concert> concerts = ConcertDao.getConcertDao().concertlist();
-
-		tableview_user_select.setItems(concerts);
-
-		TableColumn<?, ?> tc = tableview_user_select.getColumns().get(0);
-		tc.setCellValueFactory(new PropertyValueFactory<>(""));
 		// 해당 콘서트 예약 현황을 나이에 따라 분류해서 Bar 그래프로 출력합니다.
 
 	}
 
 	@FXML
 	void graph_by_sex(ActionEvent event) {
-
-		ObservableList<Concert> concerts = ConcertDao.getConcertDao().concertlist();
-
-		tableview_user_select.setItems(concerts);
-
-		TableColumn<?, ?> tc = tableview_user_select.getColumns().get(0);
-		tc.setCellValueFactory(new PropertyValueFactory<>(""));
-
 		// 해당 콘서트 예약 현황을 성별에 따라 분류해서 Bar 그래프로 출력합니다.
 
 	}
@@ -120,10 +125,5 @@ public class Payment_Controller implements Initializable {
 	}
 
 	///////////////////////////////////////////////////////
-
-	@Override
-	public void initialize(URL arg0, ResourceBundle arg1) {
-
-	}
 
 }
