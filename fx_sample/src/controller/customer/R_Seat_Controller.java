@@ -37,33 +37,51 @@ public class R_Seat_Controller implements Initializable {
 
 	private static R_Seat_Controller instance;
 
+	// 1. 생성되는 버튼이 저장될 리스트입니다.
+	// 1.1 초기화 버튼을 누른면, 해당 리스트로 초기화 되어야합니다.
 	ArrayList<Button> R_buttons = new ArrayList<Button>();
 
+	// 1. 앞에서 선택한 날짜, 시간을 기준으로 콘서트 번호를 저장합니다.
 	int c_no = ConcertDao.getConcertDao().get_concert_c_no(Reservation_Date_Select_Controller.user_selected_date,
 			Reservation_Date_Select_Controller.user_selected_time);
-
+	// 1.2 R 등급에서 선택한 좌석 정보가 저장될 트리맵입니다.
+	// 1.3 트리맵에는 R등급에서 좌석 선택이 완료되었을 때 데이터가 들어갑니다.
+	// 1.4 선택한 좌석인원수가 모두 차서 선택이 종료되는 경우 + 다른 등급의 좌석을 선택하려고 완료 버튼을 누르는 경우 2가지 경우가
+	// 있습니다.
 	TreeMap<Integer, String> R_seat_Map = new TreeMap<Integer, String>();
+	// 1. 좌석 컨트롤러에서 받아온 현재 선택 가능한 좌석 수 입니다.
+	// 1.1 좌석 컨트롤러에서 입력받은 인원수는 변하지 않는 값 입ㄴ디ㅏ.
+	// 1.2 seat_total 값은 다른 등급(R, S, D, E) 에서 좌석을 선택하면 그 수가 줄어듭니다.
 	int seat_limit = Reservation_Seat_Select_Controller.seat_total;
+
+	// 1. db concert table 에서 입력된 콘서트의 R 석 총 좌석 수를 저장합니다.
 	int manager_input_R_seat_no = ConcertDao.getConcertDao().get_remaining_seat_R(
 			Reservation_Date_Select_Controller.user_selected_date,
 			Reservation_Date_Select_Controller.user_selected_time);
+	// 1. db seat table 에서 s_staus 를 받아서 저장하는 리스트입니다.
 	ArrayList<Integer> R_status_check = SeatDao.getSeatDao().get_seat_status(c_no, "R",
 			Reservation_Concert_Select_Controller.concert_number);
-
-	// ArrayList<Seat> R_instance = SeatDao.getSeatDao().get_seat_instance(c_no,
-	// "R", Reservation_Concert_Select_Controller.concert_number);
+	// 1. R석에서 선택한 좌석수를 임시로 저장하는 변수입니다.
+	// 1.1 좌석에 이벤트가 발생할 때마다 증가하거나 감소시킵니다.
+	// 1.2 좌석 컨트롤러에서 받아온 seat_total 값을 기준으로 좌석 선택이 종료되는 시점을 조건으로 만들 때 사용합니다.
 	int R_count = 0;
 
+	// 1. 버튼의 예약 상태를 초기화 시킵니다. 99999 는 아무런 의미가 없는 숫자입니다.
 	int button_status_check = 99999;
 	int button_status_check2 = 99999;
 
+	// 1. R등급에서의 좌석 선택을 마치고 싶을 때 선택하는 버튼이 작동하는 메소드입니다.
 	@FXML
 	void btn_select_done(ActionEvent event) {
 
+		// 1.1 선택가능한 좌석에서 선택한 좌석의 갯수를 빼줍니다.
 		Reservation_Seat_Select_Controller.seat_total = Reservation_Seat_Select_Controller.seat_total - R_count;
+		// 1.2 R등급의 좌석 선택이 종료되었음을 알려주는 값입니다.
 		Reservation_Seat_Select_Controller.is_R_set = true;
+		// 1.3 트리맵에 현재까지 선택한 좌석 정보를 저장합니다. 
 		Reservation_Seat_Select_Controller.getReseved_seat_map().put("R", R_seat_Map);
-
+		// 1.4 좌석 선택이 종료시킵니다. 
+		// 1.5 모든 좌석을 disable 시키고, 알림창을 출력시킵니다. 
 		btn_disable2();
 
 	}
@@ -84,7 +102,10 @@ public class R_Seat_Controller implements Initializable {
 		R_seat_create();
 
 	}
-
+	
+	
+	// 1. 좌석을 생성하는 메소드입니다.
+	// 1.1 
 	public void R_seat_create() {
 
 		try {
@@ -111,7 +132,7 @@ public class R_Seat_Controller implements Initializable {
 					button.setText((i + 1) + "");
 
 					// 2. 버튼 액션을 부여하기 전에, 특정 좌석이 클릭이 되었는지, 혹은 이미 예약 상태인지를 체크해서 상태별로 색깔을 다르게 출력합니다.
-					
+
 					// int a = R_status_check.get(i); R_status_check 를 받아올 때 오류가 나서 진행을 못 하고 있습니다.
 
 					if (R_status_check != null && R_status_check.size() != 0) {
@@ -211,8 +232,10 @@ public class R_Seat_Controller implements Initializable {
 		seat_limit = Reservation_Seat_Select_Controller.how_many_person;
 		// 3. TreeMap 에 저장되어 있던 정보도 초기화시킵니다.
 		R_seat_Map.clear();
+		// 4. buttons 리스트에 저장되어 있던 버튼 정보도 모두 초기화시킵니다.
+		R_buttons.clear();
 
-		// 4. 버튼이 선택되었던 상태 정보도 모두 1에서 0으로 바꿉니다.
+		// 5. 버튼이 선택되었던 상태 정보도 모두 1에서 0으로 바꿉니다.
 
 		for (int r : R_status_check) {
 			if (r == 1) {
@@ -220,7 +243,7 @@ public class R_Seat_Controller implements Initializable {
 			}
 
 		}
-		// 5. 위의 정보들을 바탕으로 다시 좌석을 생성합니다.
+		// 6. 위의 정보들을 바탕으로 다시 좌석을 생성합니다.
 		R_seat_create();
 	}
 
