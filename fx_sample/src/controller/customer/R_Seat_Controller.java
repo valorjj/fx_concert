@@ -52,6 +52,8 @@ public class R_Seat_Controller implements Initializable {
 	// 1. 좌석 컨트롤러에서 받아온 현재 선택 가능한 좌석 수 입니다.
 	// 1.1 좌석 컨트롤러에서 입력받은 인원수는 변하지 않는 값 입ㄴ디ㅏ.
 	// 1.2 seat_total 값은 다른 등급(R, S, D, E) 에서 좌석을 선택하면 그 수가 줄어듭니다.
+	// 1.3 seat_total 을 저장한 seat_limit 변수는 현재 클래스 내부에서만 사용합니다.
+	// 1.4 좌석 컨트롤러에 존재하는 seat_total 변수에는 특정한 조건에만 값이 변하게 해야합니다.
 	int seat_limit = Reservation_Seat_Select_Controller.seat_total;
 
 	// 1. db concert table 에서 입력된 콘서트의 R 석 총 좌석 수를 저장합니다.
@@ -74,15 +76,25 @@ public class R_Seat_Controller implements Initializable {
 	@FXML
 	void btn_select_done(ActionEvent event) {
 
+		top_block.setVisible(false);
+		right_block.setVisible(false);
+		bottom_block.setVisible(false);
+		System.out.println("전" + Reservation_Seat_Select_Controller.seat_total);
 		// 1.1 선택가능한 좌석에서 선택한 좌석의 갯수를 빼줍니다.
 		Reservation_Seat_Select_Controller.seat_total = Reservation_Seat_Select_Controller.seat_total - R_count;
+		System.out.println("후" + Reservation_Seat_Select_Controller.seat_total);
+
 		// 1.2 R등급의 좌석 선택이 종료되었음을 알려주는 값입니다.
 		Reservation_Seat_Select_Controller.is_R_set = true;
-		// 1.3 트리맵에 현재까지 선택한 좌석 정보를 저장합니다. 
+		// 1.3 트리맵에 현재까지 선택한 좌석 정보를 저장합니다.
 		Reservation_Seat_Select_Controller.getReseved_seat_map().put("R", R_seat_Map);
-		// 1.4 좌석 선택이 종료시킵니다. 
-		// 1.5 모든 좌석을 disable 시키고, 알림창을 출력시킵니다. 
+
+		// 1.4 좌석 선택이 종료시킵니다.
+		// 1.5 모든 좌석을 disable 시키고, 알림창을 출력시킵니다.
 		btn_disable2();
+
+		// 1.6 좌석 컨트롤러에 있는 static 리스트에 저장합니다.
+		Reservation_Seat_Select_Controller.R_status_check = this.R_status_check;
 
 	}
 
@@ -98,14 +110,15 @@ public class R_Seat_Controller implements Initializable {
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
 
+		System.out.println(seat_limit + "seat _ limit");
+
 		left_block.setVisible(false);
 		R_seat_create();
 
 	}
-	
-	
+
 	// 1. 좌석을 생성하는 메소드입니다.
-	// 1.1 
+	// 1.1
 	public void R_seat_create() {
 
 		try {
@@ -126,15 +139,13 @@ public class R_Seat_Controller implements Initializable {
 					button.setPrefSize(42, 42);
 
 					// 1. 화면에 표시되는 버튼 번호와 버튼 id 가 다릅니다.
-					// 1. 15번 좌석은 id=14 로 저장됩니다.
-					// 2. 리스트 혹은 배열에서 사용할 시 인덱스가 0번 부터 시작하기 때문에 실수 방지를 위함입니다.
+					// 1.1 15번 좌석은 id=14 로 저장됩니다.
+					// 1.2 리스트 혹은 배열에서 사용할 시 인덱스가 0번 부터 시작하기 때문에 실수 방지를 위함입니다.
 					button.setId(i + "");
 					button.setText((i + 1) + "");
 
 					// 2. 버튼 액션을 부여하기 전에, 특정 좌석이 클릭이 되었는지, 혹은 이미 예약 상태인지를 체크해서 상태별로 색깔을 다르게 출력합니다.
-
-					// int a = R_status_check.get(i); R_status_check 를 받아올 때 오류가 나서 진행을 못 하고 있습니다.
-
+					// 2.1 혹시 배열에 문제가 발생한 경우 예외처리입니다.
 					if (R_status_check != null && R_status_check.size() != 0) {
 						button_status_check = R_status_check.get(i);
 
@@ -152,22 +163,19 @@ public class R_Seat_Controller implements Initializable {
 						}
 						// 3. 해당 버튼에 이벤트가 발생
 						button.setOnAction((ActionEvent) -> {
-							// 1. R석이 선택된 갯수를 증가시킵니다.
-
-							// 2. 선택된 좌석 번호와 등급을 TreeMap 에 저장시킵니다.
+							// 1. 선택된 좌석 번호와 등급을 TreeMap 에 저장시킵니다.
 							R_seat_Map.put(Integer.parseInt(button.getId()) + 1, "R");
-							// 3. 버튼이 클릭되었을 때, 상태를 바꿉니다.
-
+							// 2. 버튼이 클릭되었을 때, 상태를 바꿉니다.
 							button_status_check2 = R_status_check.get(Integer.parseInt(button.getId()));
 
 							switch (button_status_check2) {
 							case 0: // 1. 좌석이 예약 가능한 상태
-								++R_count;
-								R_status_check.set(Integer.parseInt(button.getId()), 1);
+								R_count = R_count + 1; // 1. 현재 선택한 좌석 갯수를 1 증가시킵니다.
+								R_status_check.set(Integer.parseInt(button.getId()), 1); // 2. 체크 되었다고 1 로 상태를 변경합니다.
 								button.setStyle("-fx-background-color: green");
 								break;
 							case 1: // 2. 현재 선택한 좌석
-								--R_count;
+								--R_count; // 1. 동일한 좌석을 누른다는 것은 취소의 의미이므로 1 감소시킵니다.
 								R_status_check.set(Integer.parseInt(button.getId()), 0);
 								button.setStyle("-fx-background-color: #eeeeee");
 								break;
@@ -191,6 +199,8 @@ public class R_Seat_Controller implements Initializable {
 								Reservation_Seat_Select_Controller.is_S_set = true;
 								Reservation_Seat_Select_Controller.is_D_set = true;
 								Reservation_Seat_Select_Controller.is_E_set = true;
+								// 4. 좌석 컨트롤러에 있는 static 영역에 저장된 리스트에 좌석 예약 상태 정보를 전달합니다.
+								Reservation_Seat_Select_Controller.R_status_check = this.R_status_check;
 
 								top_block.setVisible(false);
 								right_block.setVisible(false);
@@ -234,14 +244,16 @@ public class R_Seat_Controller implements Initializable {
 		R_seat_Map.clear();
 		// 4. buttons 리스트에 저장되어 있던 버튼 정보도 모두 초기화시킵니다.
 		R_buttons.clear();
+		// 5. 주변 블록들도 안보이게 합니다.
+		top_block.setVisible(true);
+		right_block.setVisible(true);
+		bottom_block.setVisible(true);
 
-		// 5. 버튼이 선택되었던 상태 정보도 모두 1에서 0으로 바꿉니다.
-
+		// 5. 버튼이 선택되었던 상태 정보도 1에서 0으로 바꿉니다.
 		for (int r : R_status_check) {
 			if (r == 1) {
 				r = 0;
 			}
-
 		}
 		// 6. 위의 정보들을 바탕으로 다시 좌석을 생성합니다.
 		R_seat_create();
@@ -269,8 +281,9 @@ public class R_Seat_Controller implements Initializable {
 		}
 
 		Alert alert2 = new Alert(AlertType.INFORMATION);
-		alert2.setHeaderText("총 [" + R_count + "] 개 의 좌석이 선택되었습니다.\n"
-				+ (Reservation_Seat_Select_Controller.seat_total - R_count) + "개 좌석을 선택할 수 있습니다. ");
+
+		alert2.setHeaderText("총 [" + R_count + "] 개 의 좌석이 선택되었습니다.\n" + Reservation_Seat_Select_Controller.seat_total
+				+ "개 좌석을 선택할 수 있습니다. ");
 		alert2.showAndWait();
 
 	}

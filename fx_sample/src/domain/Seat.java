@@ -8,6 +8,7 @@ public class Seat {
 	private int s_status; // 좌석예약상태
 	private int c_no;
 	private int s_unique_no;// 좌석 가격
+	private int c_unique_no;
 	private String s_grade;
 
 	public Seat(int s_no, int s_status, int c_no, int s_unique_no, String s_grade) {
@@ -18,10 +19,10 @@ public class Seat {
 		this.s_grade = s_grade;
 	}
 
-	public Seat(int s_status, int c_no, int s_unique_no, String s_grade) {
-		this.s_status = s_status;
+	public Seat(int c_no, int s_unique_no, int c_unique_no, String s_grade) {
 		this.c_no = c_no;
 		this.s_unique_no = s_unique_no;
+		this.c_unique_no = c_unique_no;
 		this.s_grade = s_grade;
 	}
 
@@ -63,6 +64,14 @@ public class Seat {
 
 	public void setS_grade(String s_grade) {
 		this.s_grade = s_grade;
+	}
+
+	public int getC_unique_no() {
+		return c_unique_no;
+	}
+
+	public void setC_unique_no(int c_unique_no) {
+		this.c_unique_no = c_unique_no;
 	}
 
 }

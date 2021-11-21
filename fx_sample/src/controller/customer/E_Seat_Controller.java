@@ -47,7 +47,7 @@ public class E_Seat_Controller implements Initializable {
 	ArrayList<Integer> E_status_check = SeatDao.getSeatDao().get_seat_status(c_no, "E",
 			Reservation_Concert_Select_Controller.concert_number);
 	int E_count = 0;
-	
+
 	int button_status_check = 99999;
 	int button_status_check2 = 99999;
 
@@ -57,8 +57,8 @@ public class E_Seat_Controller implements Initializable {
 		Reservation_Seat_Select_Controller.seat_total = Reservation_Seat_Select_Controller.seat_total - E_count;
 		Reservation_Seat_Select_Controller.is_E_set = true;
 		Reservation_Seat_Select_Controller.getReseved_seat_map().put("E", E_seat_Map);
-
 		btn_disable2();
+		Reservation_Seat_Select_Controller.E_status_check = this.E_status_check;
 
 	}
 
@@ -102,7 +102,7 @@ public class E_Seat_Controller implements Initializable {
 
 				// 2. 버튼 액션을 부여하기 전에, 특정 좌석이 클릭이 되었는지, 혹은 이미 예약 상태인지를 체크해서 상태별로 색깔을 다르게 출력합니다.
 
-				int button_status_check = E_status_check.get(i);
+				button_status_check = E_status_check.get(i);
 				switch (button_status_check) {
 				case 0:
 					break;
@@ -119,18 +119,19 @@ public class E_Seat_Controller implements Initializable {
 				// 3. 해당 버튼에 이벤트가 발생
 				button.setOnAction((ActionEvent) -> {
 					// 1. R석이 선택된 갯수를 증가시킵니다.
-					E_count++;
 					// 2. 선택된 좌석 번호와 등급을 TreeMap 에 저장시킵니다.
 					E_seat_Map.put(Integer.parseInt(button.getId()) + 1, "E");
 					// 3. 버튼이 클릭되었을 때, 상태를 바꿉니다.
-					int button_status_check2 = E_status_check.get(Integer.parseInt(button.getId()));
+					button_status_check2 = E_status_check.get(Integer.parseInt(button.getId()));
 
 					switch (button_status_check2) {
 					case 0: // 1. 좌석이 예약 가능한 상태
+						E_count = E_count + 1;
 						E_status_check.set((Integer.parseInt(button.getId())), 1);
 						button.setStyle("-fx-background-color: green");
 						break;
 					case 1: // 2. 현재 선택한 좌석
+						E_count = E_count - 1;
 						button.setStyle("-fx-background-color: green");
 						break;
 
@@ -155,20 +156,16 @@ public class E_Seat_Controller implements Initializable {
 						Reservation_Seat_Select_Controller.is_S_set = true;
 						Reservation_Seat_Select_Controller.is_D_set = true;
 						Reservation_Seat_Select_Controller.is_E_set = true;
-
+						Reservation_Seat_Select_Controller.E_status_check = this.E_status_check;
 						top_block.setVisible(false);
 						right_block.setVisible(false);
 						bottom_block.setVisible(false);
 						btn_clear.setVisible(false);
 						btn_select_done.setVisible(false);
-
 						btn_disable();
 					}
-
 				});
-
 				E_buttons.add(button);
-
 				if (i % 10 == 0) {
 					row = 0;
 					col++;
@@ -190,11 +187,13 @@ public class E_Seat_Controller implements Initializable {
 		// 3. TreeMap 에 저장되어 있던 정보도 초기화시킵니다.
 		E_seat_Map.clear();
 
+		E_buttons.clear();
+
 		// 4. 버튼이 선택되었던 상태 정보도 모두 1에서 0으로 바꿉니다.
 
-		for (int r : E_status_check) {
-			if (r == 1) {
-				r = 0;
+		for (int e : E_status_check) {
+			if (e == 1) {
+				e = 0;
 			}
 
 		}
@@ -224,8 +223,8 @@ public class E_Seat_Controller implements Initializable {
 		}
 
 		Alert alert2 = new Alert(AlertType.INFORMATION);
-		alert2.setHeaderText("총 [" + E_count + "] 개 의 좌석이 선택되었습니다.\n"
-				+ (Reservation_Seat_Select_Controller.seat_total - E_count) + "개 좌석을 선택할 수 있습니다. ");
+		alert2.setHeaderText("총 [" + E_count + "] 개 의 좌석이 선택되었습니다.\n" + Reservation_Seat_Select_Controller.seat_total
+				+ "개 좌석을 선택할 수 있습니다. ");
 		alert2.showAndWait();
 
 	}
