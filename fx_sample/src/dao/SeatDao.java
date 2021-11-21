@@ -99,7 +99,7 @@ public class SeatDao {
 	public ArrayList<Integer> get_seat_status(int c_no, String s_grade, int c_unique_no) {
 		String sql = "SELECT s_status FROM seat WHERE c_no=? and s_grade=? and c_unique_no=? order by s_unique_no asc";
 
-		ArrayList<Integer> R_seat_status = new ArrayList<>(50);
+		ArrayList<Integer> R_seat_status = new ArrayList<>();
 
 		try {
 
@@ -118,6 +118,7 @@ public class SeatDao {
 		}
 		return null;
 	}
+	
 
 //	public ArrayList<Integer> get_S_seat_status(int c_no, String s_grade, int c_unique_no) {
 //		String sql = "SELECT s_status FROM seat WHERE c_no=? and s_grade=? and c_unique_no=?";
