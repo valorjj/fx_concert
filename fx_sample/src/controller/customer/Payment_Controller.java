@@ -220,7 +220,7 @@ public class Payment_Controller implements Initializable {
 		// 1. 해당 콘서트 예약 현황을 나이에 따라 분류해서 Bar 그래프로 출력합니다.
 		// 1.1 멤버를 나이별로 묶습니다.
 		// 1.2 그 후
-		
+
 		load_page("chart_view_by_age");
 
 	}
@@ -248,7 +248,7 @@ public class Payment_Controller implements Initializable {
 
 			// 3. TreeMap 을 반복문으로 돌면서 TreeMap 안에 데이터가 존재하는 경우에만 db 에 등록을 해야합니다. (안하면 오류남)
 			// 3.1
-			if (!Reservation_Seat_Select_Controller.getReseved_seat_map().get("R").isEmpty()) {
+			if (Reservation_Seat_Select_Controller.getReseved_seat_map().get("R") != null) {
 				for (Entry<Integer, String> entry : Reservation_Seat_Select_Controller.getReseved_seat_map().get("R")
 						.entrySet()) {
 					res1 = SeatDao.getSeatDao().set_seat_status(entry.getKey(), entry.getValue(), c_no,
@@ -267,7 +267,7 @@ public class Payment_Controller implements Initializable {
 				}
 			}
 
-			if (!Reservation_Seat_Select_Controller.getReseved_seat_map().get("S").isEmpty()) {
+			if (Reservation_Seat_Select_Controller.getReseved_seat_map().get("S") != null) {
 				for (Entry<Integer, String> entry : Reservation_Seat_Select_Controller.getReseved_seat_map().get("S")
 						.entrySet()) {
 					res3 = SeatDao.getSeatDao().set_seat_status(entry.getKey(), entry.getValue(), c_no,
@@ -285,7 +285,7 @@ public class Payment_Controller implements Initializable {
 				}
 			}
 
-			if (!Reservation_Seat_Select_Controller.getReseved_seat_map().get("D").isEmpty()) {
+			if (Reservation_Seat_Select_Controller.getReseved_seat_map().get("D") != null) {
 				for (Entry<Integer, String> entry : Reservation_Seat_Select_Controller.getReseved_seat_map().get("D")
 						.entrySet()) {
 					res5 = SeatDao.getSeatDao().set_seat_status(entry.getKey(), entry.getValue(), c_no,
@@ -304,7 +304,7 @@ public class Payment_Controller implements Initializable {
 
 			}
 
-			if (!Reservation_Seat_Select_Controller.getReseved_seat_map().get("E").isEmpty()) {
+			if (Reservation_Seat_Select_Controller.getReseved_seat_map().get("E") != null) {
 				for (Entry<Integer, String> entry : Reservation_Seat_Select_Controller.getReseved_seat_map().get("E")
 						.entrySet()) {
 					res7 = SeatDao.getSeatDao().set_seat_status(entry.getKey(), entry.getValue(), c_no,

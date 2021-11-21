@@ -211,4 +211,23 @@ public class ReservationDao {
 		return 0;
 	}
 
+	public int get_reservation1(int c_no, String s_grade, int c_unique_no) {
+
+		String sql = "select count(s_unique_no) from reservation where c_no=? and s_grade=? and c_unique_no=?";
+		try {
+			preparedStatement = connection.prepareStatement(sql);
+			preparedStatement.setInt(1, c_no);
+			preparedStatement.setString(2, s_grade);
+			preparedStatement.setInt(3, c_unique_no);
+
+			resultSet = preparedStatement.executeQuery();
+			if (resultSet.next()) {
+				return resultSet.getInt(1);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return 0;
+	}
+
 }

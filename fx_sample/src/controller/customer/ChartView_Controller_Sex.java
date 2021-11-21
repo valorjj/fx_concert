@@ -10,6 +10,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.chart.LineChart;
 import javafx.scene.chart.XYChart;
+import javafx.scene.chart.XYChart.Series;
 
 public class ChartView_Controller_Sex implements Initializable {
 
@@ -18,27 +19,29 @@ public class ChartView_Controller_Sex implements Initializable {
 
 	@FXML
 	private LineChart<String, Integer> linechart;
-	XYChart.Series<String, Integer> series = null;
+	// Series<String, Integer> series = null;
 
-	int m_no = MemberDao.getMemberDao().get_m_no_member(Login_Controller.getInstance().get_login_id());
+	// int m_no =
+	// MemberDao.getMemberDao().get_m_no_member(Login_Controller.getInstance().get_login_id());
 
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
 
-		series = new XYChart.Series<String, Integer>();
-
-		// ObservableList<XYChart.Series<String, Number>> list =
-		// FXCollections.observableArrayList();
+		XYChart.Series<String, Integer> series = new XYChart.Series<String, Integer>();
 
 		int men = ReservationDao.get_reservationDao().get_reservation1("M");
 		int women = ReservationDao.get_reservationDao().get_reservation1("F");
 
-		series.getData().add(new XYChart.Data<String, Integer>("M", men));
-		series.getData().add(new XYChart.Data<String, Integer>("F", women));
+		System.out.println(men + ": men");
+		System.out.println(women + ": women");
 
-		// linechart.getXAxis().setAutoRanging(false);
+		series.getData().add(new XYChart.Data<String, Integer>("male", men));
+		series.getData().add(new XYChart.Data<String, Integer>("female", women));
+
+		series.setName("by Sex");
 
 		linechart.getData().add(series);
+
 	}
 
 }

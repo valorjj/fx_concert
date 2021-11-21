@@ -8,6 +8,7 @@ import java.util.Optional;
 import java.util.ResourceBundle;
 
 import dao.ConcertDao;
+import dao.ReservationDao;
 import domain.Concert;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -243,17 +244,27 @@ public class Reservation_Date_Select_Controller implements Initializable {
 			/* 버튼 아래 위치한 레이블에 잔여 좌석을 알려줍니다. */
 			user_selected_time = 2 + "시";
 
-			int R_remain = ConcertDao.getConcertDao().get_remaining_seat_R(user_selected_date, user_selected_time);
-			lbl_R_remaining.setText(R_remain + "");
+			int c_no = ConcertDao.getConcertDao().get_concert_c_no(user_selected_date, user_selected_time);
 
-			int S_remain = ConcertDao.getConcertDao().get_remaining_seat_S(user_selected_date, user_selected_time);
-			lbl_S_remaining.setText(S_remain + "");
+			int R_total = ConcertDao.getConcertDao().get_remaining_seat_R(user_selected_date, user_selected_time);
+			int R_selected = ReservationDao.get_reservationDao().get_reservation1(c_no, "R",
+					Reservation_Concert_Select_Controller.concert_number);
+			lbl_R_remaining.setText((R_total - R_selected) + "");
 
-			int D_remain = ConcertDao.getConcertDao().get_remaining_seat_D(user_selected_date, user_selected_time);
-			lbl_D_remaining.setText(D_remain + "");
+			int S_total = ConcertDao.getConcertDao().get_remaining_seat_S(user_selected_date, user_selected_time);
+			int S_selected = ReservationDao.get_reservationDao().get_reservation1(c_no, "S",
+					Reservation_Concert_Select_Controller.concert_number);
+			lbl_S_remaining.setText((S_total - S_selected) + "");
 
-			int E_remain = ConcertDao.getConcertDao().get_remaining_seat_E(user_selected_date, user_selected_time);
-			lbl_E_remaining.setText(E_remain + "");
+			int D_total = ConcertDao.getConcertDao().get_remaining_seat_D(user_selected_date, user_selected_time);
+			int D_selected = ReservationDao.get_reservationDao().get_reservation1(c_no, "D",
+					Reservation_Concert_Select_Controller.concert_number);
+			lbl_D_remaining.setText((D_total - D_selected) + "");
+
+			int E_total = ConcertDao.getConcertDao().get_remaining_seat_E(user_selected_date, user_selected_time);
+			int E_selected = ReservationDao.get_reservationDao().get_reservation1(c_no, "E",
+					Reservation_Concert_Select_Controller.concert_number);
+			lbl_D_remaining.setText((E_total - E_selected) + "");
 
 			btn_6pm.setDisable(true);
 			setSwitch_2pm_btn(false);
