@@ -1,26 +1,36 @@
 package controller.customer;
 
 import java.net.URL;
+import java.util.ArrayList;
+import java.util.Map.Entry;
 import java.util.Optional;
 import java.util.ResourceBundle;
 
-import dao.ConcertDao;
-import domain.Concert;
-import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
-import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.scene.control.Alert.AlertType;
 import javafx.scene.layout.AnchorPane;
 
 public class Payment_Controller implements Initializable {
+
+	////////////////////////////////////////////////////////////////////
+
+	ArrayList<Integer> r_seat_list = new ArrayList<>();
+
+	@Override
+	public void initialize(URL arg0, ResourceBundle arg1) {
+
+		lbl_r_no_1.setText(Reservation_Seat_Select_Controller.getReseved_seat_map().get("R") + "");
+		lbl_r_no_1.setStyle("-fx-font-size : 15px");
+
+	}
+
+	//////////////////////////////////////////////////////////////////
 
 	@FXML
 	private AnchorPane anchorpane_graph;
@@ -115,12 +125,5 @@ public class Payment_Controller implements Initializable {
 	}
 
 	///////////////////////////////////////////////////////
-
-	@Override
-	public void initialize(URL arg0, ResourceBundle arg1) {
-
-		lbl_r_no_1.setText(Reservation_Seat_Select_Controller.getReseved_seat_map().get("R") + "");
-
-	}
 
 }

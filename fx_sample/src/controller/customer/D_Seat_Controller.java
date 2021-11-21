@@ -3,7 +3,10 @@ package controller.customer;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
+import java.util.TreeMap;
 
+import dao.ConcertDao;
+import dao.SeatDao;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -16,21 +19,19 @@ import javafx.scene.shape.Rectangle;
 public class D_Seat_Controller implements Initializable {
 
 	@FXML
+	private GridPane gridpane_D;
+	@FXML
 	private Rectangle left_block;
-
 	@FXML
 	private Rectangle right_block;
-
 	@FXML
 	private Rectangle top_block;
-
 	@FXML
 	private Rectangle bottom_block;
-
-	///////////////////////////////////////
-
 	@FXML
 	private Button btn_select_done;
+	@FXML
+	private Button btn_clear;
 
 	@FXML
 	void btn_select_done(ActionEvent event) {
@@ -40,8 +41,6 @@ public class D_Seat_Controller implements Initializable {
 		btn_disable2();
 
 	}
-
-	////////////////////////////////////
 
 	private static D_Seat_Controller instance;
 
@@ -54,20 +53,21 @@ public class D_Seat_Controller implements Initializable {
 		instance = this;
 	}
 
-	@FXML
-	private GridPane gridpane_D;
-
 	int seat_limit = Reservation_Seat_Select_Controller.how_many_person;
 
-	int sum = 0;
-	static ArrayList<Button> D_buttons = new ArrayList<>();
+	ArrayList<Button> D_buttons = new ArrayList<>();
+	int c_no = ConcertDao.getConcertDao().get_concert_c_no(Reservation_Date_Select_Controller.user_selected_date,
+			Reservation_Date_Select_Controller.user_selected_time);
+	TreeMap<Integer, String> D_seat_Map = new TreeMap<Integer, String>();
+	int manager_input_D_seat_no = ConcertDao.getConcertDao().get_remaining_seat_D(
+			Reservation_Date_Select_Controller.user_selected_date,
+			Reservation_Date_Select_Controller.user_selected_time);
+	ArrayList<Integer> D_status_check = SeatDao.getSeatDao().get_seat_status(c_no, "D",
+			Reservation_Concert_Select_Controller.concert_number);
+	int D_count = 0;
 
-	private static int manager_input_D_seat_no = 50;
-	private static int[] D_status_check = new int[manager_input_D_seat_no];
-	static int D_count = 0;
-
-	@FXML
-	private Button btn_clear;
+	int button_status_check = 99999;
+	int button_status_check2 = 99999;
 
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
@@ -91,7 +91,10 @@ public class D_Seat_Controller implements Initializable {
 			button.setId(i + "");
 			button.setText((i + 1) + "");
 
-			int button_status_check = getD_status_check()[i];
+			if (D_status_check != null && D_status_check.size() != 0) {
+				button_status_check = D_status_check.get(i);
+			}
+
 			switch (button_status_check) {
 			case 0: // 좌석이 예약 가능한 상태
 				break;
@@ -108,10 +111,10 @@ public class D_Seat_Controller implements Initializable {
 
 				++D_count;
 
-				int button_status_check2 = getD_status_check()[Integer.parseInt(button.getId())];
+				int button_status_check2 = D_status_check.get(Integer.parseInt(button.getId()));
 				switch (button_status_check2) {
 				case 0: // 좌석이 예약 가능한 상태
-					getD_status_check()[Integer.parseInt(button.getId())] = 1;
+					D_status_check.set(Integer.parseInt(button.getId()), 1);
 					button.setStyle("-fx-background-color: green");
 					break;
 				case 1:
@@ -149,25 +152,21 @@ public class D_Seat_Controller implements Initializable {
 
 	}
 
-	// 모든 버튼 상태를 초기화 시킨다.
-	// 제대로 작동하는지 확인하려면 매니저가 등록한 DB 에서 좌석 상태를 불러와야한다.
-	// 상태가 2, 즉 예약이 완료된 상태를 제외하고 1-> 현재 선택한 좌석이 있다면 0으로 바꾼다.
-	// 1에서 2로 바꾸고 버튼을 다시 생성한다
-
 	@FXML
 	public void btn_clear(ActionEvent event) {
 
 		// 선택한 좌석 수 초기화
 		D_count = 0;
 
-		Reservation_Seat_Select_Controller.seat_total = Reservation_Seat_Select_Controller.how_many_person;
+		D_seat_Map.clear();
+		seat_limit = Reservation_Seat_Select_Controller.how_many_person;
 
-		for (int i = 0; i < manager_input_D_seat_no; i++) {
-			if (getD_status_check()[i] == 1) {
-				getD_status_check()[i] = 0;
+		for (int d : D_status_check) {
+			if (d == 1) {
+				d = 0;
 			}
-		}
 
+		}
 		D_seat_create();
 
 	}
@@ -195,18 +194,10 @@ public class D_Seat_Controller implements Initializable {
 		}
 
 		Alert alert2 = new Alert(AlertType.INFORMATION);
-		alert2.setHeaderText("총[" + sum + "]개 의 좌석이 선택되었습니다.\n" + (Reservation_Seat_Select_Controller.seat_total - sum)
-				+ "개 좌석을 선택할 수 있습니다. ");
+		alert2.setHeaderText("총[" + D_count + "]개 의 좌석이 선택되었습니다.\n"
+				+ (Reservation_Seat_Select_Controller.seat_total - D_count) + "개 좌석을 선택할 수 있습니다. ");
 		alert2.showAndWait();
 
-	}
-
-	public static int[] getD_status_check() {
-		return D_status_check;
-	}
-
-	public static void setD_status_check(int[] d_status_check) {
-		D_status_check = d_status_check;
 	}
 
 }
