@@ -39,7 +39,6 @@ public class D_Seat_Controller implements Initializable {
 		Reservation_Seat_Select_Controller.seat_total = Reservation_Seat_Select_Controller.seat_total - D_count;
 		Reservation_Seat_Select_Controller.is_D_set = true;
 		btn_disable2();
-		Reservation_Seat_Select_Controller.D_status_check = this.D_status_check;
 
 	}
 
@@ -110,15 +109,15 @@ public class D_Seat_Controller implements Initializable {
 
 			button.setOnAction((ActionEvent) -> {
 
+				++D_count;
+
 				int button_status_check2 = D_status_check.get(Integer.parseInt(button.getId()));
 				switch (button_status_check2) {
 				case 0: // 좌석이 예약 가능한 상태
-					D_count = D_count + 1;
 					D_status_check.set(Integer.parseInt(button.getId()), 1);
 					button.setStyle("-fx-background-color: green");
 					break;
 				case 1:
-					D_count = D_count - 1;
 					button.setStyle("-fx-background-color: green");
 					break;
 
@@ -135,7 +134,6 @@ public class D_Seat_Controller implements Initializable {
 					Reservation_Seat_Select_Controller.is_E_set = true;
 					btn_select_done.setVisible(false);
 					btn_disable();
-					Reservation_Seat_Select_Controller.D_status_check = this.D_status_check;
 
 				}
 			});
@@ -196,8 +194,8 @@ public class D_Seat_Controller implements Initializable {
 		}
 
 		Alert alert2 = new Alert(AlertType.INFORMATION);
-		alert2.setHeaderText("총[" + D_count + "]개 의 좌석이 선택되었습니다.\n" + Reservation_Seat_Select_Controller.seat_total
-				+ "개 좌석을 선택할 수 있습니다. ");
+		alert2.setHeaderText("총[" + D_count + "]개 의 좌석이 선택되었습니다.\n"
+				+ (Reservation_Seat_Select_Controller.seat_total - D_count) + "개 좌석을 선택할 수 있습니다. ");
 		alert2.showAndWait();
 
 	}
