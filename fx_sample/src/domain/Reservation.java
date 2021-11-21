@@ -16,6 +16,10 @@ public class Reservation {
 		this.c_unique_no = c_unique_no;
 	}
 
+	public Reservation(int s_unique_no) {
+		this.s_unique_no = s_unique_no;
+	}
+
 	public Reservation(int s_unique_no, String s_grade, int c_no, int c_unique_no, int m_no) {
 		this.s_unique_no = s_unique_no;
 		this.s_grade = s_grade;

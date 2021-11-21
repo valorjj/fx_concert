@@ -81,7 +81,7 @@ public class Info_Page_Home_Controller implements Initializable {
 		ObservableList<Reservation> member_reservation_history_concert = ReservationDao.get_reservationDao()
 				.get_member_reservation(m_no);
 
-		TableColumn tc = tableview_history.getColumns().get(0);
+		TableColumn<?, ?> tc = tableview_history.getColumns().get(0);
 		tc.setCellValueFactory(new PropertyValueFactory<>("c_no"));
 
 		tc = tableview_history.getColumns().get(1);

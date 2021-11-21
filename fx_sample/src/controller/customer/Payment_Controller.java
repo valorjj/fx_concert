@@ -13,16 +13,20 @@ import domain.Concert;
 import domain.Reservation;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Parent;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.BorderPane;
 
 public class Payment_Controller implements Initializable {
 
+	// 1. 유저가 선택한 콘서트 번호
 	int c_no = ConcertDao.getConcertDao().get_concert_c_no(Reservation_Date_Select_Controller.user_selected_date,
 			Reservation_Date_Select_Controller.user_selected_time);
 
@@ -127,9 +131,6 @@ public class Payment_Controller implements Initializable {
 	private AnchorPane anchorpane_graph;
 
 	@FXML
-	private AnchorPane anchorpane_table;
-
-	@FXML
 	private Button btn_cancel;
 
 	@FXML
@@ -171,6 +172,31 @@ public class Payment_Controller implements Initializable {
 	@FXML
 	private Label lbl_r_no_4;
 
+	@FXML
+	private BorderPane borderpane_chart;
+
+	private static Payment_Controller instance;
+
+	private Payment_Controller get_instance() {
+
+		return instance;
+
+	}
+
+	public Payment_Controller() {
+		instance = this;
+	}
+
+	public void load_page(String page) {
+		try {
+			Parent parent = FXMLLoader.load(getClass().getResource("/fxml/" + page + ".fxml"));
+			borderpane_chart.setCenter(parent);
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
+
+	}
+
 	// 1. 현재까지 선택된 모든 정보를 초기화시켜야 하는데, 너무 귀찮습니다. 그래서 그냥 콘서트 선택 페이지로 보낼 것 입니다.
 
 	@FXML
@@ -194,12 +220,15 @@ public class Payment_Controller implements Initializable {
 		// 1. 해당 콘서트 예약 현황을 나이에 따라 분류해서 Bar 그래프로 출력합니다.
 		// 1.1 멤버를 나이별로 묶습니다.
 		// 1.2 그 후
+		
+		load_page("chart_view_by_age");
 
 	}
 
 	@FXML
 	void graph_by_sex(ActionEvent event) {
 		// 1. 해당 콘서트 예약 현황을 성별에 따라 분류해서 Bar 그래프로 출력합니다.
+		load_page("chart_view_by_sex");
 
 	}
 

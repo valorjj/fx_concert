@@ -174,4 +174,41 @@ public class ReservationDao {
 		return 0;
 	}
 
+	// 1. 성별을 기준으로 예약 데이터를 불러옵니다.
+	public ObservableList<Reservation> get_reservation(String m_sex) {
+
+		ObservableList<Reservation> reservation_list_by_sex = FXCollections.observableArrayList();
+		String sql = "select count(s_unique_no) from reservation where m_no IN (select m_no from member where m_sex=?)";
+		try {
+			preparedStatement = connection.prepareStatement(sql);
+			preparedStatement.setString(1, m_sex);
+			resultSet = preparedStatement.executeQuery();
+			while (resultSet.next()) {
+
+				Reservation reservation = new Reservation(resultSet.getInt(1));
+				reservation_list_by_sex.add(reservation);
+			}
+			return reservation_list_by_sex;
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return null;
+	}
+
+	public int get_reservation1(String m_sex) {
+
+		String sql = "select count(s_unique_no) from reservation where m_no IN (select m_no from member where m_sex=?)";
+		try {
+			preparedStatement = connection.prepareStatement(sql);
+			preparedStatement.setString(1, m_sex);
+			resultSet = preparedStatement.executeQuery();
+			if (resultSet.next()) {
+				return resultSet.getInt(1);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return 0;
+	}
+
 }
