@@ -54,8 +54,6 @@ public class S_Seat_Controller implements Initializable {
 	int button_status_check = 99999;
 	int button_status_check2 = 99999;
 
-	/////////////////////////////////////////////////////////
-
 	@FXML
 	void btn_select_done(ActionEvent event) {
 
@@ -67,12 +65,11 @@ public class S_Seat_Controller implements Initializable {
 		Reservation_Seat_Select_Controller.seat_total = Reservation_Seat_Select_Controller.seat_total - S_count;
 		Reservation_Seat_Select_Controller.is_S_set = true;
 		Reservation_Seat_Select_Controller.getReseved_seat_map().put("S", S_seat_Map);
-		btn_disable2();
 		Reservation_Seat_Select_Controller.S_status_check = this.S_status_check;
+		Reservation_Seat_Select_Controller.S_count = this.S_count;
+		btn_disable2();
 
 	}
-
-	/////////////////////////////////////////////////////////
 
 	public static S_Seat_Controller get_instance() {
 		return instance;
@@ -82,11 +79,8 @@ public class S_Seat_Controller implements Initializable {
 		instance = this;
 	}
 
-	/////////////////////////////////////////////////////
-
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
-		System.out.println(c_no + ": c_no");
 		right_block.setVisible(false);
 		S_seat_create();
 	}
@@ -130,16 +124,15 @@ public class S_Seat_Controller implements Initializable {
 						button.setOnAction((ActionEvent) -> {
 
 							S_seat_Map.put(Integer.parseInt(button.getId()) + 1, "S");
-
 							button_status_check2 = S_status_check.get(Integer.parseInt(button.getId()));
 							switch (button_status_check2) {
 							case 0: // 좌석이 예약 가능한 상태
-								++S_count;
+								S_count = S_count + 1;
 								S_status_check.set(Integer.parseInt(button.getId()), 1);
 								button.setStyle("-fx-background-color: green");
 								break;
 							case 1: // 현재 선택한 좌석
-								--S_count;
+								S_count = S_count - 1;
 								button.setStyle("-fx-background-color: #eeeeee");
 								break;
 
@@ -164,6 +157,7 @@ public class S_Seat_Controller implements Initializable {
 								btn_select_done.setVisible(false);
 								btn_disable();
 								Reservation_Seat_Select_Controller.S_status_check = this.S_status_check;
+								Reservation_Seat_Select_Controller.S_count = this.S_count;
 							}
 						});
 
@@ -193,10 +187,9 @@ public class S_Seat_Controller implements Initializable {
 	public void btn_clear(ActionEvent event) {
 
 		S_count = 0;
-
-		seat_limit = Reservation_Seat_Select_Controller.how_many_person;
+		S_buttons.clear();
+		seat_limit = Reservation_Seat_Select_Controller.seat_total;
 		S_seat_Map.clear();
-
 		for (int s : S_status_check) {
 			if (s == 1) {
 				s = 0;

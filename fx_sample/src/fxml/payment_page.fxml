@@ -38,23 +38,32 @@
 				</Label>
 				<Button fx:id="btn_pay" layoutX="326.0" layoutY="446.0" mnemonicParsing="false" onAction="#btn_pay" prefHeight="92.0" prefWidth="122.0" text="결제하기" />
 				<Button fx:id="btn_cancel" layoutX="137.0" layoutY="446.0" mnemonicParsing="false" onAction="#btn_cancel" prefHeight="92.0" prefWidth="122.0" text="이전" />
-				<Label id="lbl_total_price_menu" fx:id="lbl_total" layoutX="31.0" layoutY="322.0" prefHeight="59.0" prefWidth="193.0" text="총 결제 금액">
+				<Label id="lbl_total_price_menu" fx:id="lbl_total" layoutX="75.0" layoutY="358.0" prefHeight="59.0" prefWidth="193.0" text="총 결제 금액">
 					<font>
 						<Font size="27.0" />
 					</font>
 				</Label>
-				<Label id="lbl_total_price" fx:id="lbl_total_price" layoutX="245.0" layoutY="322.0" prefHeight="59.0" prefWidth="345.0" text="total price">
+				<Label id="lbl_total_price" fx:id="lbl_total_price" layoutX="301.0" layoutY="358.0" prefHeight="59.0" prefWidth="345.0" text="total price">
 					<font>
-						<Font size="27.0" />
+						<Font size="30.0" />
 					</font>
 				</Label>
-            <Label fx:id="lbl_r_no_1" layoutX="38.0" layoutY="123.0" prefHeight="51.0" prefWidth="532.0" text="좌석번호">
+            <Label fx:id="lbl_r_no_1" layoutX="30.0" layoutY="100.0" prefHeight="51.0" prefWidth="532.0" text="좌석번호">
                <font>
-                  <Font size="15.0" />
+                  <Font size="20.0" />
                </font></Label>
-            <Label fx:id="lbl_r_no_2" layoutX="38.0" layoutY="185.0" prefHeight="27.0" prefWidth="172.0" text="좌석번호" />
-            <Label fx:id="lbl_r_no_3" layoutX="38.0" layoutY="232.0" prefHeight="27.0" prefWidth="172.0" text="좌석번호" />
-            <Label fx:id="lbl_r_no_4" layoutX="38.0" layoutY="280.0" prefHeight="27.0" prefWidth="54.0" text="좌석번호" />
+            <Label fx:id="lbl_r_no_2" layoutX="30.0" layoutY="151.0" prefHeight="59.0" prefWidth="542.0" text="좌석번호">
+               <font>
+                  <Font size="20.0" />
+               </font></Label>
+            <Label fx:id="lbl_r_no_3" layoutX="30.0" layoutY="210.0" prefHeight="59.0" prefWidth="532.0" text="좌석번호">
+               <font>
+                  <Font size="20.0" />
+               </font></Label>
+            <Label fx:id="lbl_r_no_4" layoutX="29.0" layoutY="269.0" prefHeight="51.0" prefWidth="532.0" text="좌석번호">
+               <font>
+                  <Font size="20.0" />
+               </font></Label>
 			</children>
 		</AnchorPane>
 	</children>

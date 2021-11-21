@@ -119,6 +119,9 @@ public class SeatDao {
 		return null;
 	}
 
+	// 1. mysql 정보에 좌석 정보를 대입하기 위해 사용한 메소드입니다.
+	// 1.1 프로젝트 구동 테스트에 필요한 3600 개의 데이터를 빠른 속도로 입력할 수 있었습니다.
+	// 1.2 이래서 머리가 멍청하면 몸이 고생하나봅니다.. 이 방법을 떠올리기 전까지 셀프로 1500개 이상의 데이터를 수작업으로 입력했습니다.
 	public boolean set_date(Seat seat) {
 
 		String sql = "INSERT INTO seat(c_no, s_unique_no, s_grade, c_unique_no) values(?,?,?,?)";
@@ -138,5 +141,30 @@ public class SeatDao {
 		}
 
 		return false;
+	}
+
+	// 1. 좌석번호, 등급, 콘서트 번호, 콘서트 고유 번호 이렇게 받아야지만 좌석을 특정할 수 있습니다.
+
+	public boolean set_seat_status(int s_unique_no, String s_grade, int c_no, int c_unique_no) {
+
+		String sql = "UPDATE seat SET s_status = 2 WHERE s_unique_no=? and s_grade=? and c_no=? and c_unique_no=?";
+
+		try {
+
+			preparedStatement = connection.prepareStatement(sql);
+
+			preparedStatement.setInt(1, s_unique_no);
+			preparedStatement.setString(2, s_grade);
+			preparedStatement.setInt(3, c_no);
+			preparedStatement.setInt(4, c_unique_no);
+			preparedStatement.executeUpdate();
+
+			return true;
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return false;
+
 	}
 }

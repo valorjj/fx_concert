@@ -8,6 +8,7 @@ import dao.MemberDao;
 import dao.ReservationDao;
 import domain.Concert;
 import domain.Member;
+import domain.Reservation;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -37,7 +38,9 @@ public class Info_Page_Home_Controller implements Initializable {
 
 	public static Concert concert;
 
-	@FXML 
+	Reservation reservation;
+
+	@FXML
 	private Label lbl_info_id;
 	@FXML
 	private Label lbl_info_name;
@@ -52,7 +55,7 @@ public class Info_Page_Home_Controller implements Initializable {
 	@FXML
 	private Label lbl_history;
 	@FXML
-	private TableView<Concert> tableview_history;
+	private TableView<Reservation> tableview_history;
 	@FXML
 	private Button btn_update_account;
 	@FXML
@@ -75,24 +78,24 @@ public class Info_Page_Home_Controller implements Initializable {
 
 		int m_no = MemberDao.getMemberDao().get_m_no_member(Login_Controller.getInstance().get_login_id());
 
-		ObservableList<Concert> member_reservation_history_concert = ReservationDao.get_reservationDao()
-				.get_concert_from_reservation(m_no);
+		ObservableList<Reservation> member_reservation_history_concert = ReservationDao.get_reservationDao()
+				.get_member_reservation(m_no);
 
 		TableColumn tc = tableview_history.getColumns().get(0);
-		tc.setCellValueFactory(new PropertyValueFactory<>("c_title"));
+		tc.setCellValueFactory(new PropertyValueFactory<>("c_no"));
 
 		tc = tableview_history.getColumns().get(1);
-		tc.setCellValueFactory(new PropertyValueFactory<>("c_time"));
+		tc.setCellValueFactory(new PropertyValueFactory<>("s_grade"));
 
 		tc = tableview_history.getColumns().get(2);
-		tc.setCellValueFactory(new PropertyValueFactory<>("c_date"));
-		
+		tc.setCellValueFactory(new PropertyValueFactory<>("s_unique_no"));
+
 		tableview_history.setItems(member_reservation_history_concert);
-		
+
 		tableview_history.setOnMouseClicked(e -> {
 			// 클릭 이벤트가 마우스 클릭과 같으면
 			if (e.getButton().equals(MouseButton.PRIMARY)) {
-				concert = tableview_history.getSelectionModel().getSelectedItem();
+				reservation = tableview_history.getSelectionModel().getSelectedItem();
 				int concert_order = ReservationDao.get_reservationDao().get_c_no(m_no);
 				Stage stage = new Stage();
 				try {

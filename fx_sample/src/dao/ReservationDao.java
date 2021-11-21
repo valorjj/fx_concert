@@ -42,13 +42,14 @@ public class ReservationDao {
 	// reservation 객체를 DB에 추가하는 메소드 (입력받은 데이터를 데이터 베이스에 저장합니다)
 	public boolean reservation_register(Reservation reservation) {
 
-		String sql = "insert into reservation(s_no, c_no, m_no, r_unique_c_no) values(?,?,?,?)";
+		String sql = "insert into reservation(s_unique_no, s_grade, c_no, c_unique_no, m_no) values(?,?,?,?,?)";
 		try {
 			preparedStatement = connection.prepareStatement(sql);
-			preparedStatement.setInt(1, reservation.getS_no());
-			preparedStatement.setInt(2, reservation.getC_no());
-			preparedStatement.setInt(3, reservation.getM_no());
-			preparedStatement.setInt(4, reservation.getR_unique_c_no());
+			preparedStatement.setInt(1, reservation.getS_unique_no());
+			preparedStatement.setString(2, reservation.getS_grade());
+			preparedStatement.setInt(3, reservation.getC_no());
+			preparedStatement.setInt(4, reservation.getC_unique_no());
+			preparedStatement.setInt(5, reservation.getM_no());
 			preparedStatement.executeUpdate();
 			return true;
 
@@ -104,14 +105,18 @@ public class ReservationDao {
 
 		ObservableList<Reservation> member_reservation_history = FXCollections.observableArrayList();
 
-		String sql = "SELECT * FROM reservation WHERE m_no=?";
+		String sql = "SELECT c_no, s_grade, s_unique_no FROM reservation WHERE m_no=?";
 		try {
 			preparedStatement = connection.prepareStatement(sql);
+			preparedStatement.setInt(1, m_no);
 			resultSet = preparedStatement.executeQuery();
 			while (resultSet.next()) {
 
-				Reservation reservation = new Reservation(resultSet.getInt(1), resultSet.getInt(2), resultSet.getInt(3),
-						resultSet.getInt(4));
+				Reservation reservation = new Reservation(
+
+						resultSet.getInt(3), resultSet.getString(2), resultSet.getInt(1), resultSet.getInt(4)
+
+				);
 				member_reservation_history.add(reservation);
 
 			}

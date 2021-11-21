@@ -23,16 +23,7 @@ public class Reservation_Seat_Select_Controller implements Initializable {
 
 	private static TreeMap<String, TreeMap<Integer, String>> reseved_seat_map = new TreeMap<String, TreeMap<Integer, String>>();
 
-//	static ArrayList<Integer> R_status_check = R_Seat_Controller.getR_status_check();
-//	static ArrayList<Integer> S_status_check = S_Seat_Controller.getS_status_check();
-//	static ArrayList<Integer> D_status_check = D_Seat_Controller.getD_status_check();
-//	static ArrayList<Integer> E_status_check = E_Seat_Controller.getE_status_check();
-
-	/*
-	 * 각 좌석을 클릭 했을 때 껏다, 켰다 하는 스위치입니다.
-	 */
-
-	static boolean is_R_set; // boolean 의 초기값은 false 입니다.
+	static boolean is_R_set;
 	static boolean is_S_set;
 	static boolean is_D_set;
 	static boolean is_E_set;
@@ -42,6 +33,8 @@ public class Reservation_Seat_Select_Controller implements Initializable {
 	static ArrayList<Integer> D_status_check;
 	static ArrayList<Integer> E_status_check;
 
+	// 1. 해당 등급에서 선택된 좌석 수 입니다.
+	// 2. 이 정보틀 바탕으로 몇가지 해보려고 했으나 보류 중
 	static int R_count = 0;
 	static int S_count = 0;
 	static int D_count = 0;
@@ -171,7 +164,6 @@ public class Reservation_Seat_Select_Controller implements Initializable {
 
 	@FXML
 	void btn_R_select(ActionEvent event) {
-
 		if (!is_R_set) {
 			load_page("R_seat");
 			is_R_set = true;
@@ -184,7 +176,6 @@ public class Reservation_Seat_Select_Controller implements Initializable {
 
 	@FXML
 	void btn_S_select(ActionEvent event) {
-
 		if (!is_S_set) {
 			load_page("S_seat");
 			is_S_set = true;
@@ -196,7 +187,6 @@ public class Reservation_Seat_Select_Controller implements Initializable {
 
 	@FXML
 	void btn_D_select(ActionEvent event) {
-
 		if (!is_D_set) {
 			load_page("D_seat");
 			is_D_set = true;
@@ -208,7 +198,6 @@ public class Reservation_Seat_Select_Controller implements Initializable {
 
 	@FXML
 	void btn_E_select(ActionEvent event) {
-
 		if (!is_E_set) {
 			load_page("E_seat");
 			is_E_set = true;
@@ -239,13 +228,11 @@ public class Reservation_Seat_Select_Controller implements Initializable {
 
 	@FXML
 	void btn_payment(ActionEvent event) {
-
 		try {
 			Reservation_Home_Controller.getinstance().reservation_loadpage("payment_page");
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-
 	}
 
 	// 1. 전체 좌석의 조감도를 띄웁니다.
