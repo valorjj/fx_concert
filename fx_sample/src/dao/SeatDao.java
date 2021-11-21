@@ -94,7 +94,7 @@ public class SeatDao {
 
 		return null;
 	}
-	
+
 	public ArrayList<Integer> get_seat_status(int c_no, String s_grade, int c_unique_no) {
 		String sql = "SELECT s_status FROM seat WHERE c_no=? and s_grade=? and c_unique_no=? order by s_unique_no asc";
 
@@ -117,75 +117,25 @@ public class SeatDao {
 		}
 		return null;
 	}
-	
 
-//	public ArrayList<Integer> get_S_seat_status(int c_no, String s_grade, int c_unique_no) {
-//		String sql = "SELECT s_status FROM seat WHERE c_no=? and s_grade=? and c_unique_no=?";
-//
-//		ArrayList<Integer> S_seat_status = new ArrayList<>();
-//
-//		try {
-//
-//			preparedStatement = connection.prepareStatement(sql);
-//			preparedStatement.setInt(1, c_no);
-//			preparedStatement.setString(2, s_grade);
-//			preparedStatement.setInt(3, c_unique_no);
-//			resultSet = preparedStatement.executeQuery();
-//
-//			while (resultSet.next()) {
-//				S_seat_status.add(resultSet.getInt(1));
-//			}
-//			return S_seat_status;
-//		} catch (Exception e) {
-//			e.printStackTrace();
-//		}
-//		return null;
-//	}
-//
-//	public ArrayList<Integer> get_D_seat_status(int c_no, String s_grade, int c_unique_no) {
-//		String sql = "SELECT s_status FROM seat WHERE c_no=? and s_grade=? and c_unique_no=?";
-//
-//		ArrayList<Integer> D_seat_status = new ArrayList<>();
-//
-//		try {
-//
-//			preparedStatement = connection.prepareStatement(sql);
-//			preparedStatement.setInt(1, c_no);
-//			preparedStatement.setString(2, s_grade);
-//			preparedStatement.setInt(3, c_unique_no);
-//			resultSet = preparedStatement.executeQuery();
-//
-//			while (resultSet.next()) {
-//				D_seat_status.add(resultSet.getInt(1));
-//			}
-//			return D_seat_status;
-//		} catch (Exception e) {
-//			e.printStackTrace();
-//		}
-//		return null;
-//	}
-//
-//	public ArrayList<Integer> get_E_seat_status(int c_no, String s_grade, int c_unique_no) {
-//		String sql = "SELECT s_status FROM seat WHERE c_no=? and s_grade=? and c_unique_no=?";
-//
-//		ArrayList<Integer> E_seat_status = new ArrayList<>();
-//
-//		try {
-//
-//			preparedStatement = connection.prepareStatement(sql);
-//			preparedStatement.setInt(1, c_no);
-//			preparedStatement.setString(2, s_grade);
-//			preparedStatement.setInt(3, c_unique_no);
-//			resultSet = preparedStatement.executeQuery();
-//
-//			while (resultSet.next()) {
-//				E_seat_status.add(resultSet.getInt(1));
-//			}
-//			return E_seat_status;
-//		} catch (Exception e) {
-//			e.printStackTrace();
-//		}
-//		return null;
-//	}
+	public boolean set_date(Seat seat) {
 
+		String sql = "INSERT INTO seat(c_no, s_unique_no, s_grade, c_unique_no) values(?,?,?,?)";
+
+		try {
+			preparedStatement = connection.prepareStatement(sql);
+			preparedStatement.setInt(1, seat.getC_no());
+			preparedStatement.setInt(2, seat.getS_unique_no());
+			preparedStatement.setString(3, seat.getS_grade());
+			preparedStatement.setInt(4, seat.getC_unique_no());
+
+			preparedStatement.executeUpdate();
+
+			return true;
+
+		} catch (Exception e) {
+		}
+
+		return false;
+	}
 }

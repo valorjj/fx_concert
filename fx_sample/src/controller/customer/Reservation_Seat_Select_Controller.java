@@ -261,7 +261,10 @@ public class Reservation_Seat_Select_Controller implements Initializable {
 
 	@FXML
 	void btn_how_many_1(ActionEvent event) {
+
+		// 1. 1번 버튼을 누르면 총 1개의 좌석을 선택할 수 있게 합니다.
 		if (switch_btn_how_many_1) {
+			// 1. 한번 누르면 총 선택 가능한 좌석이 1 로 초기화됩니다.
 			how_many_person = 1;
 			seat_total = how_many_person;
 			switch_btn_how_many_1 = false;
@@ -270,7 +273,9 @@ public class Reservation_Seat_Select_Controller implements Initializable {
 			btn_how_many_4.setVisible(false);
 
 		} else {
+			// 1. 한번 더 누르면 총 선택 가능한 좌석을 0 으로 초기화시킵니다.
 			how_many_person = 0;
+			// 2. 현재 선택한 좌석 수 또한 0으로 초기화 시킵니다.
 			seat_total = how_many_person;
 			switch_btn_how_many_1 = true;
 			btn_how_many_2.setVisible(true);
@@ -395,9 +400,10 @@ public class Reservation_Seat_Select_Controller implements Initializable {
 	@FXML
 	void btn_reset(ActionEvent event) {
 
+		// 1. 선택한 인원수를 0 으로 초기화 시킵니다.
 		how_many_person = 0;
 		seat_total = 0;
-
+		// 2. 각종 버튼과 라벨들을 안보이게 합니다.
 		lbl_R_remain.setVisible(true);
 		lbl_R_total.setVisible(true);
 		lbl_S_remain.setVisible(true);

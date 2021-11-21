@@ -6,6 +6,7 @@ import java.util.ResourceBundle;
 import java.util.TreeMap;
 
 import dao.ConcertDao;
+import dao.SeatDao;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -36,6 +37,9 @@ public class S_Seat_Controller implements Initializable {
 
 	ArrayList<Button> S_buttons = new ArrayList<>();
 
+	int c_no = ConcertDao.getConcertDao().get_concert_c_no(Reservation_Date_Select_Controller.user_selected_date,
+			Reservation_Date_Select_Controller.user_selected_time);
+
 	TreeMap<Integer, String> S_seat_Map = new TreeMap<Integer, String>();
 
 	int seat_limit = Reservation_Seat_Select_Controller.seat_total;
@@ -44,7 +48,8 @@ public class S_Seat_Controller implements Initializable {
 	int manager_input_S_seat_no = ConcertDao.getConcertDao().get_remaining_seat_S(
 			Reservation_Date_Select_Controller.user_selected_date,
 			Reservation_Date_Select_Controller.user_selected_time);
-	ArrayList<Integer> S_status_check = new ArrayList<Integer>();
+	ArrayList<Integer> S_status_check = SeatDao.getSeatDao().get_seat_status(c_no, "S",
+			Reservation_Concert_Select_Controller.concert_number);
 	int S_count = 0;
 	int button_status_check = 99999;
 	int button_status_check2 = 99999;
@@ -54,19 +59,22 @@ public class S_Seat_Controller implements Initializable {
 	@FXML
 	void btn_select_done(ActionEvent event) {
 
+		top_block.setVisible(false);
+		right_block.setVisible(false);
+		bottom_block.setVisible(false);
+
 		// 전체 갯수인 seat_total 에서 좌석 갯수를 뺍니다.
 		Reservation_Seat_Select_Controller.seat_total = Reservation_Seat_Select_Controller.seat_total - S_count;
 		Reservation_Seat_Select_Controller.is_S_set = true;
 		Reservation_Seat_Select_Controller.getReseved_seat_map().put("S", S_seat_Map);
-
 		btn_disable2();
+		Reservation_Seat_Select_Controller.S_status_check = this.S_status_check;
 
 	}
 
 	/////////////////////////////////////////////////////////
 
 	public static S_Seat_Controller get_instance() {
-
 		return instance;
 	}
 
@@ -78,15 +86,13 @@ public class S_Seat_Controller implements Initializable {
 
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
+		System.out.println(c_no + ": c_no");
 		right_block.setVisible(false);
 		S_seat_create();
-
 	}
 
 	public void S_seat_create() {
-
 		try {
-
 			if (seat_limit == 0) {
 				Alert alert = new Alert(AlertType.INFORMATION);
 				alert.setHeaderText("모든 좌석이 선택되었습니다. 결제를 진행해주세요.");
@@ -103,11 +109,11 @@ public class S_Seat_Controller implements Initializable {
 					button.setPrefSize(42, 42);
 					button.setId(i + "");
 					button.setText((i + 1) + "");
-					
-					if (S_status_check != null && S_status_check.size() == 0) {
+
+					if (S_status_check != null && S_status_check.size() != 0) {
 
 						button_status_check = S_status_check.get(i);
-						
+
 						switch (button_status_check) {
 						case 0: // 좌석이 예약 가능한 상태
 							break;
@@ -157,6 +163,7 @@ public class S_Seat_Controller implements Initializable {
 								btn_clear.setVisible(false);
 								btn_select_done.setVisible(false);
 								btn_disable();
+								Reservation_Seat_Select_Controller.S_status_check = this.S_status_check;
 							}
 						});
 
@@ -173,10 +180,8 @@ public class S_Seat_Controller implements Initializable {
 						System.out.println("정보 불러오기 실패");
 					}
 				}
-				
+
 			}
-
-
 
 		} catch (Exception e) {
 
@@ -226,8 +231,8 @@ public class S_Seat_Controller implements Initializable {
 		}
 
 		Alert alert2 = new Alert(AlertType.INFORMATION);
-		alert2.setHeaderText("총[" + S_count + "]개 의 좌석이 선택되었습니다.\n"
-				+ (Reservation_Seat_Select_Controller.seat_total - S_count) + "개 좌석을 선택할 수 있습니다. ");
+		alert2.setHeaderText("총[" + S_count + "]개 의 좌석이 선택되었습니다.\n" + Reservation_Seat_Select_Controller.seat_total
+				+ "개 좌석을 선택할 수 있습니다. ");
 		alert2.showAndWait();
 
 	}
