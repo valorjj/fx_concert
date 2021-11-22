@@ -85,12 +85,15 @@ public class Info_Page_Home_Controller implements Initializable {
 		tc.setCellValueFactory(new PropertyValueFactory<>("c_title"));
 
 		tc = tableview_history.getColumns().get(1);
+		tc.setCellValueFactory(new PropertyValueFactory<>("c_date"));
+		
+		tc = tableview_history.getColumns().get(2);
 		tc.setCellValueFactory(new PropertyValueFactory<>("c_artist"));
 
-		tc = tableview_history.getColumns().get(2);
+		tc = tableview_history.getColumns().get(3);
 		tc.setCellValueFactory(new PropertyValueFactory<>("s_grade"));
 
-		tc = tableview_history.getColumns().get(3);
+		tc = tableview_history.getColumns().get(4);
 		tc.setCellValueFactory(new PropertyValueFactory<>("s_unique_no"));
 
 		

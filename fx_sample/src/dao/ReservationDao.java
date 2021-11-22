@@ -133,7 +133,7 @@ public class ReservationDao {
 
 		ObservableList<Reservation> member_reservation_history2 = FXCollections.observableArrayList();
 
-		String sql = "SELECT c_title, c_artist, s_grade, s_unique_no from concert as a join reservation as b on a.c_no = b.c_no where m_no=?";
+		String sql = "SELECT c_title, c_date, c_artist, s_grade, s_unique_no from concert as a join reservation as b on a.c_no = b.c_no where m_no=? order by c_title asc";
 		try {
 			preparedStatement = connection.prepareStatement(sql);
 			preparedStatement.setInt(1, m_no);
@@ -142,7 +142,11 @@ public class ReservationDao {
 
 				Reservation reservation = new Reservation(
 
-						resultSet.getInt(4), resultSet.getString(3), resultSet.getString(1), resultSet.getString(2)
+						resultSet.getInt(5), 
+						resultSet.getString(4), 
+						resultSet.getString(1), 
+						resultSet.getString(2), 
+						resultSet.getString(3)
 
 				);
 				member_reservation_history2.add(reservation);

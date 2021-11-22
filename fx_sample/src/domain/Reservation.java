@@ -9,6 +9,7 @@ public class Reservation {
 	private int c_unique_no;
 	private int m_no;
 	private String c_title;
+	private String c_date;
 
 	public String getC_title() {
 		return c_title;
@@ -20,10 +21,11 @@ public class Reservation {
 
 	private String c_artist;
 
-	public Reservation(int s_unique_no, String s_grade, String c_title, String c_artist) {
+	public Reservation(int s_unique_no, String s_grade, String c_title, String c_date, String c_artist) {
 		this.s_unique_no = s_unique_no;
 		this.s_grade = s_grade;
 		this.c_title = c_title;
+		this.c_date = c_date;
 		this.c_artist = c_artist;
 	}
 
@@ -107,6 +109,10 @@ public class Reservation {
 
 	public void setM_no(int m_no) {
 		this.m_no = m_no;
+	}
+
+	public String getC_date() {
+		return c_date;
 	}
 
 }
