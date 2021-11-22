@@ -218,9 +218,7 @@ public class Payment_Controller implements Initializable {
 		// 1. 해당 콘서트 예약 현황을 나이에 따라 분류해서 Bar 그래프로 출력합니다.
 		// 1.1 멤버를 나이별로 묶습니다.
 		// 1.2 그 후
-
 		load_page("chart_view_by_age");
-
 	}
 
 	@FXML
