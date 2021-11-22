@@ -157,15 +157,16 @@ public class Reservation_Date_Select_Controller implements Initializable {
 		}
 	}
 
+	// 1. 버튼의 클릭 이벤트 관련된 메소드입니다.
 	public void set_btn_action() {
 
 		for (Button button : Buttons) {
 			if (button.getId().equals(day[0])) {
-
 				button.setOnAction(e -> {
 					if (!switch_date_1) {
 						// 선택 안했을 때
 						button.setStyle("-fx-background-color : #cccccc");
+						user_selected_day = 0;
 						switch_date_1 = true;
 					} else {
 						button.setStyle("-fx-background-color : green");
@@ -178,7 +179,7 @@ public class Reservation_Date_Select_Controller implements Initializable {
 					if (!switch_date_2) {
 						// 선택 안했을 때
 						button.setStyle("-fx-background-color : #cccccc");
-
+						user_selected_day = 0;
 						switch_date_2 = true;
 					} else {
 						button.setStyle("-fx-background-color : green");
@@ -188,11 +189,10 @@ public class Reservation_Date_Select_Controller implements Initializable {
 				});
 			} else if (button.getId().equals(day[2])) {
 				button.setOnAction(e -> {
-
 					if (!switch_date_3) {
 						// 선택 안했을 때
 						button.setStyle("-fx-background-color : #cccccc");
-
+						user_selected_day = 0;
 						switch_date_3 = true;
 					} else {
 						button.setStyle("-fx-background-color : green");
@@ -264,7 +264,7 @@ public class Reservation_Date_Select_Controller implements Initializable {
 			int E_total = ConcertDao.getConcertDao().get_remaining_seat_E(user_selected_date, user_selected_time);
 			int E_selected = ReservationDao.get_reservationDao().get_reservation1(c_no, "E",
 					Reservation_Concert_Select_Controller.concert_number);
-			lbl_D_remaining.setText((E_total - E_selected) + "");
+			lbl_E_remaining.setText((E_total - E_selected) + "");
 
 			btn_6pm.setDisable(true);
 			setSwitch_2pm_btn(false);
@@ -307,7 +307,7 @@ public class Reservation_Date_Select_Controller implements Initializable {
 			int E_total = ConcertDao.getConcertDao().get_remaining_seat_E(user_selected_date, user_selected_time);
 			int E_selected = ReservationDao.get_reservationDao().get_reservation1(c_no, "E",
 					Reservation_Concert_Select_Controller.concert_number);
-			lbl_D_remaining.setText((E_total - E_selected) + "");
+			lbl_E_remaining.setText((E_total - E_selected) + "");
 
 			btn_2pm.setDisable(true);
 

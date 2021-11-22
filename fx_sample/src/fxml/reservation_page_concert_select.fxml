@@ -8,41 +8,53 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="720.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.customer.Reservation_Concert_Select_Controller">
+<AnchorPane prefHeight="720.0" prefWidth="1280.0" stylesheets="@../css/concert_select.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.customer.Reservation_Concert_Select_Controller">
 	<children>
-		<ImageView id="image_1" fx:id="concert_select_image1" fitHeight="450.0" fitWidth="300.0" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="50.0" AnchorPane.topAnchor="50.0">
-			<image>
-				<Image url="@../images/1.png" />
-			</image>
-		</ImageView>
-		<RadioButton fx:id="opt_1" layoutX="180.0" layoutY="522.0" mnemonicParsing="false" text="concert_1">
-			<toggleGroup>
-				<ToggleGroup fx:id="concert_selection" />
-			</toggleGroup>
-			<font>
-				<Font size="20.0" />
-			</font>
-		</RadioButton>
-		<ImageView id="image_2" fx:id="concert_select_image2" fitHeight="450.0" fitWidth="300.0" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="490.0" AnchorPane.rightAnchor="490.0" AnchorPane.topAnchor="50.0">
-			<image>
-				<Image url="@../images/2.png" />
-			</image>
-		</ImageView>
-		<RadioButton fx:id="opt_2" layoutX="616.0" layoutY="522.0" mnemonicParsing="false" text="concert_2" toggleGroup="$concert_selection">
-			<font>
-				<Font size="20.0" />
-			</font>
-		</RadioButton>
-		<ImageView id="image_3" fx:id="concert_select_image3" fitHeight="438.0" fitWidth="300.0" layoutX="927.0" layoutY="112.0" pickOnBounds="true" preserveRatio="true" AnchorPane.rightAnchor="53.0" AnchorPane.topAnchor="112.0">
-			<image>
-				<Image url="@../images/3.png" />
-			</image>
-		</ImageView>
-		<RadioButton fx:id="opt_3" layoutX="1062.0" layoutY="522.0" mnemonicParsing="false" text="concert_3" toggleGroup="$concert_selection">
-			<font>
-				<Font size="20.0" />
-			</font>
-		</RadioButton>
+      <AnchorPane id="pane1" layoutX="42.0" layoutY="50.0" prefWidth="320.0">
+         <children>
+      		<ImageView id="image_1" fx:id="concert_select_image1" fitHeight="450.0" fitWidth="300.0" layoutX="10.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
+      			<image>
+      				<Image url="@../images/1.png" />
+      			</image>
+      		</ImageView>
+      		<RadioButton fx:id="opt_1" layoutX="136.0" layoutY="450.0" mnemonicParsing="false" text="concert_1">
+      			<toggleGroup>
+      				<ToggleGroup fx:id="concert_selection" />
+      			</toggleGroup>
+      			<font>
+      				<Font size="20.0" />
+      			</font>
+      		</RadioButton>
+         </children>
+      </AnchorPane>
+      <AnchorPane id="pane1" layoutX="490.0" layoutY="50.0">
+         <children>
+      		<ImageView id="image_2" fx:id="concert_select_image2" fitHeight="450.0" fitWidth="300.0" layoutX="10.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
+      			<image>
+      				<Image url="@../images/2.png" />
+      			</image>
+      		</ImageView>
+      		<RadioButton fx:id="opt_2" layoutX="140.0" layoutY="455.0" mnemonicParsing="false" text="concert_2" toggleGroup="$concert_selection">
+      			<font>
+      				<Font size="20.0" />
+      			</font>
+      		</RadioButton>
+         </children>
+      </AnchorPane>
+      <AnchorPane id="pane1" layoutX="929.0" layoutY="47.0">
+         <children>
+      		<ImageView id="image_3" fx:id="concert_select_image3" fitHeight="423.0" fitWidth="287.0" layoutX="9.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
+      			<image>
+      				<Image url="@../images/3.png" />
+      			</image>
+      		</ImageView>
+      		<RadioButton fx:id="opt_3" layoutX="138.0" layoutY="451.0" mnemonicParsing="false" text="concert_3" toggleGroup="$concert_selection">
+      			<font>
+      				<Font size="20.0" />
+      			</font>
+      		</RadioButton>
+         </children>
+      </AnchorPane>
 		<Button fx:id="btn_reservation" layoutX="516.0" layoutY="619.0" mnemonicParsing="false" onAction="#btn_reservation" prefHeight="81.0" prefWidth="287.0" text="예약하기" />
 	</children>
 </AnchorPane>

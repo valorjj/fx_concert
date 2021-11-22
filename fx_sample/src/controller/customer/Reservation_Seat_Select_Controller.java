@@ -3,19 +3,22 @@ package controller.customer;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.Optional;
 import java.util.ResourceBundle;
 import java.util.TreeMap;
 
 import dao.ConcertDao;
 import dao.SeatDao;
 import domain.Concert;
-import domain.Seat;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
 import javafx.scene.layout.BorderPane;
 
@@ -23,15 +26,22 @@ public class Reservation_Seat_Select_Controller implements Initializable {
 
 	private static TreeMap<String, TreeMap<Integer, String>> reseved_seat_map = new TreeMap<String, TreeMap<Integer, String>>();
 
+	static int c_no = ConcertDao.getConcertDao().get_concert_c_no(Reservation_Date_Select_Controller.user_selected_date,
+			Reservation_Date_Select_Controller.user_selected_time);
+
 	static boolean is_R_set;
 	static boolean is_S_set;
 	static boolean is_D_set;
 	static boolean is_E_set;
 
-	static ArrayList<Integer> R_status_check;
-	static ArrayList<Integer> S_status_check;
-	static ArrayList<Integer> D_status_check;
-	static ArrayList<Integer> E_status_check;
+	private static ArrayList<Integer> R_status_check = SeatDao.getSeatDao().get_seat_status(c_no, "R",
+			Reservation_Concert_Select_Controller.concert_number);
+	private static ArrayList<Integer> S_status_check = SeatDao.getSeatDao().get_seat_status(c_no, "S",
+			Reservation_Concert_Select_Controller.concert_number);
+	private static ArrayList<Integer> D_status_check = SeatDao.getSeatDao().get_seat_status(c_no, "D",
+			Reservation_Concert_Select_Controller.concert_number);
+	private static ArrayList<Integer> E_status_check = SeatDao.getSeatDao().get_seat_status(c_no, "E",
+			Reservation_Concert_Select_Controller.concert_number);
 
 	// 1. 해당 등급에서 선택된 좌석 수 입니다.
 	// 2. 이 정보틀 바탕으로 몇가지 해보려고 했으나 보류 중
@@ -90,34 +100,24 @@ public class Reservation_Seat_Select_Controller implements Initializable {
 
 	@FXML
 	private Button btn_done;
-
 	@FXML
 	private BorderPane borderpane_payment;
-
 	@FXML
 	private Button btn_D_select;
-
 	@FXML
 	private Button btn_E_select;
-
 	@FXML
 	private Button btn_R_select;
-
 	@FXML
 	private Button btn_S_select;
-
 	@FXML
 	private Button btn_cancel;
-
 	@FXML
 	private Button btn_how_many_1;
-
 	@FXML
 	private Button btn_how_many_2;
-
 	@FXML
 	private Button btn_how_many_3;
-
 	@FXML
 	private Button btn_how_many_4;
 
@@ -229,7 +229,25 @@ public class Reservation_Seat_Select_Controller implements Initializable {
 	@FXML
 	void btn_payment(ActionEvent event) {
 		try {
-			Reservation_Home_Controller.getinstance().reservation_loadpage("payment_page");
+			
+			// 1. 결제 창으로 진행하기 전 예외 처리입니다.
+			// 1.1 인원수를 무조건 선택해야 하고, 선택 가능한 좌석수가 0 이어야합니다. 
+			if (how_many_person != 0 && seat_total == 0) {
+
+				Alert alert = new Alert(AlertType.CONFIRMATION);
+				alert.setHeaderText("결제 페이지로 진행하시겠습니까?");
+				Optional<ButtonType> optional = alert.showAndWait();
+
+				if (optional.get() == ButtonType.OK) {
+					Reservation_Home_Controller.getinstance().reservation_loadpage("payment_page");
+				}
+			} else {
+				Alert alert = new Alert(AlertType.INFORMATION);
+				alert.setHeaderText("좌석이 모두 선택되지 않았습니다.");
+				alert.showAndWait();
+
+			}
+
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -423,18 +441,16 @@ public class Reservation_Seat_Select_Controller implements Initializable {
 		btn_how_many_3.setVisible(false);
 		btn_how_many_4.setVisible(false);
 
-//		for (int i = 0; i < R_status_check.length; i++) {
-//			R_status_check[i] = 0;
-//		}
-//		for (int i = 0; i < S_status_check.length; i++) {
-//			S_status_check[i] = 0;
-//		}
-//		for (int i = 0; i < D_status_check.length; i++) {
-//			D_status_check[i] = 0;
-//		}
-//		for (int i = 0; i < E_status_check.length; i++) {
-//			E_status_check[i] = 0;
-//		}
+		// 1. 리셋 버튼을 누르면, db에서 다시 좌석 상태 정보를 불러와서 초기화시킵니다.
+		// 1.1 유저가 선택하기 이전 상태로 되돌린다는 뜻 입니다.
+		R_status_check = SeatDao.getSeatDao().get_seat_status(c_no, "R",
+				Reservation_Concert_Select_Controller.concert_number);
+		S_status_check = SeatDao.getSeatDao().get_seat_status(c_no, "S",
+				Reservation_Concert_Select_Controller.concert_number);
+		D_status_check = SeatDao.getSeatDao().get_seat_status(c_no, "D",
+				Reservation_Concert_Select_Controller.concert_number);
+		E_status_check = SeatDao.getSeatDao().get_seat_status(c_no, "E",
+				Reservation_Concert_Select_Controller.concert_number);
 
 	}
 
@@ -444,6 +460,38 @@ public class Reservation_Seat_Select_Controller implements Initializable {
 
 	public static void setReseved_seat_map(TreeMap<String, TreeMap<Integer, String>> reseved_seat_map) {
 		Reservation_Seat_Select_Controller.reseved_seat_map = reseved_seat_map;
+	}
+
+	public static ArrayList<Integer> getR_status_check() {
+		return R_status_check;
+	}
+
+	public static void setR_status_check(ArrayList<Integer> r_status_check) {
+		R_status_check = r_status_check;
+	}
+
+	public static ArrayList<Integer> getS_status_check() {
+		return S_status_check;
+	}
+
+	public static void setS_status_check(ArrayList<Integer> s_status_check) {
+		S_status_check = s_status_check;
+	}
+
+	public static ArrayList<Integer> getD_status_check() {
+		return D_status_check;
+	}
+
+	public static void setD_status_check(ArrayList<Integer> d_status_check) {
+		D_status_check = d_status_check;
+	}
+
+	public static ArrayList<Integer> getE_status_check() {
+		return E_status_check;
+	}
+
+	public static void setE_status_check(ArrayList<Integer> e_status_check) {
+		E_status_check = e_status_check;
 	}
 
 }

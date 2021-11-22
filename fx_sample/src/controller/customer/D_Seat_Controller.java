@@ -68,7 +68,7 @@ public class D_Seat_Controller implements Initializable {
 		Reservation_Seat_Select_Controller.seat_total = Reservation_Seat_Select_Controller.seat_total - D_count;
 		Reservation_Seat_Select_Controller.is_D_set = true;
 		Reservation_Seat_Select_Controller.getReseved_seat_map().put("D", D_seat_Map);
-		Reservation_Seat_Select_Controller.D_status_check = this.D_status_check;
+		Reservation_Seat_Select_Controller.setD_status_check(this.D_status_check);
 		Reservation_Seat_Select_Controller.D_count = this.D_count;
 
 		btn_disable2();
@@ -151,7 +151,7 @@ public class D_Seat_Controller implements Initializable {
 								Reservation_Seat_Select_Controller.is_S_set = true;
 								Reservation_Seat_Select_Controller.is_D_set = true;
 								Reservation_Seat_Select_Controller.is_E_set = true;
-								Reservation_Seat_Select_Controller.D_status_check = this.D_status_check;
+								Reservation_Seat_Select_Controller.setD_status_check(this.D_status_check);
 								Reservation_Seat_Select_Controller.D_count = this.D_count;
 								top_block.setVisible(false);
 								right_block.setVisible(false);
