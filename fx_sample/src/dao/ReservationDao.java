@@ -211,6 +211,19 @@ public class ReservationDao {
 		return 0;
 	}
 
+	// 연령별 예약데이터 출력
+	public int get_reservation_age(int m_age) {
+		String sql = "select count(s_unique_no) from javafx_concert.reservation where m_no IN (select m_no from javafx_concert.member where m_age =?)";
+		try {
+			preparedStatement = connection.prepareStatement(sql);
+			preparedStatement.setInt(1, m_age);
+			resultSet = preparedStatement.executeQuery();
+			if(resultSet.next()) {
+				return resultSet.getInt(1);
+			}
+		} catch (Exception e) {} return 0;
+	}
+	
 	public int get_reservation1(int c_no, String s_grade, int c_unique_no) {
 
 		String sql = "select count(s_unique_no) from reservation where c_no=? and s_grade=? and c_unique_no=?";
@@ -229,5 +242,70 @@ public class ReservationDao {
 		}
 		return 0;
 	}
+	// 파이차트용 콘서트 자리별 R석 예약좌석 호출 메소드
+	public int r_seat_selectlist(int c_no , int c_unique_no){
+		String sql = "select count(s_unique_no) from reservation where c_no= ? and c_unique_no=? and s_grade='R'";
+		try {
+			preparedStatement = connection.prepareStatement(sql);
+			preparedStatement.setInt(1, c_no);
+			preparedStatement.setInt(2, c_unique_no);
+			resultSet = preparedStatement.executeQuery();
+			if(resultSet.next()) {
+				return resultSet.getInt(1);
+			}
+		} catch (Exception e) {} return 0;
+		
+		
+	}
+	
+	// 파이차트용 콘서트 자리별 S석 예약좌석 호출 메소드
+	public int s_seat_selectlist(int c_no , int c_unique_no){
+		String sql = "select count(s_unique_no) from reservation where c_no= ? and c_unique_no=? and s_grade='S'";
+		try {
+			preparedStatement = connection.prepareStatement(sql);
+			preparedStatement.setInt(1, c_no);
+			preparedStatement.setInt(2, c_unique_no);
+			resultSet = preparedStatement.executeQuery();
+			if(resultSet.next()) {
+				return resultSet.getInt(1);
+			}
+		} catch (Exception e) {} return 0;
+		
+		
+	}
+	
+	// 파이차트용 콘서트 자리별 D석 예약좌석 호출 메소드
+	public int d_seat_selectlist(int c_no , int c_unique_no){
+		String sql = "select count(s_unique_no) from reservation where c_no= ? and c_unique_no=? and s_grade='D'";
+		try {
+			preparedStatement = connection.prepareStatement(sql);
+			preparedStatement.setInt(1, c_no);
+			preparedStatement.setInt(2, c_unique_no);
+			resultSet = preparedStatement.executeQuery();
+			if(resultSet.next()) {
+				return resultSet.getInt(1);
+			}
+		} catch (Exception e) {} return 0;
+		
+		
+	}
+	
+	// 파이차트용 콘서트 자리별 E석 예약좌석 호출 메소드
+	public int e_seat_selectlist(int c_no , int c_unique_no){
+		String sql = "select count(s_unique_no) from reservation where c_no= ? and c_unique_no=? and s_grade='E'";
+		try {
+			preparedStatement = connection.prepareStatement(sql);
+			preparedStatement.setInt(1, c_no);
+			preparedStatement.setInt(2, c_unique_no);
+			resultSet = preparedStatement.executeQuery();
+			if(resultSet.next()) {
+				return resultSet.getInt(1);
+			}
+		} catch (Exception e) {} return 0;
+			
+			
+		}
+	
+	
 
 }

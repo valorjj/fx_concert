@@ -29,8 +29,8 @@ public class Reservation_Date_Select_Controller implements Initializable {
 
 	// DB 에는 등록하지는 않지만 유저가 선택한 정보를 static 영역에 저장합니다.
 	static int user_selected_day = 0;
-	static String user_selected_date;
-	static String user_selected_time;
+	public static String user_selected_date;
+	public static String user_selected_time;
 
 	// 버튼 상태를 제어하는 스위치 2개
 	private boolean switch_2pm_btn = true;

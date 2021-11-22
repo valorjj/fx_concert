@@ -5,7 +5,9 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 import dao.ConcertDao;
+import dao.ReservationDao;
 import domain.Concert;
+import domain.Reservation;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -42,24 +44,30 @@ public class Manager_Chart_View_Controller implements Initializable{
 							ObservableList<PieChart.Data> observableList1 = FXCollections.observableArrayList();
 							for(Concert concert : s_seat) {
 								observableList1.add(new PieChart.Data("전체좌석"+concert.getC_S_no()+"석", concert.getC_S_no()));
+								observableList1.add(new PieChart.Data("예약된좌석"+ReservationDao.get_reservationDao().r_seat_selectlist(concert.getC_no(),concert.getC_unique_no())+"석",ReservationDao.get_reservationDao().r_seat_selectlist(concert.getC_no(),concert.getC_unique_no())));
 							}
+						
 							// pie 차트 R석
 							ObservableList<Concert> r_seat = ConcertDao.getConcertDao().r_seatlist(title, date, time);
 							ObservableList<PieChart.Data> observableList = FXCollections.observableArrayList();
-							for(Concert concert : r_seat) {
-								observableList.add(new PieChart.Data("전체좌석"+concert.getC_R_no()+"석", concert.getC_R_no()));
+							for(Concert concert : r_seat) {	
+							observableList.add(new PieChart.Data("전체좌석"+concert.getC_R_no()+"석", concert.getC_R_no()));
+							observableList.add(new PieChart.Data("예약된좌석"+ReservationDao.get_reservationDao().s_seat_selectlist(concert.getC_no(),concert.getC_unique_no())+"석",ReservationDao.get_reservationDao().s_seat_selectlist(concert.getC_no(),concert.getC_unique_no())));
 							}
+							
 							// pie 차트 E석
 							ObservableList<Concert> e_seat = ConcertDao.getConcertDao().e_seatlist(title, date, time);
 							ObservableList<PieChart.Data> observableList2 = FXCollections.observableArrayList();
 							for(Concert concert : e_seat) {
-								observableList2.add(new PieChart.Data("전체좌석"+concert.getC_E_no()+"석", concert.getC_E_no()));
+								observableList2.add(new PieChart.Data("전체좌석"+concert.getC_E_no()+"석", concert.getC_E_no()));	
+								observableList2.add(new PieChart.Data("예약된좌석"+ReservationDao.get_reservationDao().e_seat_selectlist(concert.getC_no(),concert.getC_unique_no())+"석",ReservationDao.get_reservationDao().e_seat_selectlist(concert.getC_no(),concert.getC_unique_no())));
 							}
 							// pie 차트 D석
 							ObservableList<Concert> d_seat = ConcertDao.getConcertDao().d_seatlist(title, date, time);
 							ObservableList<PieChart.Data> observableList3 = FXCollections.observableArrayList();
 							for(Concert concert : d_seat) {
 								observableList3.add(new PieChart.Data("전체좌석"+concert.getC_D_no()+"석", concert.getC_D_no()));
+								observableList3.add(new PieChart.Data("예약된좌석"+ReservationDao.get_reservationDao().d_seat_selectlist(concert.getC_no(),concert.getC_unique_no())+"석",ReservationDao.get_reservationDao().d_seat_selectlist(concert.getC_no(),concert.getC_unique_no())));
 							}
 							piechart_s_seat.setData(observableList1);
 							piechart_e_seat.setData(observableList2);
@@ -78,6 +86,9 @@ public class Manager_Chart_View_Controller implements Initializable{
 		
 		
 	}
+	
+	
+	Concert concert;
     @FXML
     private ComboBox<Concert> combo_concert_date;
     

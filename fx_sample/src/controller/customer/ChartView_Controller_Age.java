@@ -22,23 +22,19 @@ public class ChartView_Controller_Age implements Initializable {
 
 	@FXML
 	private LineChart<String, Integer> linechart;
-	XYChart.Series<String, Integer> series = null;
+//	XYChart.Series<String, Integer> series = null;
 
 	int m_no = MemberDao.getMemberDao().get_m_no_member(Login_Controller.getInstance().get_login_id());
 
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
 
-		series = new XYChart.Series<String, Integer>();
+		XYChart.Series<String, Integer> series = new XYChart.Series<String, Integer>();
+
 
 		// ObservableList<XYChart.Series<String, Number>> list =
 		// FXCollections.observableArrayList();
 
-		int men = ReservationDao.get_reservationDao().get_reservation1("M");
-		int women = ReservationDao.get_reservationDao().get_reservation1("F");
-
-		series.getData().add(new XYChart.Data("M", 5));
-		series.getData().add(new XYChart.Data("F", 6));
 
 		linechart.getXAxis().setAutoRanging(false);
 

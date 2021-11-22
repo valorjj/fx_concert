@@ -8,6 +8,7 @@ import java.util.ResourceBundle;
 import java.util.TreeMap;
 
 import dao.ConcertDao;
+import dao.ReservationDao;
 import dao.SeatDao;
 import domain.Concert;
 import javafx.event.ActionEvent;
@@ -80,14 +81,31 @@ public class Reservation_Seat_Select_Controller implements Initializable {
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
 
+		int c_no = ConcertDao.getConcertDao().get_concert_c_no(Reservation_Date_Select_Controller.user_selected_date, Reservation_Date_Select_Controller.user_selected_time);
+		
 		Concert concert = ConcertDao.getConcertDao().get_concert_instance_by_date(
 				Reservation_Date_Select_Controller.user_selected_date,
 				Reservation_Date_Select_Controller.user_selected_time);
 
-		lbl_R_total.setText(concert.getC_R_no() + "");
-		lbl_S_total.setText(concert.getC_S_no() + "");
-		lbl_D_total.setText(concert.getC_D_no() + "");
-		lbl_E_total.setText(concert.getC_E_no() + "");
+		int R_total = ConcertDao.getConcertDao().get_remaining_seat_R(Reservation_Date_Select_Controller.user_selected_date, Reservation_Date_Select_Controller.user_selected_time);
+		int R_selected = ReservationDao.get_reservationDao().get_reservation1(c_no, "R",
+				Reservation_Concert_Select_Controller.concert_number);
+		lbl_R_total.setText((R_total - R_selected) + "");
+		
+		int S_total = ConcertDao.getConcertDao().get_remaining_seat_S(Reservation_Date_Select_Controller.user_selected_date, Reservation_Date_Select_Controller.user_selected_time);
+		int S_selected = ReservationDao.get_reservationDao().get_reservation1(c_no, "S",
+				Reservation_Concert_Select_Controller.concert_number);
+		lbl_S_total.setText((S_total - S_selected) + "");
+		
+		int D_total = ConcertDao.getConcertDao().get_remaining_seat_D(Reservation_Date_Select_Controller.user_selected_date, Reservation_Date_Select_Controller.user_selected_time);
+		int D_selected = ReservationDao.get_reservationDao().get_reservation1(c_no, "D",
+				Reservation_Concert_Select_Controller.concert_number);
+		lbl_D_total.setText((D_total - D_selected) + "");
+		
+		int E_total = ConcertDao.getConcertDao().get_remaining_seat_E(Reservation_Date_Select_Controller.user_selected_date, Reservation_Date_Select_Controller.user_selected_time);
+		int E_selected = ReservationDao.get_reservationDao().get_reservation1(c_no, "E",
+				Reservation_Concert_Select_Controller.concert_number);
+		lbl_E_total.setText((E_total - E_selected) + "");
 
 		btn_how_many_1.setVisible(false);
 		btn_how_many_2.setVisible(false);
