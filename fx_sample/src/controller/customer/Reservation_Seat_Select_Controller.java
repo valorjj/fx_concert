@@ -89,6 +89,7 @@ public class Reservation_Seat_Select_Controller implements Initializable {
 		E_status_check = SeatDao.getSeatDao().get_seat_status(c_no, "E",
 				Reservation_Concert_Select_Controller.concert_number);
 
+
 		Concert concert = ConcertDao.getConcertDao().get_concert_instance_by_date(
 				Reservation_Date_Select_Controller.user_selected_date,
 				Reservation_Date_Select_Controller.user_selected_time);

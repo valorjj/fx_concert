@@ -96,8 +96,16 @@ public class Concert {
 		this.c_D_no = c_D_no;
 		this.c_E_no = c_E_no;
 	}
-	
-	
+
+	public Concert(int c_no, int c_R_no, int c_S_no, int c_D_no, int c_E_no, int c_unique_no) {
+		super();
+		this.c_no = c_no;
+		this.c_R_no = c_R_no;
+		this.c_S_no = c_S_no;
+		this.c_D_no = c_D_no;
+		this.c_E_no = c_E_no;
+		this.c_unique_no = c_unique_no;
+	}
 
 	public Concert(String c_title, String c_artist, String c_date, String c_time) {
 		super();
