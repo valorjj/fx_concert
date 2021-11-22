@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.effect.InnerShadow?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -177,8 +179,20 @@
 						<Font size="14.0" />
 					</font>
 				</Label>
-				<Button id="btn_confirm" fx:id="btn_reservation_confirm" layoutX="54.0" layoutY="512.0" mnemonicParsing="false" onAction="#btn_reservation_confirm" prefHeight="50.0" prefWidth="400.0" text="예매하기" AnchorPane.leftAnchor="55.0" AnchorPane.rightAnchor="55.0" />
-				<Button id="btn_cancel" fx:id="btn_cancel" layoutX="55.0" layoutY="582.0" mnemonicParsing="false" onAction="#btn_cancel" prefHeight="50.0" prefWidth="400.0" text="뒤로가기" AnchorPane.leftAnchor="55.0" AnchorPane.rightAnchor="55.0" />
+				<Button id="btn_confirm" fx:id="btn_reservation_confirm" layoutX="54.0" layoutY="512.0" mnemonicParsing="false" onAction="#btn_reservation_confirm" prefHeight="50.0" prefWidth="400.0" text="예매하기" AnchorPane.leftAnchor="55.0" AnchorPane.rightAnchor="55.0">
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+               <effect>
+                  <InnerShadow />
+               </effect></Button>
+				<Button id="btn_cancel" fx:id="btn_cancel" layoutX="55.0" layoutY="582.0" mnemonicParsing="false" onAction="#btn_cancel" prefHeight="50.0" prefWidth="400.0" text="뒤로가기" AnchorPane.leftAnchor="55.0" AnchorPane.rightAnchor="55.0">
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+               <effect>
+                  <InnerShadow />
+               </effect></Button>
 				<Label id="lbl_calendar_day" fx:id="lbl_cal" layoutX="52.0" layoutY="16.0" text="일">
 					<font>
 						<Font size="15.0" />
@@ -214,8 +228,20 @@
 						<Font size="15.0" />
 					</font>
 				</Label>
-				<Button id="btn_2pm" fx:id="btn_2pm" layoutX="55.0" layoutY="406.0" mnemonicParsing="false" onAction="#btn_2pm" prefHeight="55.0" prefWidth="180.0" text="2PM" AnchorPane.leftAnchor="55.0" />
-				<Button id="btn_6pm" fx:id="btn_6pm" layoutX="273.0" layoutY="406.0" mnemonicParsing="false" onAction="#btn_6pm" prefHeight="55.0" prefWidth="180.0" text="6PM" AnchorPane.rightAnchor="55.0" />
+				<Button id="btn_2pm" fx:id="btn_2pm" layoutX="55.0" layoutY="406.0" mnemonicParsing="false" onAction="#btn_2pm" prefHeight="55.0" prefWidth="180.0" text="2PM" AnchorPane.leftAnchor="55.0">
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+               <effect>
+                  <InnerShadow />
+               </effect></Button>
+				<Button id="btn_6pm" fx:id="btn_6pm" layoutX="273.0" layoutY="406.0" mnemonicParsing="false" onAction="#btn_6pm" prefHeight="55.0" prefWidth="180.0" text="6PM" AnchorPane.rightAnchor="55.0">
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+               <effect>
+                  <InnerShadow />
+               </effect></Button>
 			</children>
 		</AnchorPane>
 	</children>

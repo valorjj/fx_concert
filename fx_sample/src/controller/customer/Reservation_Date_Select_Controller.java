@@ -1,6 +1,6 @@
 package controller.customer;
 
-import java.io.IOException;
+import java.io.File;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -20,6 +20,7 @@ import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.ToggleGroup;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.GridPane;
 
@@ -67,6 +68,29 @@ public class Reservation_Date_Select_Controller implements Initializable {
 
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
+
+		try {
+			if (Reservation_Concert_Select_Controller.concert_number == 1) {
+				File file = new File("src/images/1.png");
+				System.out.println(file.toURI().toString());
+				Image image = new Image(file.toURI().toString());
+				concert_image_view.setImage(image);
+			}
+			if (Reservation_Concert_Select_Controller.concert_number == 2) {
+				File file = new File("src/images/2.png");
+				System.out.println(file.toURI().toString());
+				Image image = new Image(file.toURI().toString());
+				concert_image_view.setImage(image);
+			}
+			if (Reservation_Concert_Select_Controller.concert_number == 3) {
+				File file = new File("src/images/3.png");
+				System.out.println(file.toURI().toString());
+				Image image = new Image(file.toURI().toString());
+				concert_image_view.setImage(image);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 
 		// 콘서트 관련 정보 출력합니다.
 
