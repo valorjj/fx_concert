@@ -1,0 +1,18 @@
+lbl{
+	-fx-font-family: "NanumBarunGothic";
+	-fx-font-size: 15.0px;
+}
+
+#lbl_title {
+	-fx-font-size : 35.0px;
+	-fx-text-fill : green;
+	
+	
+}
+
+#lbl_seat{
+	-fx-text-fill : #ff3421;
+	-fx-font-size : 25.0px;
+	-fx-font-weight: bold;
+	
+}

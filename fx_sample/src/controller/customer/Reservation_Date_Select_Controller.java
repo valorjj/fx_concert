@@ -113,8 +113,6 @@ public class Reservation_Date_Select_Controller implements Initializable {
 
 	}
 
-	/////////////////////////////////////////////////////////
-
 	@SuppressWarnings("static-access")
 	public void create_calendar() {
 
