@@ -1,5 +1,6 @@
 package controller.customer;
 
+import java.io.File;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
@@ -20,6 +21,7 @@ import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.ToggleGroup;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.GridPane;
 
@@ -70,6 +72,28 @@ public class Reservation_Date_Select_Controller implements Initializable {
 
 		// 콘서트 관련 정보 출력합니다.
 
+	      try {
+	          if (Reservation_Concert_Select_Controller.concert_number == 1) {
+	             File file = new File("src/images/1.png");
+	             System.out.println(file.toURI().toString());
+	             Image image = new Image(file.toURI().toString());
+	             concert_image_view.setImage(image);
+	          }
+	          if (Reservation_Concert_Select_Controller.concert_number == 2) {
+	             File file = new File("src/images/2.png");
+	             System.out.println(file.toURI().toString());
+	             Image image = new Image(file.toURI().toString());
+	             concert_image_view.setImage(image);
+	          }
+	          if (Reservation_Concert_Select_Controller.concert_number == 3) {
+	             File file = new File("src/images/3.png");
+	             System.out.println(file.toURI().toString());
+	             Image image = new Image(file.toURI().toString());
+	             concert_image_view.setImage(image);
+	          }
+	       } catch (Exception e) {
+	          e.printStackTrace();
+	       }
 		concert_date_list = (ConcertDao.getConcertDao().get_concert_date_list(user_selected_concert_unique_no));
 
 		lbl_concert_date_1.setText(concert_date_list.get(0));
