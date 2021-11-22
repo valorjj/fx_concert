@@ -178,9 +178,7 @@ public class Payment_Controller implements Initializable {
 	private static Payment_Controller instance;
 
 	private Payment_Controller get_instance() {
-
 		return instance;
-
 	}
 
 	public Payment_Controller() {
@@ -261,9 +259,7 @@ public class Payment_Controller implements Initializable {
 							MemberDao.getMemberDao().get_m_no_member(Login_Controller.getInstance().get_login_id())
 
 					);
-
 					res2 = ReservationDao.get_reservationDao().reservation_register(reservation);
-
 				}
 			}
 
@@ -280,7 +276,6 @@ public class Payment_Controller implements Initializable {
 							MemberDao.getMemberDao().get_m_no_member(Login_Controller.getInstance().get_login_id())
 
 					);
-
 					res4 = ReservationDao.get_reservationDao().reservation_register(reservation);
 				}
 			}
@@ -298,10 +293,8 @@ public class Payment_Controller implements Initializable {
 							MemberDao.getMemberDao().get_m_no_member(Login_Controller.getInstance().get_login_id())
 
 					);
-
 					res6 = ReservationDao.get_reservationDao().reservation_register(reservation);
 				}
-
 			}
 
 			if (Reservation_Seat_Select_Controller.getReseved_seat_map().get("E") != null) {
@@ -317,10 +310,8 @@ public class Payment_Controller implements Initializable {
 							MemberDao.getMemberDao().get_m_no_member(Login_Controller.getInstance().get_login_id())
 
 					);
-
 					res8 = ReservationDao.get_reservationDao().reservation_register(reservation);
 				}
-
 			}
 
 			// 1. 위 등록 과정 중 하나라도 성공 했다면 알림창을 띄웁니다.
@@ -335,9 +326,6 @@ public class Payment_Controller implements Initializable {
 				alert2.setHeaderText("DB에 오류가 발생했습니다. 관리자에게 문의하세요.");
 				alert2.showAndWait();
 			}
-
 		}
-
 	}
-
 }

@@ -57,9 +57,7 @@ public class Reservation_Seat_Select_Controller implements Initializable {
 	private static Reservation_Seat_Select_Controller instance;
 
 	public static Reservation_Seat_Select_Controller get_instance() {
-
 		return instance;
-
 	}
 
 	public Reservation_Seat_Select_Controller() {
@@ -229,9 +227,9 @@ public class Reservation_Seat_Select_Controller implements Initializable {
 	@FXML
 	void btn_payment(ActionEvent event) {
 		try {
-			
+
 			// 1. 결제 창으로 진행하기 전 예외 처리입니다.
-			// 1.1 인원수를 무조건 선택해야 하고, 선택 가능한 좌석수가 0 이어야합니다. 
+			// 1.1 인원수를 무조건 선택해야 하고, 선택 가능한 좌석수가 0 이어야합니다.
 			if (how_many_person != 0 && seat_total == 0) {
 
 				Alert alert = new Alert(AlertType.CONFIRMATION);
@@ -395,6 +393,8 @@ public class Reservation_Seat_Select_Controller implements Initializable {
 
 			btn_view_entire_seat.setVisible(false);
 			btn_how_many_people.setVisible(false);
+
+			btn_done.setVisible(false);
 
 		} catch (Exception e) {
 			e.printStackTrace();

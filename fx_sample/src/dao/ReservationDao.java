@@ -114,7 +114,7 @@ public class ReservationDao {
 
 				Reservation reservation = new Reservation(
 
-						resultSet.getInt(3), resultSet.getString(2), resultSet.getInt(1), resultSet.getInt(4)
+						resultSet.getInt(3), resultSet.getString(2), resultSet.getInt(1)
 
 				);
 				member_reservation_history.add(reservation);

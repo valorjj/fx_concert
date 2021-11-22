@@ -54,7 +54,6 @@
 								<TableColumn prefWidth="75.0" text="공연번호" />
 								<TableColumn prefWidth="75.0" text="좌석등급" />
 								<TableColumn prefWidth="75.0" text="좌석번호" />
-                        <TableColumn prefWidth="75.0" text="공연이름" />
 							</columns>
 							<columnResizePolicy>
 								<TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
