@@ -20,6 +20,10 @@ public class ChartView_Controller_Age implements Initializable {
 	@FXML
 	private LineChart<String, Integer> linechart;
 
+//	XYChart.Series<String, Integer> series = null;
+
+	int m_no = MemberDao.getMemberDao().get_m_no_member(Login_Controller.getInstance().get_login_id());
+
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
 
@@ -36,6 +40,7 @@ public class ChartView_Controller_Age implements Initializable {
 		series.getData().add(new XYChart.Data<String, Integer>("20대", age_20));
 		series.getData().add(new XYChart.Data<String, Integer>("30대", age_30));
 		series.getData().add(new XYChart.Data<String, Integer>("40대", age_40));
+
 
 		series.setName("by Age");
 

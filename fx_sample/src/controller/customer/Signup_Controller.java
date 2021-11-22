@@ -103,19 +103,25 @@ public class Signup_Controller implements Initializable {
 			lbl_confirm.setText("이메일 형식으로 입력해주세요.");
 			return;
 		}
+		
+		String m_sex = "";
+			if(radio_btn_man.isSelected()) {m_sex="M";}
+			if(radio_btn_woman.isSelected()) {m_sex="F";}
+		
+		
 
 		// 2. 중복체크
 		// boolean idcheck = Member_Dao.getMember_Dao().id
-
 		// db연동 하는곳
-		Member member = new Member(txt_id.getText(), txt_password.getText(), txt_name.getText(), txt_email.getText(), 0,
-				"man");
+		Member member = new Member(txt_id.getText(), txt_password.getText(), txt_name.getText(), txt_email.getText(), Integer.parseInt(txt_age.getText()),
+				m_sex);
 		boolean check = MemberDao.getMemberDao().signup(member);
 		Alert alert = new Alert(AlertType.INFORMATION);
 		if (check) {
 
 			alert.setHeaderText("[[알림]]  회원가입 성공");
 			alert.showAndWait();
+			Login_Controller.getInstance().loadpage("login_home_page");
 
 		} else {
 

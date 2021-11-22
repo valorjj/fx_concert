@@ -89,6 +89,7 @@ public class Reservation_Seat_Select_Controller implements Initializable {
 		E_status_check = SeatDao.getSeatDao().get_seat_status(c_no, "E",
 				Reservation_Concert_Select_Controller.concert_number);
 
+		int c_no = ConcertDao.getConcertDao().get_concert_c_no(Reservation_Date_Select_Controller.user_selected_date, Reservation_Date_Select_Controller.user_selected_time);
 		Concert concert = ConcertDao.getConcertDao().get_concert_instance_by_date(
 				Reservation_Date_Select_Controller.user_selected_date,
 				Reservation_Date_Select_Controller.user_selected_time);
@@ -125,7 +126,6 @@ public class Reservation_Seat_Select_Controller implements Initializable {
 		lbl_S_total.setText(concert.getC_S_no() + "");
 		lbl_D_total.setText(concert.getC_D_no() + "");
 		lbl_E_total.setText(concert.getC_E_no() + "");
-
 		btn_how_many_1.setVisible(false);
 		btn_how_many_2.setVisible(false);
 		btn_how_many_3.setVisible(false);
