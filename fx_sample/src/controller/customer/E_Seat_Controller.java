@@ -59,6 +59,7 @@ public class E_Seat_Controller implements Initializable {
 		Reservation_Seat_Select_Controller.getReseved_seat_map().put("E", E_seat_Map);
 		btn_disable2();
 		Reservation_Seat_Select_Controller.E_status_check = this.E_status_check;
+		Reservation_Seat_Select_Controller.E_count = this.E_count;
 
 	}
 
@@ -157,6 +158,8 @@ public class E_Seat_Controller implements Initializable {
 						Reservation_Seat_Select_Controller.is_D_set = true;
 						Reservation_Seat_Select_Controller.is_E_set = true;
 						Reservation_Seat_Select_Controller.E_status_check = this.E_status_check;
+						Reservation_Seat_Select_Controller.E_count = this.E_count;
+
 						top_block.setVisible(false);
 						right_block.setVisible(false);
 						bottom_block.setVisible(false);
@@ -180,24 +183,17 @@ public class E_Seat_Controller implements Initializable {
 	@FXML
 	public void btn_clear(ActionEvent event) {
 
-		// 1. 카운트 된 좌석을 0 으로 다시 초기화 시킵니다.
 		E_count = 0;
-		// 2. 선택 가능한 좌석의 수를 맨 처음 들어온 값으로 초기화 시켜야합니다.
-		seat_limit = Reservation_Seat_Select_Controller.how_many_person;
-		// 3. TreeMap 에 저장되어 있던 정보도 초기화시킵니다.
 		E_seat_Map.clear();
-
 		E_buttons.clear();
 
-		// 4. 버튼이 선택되었던 상태 정보도 모두 1에서 0으로 바꿉니다.
+		seat_limit = Reservation_Seat_Select_Controller.seat_total;
 
 		for (int e : E_status_check) {
 			if (e == 1) {
 				e = 0;
 			}
-
 		}
-		// 5. 위의 정보들을 바탕으로 다시 좌석을 생성합니다.
 		E_seat_create();
 	}
 

@@ -6,19 +6,19 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="anchorpane_main_page" prefHeight="720.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.customer.Concert_Info_Controller_3">
+<AnchorPane fx:id="anchorpane_main_page" prefHeight="720.0" prefWidth="1280.0" stylesheets="@../css/main_home_2.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.customer.Concert_Info_Controller_3">
    <children>
-      <Label id="lbl_concert_title" layoutX="542.0" layoutY="112.0" prefHeight="70.0" prefWidth="120.0" text="공연 이름">
+      <Label id="lbl_1" layoutX="542.0" layoutY="112.0" prefHeight="70.0" prefWidth="120.0" text="공연 이름">
          <font>
             <Font size="18.0" />
          </font>
       </Label>
-      <Label id="lbl_artist" layoutX="542.0" layoutY="211.0" prefHeight="56.0" prefWidth="120.0" text="아티스트">
+      <Label id="lbl_1" layoutX="542.0" layoutY="211.0" prefHeight="56.0" prefWidth="120.0" text="아티스트">
          <font>
             <Font size="18.0" />
          </font>
       </Label>
-      <Label id="lbl_concert_date" layoutX="542.0" layoutY="304.0" prefHeight="56.0" prefWidth="120.0" text="공연 날짜">
+      <Label id="lbl_1" layoutX="542.0" layoutY="304.0" prefHeight="56.0" prefWidth="120.0" text="공연 날짜">
          <font>
             <Font size="18.0" />
          </font>
@@ -32,7 +32,7 @@
             </ImageView>
          </children>
       </AnchorPane>
-      <Label fx:id="lbl_id" layoutX="793.0" layoutY="652.0" text="ID">
+      <Label fx:id="lbl_id" layoutX="600.0" layoutY="650.0" text="ID">
          <font>
             <Font size="33.0" />
          </font>
@@ -42,27 +42,27 @@
             <Font size="33.0" />
          </font>
       </Label>
-      <Label id="lbl_concert_title" fx:id="lbl_title" layoutX="769.0" layoutY="112.0" prefHeight="70.0" prefWidth="300.0" text="공연 이름" AnchorPane.leftAnchor="750.0">
+      <Label id="lbl_2" fx:id="lbl_title" layoutX="769.0" layoutY="112.0" prefHeight="70.0" prefWidth="300.0" text="공연 이름" AnchorPane.leftAnchor="750.0">
          <font>
             <Font size="18.0" />
          </font>
       </Label>
-      <Label id="lbl_artist" fx:id="lbl_artist" layoutX="769.0" layoutY="211.0" prefHeight="56.0" prefWidth="300.0" text="아티스트" AnchorPane.leftAnchor="750.0">
+      <Label id="lbl_2" fx:id="lbl_artist" layoutX="769.0" layoutY="211.0" prefHeight="56.0" prefWidth="300.0" text="아티스트" AnchorPane.leftAnchor="750.0">
          <font>
             <Font size="18.0" />
          </font>
       </Label>
-      <Label id="lbl_concert_date" fx:id="lbl_date_1" layoutX="769.0" layoutY="304.0" prefHeight="56.0" prefWidth="300.0" text="공연 날짜" AnchorPane.leftAnchor="750.0" AnchorPane.rightAnchor="200.0">
+      <Label id="lbl_2" fx:id="lbl_date_1" layoutX="769.0" layoutY="304.0" prefHeight="56.0" prefWidth="300.0" text="공연 날짜" AnchorPane.leftAnchor="750.0" AnchorPane.rightAnchor="200.0">
          <font>
             <Font size="18.0" />
          </font>
       </Label>
-      <Label id="lbl_concert_date" fx:id="lbl_date_2" layoutX="750.0" layoutY="369.0" prefHeight="56.0" prefWidth="300.0" text="공연 날짜" AnchorPane.leftAnchor="750.0" AnchorPane.rightAnchor="200.0">
+      <Label id="lbl_2" fx:id="lbl_date_2" layoutX="750.0" layoutY="369.0" prefHeight="56.0" prefWidth="300.0" text="공연 날짜" AnchorPane.leftAnchor="750.0" AnchorPane.rightAnchor="200.0">
          <font>
             <Font size="18.0" />
          </font>
       </Label>
-      <Label id="lbl_concert_date" fx:id="lbl_date_3" layoutX="763.0" layoutY="432.0" prefHeight="56.0" prefWidth="300.0" text="공연 날짜" AnchorPane.leftAnchor="750.0" AnchorPane.rightAnchor="200.0">
+      <Label id="lbl_2" fx:id="lbl_date_3" layoutX="763.0" layoutY="432.0" prefHeight="56.0" prefWidth="300.0" text="공연 날짜" AnchorPane.leftAnchor="750.0" AnchorPane.rightAnchor="200.0">
          <font>
             <Font size="18.0" />
          </font>

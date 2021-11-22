@@ -3,58 +3,89 @@
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="720.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.customer.Payment_Controller">
+<AnchorPane prefHeight="720.0" prefWidth="1280.0"
+	xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1"
+	fx:controller="controller.customer.Payment_Controller">
 	<children>
-		<AnchorPane fx:id="anchorpane_graph" layoutX="769.0" layoutY="38.0" prefHeight="612.0" prefWidth="476.0">
+		<AnchorPane fx:id="anchorpane_graph" layoutX="769.0"
+			layoutY="38.0" prefHeight="612.0" prefWidth="476.0">
 			<children>
-				<Label fx:id="lbl_reserve_concert_date" layoutX="45.0" layoutY="462.0" text="예약한 콘서트 날짜">
-					<font>
-						<Font size="19.0" />
-					</font>
-				</Label>
-				<Label fx:id="lbl_reserve_concert_time" layoutX="45.0" layoutY="523.0" text="예약한 콘서트 시작 시간 ">
-					<font>
-						<Font size="19.0" />
-					</font>
-				</Label>
-				<Button fx:id="btn_graph_by_age" layoutX="177.0" layoutY="20.0" mnemonicParsing="false" onAction="#btn_graph_by_age" text="나이" />
-				<Button fx:id="graph_by_sex" layoutX="318.0" layoutY="21.0" mnemonicParsing="false" onAction="#graph_by_sex" text="성별" />
-				<Label fx:id="lbl_reserve" layoutX="24.0" layoutY="22.0" text="예약현황">
+				<Button fx:id="btn_graph_by_age" layoutX="177.0"
+					layoutY="20.0" mnemonicParsing="false" onAction="#btn_graph_by_age"
+					text="나이" />
+				<Button fx:id="graph_by_sex" layoutX="318.0" layoutY="21.0"
+					mnemonicParsing="false" onAction="#graph_by_sex" text="성별" />
+				<Label fx:id="lbl_reserve" layoutX="24.0" layoutY="22.0"
+					text="예약현황">
 					<font>
 						<Font size="16.0" />
 					</font>
 				</Label>
-				<AnchorPane fx:id="anchorpane_graph" layoutX="24.0" layoutY="57.0" prefHeight="379.0" prefWidth="428.0" />
+				<BorderPane fx:id="borderpane_chart" layoutX="28.0"
+					layoutY="63.0" prefHeight="520.0" prefWidth="430.0">
+					<center>
+						<AnchorPane prefHeight="520.0" prefWidth="430.0"
+							BorderPane.alignment="CENTER" />
+					</center>
+				</BorderPane>
 			</children>
 		</AnchorPane>
-		<AnchorPane fx:id="anchorpane_table" layoutX="74.0" layoutY="90.0" prefHeight="560.0" prefWidth="624.0">
+		<AnchorPane layoutX="74.0" layoutY="90.0"
+			prefHeight="560.0" prefWidth="624.0">
 			<children>
-				<Label id="lbl_title" fx:id="lbl_title" layoutX="31.0" layoutY="28.0" text="회원 좌석 선택 내역">
+				<Label id="lbl_title" fx:id="lbl_title" layoutX="31.0"
+					layoutY="28.0" text="회원 좌석 선택 내역">
 					<font>
 						<Font size="22.0" />
 					</font>
 				</Label>
-				<Button fx:id="btn_pay" layoutX="326.0" layoutY="446.0" mnemonicParsing="false" onAction="#btn_pay" prefHeight="92.0" prefWidth="122.0" text="결제하기" />
-				<Button fx:id="btn_cancel" layoutX="137.0" layoutY="446.0" mnemonicParsing="false" onAction="#btn_cancel" prefHeight="92.0" prefWidth="122.0" text="이전" />
-				<Label id="lbl_total_price_menu" fx:id="lbl_total" layoutX="31.0" layoutY="322.0" prefHeight="59.0" prefWidth="193.0" text="총 결제 금액">
+				<Button fx:id="btn_pay" layoutX="326.0" layoutY="446.0"
+					mnemonicParsing="false" onAction="#btn_pay" prefHeight="92.0"
+					prefWidth="122.0" text="결제하기" />
+				<Button fx:id="btn_cancel" layoutX="137.0" layoutY="446.0"
+					mnemonicParsing="false" onAction="#btn_cancel" prefHeight="92.0"
+					prefWidth="122.0" text="이전" />
+				<Label id="lbl_total_price_menu" fx:id="lbl_total"
+					layoutX="75.0" layoutY="358.0" prefHeight="59.0" prefWidth="193.0"
+					text="총 결제 금액">
 					<font>
 						<Font size="27.0" />
 					</font>
 				</Label>
-				<Label id="lbl_total_price" fx:id="lbl_total_price" layoutX="245.0" layoutY="322.0" prefHeight="59.0" prefWidth="345.0" text="total price">
+				<Label id="lbl_total_price" fx:id="lbl_total_price"
+					layoutX="301.0" layoutY="358.0" prefHeight="59.0" prefWidth="345.0"
+					text="total price">
 					<font>
-						<Font size="27.0" />
+						<Font size="30.0" />
 					</font>
 				</Label>
-            <Label fx:id="lbl_r_no_1" layoutX="38.0" layoutY="123.0" prefHeight="51.0" prefWidth="532.0" text="좌석번호">
-               <font>
-                  <Font size="15.0" />
-               </font></Label>
-            <Label fx:id="lbl_r_no_2" layoutX="38.0" layoutY="185.0" prefHeight="27.0" prefWidth="172.0" text="좌석번호" />
-            <Label fx:id="lbl_r_no_3" layoutX="38.0" layoutY="232.0" prefHeight="27.0" prefWidth="172.0" text="좌석번호" />
-            <Label fx:id="lbl_r_no_4" layoutX="38.0" layoutY="280.0" prefHeight="27.0" prefWidth="54.0" text="좌석번호" />
+				<Label fx:id="lbl_r_no_1" layoutX="30.0" layoutY="100.0"
+					prefHeight="51.0" prefWidth="532.0" text="좌석번호">
+					<font>
+						<Font size="20.0" />
+					</font>
+				</Label>
+				<Label fx:id="lbl_r_no_2" layoutX="30.0" layoutY="151.0"
+					prefHeight="59.0" prefWidth="542.0" text="좌석번호">
+					<font>
+						<Font size="20.0" />
+					</font>
+				</Label>
+				<Label fx:id="lbl_r_no_3" layoutX="30.0" layoutY="210.0"
+					prefHeight="59.0" prefWidth="532.0" text="좌석번호">
+					<font>
+						<Font size="20.0" />
+					</font>
+				</Label>
+				<Label fx:id="lbl_r_no_4" layoutX="29.0" layoutY="269.0"
+					prefHeight="51.0" prefWidth="532.0" text="좌석번호">
+					<font>
+						<Font size="20.0" />
+					</font>
+				</Label>
 			</children>
 		</AnchorPane>
 	</children>

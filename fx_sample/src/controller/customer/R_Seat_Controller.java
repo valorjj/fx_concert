@@ -95,11 +95,11 @@ public class R_Seat_Controller implements Initializable {
 
 		// 1.6 좌석 컨트롤러에 있는 static 리스트에 저장합니다.
 		Reservation_Seat_Select_Controller.R_status_check = this.R_status_check;
+		Reservation_Seat_Select_Controller.R_count = this.R_count;
 
 	}
 
 	public static R_Seat_Controller get_instance() {
-
 		return instance;
 	}
 
@@ -109,20 +109,14 @@ public class R_Seat_Controller implements Initializable {
 
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
-
-		System.out.println(seat_limit + "seat _ limit");
-
 		left_block.setVisible(false);
 		R_seat_create();
-
 	}
 
 	// 1. 좌석을 생성하는 메소드입니다.
 	// 1.1
 	public void R_seat_create() {
-
 		try {
-
 			if (seat_limit == 0) {
 				Alert alert = new Alert(AlertType.INFORMATION);
 				alert.setHeaderText("모든 좌석이 선택되었습니다. 결제를 진행해주세요.");
@@ -201,6 +195,7 @@ public class R_Seat_Controller implements Initializable {
 								Reservation_Seat_Select_Controller.is_E_set = true;
 								// 4. 좌석 컨트롤러에 있는 static 영역에 저장된 리스트에 좌석 예약 상태 정보를 전달합니다.
 								Reservation_Seat_Select_Controller.R_status_check = this.R_status_check;
+								Reservation_Seat_Select_Controller.R_count = this.R_count;
 
 								top_block.setVisible(false);
 								right_block.setVisible(false);
@@ -230,7 +225,6 @@ public class R_Seat_Controller implements Initializable {
 			System.out.println(e);
 			e.printStackTrace();
 		}
-
 	}
 
 	@FXML
@@ -239,7 +233,7 @@ public class R_Seat_Controller implements Initializable {
 		// 1. 카운트 된 좌석을 0 으로 다시 초기화 시킵니다.
 		R_count = 0;
 		// 2. 선택 가능한 좌석의 수를 맨 처음 들어온 값으로 초기화 시켜야합니다.
-		seat_limit = Reservation_Seat_Select_Controller.how_many_person;
+		seat_limit = Reservation_Seat_Select_Controller.seat_total;
 		// 3. TreeMap 에 저장되어 있던 정보도 초기화시킵니다.
 		R_seat_Map.clear();
 		// 4. buttons 리스트에 저장되어 있던 버튼 정보도 모두 초기화시킵니다.

@@ -1,0 +1,12 @@
+#pane2{
+	
+	-fx-border-color: black;
+	-fx-border-width: 2.0px;
+	-fx-border-radius: 15.0px;
+	
+}
+#pane1{
+	-fx-border-color: black;
+	-fx-border-width: 2.0px;
+	
+}

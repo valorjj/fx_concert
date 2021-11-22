@@ -58,7 +58,6 @@ public class Reservation_Home_Controller implements Initializable {
 
 	public void reservation_loadpage(String page) {
 		try {
-
 			Parent parent = FXMLLoader.load(getClass().getResource("/fxml/" + page + ".fxml"));
 			reservation_borderpane.setCenter(parent);
 
