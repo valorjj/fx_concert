@@ -58,9 +58,7 @@ public class Reservation_Seat_Select_Controller implements Initializable {
 	private static Reservation_Seat_Select_Controller instance;
 
 	public static Reservation_Seat_Select_Controller get_instance() {
-
 		return instance;
-
 	}
 
 	public Reservation_Seat_Select_Controller() {
@@ -81,31 +79,53 @@ public class Reservation_Seat_Select_Controller implements Initializable {
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
 
-		int c_no = ConcertDao.getConcertDao().get_concert_c_no(Reservation_Date_Select_Controller.user_selected_date, Reservation_Date_Select_Controller.user_selected_time);
-		
+		// 1. 결제 화면에서, 종료 누르고 다시 들어왔을 때 좌석 선택 정보가 초기화되야 하므로 db 값을 불러와서 초기화시킵니다.
+		R_status_check = SeatDao.getSeatDao().get_seat_status(c_no, "R",
+				Reservation_Concert_Select_Controller.concert_number);
+		S_status_check = SeatDao.getSeatDao().get_seat_status(c_no, "S",
+				Reservation_Concert_Select_Controller.concert_number);
+		D_status_check = SeatDao.getSeatDao().get_seat_status(c_no, "D",
+				Reservation_Concert_Select_Controller.concert_number);
+		E_status_check = SeatDao.getSeatDao().get_seat_status(c_no, "E",
+				Reservation_Concert_Select_Controller.concert_number);
+
+
 		Concert concert = ConcertDao.getConcertDao().get_concert_instance_by_date(
 				Reservation_Date_Select_Controller.user_selected_date,
 				Reservation_Date_Select_Controller.user_selected_time);
 
-		int R_total = ConcertDao.getConcertDao().get_remaining_seat_R(Reservation_Date_Select_Controller.user_selected_date, Reservation_Date_Select_Controller.user_selected_time);
+		int R_total = ConcertDao.getConcertDao().get_remaining_seat_R(
+				Reservation_Date_Select_Controller.user_selected_date,
+				Reservation_Date_Select_Controller.user_selected_time);
 		int R_selected = ReservationDao.get_reservationDao().get_reservation1(c_no, "R",
 				Reservation_Concert_Select_Controller.concert_number);
-		lbl_R_total.setText((R_total - R_selected) + "");
-		
-		int S_total = ConcertDao.getConcertDao().get_remaining_seat_S(Reservation_Date_Select_Controller.user_selected_date, Reservation_Date_Select_Controller.user_selected_time);
+		lbl_R_remain.setText((R_total - R_selected) + "");
+
+		int S_total = ConcertDao.getConcertDao().get_remaining_seat_S(
+				Reservation_Date_Select_Controller.user_selected_date,
+				Reservation_Date_Select_Controller.user_selected_time);
 		int S_selected = ReservationDao.get_reservationDao().get_reservation1(c_no, "S",
 				Reservation_Concert_Select_Controller.concert_number);
-		lbl_S_total.setText((S_total - S_selected) + "");
-		
-		int D_total = ConcertDao.getConcertDao().get_remaining_seat_D(Reservation_Date_Select_Controller.user_selected_date, Reservation_Date_Select_Controller.user_selected_time);
+		lbl_S_remain.setText((S_total - S_selected) + "");
+
+		int D_total = ConcertDao.getConcertDao().get_remaining_seat_D(
+				Reservation_Date_Select_Controller.user_selected_date,
+				Reservation_Date_Select_Controller.user_selected_time);
 		int D_selected = ReservationDao.get_reservationDao().get_reservation1(c_no, "D",
 				Reservation_Concert_Select_Controller.concert_number);
-		lbl_D_total.setText((D_total - D_selected) + "");
-		
-		int E_total = ConcertDao.getConcertDao().get_remaining_seat_E(Reservation_Date_Select_Controller.user_selected_date, Reservation_Date_Select_Controller.user_selected_time);
+		lbl_D_remain.setText((D_total - D_selected) + "");
+
+		int E_total = ConcertDao.getConcertDao().get_remaining_seat_E(
+				Reservation_Date_Select_Controller.user_selected_date,
+				Reservation_Date_Select_Controller.user_selected_time);
 		int E_selected = ReservationDao.get_reservationDao().get_reservation1(c_no, "E",
 				Reservation_Concert_Select_Controller.concert_number);
-		lbl_E_total.setText((E_total - E_selected) + "");
+		lbl_E_remain.setText((E_total - E_selected) + "");
+
+		lbl_R_total.setText(concert.getC_R_no() + "");
+		lbl_S_total.setText(concert.getC_S_no() + "");
+		lbl_D_total.setText(concert.getC_D_no() + "");
+		lbl_E_total.setText(concert.getC_E_no() + "");
 
 		btn_how_many_1.setVisible(false);
 		btn_how_many_2.setVisible(false);
@@ -227,8 +247,13 @@ public class Reservation_Seat_Select_Controller implements Initializable {
 
 	@FXML
 	void btn_cancel(ActionEvent event) {
+
 		how_many_person = 0;
 		seat_total = 0;
+		R_count = 0;
+		S_count = 0;
+		D_count = 0;
+		E_count = 0;
 		Reservation_Home_Controller.getinstance().reservation_loadpage("reservation_page_date_select");
 
 	}
@@ -247,9 +272,9 @@ public class Reservation_Seat_Select_Controller implements Initializable {
 	@FXML
 	void btn_payment(ActionEvent event) {
 		try {
-			
+
 			// 1. 결제 창으로 진행하기 전 예외 처리입니다.
-			// 1.1 인원수를 무조건 선택해야 하고, 선택 가능한 좌석수가 0 이어야합니다. 
+			// 1.1 인원수를 무조건 선택해야 하고, 선택 가능한 좌석수가 0 이어야합니다.
 			if (how_many_person != 0 && seat_total == 0) {
 
 				Alert alert = new Alert(AlertType.CONFIRMATION);
@@ -414,6 +439,8 @@ public class Reservation_Seat_Select_Controller implements Initializable {
 			btn_view_entire_seat.setVisible(false);
 			btn_how_many_people.setVisible(false);
 
+			btn_done.setVisible(false);
+
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -469,6 +496,11 @@ public class Reservation_Seat_Select_Controller implements Initializable {
 				Reservation_Concert_Select_Controller.concert_number);
 		E_status_check = SeatDao.getSeatDao().get_seat_status(c_no, "E",
 				Reservation_Concert_Select_Controller.concert_number);
+
+		R_count = 0;
+		S_count = 0;
+		D_count = 0;
+		E_count = 0;
 
 	}
 

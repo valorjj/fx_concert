@@ -178,9 +178,7 @@ public class Payment_Controller implements Initializable {
 	private static Payment_Controller instance;
 
 	private Payment_Controller get_instance() {
-
 		return instance;
-
 	}
 
 	public Payment_Controller() {
@@ -220,9 +218,7 @@ public class Payment_Controller implements Initializable {
 		// 1. 해당 콘서트 예약 현황을 나이에 따라 분류해서 Bar 그래프로 출력합니다.
 		// 1.1 멤버를 나이별로 묶습니다.
 		// 1.2 그 후
-
 		load_page("chart_view_by_age");
-
 	}
 
 	@FXML
@@ -261,9 +257,7 @@ public class Payment_Controller implements Initializable {
 							MemberDao.getMemberDao().get_m_no_member(Login_Controller.getInstance().get_login_id())
 
 					);
-
 					res2 = ReservationDao.get_reservationDao().reservation_register(reservation);
-
 				}
 			}
 
@@ -280,7 +274,6 @@ public class Payment_Controller implements Initializable {
 							MemberDao.getMemberDao().get_m_no_member(Login_Controller.getInstance().get_login_id())
 
 					);
-
 					res4 = ReservationDao.get_reservationDao().reservation_register(reservation);
 				}
 			}
@@ -298,10 +291,8 @@ public class Payment_Controller implements Initializable {
 							MemberDao.getMemberDao().get_m_no_member(Login_Controller.getInstance().get_login_id())
 
 					);
-
 					res6 = ReservationDao.get_reservationDao().reservation_register(reservation);
 				}
-
 			}
 
 			if (Reservation_Seat_Select_Controller.getReseved_seat_map().get("E") != null) {
@@ -317,10 +308,8 @@ public class Payment_Controller implements Initializable {
 							MemberDao.getMemberDao().get_m_no_member(Login_Controller.getInstance().get_login_id())
 
 					);
-
 					res8 = ReservationDao.get_reservationDao().reservation_register(reservation);
 				}
-
 			}
 
 			// 1. 위 등록 과정 중 하나라도 성공 했다면 알림창을 띄웁니다.
@@ -335,9 +324,6 @@ public class Payment_Controller implements Initializable {
 				alert2.setHeaderText("DB에 오류가 발생했습니다. 관리자에게 문의하세요.");
 				alert2.showAndWait();
 			}
-
 		}
-
 	}
-
 }

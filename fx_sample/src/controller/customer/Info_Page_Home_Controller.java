@@ -79,15 +79,21 @@ public class Info_Page_Home_Controller implements Initializable {
 		int m_no = MemberDao.getMemberDao().get_m_no_member(Login_Controller.getInstance().get_login_id());
 
 		ObservableList<Reservation> member_reservation_history_concert = ReservationDao.get_reservationDao()
-				.get_member_reservation(m_no);
+				.get_member_reservation2(m_no);
 
 		TableColumn<?, ?> tc = tableview_history.getColumns().get(0);
-		tc.setCellValueFactory(new PropertyValueFactory<>("c_no"));
+		tc.setCellValueFactory(new PropertyValueFactory<>("c_title"));
 
 		tc = tableview_history.getColumns().get(1);
-		tc.setCellValueFactory(new PropertyValueFactory<>("s_grade"));
+		tc.setCellValueFactory(new PropertyValueFactory<>("c_date"));
 
 		tc = tableview_history.getColumns().get(2);
+		tc.setCellValueFactory(new PropertyValueFactory<>("c_artist"));
+
+		tc = tableview_history.getColumns().get(3);
+		tc.setCellValueFactory(new PropertyValueFactory<>("s_grade"));
+
+		tc = tableview_history.getColumns().get(4);
 		tc.setCellValueFactory(new PropertyValueFactory<>("s_unique_no"));
 
 		tableview_history.setItems(member_reservation_history_concert);
@@ -119,7 +125,7 @@ public class Info_Page_Home_Controller implements Initializable {
 
 	@FXML
 	public void cancel(ActionEvent event) {
-		Mainpage_Controller.getInstance().loadpage("main_page_home");
+		Mainpage_Controller.getInstance().loadpage("main_page");
 	}
 
 	@FXML

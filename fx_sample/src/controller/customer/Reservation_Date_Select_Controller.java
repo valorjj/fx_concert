@@ -1,6 +1,6 @@
 package controller.customer;
 
-import java.io.IOException;
+import java.io.File;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -20,6 +20,7 @@ import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.ToggleGroup;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.GridPane;
 
@@ -29,8 +30,10 @@ public class Reservation_Date_Select_Controller implements Initializable {
 
 	// DB 에는 등록하지는 않지만 유저가 선택한 정보를 static 영역에 저장합니다.
 	static int user_selected_day = 0;
+
 	public static String user_selected_date;
 	public static String user_selected_time;
+
 
 	// 버튼 상태를 제어하는 스위치 2개
 	private boolean switch_2pm_btn = true;
@@ -68,6 +71,29 @@ public class Reservation_Date_Select_Controller implements Initializable {
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
 
+		try {
+			if (Reservation_Concert_Select_Controller.concert_number == 1) {
+				File file = new File("src/images/1.png");
+				System.out.println(file.toURI().toString());
+				Image image = new Image(file.toURI().toString());
+				concert_image_view.setImage(image);
+			}
+			if (Reservation_Concert_Select_Controller.concert_number == 2) {
+				File file = new File("src/images/2.png");
+				System.out.println(file.toURI().toString());
+				Image image = new Image(file.toURI().toString());
+				concert_image_view.setImage(image);
+			}
+			if (Reservation_Concert_Select_Controller.concert_number == 3) {
+				File file = new File("src/images/3.png");
+				System.out.println(file.toURI().toString());
+				Image image = new Image(file.toURI().toString());
+				concert_image_view.setImage(image);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
 		// 콘서트 관련 정보 출력합니다.
 
 		concert_date_list = (ConcertDao.getConcertDao().get_concert_date_list(user_selected_concert_unique_no));
@@ -88,8 +114,6 @@ public class Reservation_Date_Select_Controller implements Initializable {
 		set_btn_action();
 
 	}
-
-	/////////////////////////////////////////////////////////
 
 	@SuppressWarnings("static-access")
 	public void create_calendar() {
@@ -123,8 +147,8 @@ public class Reservation_Date_Select_Controller implements Initializable {
 		for (int i = 0; i <= 42; i++) {
 			if (i >= sweek - 1 && i < eday + sweek - 1) {
 				Button button = new Button();
+				
 				button.setText(idx + "");
-
 				button.setPrefSize(30, 30);
 				button.setId(idx + "");
 
