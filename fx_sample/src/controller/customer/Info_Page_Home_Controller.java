@@ -86,7 +86,7 @@ public class Info_Page_Home_Controller implements Initializable {
 
 		tc = tableview_history.getColumns().get(1);
 		tc.setCellValueFactory(new PropertyValueFactory<>("c_date"));
-		
+
 		tc = tableview_history.getColumns().get(2);
 		tc.setCellValueFactory(new PropertyValueFactory<>("c_artist"));
 
@@ -96,8 +96,6 @@ public class Info_Page_Home_Controller implements Initializable {
 		tc = tableview_history.getColumns().get(4);
 		tc.setCellValueFactory(new PropertyValueFactory<>("s_unique_no"));
 
-		
-		
 		tableview_history.setItems(member_reservation_history_concert);
 
 		tableview_history.setOnMouseClicked(e -> {
@@ -127,7 +125,7 @@ public class Info_Page_Home_Controller implements Initializable {
 
 	@FXML
 	public void cancel(ActionEvent event) {
-		Mainpage_Controller.getInstance().loadpage("main_page_home");
+		Mainpage_Controller.getInstance().loadpage("main_page");
 	}
 
 	@FXML
