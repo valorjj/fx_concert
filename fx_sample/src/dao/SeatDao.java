@@ -57,7 +57,6 @@ public class SeatDao {
 			preparedStatement.setInt(1, s_unique_no);
 			preparedStatement.setInt(2, c_no);
 			preparedStatement.setString(3, "s_grade");
-
 			preparedStatement.executeUpdate();
 
 			return true;
