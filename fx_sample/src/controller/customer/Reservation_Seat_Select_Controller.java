@@ -496,6 +496,11 @@ public class Reservation_Seat_Select_Controller implements Initializable {
 		E_status_check = SeatDao.getSeatDao().get_seat_status(c_no, "E",
 				Reservation_Concert_Select_Controller.concert_number);
 
+		R_count = 0;
+		S_count = 0;
+		D_count = 0;
+		E_count = 0;
+
 	}
 
 	public static TreeMap<String, TreeMap<Integer, String>> getReseved_seat_map() {
