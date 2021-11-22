@@ -129,6 +129,34 @@ public class ReservationDao {
 		return null;
 	}
 
+	public ObservableList<Reservation> get_member_reservation2(int m_no) {
+
+		ObservableList<Reservation> member_reservation_history2 = FXCollections.observableArrayList();
+
+		String sql = "SELECT c_title, c_artist, s_grade, s_unique_no from concert as a join reservation as b on a.c_no = b.c_no where m_no=?";
+		try {
+			preparedStatement = connection.prepareStatement(sql);
+			preparedStatement.setInt(1, m_no);
+			resultSet = preparedStatement.executeQuery();
+			while (resultSet.next()) {
+
+				Reservation reservation = new Reservation(
+
+						resultSet.getInt(4), resultSet.getString(3), resultSet.getString(1), resultSet.getString(2)
+
+				);
+				member_reservation_history2.add(reservation);
+
+			}
+
+			return member_reservation_history2;
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return null;
+	}
+
 	// 예약 목록에 있는 콘서트 정보만 빼와야 합니다. 그래서 sub query 로 2중 select 문을 사용했습니다.
 
 	public ObservableList<Concert> get_concert_from_reservation(int m_no) {
@@ -194,6 +222,7 @@ public class ReservationDao {
 		}
 		return null;
 	}
+
 	public int get_reservation1(int c_no, String s_grade, int c_unique_no) {
 
 		String sql = "select count(s_unique_no) from reservation where c_no=? and s_grade=? and c_unique_no=?";
@@ -243,7 +272,7 @@ public class ReservationDao {
 		}
 		return 0;
 	}
-	
+
 	public int get_reservation_by_age_20() {
 
 		String sql = "select count(s_unique_no) from javafx_concert.reservation where m_no IN (select m_no from javafx_concert.member where m_age between 20 and 29);";
@@ -258,7 +287,7 @@ public class ReservationDao {
 		}
 		return 0;
 	}
-	
+
 	public int get_reservation_by_age_30() {
 
 		String sql = "select count(s_unique_no) from javafx_concert.reservation where m_no IN (select m_no from javafx_concert.member where m_age between 30 and 39);";
@@ -273,7 +302,7 @@ public class ReservationDao {
 		}
 		return 0;
 	}
-	
+
 	public int get_reservation_by_age_40() {
 
 		String sql = "select count(s_unique_no) from javafx_concert.reservation where m_no IN (select m_no from javafx_concert.member where m_age between 40 and 49);";
@@ -288,6 +317,5 @@ public class ReservationDao {
 		}
 		return 0;
 	}
-
 
 }
