@@ -142,10 +142,7 @@ public class ReservationDao {
 
 				Reservation reservation = new Reservation(
 
-						resultSet.getInt(5), 
-						resultSet.getString(4), 
-						resultSet.getString(1), 
-						resultSet.getString(2), 
+						resultSet.getInt(5), resultSet.getString(4), resultSet.getString(1), resultSet.getString(2),
 						resultSet.getString(3)
 
 				);
@@ -246,12 +243,13 @@ public class ReservationDao {
 		return 0;
 	}
 
-	public int get_reservation1(String m_sex) {
+	public int get_reservation1(String m_sex, int c_no) {
 
-		String sql = "select count(s_unique_no) from reservation where m_no IN (select m_no from member where m_sex=?)";
+		String sql = "select count(s_unique_no) from reservation where m_no IN (select m_no from member where m_sex=?) and c_no =?";
 		try {
 			preparedStatement = connection.prepareStatement(sql);
 			preparedStatement.setString(1, m_sex);
+			preparedStatement.setInt(2, c_no);
 			resultSet = preparedStatement.executeQuery();
 			if (resultSet.next()) {
 				return resultSet.getInt(1);
@@ -262,11 +260,12 @@ public class ReservationDao {
 		return 0;
 	}
 
-	public int get_reservation_by_age_10() {
+	public int get_reservation_by_age_10(int c_no) {
 
-		String sql = "select count(s_unique_no) from javafx_concert.reservation where m_no IN (select m_no from javafx_concert.member where m_age between 10 and 19);";
+		String sql = "select count(s_unique_no) from javafx_concert.reservation where m_no IN (select m_no from javafx_concert.member where m_age between 10 and 19) and c_no=?";
 		try {
 			preparedStatement = connection.prepareStatement(sql);
+			preparedStatement.setInt(1, c_no);
 			resultSet = preparedStatement.executeQuery();
 			if (resultSet.next()) {
 				return resultSet.getInt(1);
@@ -277,11 +276,12 @@ public class ReservationDao {
 		return 0;
 	}
 
-	public int get_reservation_by_age_20() {
+	public int get_reservation_by_age_20(int c_no) {
 
-		String sql = "select count(s_unique_no) from javafx_concert.reservation where m_no IN (select m_no from javafx_concert.member where m_age between 20 and 29);";
+		String sql = "select count(s_unique_no) from javafx_concert.reservation where m_no IN (select m_no from javafx_concert.member where m_age between 20 and 29) and c_no=?";
 		try {
 			preparedStatement = connection.prepareStatement(sql);
+			preparedStatement.setInt(1, c_no);
 			resultSet = preparedStatement.executeQuery();
 			if (resultSet.next()) {
 				return resultSet.getInt(1);
@@ -292,11 +292,12 @@ public class ReservationDao {
 		return 0;
 	}
 
-	public int get_reservation_by_age_30() {
+	public int get_reservation_by_age_30(int c_no) {
 
-		String sql = "select count(s_unique_no) from javafx_concert.reservation where m_no IN (select m_no from javafx_concert.member where m_age between 30 and 39);";
+		String sql = "select count(s_unique_no) from javafx_concert.reservation where m_no IN (select m_no from javafx_concert.member where m_age between 30 and 39) and c_no=?";
 		try {
 			preparedStatement = connection.prepareStatement(sql);
+			preparedStatement.setInt(1, c_no);
 			resultSet = preparedStatement.executeQuery();
 			if (resultSet.next()) {
 				return resultSet.getInt(1);
@@ -307,11 +308,12 @@ public class ReservationDao {
 		return 0;
 	}
 
-	public int get_reservation_by_age_40() {
+	public int get_reservation_by_age_40(int c_no) {
 
-		String sql = "select count(s_unique_no) from javafx_concert.reservation where m_no IN (select m_no from javafx_concert.member where m_age between 40 and 49);";
+		String sql = "select count(s_unique_no) from javafx_concert.reservation where m_no IN (select m_no from javafx_concert.member where m_age between 40 and 49) and c_no=?";
 		try {
 			preparedStatement = connection.prepareStatement(sql);
+			preparedStatement.setInt(1, c_no);
 			resultSet = preparedStatement.executeQuery();
 			if (resultSet.next()) {
 				return resultSet.getInt(1);
