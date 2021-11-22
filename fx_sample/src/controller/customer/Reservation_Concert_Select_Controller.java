@@ -28,29 +28,26 @@ public class Reservation_Concert_Select_Controller implements Initializable {
 		instance = this;
 	}
 
+	// 1. concert_number 가 static 영역에 저장되어 콘서트 고유 번호로 계속 쓰일 것 입니다.
+	// 1.1 호출하는 방법 : Reservation_Concert_Select_Controller.concert_number
+	// 1.2 다른 페이지에서 호출해서 사용하면 됩니다.
+	// 1.3 DAO 에 콘서트 고유 번호가 자주 쓰입니다.
 	static int concert_number;
 
 	@FXML
 	private Button btn_reservation;
-
 	@FXML
 	private ImageView concert_select_image1;
-
 	@FXML
 	private ImageView concert_select_image2;
-
 	@FXML
 	private ImageView concert_select_image3;
-
 	@FXML
 	private ToggleGroup concert_selection;
-
 	@FXML
 	private RadioButton opt_1;
-
 	@FXML
 	private RadioButton opt_2;
-
 	@FXML
 	private RadioButton opt_3;
 
@@ -66,12 +63,21 @@ public class Reservation_Concert_Select_Controller implements Initializable {
 			concert_number = 3;
 		}
 
-		Alert alert = new Alert(AlertType.CONFIRMATION);
-		alert.setHeaderText("선택한 콘서트로 예약을 진행하시겠습니까?");
-		Optional<ButtonType> optional = alert.showAndWait();
+		if (concert_number != 0) {
 
-		if (optional.get() == ButtonType.OK) {
-			Reservation_Home_Controller.getinstance().reservation_loadpage("reservation_page_date_select");
+			Alert alert = new Alert(AlertType.CONFIRMATION);
+			alert.setHeaderText("선택한 콘서트로 예약을 진행하시겠습니까?");
+			Optional<ButtonType> optional = alert.showAndWait();
+
+			if (optional.get() == ButtonType.OK) {
+				Reservation_Home_Controller.getinstance().reservation_loadpage("reservation_page_date_select");
+			}
+
+		} else {
+			Alert alert = new Alert(AlertType.INFORMATION);
+			alert.setHeaderText("콘서트가 선택되지 않았습니다. ");
+			alert.showAndWait();
+
 		}
 
 	}

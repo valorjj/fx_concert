@@ -61,8 +61,7 @@ public class R_Seat_Controller implements Initializable {
 			Reservation_Date_Select_Controller.user_selected_date,
 			Reservation_Date_Select_Controller.user_selected_time);
 	// 1. db seat table 에서 s_staus 를 받아서 저장하는 리스트입니다.
-	ArrayList<Integer> R_status_check = SeatDao.getSeatDao().get_seat_status(c_no, "R",
-			Reservation_Concert_Select_Controller.concert_number);
+	ArrayList<Integer> R_status_check = Reservation_Seat_Select_Controller.getR_status_check();
 	// 1. R석에서 선택한 좌석수를 임시로 저장하는 변수입니다.
 	// 1.1 좌석에 이벤트가 발생할 때마다 증가하거나 감소시킵니다.
 	// 1.2 좌석 컨트롤러에서 받아온 seat_total 값을 기준으로 좌석 선택이 종료되는 시점을 조건으로 만들 때 사용합니다.
@@ -94,7 +93,7 @@ public class R_Seat_Controller implements Initializable {
 		btn_disable2();
 
 		// 1.6 좌석 컨트롤러에 있는 static 리스트에 저장합니다.
-		Reservation_Seat_Select_Controller.R_status_check = this.R_status_check;
+		Reservation_Seat_Select_Controller.setR_status_check(this.R_status_check);
 		Reservation_Seat_Select_Controller.R_count = this.R_count;
 
 	}
@@ -194,7 +193,7 @@ public class R_Seat_Controller implements Initializable {
 								Reservation_Seat_Select_Controller.is_D_set = true;
 								Reservation_Seat_Select_Controller.is_E_set = true;
 								// 4. 좌석 컨트롤러에 있는 static 영역에 저장된 리스트에 좌석 예약 상태 정보를 전달합니다.
-								Reservation_Seat_Select_Controller.R_status_check = this.R_status_check;
+								Reservation_Seat_Select_Controller.setR_status_check(this.R_status_check);
 								Reservation_Seat_Select_Controller.R_count = this.R_count;
 
 								top_block.setVisible(false);
