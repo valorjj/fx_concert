@@ -2,12 +2,39 @@ package domain;
 
 public class Reservation {
 
+
 	private int r_no;
 	private int s_unique_no;
 	private String s_grade;
 	private int c_no;
 	private int c_unique_no;
 	private int m_no;
+	private String c_title;
+	private String c_date;
+
+	public String getC_title() {
+		return c_title;
+	}
+
+	public String getC_artist() {
+		return c_artist;
+	}
+
+	private String c_artist;
+
+	public Reservation(int s_unique_no, String s_grade, String c_title, String c_date, String c_artist) {
+		this.s_unique_no = s_unique_no;
+		this.s_grade = s_grade;
+		this.c_title = c_title;
+		this.c_date = c_date;
+		this.c_artist = c_artist;
+	}
+
+	public Reservation(int s_unique_no, String s_grade, int c_no) {
+		this.s_unique_no = s_unique_no;
+		this.s_grade = s_grade;
+		this.c_no = c_no;
+	}
 
 	public Reservation(int s_unique_no, String s_grade, int c_no, int c_unique_no) {
 		this.s_unique_no = s_unique_no;
@@ -83,6 +110,10 @@ public class Reservation {
 
 	public void setM_no(int m_no) {
 		this.m_no = m_no;
+	}
+
+	public String getC_date() {
+		return c_date;
 	}
 
 }

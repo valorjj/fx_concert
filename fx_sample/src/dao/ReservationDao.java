@@ -195,12 +195,13 @@ public class ReservationDao {
 		return null;
 	}
 
-	public int get_reservation1(String m_sex) {
+	public int get_reservation1(String m_sex, int c_no) {
 
-		String sql = "select count(s_unique_no) from reservation where m_no IN (select m_no from member where m_sex=?)";
+		String sql = "select count(s_unique_no) from reservation where m_no IN (select m_no from member where m_sex=?) and c_no =?";
 		try {
 			preparedStatement = connection.prepareStatement(sql);
 			preparedStatement.setString(1, m_sex);
+			preparedStatement.setInt(2, c_no);
 			resultSet = preparedStatement.executeQuery();
 			if (resultSet.next()) {
 				return resultSet.getInt(1);
@@ -212,20 +213,68 @@ public class ReservationDao {
 	}
 
 	// 연령별 예약데이터 출력
-	public int get_reservation_age(int m_age) {
-		String sql = "select count(s_unique_no) from javafx_concert.reservation where m_no IN (select m_no from javafx_concert.member where m_age =?)";
+	public int get_reservation_by_age_10(int c_no) {
+		String sql = "select count(s_unique_no) from javafx_concert.reservation where m_no IN (select m_no from javafx_concert.member where m_age between 10 and 19) and c_no=?";
 		try {
 			preparedStatement = connection.prepareStatement(sql);
-			preparedStatement.setInt(1, m_age);
+			preparedStatement.setInt(1, c_no);
 			resultSet = preparedStatement.executeQuery();
-			if(resultSet.next()) {
+			if (resultSet.next()) {
 				return resultSet.getInt(1);
 			}
-		} catch (Exception e) {} return 0;
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return 0;
 	}
-	
-	public int get_reservation1(int c_no, String s_grade, int c_unique_no) {
+	public int get_reservation_by_age_20(int c_no) {
 
+		String sql = "select count(s_unique_no) from javafx_concert.reservation where m_no IN (select m_no from javafx_concert.member where m_age between 20 and 29) and c_no=?";
+		try {
+			preparedStatement = connection.prepareStatement(sql);
+			preparedStatement.setInt(1, c_no);
+			resultSet = preparedStatement.executeQuery();
+			if (resultSet.next()) {
+				return resultSet.getInt(1);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return 0;
+	}
+
+	public int get_reservation_by_age_30(int c_no) {
+
+		String sql = "select count(s_unique_no) from javafx_concert.reservation where m_no IN (select m_no from javafx_concert.member where m_age between 30 and 39) and c_no=?";
+		try {
+			preparedStatement = connection.prepareStatement(sql);
+			preparedStatement.setInt(1, c_no);
+			resultSet = preparedStatement.executeQuery();
+			if (resultSet.next()) {
+				return resultSet.getInt(1);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return 0;
+	}
+
+	public int get_reservation_by_age_40(int c_no) {
+
+		String sql = "select count(s_unique_no) from javafx_concert.reservation where m_no IN (select m_no from javafx_concert.member where m_age between 40 and 49) and c_no=?";
+		try {
+			preparedStatement = connection.prepareStatement(sql);
+			preparedStatement.setInt(1, c_no);
+			resultSet = preparedStatement.executeQuery();
+			if (resultSet.next()) {
+				return resultSet.getInt(1);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return 0;
+	}
+	public int get_reservation1(int c_no, String s_grade, int c_unique_no) {
 		String sql = "select count(s_unique_no) from reservation where c_no=? and s_grade=? and c_unique_no=?";
 		try {
 			preparedStatement = connection.prepareStatement(sql);
@@ -305,6 +354,35 @@ public class ReservationDao {
 			
 			
 		}
+	
+	public ObservableList<Reservation> get_member_reservation2(int m_no) {
+
+	      ObservableList<Reservation> member_reservation_history2 = FXCollections.observableArrayList();
+
+	      String sql = "SELECT c_title, c_date, c_artist, s_grade, s_unique_no from concert as a join reservation as b on a.c_no = b.c_no where m_no=? order by c_title asc";
+	      try {
+	         preparedStatement = connection.prepareStatement(sql);
+	         preparedStatement.setInt(1, m_no);
+	         resultSet = preparedStatement.executeQuery();
+	         while (resultSet.next()) {
+
+	            Reservation reservation = new Reservation(
+
+	                  resultSet.getInt(5), resultSet.getString(4), resultSet.getString(1), resultSet.getString(2),
+	                  resultSet.getString(3)
+
+	            );
+	            member_reservation_history2.add(reservation);
+
+	         }
+
+	         return member_reservation_history2;
+
+	      } catch (Exception e) {
+	         e.printStackTrace();
+	      }
+	      return null;
+	   }
 	
 	
 
