@@ -15,32 +15,27 @@ public class ChartView_Controller_Age implements Initializable {
 
 	// 1. reservation 테이블에서 정보를 불러옵니다.
 	// 2. 구체적인 정보가 아닌 존재 하는지 여부만 확인하면 됩니다.
-	// 3.
 
 	@FXML
-	private AnchorPane barchart_by_sex;
+	private LineChart<Integer, Integer> linechart;
+	XYChart.Series<Integer, Integer> series = null;
 
-	@FXML
-	private LineChart<String, Integer> linechart;
-	XYChart.Series<String, Integer> series = null;
-
-	int m_no = MemberDao.getMemberDao().get_m_no_member(Login_Controller.getInstance().get_login_id());
 
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
 
-		series = new XYChart.Series<String, Integer>();
+		XYChart.Series<Integer, Integer> series = new XYChart.Series<Integer, Integer>();
+		int age_10 = ReservationDao.get_reservationDao().get_reservation_by_age_10();
+		int age_20 = ReservationDao.get_reservationDao().get_reservation_by_age_20();
+		int age_30 = ReservationDao.get_reservationDao().get_reservation_by_age_30();
+		int age_40 = ReservationDao.get_reservationDao().get_reservation_by_age_40();
 
-		// ObservableList<XYChart.Series<String, Number>> list =
-		// FXCollections.observableArrayList();
+		series.getData().add(new XYChart.Data<Integer, Integer>(10, age_10));
+		series.getData().add(new XYChart.Data<Integer, Integer>(20, age_20));
+		series.getData().add(new XYChart.Data<Integer, Integer>(30, age_30));
+		series.getData().add(new XYChart.Data<Integer, Integer>(40, age_40));
 
-		int men = ReservationDao.get_reservationDao().get_reservation1("M");
-		int women = ReservationDao.get_reservationDao().get_reservation1("F");
-
-		series.getData().add(new XYChart.Data("M", 5));
-		series.getData().add(new XYChart.Data("F", 6));
-
-		linechart.getXAxis().setAutoRanging(false);
+		series.setName("by Age");
 
 		linechart.getData().add(series);
 	}

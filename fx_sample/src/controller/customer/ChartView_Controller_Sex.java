@@ -19,10 +19,6 @@ public class ChartView_Controller_Sex implements Initializable {
 
 	@FXML
 	private LineChart<String, Integer> linechart;
-	// Series<String, Integer> series = null;
-
-	// int m_no =
-	// MemberDao.getMemberDao().get_m_no_member(Login_Controller.getInstance().get_login_id());
 
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
@@ -31,9 +27,6 @@ public class ChartView_Controller_Sex implements Initializable {
 
 		int men = ReservationDao.get_reservationDao().get_reservation1("M");
 		int women = ReservationDao.get_reservationDao().get_reservation1("F");
-
-		System.out.println(men + ": men");
-		System.out.println(women + ": women");
 
 		series.getData().add(new XYChart.Data<String, Integer>("male", men));
 		series.getData().add(new XYChart.Data<String, Integer>("female", women));
