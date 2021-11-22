@@ -145,8 +145,8 @@ public class Reservation_Date_Select_Controller implements Initializable {
 		for (int i = 0; i <= 42; i++) {
 			if (i >= sweek - 1 && i < eday + sweek - 1) {
 				Button button = new Button();
+				
 				button.setText(idx + "");
-
 				button.setPrefSize(30, 30);
 				button.setId(idx + "");
 

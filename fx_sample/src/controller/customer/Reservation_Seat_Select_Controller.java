@@ -246,8 +246,13 @@ public class Reservation_Seat_Select_Controller implements Initializable {
 
 	@FXML
 	void btn_cancel(ActionEvent event) {
+
 		how_many_person = 0;
 		seat_total = 0;
+		R_count = 0;
+		S_count = 0;
+		D_count = 0;
+		E_count = 0;
 		Reservation_Home_Controller.getinstance().reservation_loadpage("reservation_page_date_select");
 
 	}

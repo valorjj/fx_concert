@@ -144,9 +144,9 @@
 						<Font size="14.0" />
 					</font>
 				</Label>
-				<Label id="lbl_seat_remaining" fx:id="lbl_R_remaining" layoutX="124.0" layoutY="481.0" text="r석">
+				<Label id="lbl_seat_remaining" fx:id="lbl_R_remaining" layoutX="124.0" layoutY="478.0" text="r석" textFill="#fa0202">
 					<font>
-						<Font size="14.0" />
+						<Font size="20.0" />
 					</font>
 				</Label>
 				<Label id="lbl_seat_remaining" fx:id="lbl_small" layoutX="174.0" layoutY="481.0" text="S석">
@@ -154,9 +154,9 @@
 						<Font size="14.0" />
 					</font>
 				</Label>
-				<Label id="lbl_seat_remaining" fx:id="lbl_S_remaining" layoutX="214.0" layoutY="481.0" text="s석">
+				<Label id="lbl_seat_remaining" fx:id="lbl_S_remaining" layoutX="214.0" layoutY="478.0" text="s석" textFill="#fa0202">
 					<font>
-						<Font size="14.0" />
+						<Font size="20.0" />
 					</font>
 				</Label>
 				<Label id="lbl_seat_remaining" fx:id="lbl_small" layoutX="264.0" layoutY="481.0" text="D석">
@@ -164,9 +164,9 @@
 						<Font size="14.0" />
 					</font>
 				</Label>
-				<Label id="lbl_seat_remaining" fx:id="lbl_D_remaining" layoutX="304.0" layoutY="481.0" text="d석">
+				<Label id="lbl_seat_remaining" fx:id="lbl_D_remaining" layoutX="304.0" layoutY="478.0" text="d석" textFill="#fa0202">
 					<font>
-						<Font size="14.0" />
+						<Font size="20.0" />
 					</font>
 				</Label>
 				<Label id="lbl_seat_remaining" fx:id="lbl_small" layoutX="354.0" layoutY="481.0" text="E석">
@@ -174,9 +174,9 @@
 						<Font size="14.0" />
 					</font>
 				</Label>
-				<Label id="lbl_seat_remaining" fx:id="lbl_E_remaining" layoutX="400.0" layoutY="481.0" text="e석">
+				<Label id="lbl_seat_remaining" fx:id="lbl_E_remaining" layoutX="400.0" layoutY="478.0" text="e석" textFill="#fa0202">
 					<font>
-						<Font size="14.0" />
+						<Font size="20.0" />
 					</font>
 				</Label>
 				<Button id="btn_confirm" fx:id="btn_reservation_confirm" layoutX="54.0" layoutY="512.0" mnemonicParsing="false" onAction="#btn_reservation_confirm" prefHeight="50.0" prefWidth="400.0" text="예매하기" AnchorPane.leftAnchor="55.0" AnchorPane.rightAnchor="55.0">
