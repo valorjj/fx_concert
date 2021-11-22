@@ -1,23 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.chart.BarChart?>
 <?import javafx.scene.chart.CategoryAxis?>
+<?import javafx.scene.chart.LineChart?>
 <?import javafx.scene.chart.NumberAxis?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane fx:id="barchart_by_age" prefHeight="379.0"
-	prefWidth="428.0" xmlns="http://javafx.com/javafx/17"
-	xmlns:fx="http://javafx.com/fxml/1"
-	fx:controller="controller.customer.ChartView_Controller_Age">
-	<children>
-		<BarChart fx:id="barchart" layoutX="41.0" layoutY="26.0"
-			prefHeight="328.0" prefWidth="346.0">
-			<xAxis>
-				<CategoryAxis side="BOTTOM" />
-			</xAxis>
-			<yAxis>
-				<NumberAxis side="LEFT" />
-			</yAxis>
-		</BarChart>
-	</children>
+<AnchorPane fx:id="barchart_by_age" prefHeight="379.0" prefWidth="428.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.customer.ChartView_Controller_Age">
+   <children>
+      <LineChart fx:id="linechart" layoutX="26.0" layoutY="14.0" prefHeight="360.0" prefWidth="376.0">
+        <xAxis>
+          <CategoryAxis side="BOTTOM" />
+        </xAxis>
+        <yAxis>
+          <NumberAxis side="LEFT" />
+        </yAxis>
+      </LineChart>
+   </children>
 </AnchorPane>
