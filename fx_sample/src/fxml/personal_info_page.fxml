@@ -51,11 +51,11 @@
 					<children>
 						<TableView fx:id="tableview_history" layoutY="150.0" prefHeight="450.0" prefWidth="662.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
 							<columns>
-								<TableColumn prefWidth="75.0" text="공연명" />
-								<TableColumn prefWidth="75.0" text="공연시간" />
-								<TableColumn prefWidth="75.0" text="공연날짜" />
-								<TableColumn prefWidth="75.0" text="결제금액" />
-								<TableColumn prefWidth="75.0" text="문의내역" />
+								<TableColumn prefWidth="75.0" text="콘서트이름" />
+                        <TableColumn prefWidth="75.0" text="콘서트날짜" />
+								<TableColumn prefWidth="75.0" text="아티스트" />
+								<TableColumn prefWidth="75.0" text="좌석등급" />
+                        <TableColumn prefWidth="75.0" text="좌석번호" />
 							</columns>
 							<columnResizePolicy>
 								<TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />

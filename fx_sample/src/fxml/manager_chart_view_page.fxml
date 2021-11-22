@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.chart.PieChart?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="720.0" prefWidth="1024.0" style="-fx-background-color: #494854;" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.manager.Manager_Chart_View_Controller">
+   <children>
+      <ComboBox fx:id="combo_concert_name" layoutX="42.0" layoutY="46.0" prefWidth="150.0" promptText="콘서트선택" />
+      <ComboBox fx:id="combo_concert_date" layoutX="226.0" layoutY="46.0" prefWidth="150.0" promptText="날짜 선택" />
+      <ComboBox fx:id="combo_concert_time" layoutX="402.0" layoutY="46.0" prefWidth="150.0" promptText="시간 선택" />
+      <PieChart fx:id="piechart_r_seat" labelLineLength="0.0" layoutX="110.0" layoutY="94.0" prefHeight="300.0" prefWidth="330.0" style="-fx-border-color: #D0AF93;" />
+      <PieChart fx:id="piechart_s_seat" labelLineLength="0.0" layoutX="530.0" layoutY="94.0" prefHeight="300.0" prefWidth="330.0" style="-fx-border-color: #D0AF93;" />
+      <PieChart fx:id="piechart_e_seat" labelLineLength="0.0" layoutX="110.0" layoutY="410.0" prefHeight="300.0" prefWidth="330.0" style="-fx-border-color: #D0AF93;" />
+      <PieChart fx:id="piechart_d_seat" labelLineLength="0.0" layoutX="530.0" layoutY="410.0" prefHeight="300.0" prefWidth="330.0" style="-fx-border-color: #D0AF93;" />
+      <Label layoutX="42.0" layoutY="94.0" prefHeight="57.0" prefWidth="53.0" text="R석" textFill="#d0af93">
+         <font>
+            <Font size="24.0" />
+         </font>
+      </Label>
+      <Label layoutX="460.0" layoutY="94.0" prefHeight="57.0" prefWidth="53.0" text="S석" textFill="#d0af93">
+         <font>
+            <Font size="24.0" />
+         </font>
+      </Label>
+      <Label layoutX="42.0" layoutY="410.0" prefHeight="57.0" prefWidth="53.0" text="E석" textFill="#d0af93">
+         <font>
+            <Font size="24.0" />
+         </font>
+      </Label>
+      <Label layoutX="460.0" layoutY="410.0" prefHeight="57.0" prefWidth="53.0" text="D석" textFill="#d0af93">
+         <font>
+            <Font size="24.0" />
+         </font>
+      </Label>
+   </children>
+</AnchorPane>

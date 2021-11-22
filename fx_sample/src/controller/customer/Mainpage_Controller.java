@@ -17,7 +17,7 @@ import javafx.scene.layout.AnchorPane;
 
 public class Mainpage_Controller implements Initializable {
 
-	//////////////////////////////////////////////////////////////////
+	int concert_pop_up = 1;
 
 	@FXML
 	private BorderPane main_page_boardpane;
@@ -38,29 +38,22 @@ public class Mainpage_Controller implements Initializable {
 	@FXML
 	private AnchorPane anchorpane_main_page;
 
-	//////////////////////////////////////////////////////////////////
-
 	private static Mainpage_Controller instance;
 
 	public static Mainpage_Controller getInstance() {
 		return instance;
-	}	
+	}
 
 	public Mainpage_Controller() {
 		instance = this;
 	}
 
-	///////////////////////////////////////////////////////////////////
-
-	// 초기 화면을 설정하는 메소드
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
-		loadpage("main_page_home");
+		loadpage("main_page_home_concert1");
+		concert_pop_up++;
 	}
 
-	///////////////////////////////////////////////////////////////////
-
-	// 인수로 건네받은 fxml 파일 열기
 	public void loadpage(String page) {
 		try {
 			Parent parent = FXMLLoader.load(getClass().getResource("/fxml/" + page + ".fxml"));
@@ -73,25 +66,35 @@ public class Mainpage_Controller implements Initializable {
 	@FXML
 	public void btn_reservation(ActionEvent event) {
 		btn_reservation.getScene().getWindow().hide();
-		window_shift("concert_select_page");
+		window_shift("reservation_page_home");
 	}
 
 	// 버튼을 누르면 내 정보 페이지로 이동
 	@FXML
 	public void btn_myinfo(ActionEvent event) {
+		btn_home.setStyle("-fx-background-color : #494854");
+		btn_board.setStyle("-fx-background-color : #494854");
+		btn_myinfo.setStyle("-fx-background-color : #bfbadb");
+		btn_route.setStyle("-fx-background-color : #494854");
+		btn_logout.setStyle("-fx-background-color : #494854");
 		loadpage("personal_info_page");
 	}
 
 	// 버튼을 누르면 게시판으로 이동
 	@FXML
 	public void btn_board(ActionEvent event) {
-		loadpage("board");
+
+		btn_home.setStyle("-fx-background-color : #494854");
+		btn_board.setStyle("-fx-background-color : #bfbadb");
+		btn_myinfo.setStyle("-fx-background-color : #494854");
+		btn_route.setStyle("-fx-background-color : #494854");
+		btn_logout.setStyle("-fx-background-color : #494854");
+		loadpage("member_board_view_page");
 	}
 
-	// 버튼을 누르면 찾아오는 길 페이지 팝업
 	@FXML
 	public void btn_route(ActionEvent event) {
-		loadpage("concert_route");
+		window_shift("concert_route_page");
 	}
 
 	// 버튼을 누르면 계정 로그아웃
@@ -105,7 +108,23 @@ public class Mainpage_Controller implements Initializable {
 	// 버튼을 누르면 가장 첫 페이지로 이동
 	@FXML
 	public void btn_home(ActionEvent event) {
-		loadpage("main_page_home");
+
+		btn_home.setStyle("-fx-background-color : #bfbadb");
+		btn_board.setStyle("-fx-background-color : #494854");
+		btn_myinfo.setStyle("-fx-background-color : #494854");
+		btn_route.setStyle("-fx-background-color : #494854");
+		btn_logout.setStyle("-fx-background-color : #494854");
+
+		if (concert_pop_up == 1) {
+			loadpage("main_page_home_concert1");
+			concert_pop_up++;
+		} else if (concert_pop_up == 2) {
+			loadpage("main_page_home_concert2");
+			concert_pop_up++;
+		} else if (concert_pop_up == 3) {
+			loadpage("main_page_home_concert3");
+			concert_pop_up = 1;
+		}
 	}
 
 	// 인수로 전달된 페이지로 이동한다.
@@ -114,6 +133,7 @@ public class Mainpage_Controller implements Initializable {
 			Stage stage = new Stage();
 			Parent parent = FXMLLoader.load(getClass().getResource("/fxml/" + page + ".fxml"));
 			Scene scene = new Scene(parent);
+
 			stage.setScene(scene);
 			stage.show();
 

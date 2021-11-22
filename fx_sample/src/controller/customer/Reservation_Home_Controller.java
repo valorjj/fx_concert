@@ -50,7 +50,7 @@ public class Reservation_Home_Controller implements Initializable {
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
 
-		reservation_loadpage("reservation_concert_select_page");
+		reservation_loadpage("reservation_page_concert_select");
 
 	}
 
@@ -58,7 +58,6 @@ public class Reservation_Home_Controller implements Initializable {
 
 	public void reservation_loadpage(String page) {
 		try {
-
 			Parent parent = FXMLLoader.load(getClass().getResource("/fxml/" + page + ".fxml"));
 			reservation_borderpane.setCenter(parent);
 

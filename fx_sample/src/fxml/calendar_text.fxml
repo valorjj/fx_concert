@@ -12,7 +12,7 @@
 
 <AnchorPane prefHeight="720.0" prefWidth="1280.0"
 	xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1"
-	fx:controller="controller.customer.Main_Reservation_Controller">
+	fx:controller="controller.customer.Calendar_Controller">
 	<children>
 		<AnchorPane layoutX="22.0" layoutY="31.0"
 			prefHeight="660.0" prefWidth="650.0" AnchorPane.leftAnchor="30.0"
@@ -22,7 +22,7 @@
 					fitHeight="300.0" fitWidth="220.0" layoutX="25.0" layoutY="96.0"
 					pickOnBounds="true" preserveRatio="true">
 					<image>
-						<Image url="@../images/c1.png" />
+						<Image url="@../images/1.png" />
 					</image>
 				</ImageView>
 				<Label id="lbl" fx:id="lbl_concert_tile" layoutX="393.0"
@@ -177,6 +177,123 @@
 						<RowConstraints minHeight="10.0" prefHeight="30.0"
 							valignment="CENTER" vgrow="SOMETIMES" />
 					</rowConstraints>
+					<children>
+						<Button fx:id="btn_1" mnemonicParsing="false" prefHeight="30.0"
+							prefWidth="30.0" text="1" />
+						<Button fx:id="btn_2"mnemonicParsing="false" prefHeight="30.0"
+							prefWidth="30.0" text="2" GridPane.columnIndex="1" />
+						<Button mnemonicParsing="false" prefHeight="30.0"
+							prefWidth="30.0" text="3" GridPane.columnIndex="2" />
+						<Button mnemonicParsing="false" prefHeight="30.0"
+							prefWidth="30.0" text="4" GridPane.columnIndex="3" />
+						<Button mnemonicParsing="false" prefHeight="30.0"
+							prefWidth="30.0" text="5" GridPane.columnIndex="4" />
+						<Button mnemonicParsing="false" prefHeight="30.0"
+							prefWidth="30.0" text="6" GridPane.columnIndex="5" />
+						<Button mnemonicParsing="false" prefHeight="30.0"
+							prefWidth="30.0" text="7" GridPane.columnIndex="6" />
+						<Button mnemonicParsing="false" prefHeight="30.0"
+							prefWidth="30.0" text="8" GridPane.rowIndex="1" />
+						<Button mnemonicParsing="false" prefHeight="30.0"
+							prefWidth="30.0" text="9" GridPane.columnIndex="1"
+							GridPane.rowIndex="1" />
+						<Button mnemonicParsing="false" prefHeight="30.0"
+							prefWidth="30.0" text="10" GridPane.columnIndex="2"
+							GridPane.rowIndex="1" />
+						<Button mnemonicParsing="false" prefHeight="30.0"
+							prefWidth="30.0" text="11" GridPane.columnIndex="3"
+							GridPane.rowIndex="1" />
+						<Button mnemonicParsing="false" prefHeight="30.0"
+							prefWidth="30.0" text="12" GridPane.columnIndex="4"
+							GridPane.rowIndex="1" />
+						<Button mnemonicParsing="false" prefHeight="30.0"
+							prefWidth="30.0" text="13" GridPane.columnIndex="5"
+							GridPane.rowIndex="1" />
+						<Button mnemonicParsing="false" prefHeight="30.0"
+							prefWidth="30.0" text="14" GridPane.columnIndex="6"
+							GridPane.rowIndex="1" />
+						<Button mnemonicParsing="false" prefHeight="30.0"
+							prefWidth="30.0" text="15" GridPane.rowIndex="2" />
+						<Button mnemonicParsing="false" prefHeight="30.0"
+							prefWidth="30.0" text="16" GridPane.columnIndex="1"
+							GridPane.rowIndex="2" />
+						<Button mnemonicParsing="false" prefHeight="30.0"
+							prefWidth="30.0" text="17" GridPane.columnIndex="2"
+							GridPane.rowIndex="2" />
+						<Button mnemonicParsing="false" prefHeight="30.0"
+							prefWidth="30.0" text="18" GridPane.columnIndex="3"
+							GridPane.rowIndex="2" />
+						<Button mnemonicParsing="false" prefHeight="30.0"
+							prefWidth="30.0" text="19" GridPane.columnIndex="4"
+							GridPane.rowIndex="2" />
+						<Button mnemonicParsing="false" prefHeight="30.0"
+							prefWidth="30.0" text="20" GridPane.columnIndex="5"
+							GridPane.rowIndex="2" />
+						<Button mnemonicParsing="false" prefHeight="30.0"
+							prefWidth="30.0" text="21" GridPane.columnIndex="6"
+							GridPane.rowIndex="2" />
+						<Button mnemonicParsing="false" prefHeight="30.0"
+							prefWidth="30.0" text="22" GridPane.rowIndex="3" />
+						<Button mnemonicParsing="false" prefHeight="30.0"
+							prefWidth="30.0" text="23" GridPane.columnIndex="1"
+							GridPane.rowIndex="3" />
+						<Button mnemonicParsing="false" prefHeight="30.0"
+							prefWidth="30.0" text="24" GridPane.columnIndex="2"
+							GridPane.rowIndex="3" />
+						<Button mnemonicParsing="false" prefHeight="30.0"
+							prefWidth="30.0" text="25" GridPane.columnIndex="3"
+							GridPane.rowIndex="3" />
+						<Button mnemonicParsing="false" prefHeight="30.0"
+							prefWidth="30.0" text="26" GridPane.columnIndex="4"
+							GridPane.rowIndex="3" />
+						<Button mnemonicParsing="false" prefHeight="30.0"
+							prefWidth="30.0" text="27" GridPane.columnIndex="5"
+							GridPane.rowIndex="3" />
+						<Button mnemonicParsing="false" prefHeight="30.0"
+							prefWidth="30.0" text="28" GridPane.columnIndex="6"
+							GridPane.rowIndex="3" />
+						<Button mnemonicParsing="false" prefHeight="30.0"
+							prefWidth="30.0" text="29" GridPane.rowIndex="4" />
+						<Button mnemonicParsing="false" prefHeight="30.0"
+							prefWidth="30.0" text="30" GridPane.columnIndex="1"
+							GridPane.rowIndex="4" />
+						<Button mnemonicParsing="false" prefHeight="30.0"
+							prefWidth="30.0" text="31" GridPane.columnIndex="2"
+							GridPane.rowIndex="4" />
+						<Button mnemonicParsing="false" prefHeight="30.0"
+							prefWidth="30.0" text="32" GridPane.columnIndex="3"
+							GridPane.rowIndex="4" />
+						<Button mnemonicParsing="false" prefHeight="30.0"
+							prefWidth="30.0" text="33" GridPane.columnIndex="4"
+							GridPane.rowIndex="4" />
+						<Button mnemonicParsing="false" prefHeight="30.0"
+							prefWidth="30.0" text="34" GridPane.columnIndex="5"
+							GridPane.rowIndex="4" />
+						<Button mnemonicParsing="false" prefHeight="30.0"
+							prefWidth="30.0" text="35" GridPane.columnIndex="6"
+							GridPane.rowIndex="4" />
+
+						<Button mnemonicParsing="false" prefHeight="30.0"
+							prefWidth="30.0" text="36" GridPane.rowIndex="5" />
+						<Button mnemonicParsing="false" prefHeight="30.0"
+							prefWidth="30.0" text="37" GridPane.columnIndex="1"
+							GridPane.rowIndex="5" />
+						<Button mnemonicParsing="false" prefHeight="30.0"
+							prefWidth="30.0" text="38" GridPane.columnIndex="2"
+							GridPane.rowIndex="5" />
+						<Button mnemonicParsing="false" prefHeight="30.0"
+							prefWidth="30.0" text="39" GridPane.columnIndex="3"
+							GridPane.rowIndex="5" />
+						<Button mnemonicParsing="false" prefHeight="30.0"
+							prefWidth="30.0" text="40" GridPane.columnIndex="4"
+							GridPane.rowIndex="5" />
+						<Button mnemonicParsing="false" prefHeight="30.0"
+							prefWidth="30.0" text="41" GridPane.columnIndex="5"
+							GridPane.rowIndex="5" />
+						<Button mnemonicParsing="false" prefHeight="30.0"
+							prefWidth="30.0" text="42" GridPane.columnIndex="6"
+							GridPane.rowIndex="5" />
+					</children>
 				</GridPane>
 				<Label id="lbl_seat_remaining" fx:id="lbl_small"
 					layoutX="79.0" layoutY="481.0" text="R석"
@@ -285,7 +402,9 @@
 				<Button id="btn_6pm" fx:id="btn_6pm" layoutX="273.0"
 					layoutY="406.0" mnemonicParsing="false" onAction="#btn_6pm"
 					prefHeight="55.0" prefWidth="180.0" text="6PM"
-					AnchorPane.rightAnchor="47.0" />
+					AnchorPane.rightAnchor="55.0" />
+				<Button fx:id="btn_reset" layoutX="395.0" layoutY="367.0"
+					mnemonicParsing="false" onAction="#btn_reset" text="초기화" />
 			</children>
 		</AnchorPane>
 	</children>
