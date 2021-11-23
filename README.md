@@ -63,6 +63,8 @@
 
 ## 시연 영상
 
+영상 링크 -> 클릭 시 Youtube 로 연결 
+
 [![Video Label](https://user-images.githubusercontent.com/30681841/142995565-834954e7-a0c8-4d20-a8c8-e7ef4cd98129.png)](https://youtu.be/8OECmZlYDRU)
 
 
