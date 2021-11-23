@@ -60,6 +60,14 @@
 
 > 정진 : 메인 페이지 
 
+
+## 시연 영상
+
+[![video] (https://www.youtube.com/watch?v=8OECmZlYDRU/0.jpg)](https://www.youtube.com/watch?v=8OECmZlYDRU)
+
+
+
+
 ## 프로젝트 소감 
 
 > 1. 어려움을 겪었던 부분     
