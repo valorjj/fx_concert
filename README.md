@@ -63,7 +63,7 @@
 
 ## 시연 영상
 
-[![video] (https://www.youtube.com/watch?v=8OECmZlYDRU/0.jpg)](https://www.youtube.com/watch?v=8OECmZlYDRU)
+[![Video Label](https://img.youtube.com/watch?v=8OECmZlYDRU/0.jpg)](https://youtu.be/8OECmZlYDRU)
 
 
 
