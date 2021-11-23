@@ -17,13 +17,11 @@
 ![image](https://user-images.githubusercontent.com/30681841/141245180-201b2c16-e62d-4e8c-ae75-e42ed6d6dc21.png)
 
 ![image](https://user-images.githubusercontent.com/30681841/141705694-886c9143-a800-4a68-93ce-c2a1f87f31a4.png)
-
-
-![image](https://user-images.githubusercontent.com/30681841/141429526-0946ab2e-6da4-40a7-820f-58c121969988.png)
+![image](https://user-images.githubusercontent.com/30681841/142988546-a3bd0452-ff36-423a-975c-f071026cdf75.png)
 
 ![image](https://user-images.githubusercontent.com/30681841/141705299-a66fb3fc-658d-4a37-ad13-1aa8625f722d.png)
 
-## 화면 설계
+## 초기 화면 설계
 
 ![image](https://user-images.githubusercontent.com/30681841/141442630-8fa1cea8-3ab4-4faa-8fc8-6169c827c129.png)
 
@@ -56,3 +54,7 @@
 > 지형 : 매니저 페이지, 메인 페이지
 
 > 정진 : 메인 페이지 
+
+## 결과 페이지 
+
+
